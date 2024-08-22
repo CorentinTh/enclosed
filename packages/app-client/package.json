@@ -1,0 +1,39 @@
+{
+  "name": "@enclosed/app-client",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build && cp -r dist/* ../app-server/dist",
+    "serve": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "test": "pnpm run test:unit",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest watch"
+  },
+  "dependencies": {
+    "@kobalte/core": "^0.13.4",
+    "@solidjs/router": "^0.14.3",
+    "@unocss/reset": "^0.62.2",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "solid-js": "^1.8.11",
+    "tailwind-merge": "^2.5.2",
+    "unocss-preset-animations": "^1.1.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.27.0",
+    "@iconify-json/tabler": "^1.1.120",
+    "eslint": "^9.9.0",
+    "jsdom": "^24.1.1",
+    "solid-devtools": "^0.29.2",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.11",
+    "vite-plugin-solid": "^2.8.2",
+    "vitest": "^2.0.5"
+  }
+}

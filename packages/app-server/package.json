@@ -1,0 +1,40 @@
+{
+  "name": "@enclosed/app-server",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "main": "index.js",
+  "scripts": {
+    "dev": "$npm_execpath run dev:cloudflare",
+    "build": "$npm_execpath run build:cloudflare",
+    "dev:cloudflare": "wrangler dev --test-scheduled --port=8787 src/index.cloudflare.ts",
+    "build:cloudflare": "esbuild --bundle src/index.cloudflare.ts --format=esm --outfile=dist/_worker.js --minify",
+    "preview": "wrangler pages dev",
+    "deploy": "$npm_execpath run build && wrangler pages deploy",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.12.1",
+    "figue": "^2.0.0",
+    "hono": "^4.5.8",
+    "lodash": "^4.17.21",
+    "pino": "^9.3.2",
+    "ulid-workers": "^2.1.0",
+    "unstorage": "^1.10.2",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.27.0",
+    "@cloudflare/workers-types": "^4.20240821.1",
+    "@types/lodash": "^4.17.7",
+    "eslint": "^9.9.0",
+    "tsx": "^4.17.0",
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5",
+    "wrangler": "^3.72.1"
+  }
+}

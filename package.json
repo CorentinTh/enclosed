@@ -1,0 +1,12 @@
+{
+  "name": "@enclosed/root",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:app": "pnpm --filter @enclosed/app-server run build && pnpm --filter @enclosed/app-client run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
