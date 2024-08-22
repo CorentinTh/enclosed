@@ -7,7 +7,7 @@
   "scripts": {
     "start": "vite",
     "dev": "vite",
-    "build": "vite build && cp -r dist/* ../app-server/dist",
+    "build": "vite build",
     "serve": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",

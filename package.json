@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:app": "pnpm --filter @enclosed/app-server run build && pnpm --filter @enclosed/app-client run build"
+    "build:app": "pnpm -p --filter @enclosed/app-* run build && mkdir -p dist-app && cp -r packages/app-*/dist/* dist-app"
   },
   "keywords": [],
   "author": "",
