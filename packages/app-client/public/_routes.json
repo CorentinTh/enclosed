@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "include": [
+    "/api/*"
+  ],
+  "exclude": [
+    "/",
+    "/index.html",
+    "/assets/*"
+  ]
+}
