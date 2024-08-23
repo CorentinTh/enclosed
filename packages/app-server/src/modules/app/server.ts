@@ -1,4 +1,5 @@
 import { Hono } from 'hono';
+import { secureHeaders } from 'hono/secure-headers';
 import { registerNotesRoutes } from '../notes/notes.routes';
 import type { ServerInstanceGenerics } from './server.types';
 import { corsMiddleware } from './middlewares/cors.middleware';
@@ -16,6 +17,7 @@ function createServer() {
   app.use(configMiddleware);
   app.use(corsMiddleware);
   app.use(storageMiddleware);
+  app.use(secureHeaders());
 
   registerErrorMiddleware({ app });
   registerNotesRoutes({ app });
