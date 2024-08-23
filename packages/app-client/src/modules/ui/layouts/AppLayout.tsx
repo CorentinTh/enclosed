@@ -19,7 +19,7 @@ export const Navbar: Component = () => {
             Enclosed
           </Button>
 
-          <span class="text-muted-foreground">
+          <span class="text-muted-foreground hidden sm:block">
             Send private and secure notes
           </span>
         </div>
