@@ -22,6 +22,8 @@ function createServer() {
   registerErrorMiddleware({ app });
   registerNotesRoutes({ app });
 
+  app.get('/api/ping', context => context.json({ status: 'ok' }));
+
   return {
     app,
   };
