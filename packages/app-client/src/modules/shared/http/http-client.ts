@@ -1,9 +1,9 @@
+import { config } from '@/modules/config/config';
+
 export { apiClient };
 
 async function apiClient<T>({ path, method, body }: { path: string; method: string; body?: unknown }): Promise<T> {
-  const baseUrl = 'http://localhost:8787'; // TODO: move to config
-
-  const url = new URL(path, baseUrl).toString();
+  const url = new URL(path, config.baseApiUrl).toString();
 
   const response = await fetch(url, {
     method,
