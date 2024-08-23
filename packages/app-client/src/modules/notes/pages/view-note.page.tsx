@@ -1,12 +1,12 @@
 import { useLocation, useParams } from '@solidjs/router';
-import { type Component, Match, Show, Switch, createEffect, createResource, createSignal, on, onMount } from 'solid-js';
+import { type Component, Match, Show, Switch, createSignal, onMount } from 'solid-js';
 import { fetchNoteById } from '../notes.services';
 import { decryptNote } from '../notes.usecases';
 import { TextField, TextFieldLabel, TextFieldRoot } from '@/modules/ui/components/textfield';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/modules/ui/components/card';
+import { Card, CardContent, CardDescription, CardHeader } from '@/modules/ui/components/card';
 import { Button } from '@/modules/ui/components/button';
 import { isHttpErrorWithCode } from '@/modules/shared/http/http-errors';
-import { asyncAttempt, promiseAttempt } from '@/modules/shared/utils/attempt';
+import { promiseAttempt } from '@/modules/shared/utils/attempt';
 import { Alert, AlertDescription } from '@/modules/ui/components/alert';
 import { CopyButton } from '@/modules/shared/utils/copy';
 

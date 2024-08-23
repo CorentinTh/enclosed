@@ -2,7 +2,7 @@ import { z } from 'zod';
 import type { ServerInstance } from '../app/server.types';
 import { validateJsonBody } from '../shared/validation/validation';
 import { createNoteRepository } from './notes.repository';
-import { ONE_DAY_IN_SECONDS, ONE_MONTH_IN_SECONDS, TEN_MINUTES_IN_SECONDS } from './notes.constants';
+import { ONE_MONTH_IN_SECONDS, TEN_MINUTES_IN_SECONDS } from './notes.constants';
 
 export { registerNotesRoutes };
 

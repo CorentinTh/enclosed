@@ -3,12 +3,11 @@ import { encryptAndCreateNote } from '../notes.usecases';
 import { useNoteContext } from '../notes.context';
 import { NotePasswordField } from '../components/note-password-field';
 import { TextArea } from '@/modules/ui/components/textarea';
-import { TextField, TextFieldDescription, TextFieldLabel, TextFieldRoot } from '@/modules/ui/components/textfield';
+import { TextField, TextFieldLabel, TextFieldRoot } from '@/modules/ui/components/textfield';
 import { Button } from '@/modules/ui/components/button';
 import { Tabs, TabsIndicator, TabsList, TabsTrigger } from '@/modules/ui/components/tabs';
 import { SwitchControl, SwitchLabel, SwitchThumb, Switch as SwitchUiComponent } from '@/modules/ui/components/switch';
 import { Alert, AlertDescription } from '@/modules/ui/components/alert';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/modules/ui/components/card';
 import { CopyButton } from '@/modules/shared/utils/copy';
 
 export const CreateNotePage: Component = () => {

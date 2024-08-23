@@ -1,4 +1,4 @@
-import { base64UrlToBuffer, bufferToBase64Url, createBuffer, createRandomBuffer } from './buffer';
+import { base64UrlToBuffer, bufferToBase64Url, createRandomBuffer } from './buffer';
 
 export { aesEncrypt, aesDecrypt };
 

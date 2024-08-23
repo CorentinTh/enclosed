@@ -1,4 +1,4 @@
-import type { Component, ComponentProps, ParentComponent } from 'solid-js';
+import type { ComponentProps, ParentComponent } from 'solid-js';
 import { createSignal } from 'solid-js';
 import { Button } from '@/modules/ui/components/button';
 
