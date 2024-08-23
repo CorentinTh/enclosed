@@ -1,8 +1,7 @@
 
-
 # Enclosed
 
-**Enclosed** is a minimalistic web application designed for sending private and secure notes. 
+**Enclosed** is a minimalistic web application designed for sending private and secure notes.
 
 All notes are end-to-end encrypted, ensuring that the server and storage have zero knowledge of the content. Users can set a password, define an expiration period (TTL), and choose to have the note self-destruct after being read.
 
@@ -17,9 +16,45 @@ A live instance is available at [enclosed.cc](https://enclosed.cc).
 - **Configurable Security Options**: Set a password, expiration time, and choose self-destruction after the note is read.
 - **Minimalistic UI**: Simple and intuitive user interface for quick note sharing.
 
-## Installation
+## Self host
 
-// TODO
+### Docker
+
+You can quickly run the application using Docker.
+
+```bash
+# From docker hub
+docker run -d -p 8787:8787 corentinth/enclosed
+# or from GitHub Container Registry
+docker run -d -p 8787:8787 ghcr.io/corentin-th/enclosed
+```
+
+**With volume persistency**
+Replace `/path/to/local/data` with the path to your local data directory.  
+
+```bash
+# From docker hub
+docker run -d -p 8787:8787 -v /path/to/local/data:/app/.data corentinth/enclosed
+# or from GitHub Container Registry
+docker run -d -p 8787:8787 -v /path/to/local/data:/app/.data ghcr.io/corentin-th/enclosed
+```
+
+### Docker Compose
+
+You can also use Docker Compose to run the application.
+
+```yaml
+version: '3.8'
+
+services:
+  enclosed:
+    image: corentinth/enclosed
+    ports:
+      - 8787:8787
+    volumes:
+      - /path/to/local/data:/app/.data
+    restart: unless-stopped
+```
 
 ## Usage
 
