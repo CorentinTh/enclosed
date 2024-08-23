@@ -3,9 +3,6 @@ import type { Storage } from 'unstorage';
 import type { Config } from './config/config.types';
 
 export type ServerInstanceGenerics = {
-  Bindings: {
-    notes: KVNamespace;
-  };
   Variables: {
     config: Config;
     storage: Storage;

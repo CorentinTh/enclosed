@@ -10,8 +10,10 @@
   "scripts": {
     "dev": "$npm_execpath run dev:cloudflare",
     "build": "$npm_execpath run build:cloudflare",
+    "dev:node": "tsx -r dotenv/config --watch src/index.node.ts",
     "dev:cloudflare": "wrangler dev --test-scheduled --port=8787 src/index.cloudflare.ts",
     "build:cloudflare": "esbuild --bundle src/index.cloudflare.ts --format=esm --outfile=dist/_worker.js --minify",
+    "build:node": "esbuild --bundle src/index.node.ts --platform=node --format=cjs --outfile=dist-node/index.cjs --minify",
     "preview": "wrangler pages dev",
     "deploy": "$npm_execpath run build && wrangler pages deploy",
     "lint": "eslint .",
@@ -32,6 +34,7 @@
     "@antfu/eslint-config": "^2.27.0",
     "@cloudflare/workers-types": "^4.20240821.1",
     "@types/lodash": "^4.17.7",
+    "dotenv": "^16.4.5",
     "eslint": "^9.9.0",
     "tsx": "^4.17.0",
     "typescript": "^5.5.4",
