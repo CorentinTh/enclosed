@@ -2,6 +2,7 @@
   "name": "@enclosed/app-server",
   "type": "module",
   "version": "1.0.0",
+  "packageManager": "pnpm@9.2.0",
   "description": "",
   "author": "",
   "license": "ISC",
@@ -17,7 +18,11 @@
     "preview": "wrangler pages dev",
     "deploy": "$npm_execpath run build && wrangler pages deploy",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "lint:fix": "eslint --fix .",
+    "test": "pnpm run test:unit",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest watch",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@hono/node-server": "^1.12.1",
