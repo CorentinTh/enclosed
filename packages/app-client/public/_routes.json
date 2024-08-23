@@ -4,8 +4,6 @@
     "/api/*"
   ],
   "exclude": [
-    "/",
-    "/index.html",
-    "/assets/*"
+    "/*"
   ]
 }
