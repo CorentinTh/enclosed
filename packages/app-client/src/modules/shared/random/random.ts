@@ -1,9 +1,12 @@
+import { bufferToBase64Url } from '../crypto/buffer';
+
 export { createRandomString, createRandomBuffer };
 
 function createRandomString({ length = 16 }: { length?: number } = {}): string {
-  const randomValues = new Uint32Array(length);
+  const bufferLength = Math.ceil((length * 3) / 4);
+  const randomValues = new Uint8Array(bufferLength);
   crypto.getRandomValues(randomValues);
-  return Array.from(randomValues, value => value.toString(36)).join('');
+  return bufferToBase64Url({ buffer: randomValues });
 }
 
 function createRandomBuffer({ length = 16 }: { length?: number } = {}): Uint8Array {

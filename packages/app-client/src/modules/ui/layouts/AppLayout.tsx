@@ -1,18 +1,26 @@
-import { A } from '@solidjs/router';
+import { A, useNavigate } from '@solidjs/router';
 import type { Component, ParentComponent } from 'solid-js';
 import { DropdownMenu } from '@kobalte/core/dropdown-menu';
 import { DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../components/dropdown-menu';
 import { Button } from '@/modules/ui/components/button';
 import { useThemeStore } from '@/modules/theme/theme.store';
+import { useNoteContext } from '@/modules/notes/notes.context';
 
 export const Navbar: Component = () => {
   const themeStore = useThemeStore();
+  const { triggerResetNoteForm } = useNoteContext();
+  const navigate = useNavigate();
+
+  const newNoteClicked = () => {
+    triggerResetNoteForm();
+    navigate('/');
+  };
 
   return (
     <div class="border-b border-border bg-surface">
       <div class="flex items-center justify-between px-6 py-3 mx-auto max-w-1200px">
         <div class="flex items-baseline gap-1">
-          <Button as={A} href="/" variant="ghost" class="text-lg font-semibold ml--4 ">
+          <Button variant="ghost" class="text-lg font-semibold ml--4 " onClick={newNoteClicked}>
             Enclosed
           </Button>
 
@@ -22,7 +30,7 @@ export const Navbar: Component = () => {
         </div>
 
         <div class="flex gap-2 items-center">
-          <Button as={A} href="/" variant="secondary">
+          <Button variant="secondary" onClick={newNoteClicked}>
             <div class="i-tabler-plus mr-1 text-muted-foreground"></div>
             New note
           </Button>
