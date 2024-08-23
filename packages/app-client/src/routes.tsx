@@ -13,7 +13,7 @@ export const routes: RouteDefinition[] = [
         component: CreateNotePage,
       },
       {
-        path: '/:noteId/:encryptionKey',
+        path: '/:noteId',
         component: ViewNotePage,
       },
     ],

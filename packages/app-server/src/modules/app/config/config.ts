@@ -24,7 +24,7 @@ export function getConfig({ env }: { env: any }) {
         driver: {
           doc: 'The storage driver to use',
           schema: z.enum(['cloudflare-kv-binding']),
-          default: 'memory',
+          default: 'cloudflare-kv-binding',
           env: 'STORAGE_DRIVER',
         },
       },

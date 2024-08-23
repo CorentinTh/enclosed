@@ -1,5 +1,5 @@
-import { useParams } from '@solidjs/router';
-import { type Component, Show, createResource, createSignal } from 'solid-js';
+import { useLocation, useParams } from '@solidjs/router';
+import { type Component, Show, createResource, createSignal, onMount } from 'solid-js';
 import { fetchNoteById } from '../notes.services';
 import { decryptNote } from '../notes.usecases';
 import { TextField, TextFieldLabel, TextFieldRoot } from '@/modules/ui/components/textfield';
@@ -37,7 +37,10 @@ const RequestPasswordForm: Component<{ onPasswordEntered: (args: { password: str
 
 export const ViewNotePage: Component = () => {
   const params = useParams();
+  const location = useLocation();
   const [isPasswordEntered, setIsPasswordEntered] = createSignal(false);
+
+  const getEncryptionKey = () => location.hash.slice(1);
 
   const [getNote] = createResource(async () => {
     const { note } = await fetchNoteById({ noteId: params.noteId });
@@ -52,7 +55,7 @@ export const ViewNotePage: Component = () => {
 
     const { decryptedContent } = await decryptNote({
       encryptedContent: content,
-      encryptionKey: params.encryptionKey,
+      encryptionKey: getEncryptionKey(),
     });
 
     return decryptedContent;
@@ -63,7 +66,7 @@ export const ViewNotePage: Component = () => {
 
     const { decryptedContent } = await decryptNote({
       encryptedContent: content,
-      encryptionKey: params.encryptionKey,
+      encryptionKey: getEncryptionKey(),
       password,
     });
 

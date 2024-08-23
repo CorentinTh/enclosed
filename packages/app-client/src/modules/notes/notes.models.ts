@@ -41,8 +41,13 @@ async function decryptNoteContent({ encryptedContent, decryptionHashBuffer }: { 
   return decryptedContent;
 }
 
-function createNoteUrl({ noteId, encryptionKey }: { noteId: string; encryptionKey: string }) {
-  const url = new URL(`/${noteId}/${encryptionKey}`, window.location.origin).href;
+function createNoteUrl({ noteId, encryptionKey }: { noteId: string; encryptionKey: string }): { noteUrl: string } {
+  const url = new URL(`/${noteId}`, window.location.origin);
+  // add the encryption key as hash fragment
 
-  return url;
+  url.hash = encryptionKey;
+
+  const noteUrl = url.toString();
+
+  return { noteUrl };
 }

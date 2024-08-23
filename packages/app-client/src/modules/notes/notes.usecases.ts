@@ -16,7 +16,7 @@ async function encryptAndCreateNote({ content, password }: { content: string; pa
 
   const encryptionKey = bufferToBase64Url({ buffer: baseEncryptionKeyBuffer });
 
-  const noteUrl = createNoteUrl({ noteId, encryptionKey });
+  const { noteUrl } = createNoteUrl({ noteId, encryptionKey });
 
   return { encryptedContent, noteId, encryptionKey, noteUrl };
 }
