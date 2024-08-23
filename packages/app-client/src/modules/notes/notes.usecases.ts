@@ -5,14 +5,14 @@ import { createNote } from './notes.services';
 
 export { encryptAndCreateNote, decryptNote };
 
-async function encryptAndCreateNote({ content, password }: { content: string; password?: string }) {
+async function encryptAndCreateNote({ content, password, ttlInSeconds, deleteAfterReading }: { content: string; password?: string; ttlInSeconds: number; deleteAfterReading: boolean }) {
   const baseEncryptionKeyBuffer = createRandomBuffer({ length: 32 });
 
   const encryptionHashBuffer = await getEncryptionKeyHash({ baseEncryptionKeyBuffer, password });
 
   const encryptedContent = await encryptNoteContent({ content, encryptionHashBuffer });
 
-  const { noteId } = await createNote({ content: encryptedContent, isPasswordProtected: Boolean(password) });
+  const { noteId } = await createNote({ content: encryptedContent, isPasswordProtected: Boolean(password), ttlInSeconds, deleteAfterReading });
 
   const encryptionKey = bufferToBase64Url({ buffer: baseEncryptionKeyBuffer });
 

@@ -2,6 +2,7 @@ import { z } from 'zod';
 import type { ServerInstance } from '../app/server.types';
 import { validateJsonBody } from '../shared/validation/validation';
 import { createNoteRepository } from './notes.repository';
+import { ONE_DAY_IN_SECONDS, ONE_MONTH_IN_SECONDS, TEN_MINUTES_IN_SECONDS } from './notes.constants';
 
 export { registerNotesRoutes };
 
@@ -30,16 +31,19 @@ function setupCreateNoteRoute({ app }: { app: ServerInstance }) {
       z.object({
         content: z.string(),
         isPasswordProtected: z.boolean(),
-        ttlSeconds: z.number().optional(),
+        deleteAfterReading: z.boolean(),
+        ttlInSeconds: z.number()
+          .min(TEN_MINUTES_IN_SECONDS)
+          .max(ONE_MONTH_IN_SECONDS),
       }),
     ),
     async (context) => {
-      const { content, isPasswordProtected } = context.req.valid('json');
+      const { content, isPasswordProtected, ttlInSeconds, deleteAfterReading } = context.req.valid('json');
       const storage = context.get('storage');
 
       const notesRepository = createNoteRepository({ storage });
 
-      const { noteId } = await notesRepository.saveNote({ content, isPasswordProtected });
+      const { noteId } = await notesRepository.saveNote({ content, isPasswordProtected, ttlInSeconds, deleteAfterReading });
 
       return context.json({ noteId });
     },

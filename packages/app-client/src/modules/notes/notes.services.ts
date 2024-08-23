@@ -2,13 +2,15 @@ import { apiClient } from '../shared/http/http-client';
 
 export { createNote, fetchNoteById };
 
-async function createNote({ content, isPasswordProtected }: { content: string; isPasswordProtected: boolean }) {
+async function createNote({ content, isPasswordProtected, ttlInSeconds, deleteAfterReading }: { content: string; isPasswordProtected: boolean; ttlInSeconds: number; deleteAfterReading: boolean }) {
   const { noteId } = await apiClient<{ noteId: string }>({
     path: '/api/notes',
     method: 'POST',
     body: {
       content,
       isPasswordProtected,
+      ttlInSeconds,
+      deleteAfterReading,
     },
   });
 

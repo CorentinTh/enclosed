@@ -12,10 +12,7 @@ export const Navbar: Component = () => {
     <div class="border-b border-border bg-surface">
       <div class="flex items-center justify-between px-6 py-3 mx-auto max-w-1200px">
         <div class="flex items-baseline gap-1">
-          {/* <A href="/" class="text-xl font-semibold flex items-center mb-1.5">
-            Enclosed
-          </A> */}
-          <Button as={A} href="/" variant="ghost" class="text-lg font-semibold ml--4">
+          <Button as={A} href="/" variant="ghost" class="text-lg font-semibold ml--4 ">
             Enclosed
           </Button>
 
@@ -26,6 +23,7 @@ export const Navbar: Component = () => {
 
         <div class="flex gap-2 items-center">
           <Button as={A} href="/" variant="secondary">
+            <div class="i-tabler-plus mr-1 text-muted-foreground"></div>
             New note
           </Button>
 

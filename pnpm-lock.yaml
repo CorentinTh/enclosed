@@ -71,6 +71,9 @@ importers:
       '@hono/node-server':
         specifier: ^1.12.1
         version: 1.12.1
+      date-fns:
+        specifier: ^3.6.0
+        version: 3.6.0
       figue:
         specifier: ^2.0.0
         version: 2.0.0

@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@hono/node-server": "^1.12.1",
+    "date-fns": "^3.6.0",
     "figue": "^2.0.0",
     "hono": "^4.5.8",
     "lodash": "^4.17.21",
