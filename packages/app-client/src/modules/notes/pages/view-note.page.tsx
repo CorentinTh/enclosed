@@ -8,6 +8,7 @@ import { Button } from '@/modules/ui/components/button';
 import { isHttpErrorWithCode } from '@/modules/shared/http/http-errors';
 import { asyncAttempt, promiseAttempt } from '@/modules/shared/utils/attempt';
 import { Alert, AlertDescription } from '@/modules/ui/components/alert';
+import { CopyButton } from '@/modules/shared/utils/copy';
 
 const RequestPasswordForm: Component<{ onPasswordEntered: (args: { password: string }) => void; getIsPasswordInvalid: () => boolean; setIsPasswordInvalid: (value: boolean) => void }> = (props) => {
   const [getPassword, setPassword] = createSignal('');
@@ -172,10 +173,7 @@ export const ViewNotePage: Component = () => {
 
               <div class="min-w-300px">
 
-                <Button variant="secondary">
-                  <div class="i-tabler-copy mr-2 text-lg"></div>
-                  Copy to clipboard
-                </Button>
+                <CopyButton text={getNoteContent()} variant="secondary" />
               </div>
             </div>
           )}

@@ -9,15 +9,14 @@ import { Tabs, TabsIndicator, TabsList, TabsTrigger } from '@/modules/ui/compone
 import { SwitchControl, SwitchLabel, SwitchThumb, Switch as SwitchUiComponent } from '@/modules/ui/components/switch';
 import { Alert, AlertDescription } from '@/modules/ui/components/alert';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/modules/ui/components/card';
+import { CopyButton } from '@/modules/shared/utils/copy';
 
 export const CreateNotePage: Component = () => {
   const [getContent, setContent] = createSignal('');
   const [getPassword, setPassword] = createSignal('');
-  // const [getNoteUrl, setNoteUrl] = createSignal('');
-  const [getNoteUrl, setNoteUrl] = createSignal('http://localhost:3000/01j5znnn6cybrnp92mcj05yz3d#J6L4YPbT1M7gA69W9XxluLuBkx2RGdz0NtNomPxjx80');
+  const [getNoteUrl, setNoteUrl] = createSignal('');
   const [getErrorMessage, setErrorMessage] = createSignal('');
-  // const [getIsNoteCreated, setIsNoteCreated] = createSignal(false);
-  const [getIsNoteCreated, setIsNoteCreated] = createSignal(true);
+  const [getIsNoteCreated, setIsNoteCreated] = createSignal(false);
   const [getTtlInSeconds, setTtlInSeconds] = createSignal(3600);
   const [getDeleteAfterReading, setDeleteAfterReading] = createSignal(false);
 
@@ -165,10 +164,14 @@ export const CreateNotePage: Component = () => {
 
             <div class="flex items-center gap-2 w-full mx-auto mt-2 justify-center flex-col sm:flex-row">
 
-              <Button variant="secondary" class="flex-shrink-0 w-full sm:w-auto" onClick={() => navigator.clipboard.writeText(getNoteUrl())} autofocus>
-                <div class="i-tabler-copy mr-2 text-lg"></div>
-                Copy url
-              </Button>
+              <CopyButton
+                variant="secondary"
+                class="flex-shrink-0 w-full sm:w-auto"
+                autofocus
+                text={getNoteUrl()}
+                label="Copy link"
+                copiedLabel="Link copied"
+              />
 
               <Show when={getIsShareApiSupported()}>
                 <Button variant="secondary" class="flex-shrink-0 w-full sm:w-auto" onClick={shareNote}>
