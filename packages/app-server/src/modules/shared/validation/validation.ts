@@ -40,6 +40,6 @@ function buildValidator<Target extends keyof ValidationTargets>({ target, error 
   };
 }
 
-export const validateJsonBody = buildValidator({ target: 'json', error: { message: 'Invalid request body', code: 'server.invalid_request.body.json' } });
+export const validateJsonBody = buildValidator({ target: 'json', error: { message: 'Invalid request body', code: 'server.invalid_request.body' } });
 export const validateQuery = buildValidator({ target: 'query', error: { message: 'Invalid query parameters', code: 'server.invalid_request.query' } });
 export const validateParams = buildValidator({ target: 'param', error: { message: 'Invalid URL parameters', code: 'server.invalid_request.params' } });

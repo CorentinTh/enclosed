@@ -13,7 +13,8 @@
     "lint:fix": "eslint --fix .",
     "test": "pnpm run test:unit",
     "test:unit": "vitest run",
-    "test:unit:watch": "vitest watch"
+    "test:unit:watch": "vitest watch",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@kobalte/core": "^0.13.4",
