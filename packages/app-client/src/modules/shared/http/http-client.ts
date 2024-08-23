@@ -16,7 +16,13 @@ async function apiClient<T>({ path, method, body }: { path: string; method: stri
   });
 
   if (!response.ok) {
-    throw new Error(response.statusText);
+    const error = new Error(response.statusText);
+    Object.assign(error, {
+      status: response.status,
+      body: await response.json(),
+    });
+
+    throw error;
   }
 
   return response.json();
