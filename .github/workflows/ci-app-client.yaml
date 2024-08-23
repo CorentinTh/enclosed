@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  ci:
+  ci-app-client:
     runs-on: ubuntu-latest
     defaults:
       run:
