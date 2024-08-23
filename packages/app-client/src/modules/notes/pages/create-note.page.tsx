@@ -9,6 +9,7 @@ import { Tabs, TabsIndicator, TabsList, TabsTrigger } from '@/modules/ui/compone
 import { SwitchControl, SwitchLabel, SwitchThumb, Switch as SwitchUiComponent } from '@/modules/ui/components/switch';
 import { Alert, AlertDescription } from '@/modules/ui/components/alert';
 import { CopyButton } from '@/modules/shared/utils/copy';
+import { isRateLimitError } from '@/modules/shared/http/http-errors';
 
 export const CreateNotePage: Component = () => {
   const [getContent, setContent] = createSignal('');
@@ -55,7 +56,12 @@ export const CreateNotePage: Component = () => {
 
       setNoteUrl(noteUrl);
       setIsNoteCreated(true);
-    } catch (_error) {
+    } catch (error) {
+      if (isRateLimitError({ error })) {
+        setErrorMessage('You have reached the maximum number of notes you can create. Please wait a few minutes before trying again.');
+        return;
+      }
+
       setErrorMessage('An error occurred while creating the note, please try again.');
     }
   };
@@ -91,7 +97,7 @@ export const CreateNotePage: Component = () => {
             <TextArea placeholder="Type your note here." class="flex-1 p-4 min-h-300px sm:min-h-700px" value={getContent()} onInput={e => updateContent(e.currentTarget.value)} />
           </TextFieldRoot>
 
-          <div class="min-w-300px flex flex-col gap-4">
+          <div class="w-full sm:w-320px flex flex-col gap-4 flex-shrink-0">
             <TextFieldRoot class="w-full">
               <TextFieldLabel>Note password</TextFieldLabel>
               <NotePasswordField getPassword={getPassword} setPassword={setPassword} />

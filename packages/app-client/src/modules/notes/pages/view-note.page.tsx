@@ -5,7 +5,7 @@ import { decryptNote } from '../notes.usecases';
 import { TextField, TextFieldLabel, TextFieldRoot } from '@/modules/ui/components/textfield';
 import { Card, CardContent, CardDescription, CardHeader } from '@/modules/ui/components/card';
 import { Button } from '@/modules/ui/components/button';
-import { isHttpErrorWithCode } from '@/modules/shared/http/http-errors';
+import { isHttpErrorWithCode, isRateLimitError } from '@/modules/shared/http/http-errors';
 import { promiseAttempt } from '@/modules/shared/utils/attempt';
 import { Alert, AlertDescription } from '@/modules/ui/components/alert';
 import { CopyButton } from '@/modules/shared/utils/copy';
@@ -78,6 +78,14 @@ export const ViewNotePage: Component = () => {
     }
 
     const [fetchedNote, fetchError] = await promiseAttempt(fetchNoteById({ noteId: params.noteId }));
+
+    if (isRateLimitError({ error: fetchError })) {
+      setError({
+        title: 'Rate limit exceeded',
+        description: 'You have exceeded the rate limit for fetching notes. Please try again later.',
+      });
+      return;
+    }
 
     if (isHttpErrorWithCode({ error: fetchError, code: 'note.not_found' })) {
       setError({
