@@ -25,5 +25,5 @@ app
 
 serve({
   fetch: app.fetch,
-  port: 8787,
+  port: config.server.port,
 });

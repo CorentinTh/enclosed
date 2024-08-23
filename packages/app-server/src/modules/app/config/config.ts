@@ -10,6 +10,12 @@ export function getConfig({ env }: { env: any }) {
         env: 'NODE_ENV',
       },
       server: {
+        port: {
+          doc: 'The port to listen on when using node server',
+          schema: z.coerce.number().min(1024).max(65535),
+          default: 8787,
+          env: 'PORT',
+        },
         corsOrigin: {
           doc: 'The CORS origin the server should allow',
           schema: z.union([
