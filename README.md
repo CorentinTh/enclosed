@@ -1,3 +1,5 @@
+
+
 # Enclosed
 
 **Enclosed** is a minimalistic web application designed for sending private and secure notes. 
@@ -5,6 +7,8 @@
 All notes are end-to-end encrypted, ensuring that the server and storage have zero knowledge of the content. Users can set a password, define an expiration period (TTL), and choose to have the note self-destruct after being read.
 
 A live instance is available at [enclosed.cc](https://enclosed.cc).
+
+![Enclosed](./.github/enclosed-mockup.png)
 
 ## Features
 
@@ -41,6 +45,10 @@ Contributions are welcome! Please refer to the `CONTRIBUTING.md` file for guidel
 This project is licensed under the Apache 2.0 License. See the `LICENSE` file for more details.
 
 ## Credits and Acknowledgements
+
+This project is crafted with ❤️ by [Corentin Thomasset](https://corentin.tech).
+
+It would not have been possible without the following open-source projects:
 
 ### Frontend
 
