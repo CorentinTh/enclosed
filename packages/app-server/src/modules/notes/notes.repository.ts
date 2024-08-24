@@ -1,6 +1,6 @@
 import type { Storage } from 'unstorage';
 import { addSeconds, isBefore } from 'date-fns';
-import _ from 'lodash';
+import { omit } from 'lodash-es';
 import { generateNoteId } from './notes.models';
 import { createNoteNotFoundError } from './notes.errors';
 
@@ -51,7 +51,7 @@ function createNoteRepository({ storage }: { storage: Storage }) {
       }
 
       return {
-        note: _.omit(note, 'expirationDate'),
+        note: omit(note, 'expirationDate'),
       };
     },
   };

@@ -1,5 +1,5 @@
 import type { StatusCode } from 'hono/utils/http-status';
-import _ from 'lodash';
+import { get, isError, toString } from 'lodash-es';
 
 export { createError, createErrorFactory, isCustomError };
 
@@ -24,7 +24,7 @@ export class CustomError extends Error {
     super(message);
 
     this.code = code;
-    this.cause = _.isError(cause) ? cause : new Error(_.toString(cause));
+    this.cause = isError(cause) ? cause : new Error(toString(cause));
     this.statusCode = statusCode;
     this.documentationUrl = documentationUrl;
     this.isInternal = isInternal;
@@ -42,5 +42,5 @@ function createErrorFactory(baseOption: ErrorOptions) {
 }
 
 function isCustomError(error: unknown): error is CustomError {
-  return _.get(error, 'isCustomError') === true;
+  return get(error, 'isCustomError') === true;
 }
