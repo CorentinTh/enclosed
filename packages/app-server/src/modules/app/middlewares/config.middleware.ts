@@ -1,6 +1,5 @@
 import { env as getEnv } from 'hono/adapter';
 import { createMiddleware } from 'hono/factory';
-import _ from 'lodash';
 import { getConfig } from '../config/config';
 import type { Config } from '../config/config.types';
 
