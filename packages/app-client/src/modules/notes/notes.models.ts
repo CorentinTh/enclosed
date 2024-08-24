@@ -1,8 +1,7 @@
 import { createBuffer, mergeBuffers } from '../shared/crypto/buffer';
 import { aesDecrypt, aesEncrypt, deriveKey } from '../shared/crypto/encryption';
-import { createSha256Hash } from '../shared/crypto/hash';
 
-export { createBufferFromPassword, getEncryptionKeyHash, encryptNoteContent, decryptNoteContent, createNoteUrl, deriveMasterKey };
+export { encryptNoteContent, decryptNoteContent, createNoteUrl, deriveMasterKey };
 
 function createBufferFromPassword({ password }: { password?: string }) {
   if (!password) {
@@ -10,26 +9,6 @@ function createBufferFromPassword({ password }: { password?: string }) {
   }
 
   return new TextEncoder().encode(password);
-}
-
-async function getEncryptionKeyHash({
-  password,
-  baseEncryptionKeyBuffer,
-}: {
-  password?: string;
-  baseEncryptionKeyBuffer: Uint8Array;
-}): Promise<Uint8Array> {
-  if (!password) {
-    const baseEncryptionKeyHash = await createSha256Hash({ buffer: baseEncryptionKeyBuffer });
-
-    return baseEncryptionKeyHash;
-  }
-
-  const passwordBuffer = createBufferFromPassword({ password });
-  const mergedKeysBuffer = mergeBuffers(baseEncryptionKeyBuffer, passwordBuffer);
-  const encryptionKey = await createSha256Hash({ buffer: mergedKeysBuffer });
-
-  return encryptionKey;
 }
 
 async function encryptNoteContent({ content, masterKey }: { content: string; masterKey: Uint8Array }) {
