@@ -28,9 +28,9 @@ You can quickly run the application using Docker.
 
 ```bash
 # From docker hub
-docker run -d -p 8787:8787 corentinth/enclosed
+docker run -d --name enclosed --restart unless-stopped -p 8787:8787 corentinth/enclosed
 # or from GitHub Container Registry
-docker run -d -p 8787:8787 ghcr.io/corentin-th/enclosed
+docker run -d --name enclosed --restart unless-stopped -p 8787:8787 ghcr.io/corentin-th/enclosed
 ```
 
 **With volume persistency**
@@ -38,9 +38,9 @@ Replace `/path/to/local/data` with the path to your local data directory.
 
 ```bash
 # From docker hub
-docker run -d -p 8787:8787 -v /path/to/local/data:/app/.data corentinth/enclosed
+docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data corentinth/enclosed
 # or from GitHub Container Registry
-docker run -d -p 8787:8787 -v /path/to/local/data:/app/.data ghcr.io/corentin-th/enclosed
+docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data ghcr.io/corentin-th/enclosed
 ```
 
 ### Docker Compose
