@@ -1,13 +1,25 @@
 {
   "name": "@enclosed/root",
-  "version": "1.0.0",
-  "description": "Send private and secure note",
+  "version": "0.0.0",
   "packageManager": "pnpm@9.8.0",
-  "main": "index.js",
+  "license": "Apache-2.0",
+  "description": "Send private and secure note",
+  "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CorentinTh/enclosed"
+  },
+  "keywords": [
+    "note",
+    "secure",
+    "private",
+    "end-to-end",
+    "encryption",
+    "password",
+    "manager",
+    "expiration"
+  ],
   "scripts": {
     "build:app": "pnpm -p --filter @enclosed/app-* run build && mkdir -p packages/app-server/dist-app && cp -r packages/app-*/dist/* packages/app-server/dist-app"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
 }

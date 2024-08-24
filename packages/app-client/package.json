@@ -3,8 +3,13 @@
   "type": "module",
   "version": "0.0.0",
   "packageManager": "pnpm@9.8.0",
-  "description": "",
-  "license": "MIT",
+  "description": "Enclosed frontend client",
+  "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CorentinTh/enclosed"
+  },
   "scripts": {
     "start": "vite",
     "dev": "vite",
