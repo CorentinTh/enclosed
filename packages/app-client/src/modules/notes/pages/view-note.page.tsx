@@ -19,42 +19,44 @@ const RequestPasswordForm: Component<{ onPasswordEntered: (args: { password: str
   }
 
   return (
-    <Card class="w-full max-w-sm mx-auto mt-6">
-      <CardHeader>
-        <CardDescription>
-          This note is password protected. Please enter the password to unlock it.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={(e) => {
-          e.preventDefault();
-          props.onPasswordEntered({ password: getPassword() });
-        }}
-        >
-          <div>
-            <TextFieldRoot>
-              <TextFieldLabel>Password</TextFieldLabel>
-              <TextField type="password" placeholder="Note password..." value={getPassword()} onInput={e => updatePassword(e.currentTarget.value)} autofocus />
-            </TextFieldRoot>
-          </div>
-          <Button
-            class="w-full mt-4"
-            type="submit"
+    <div class="sm:mt-6 p-6">
+      <Card class="w-full max-w-sm mx-auto">
+        <CardHeader>
+          <CardDescription>
+            This note is password protected. Please enter the password to unlock it.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            props.onPasswordEntered({ password: getPassword() });
+          }}
           >
-            <div class="i-tabler-lock-open mr-2 text-lg"></div>
-            Unlock note
-          </Button>
+            <div>
+              <TextFieldRoot>
+                <TextFieldLabel>Password</TextFieldLabel>
+                <TextField type="password" placeholder="Note password..." value={getPassword()} onInput={e => updatePassword(e.currentTarget.value)} autofocus />
+              </TextFieldRoot>
+            </div>
+            <Button
+              class="w-full mt-4"
+              type="submit"
+            >
+              <div class="i-tabler-lock-open mr-2 text-lg"></div>
+              Unlock note
+            </Button>
 
-        </form>
-        <Show when={props.getIsPasswordInvalid()}>
-          <Alert class="mt-4" variant="destructive">
-            <AlertDescription>
-              The password you entered is invalid or the note URL is incorrect.
-            </AlertDescription>
-          </Alert>
-        </Show>
-      </CardContent>
-    </Card>
+          </form>
+          <Show when={props.getIsPasswordInvalid()}>
+            <Alert class="mt-4" variant="destructive">
+              <AlertDescription>
+                The password you entered is invalid or the note URL is incorrect.
+              </AlertDescription>
+            </Alert>
+          </Show>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 
