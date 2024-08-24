@@ -27,7 +27,21 @@ function createNoteRepository({ storage }: { storage: Storage }) {
       const noteId = generateNoteId();
       const expirationDate = addSeconds(now, ttlInSeconds).toISOString();
 
-      await storage.setItem(noteId, { content, isPasswordProtected, expirationDate, deleteAfterReading }, { ttl: ttlInSeconds });
+      await storage.setItem(
+        noteId,
+        {
+          content,
+          isPasswordProtected,
+          expirationDate,
+          deleteAfterReading,
+        },
+        {
+          // Some storage drivers have a different API for setting TTLs
+          ttl: ttlInSeconds,
+          // Cloudflare KV Binding - https://developers.cloudflare.com/kv/api/write-key-value-pairs/#create-expiring-keys
+          expirationTtl: ttlInSeconds,
+        },
+      );
 
       return { noteId };
     },
