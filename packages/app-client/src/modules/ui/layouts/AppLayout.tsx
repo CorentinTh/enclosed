@@ -68,12 +68,31 @@ export const Navbar: Component = () => {
   );
 };
 
+export const Footer: Component = () => {
+  return (
+    <div class="bg-surface border-t border-border py-4 px-6 text-center text-muted-foreground">
+      Crafted by
+      {' '}
+      <Button variant="link" as="a" href="https://corentin.tech" target="_blank" class="p-0 text-muted-foreground underline hover:text-primary transition font-normal">Corentin Thomasset</Button>
+      .
+
+      Source code available on
+      {' '}
+      <Button variant="link" as="a" href="https://github.com/CorentinTh/enclosed" target="_blank" class="p-0 text-muted-foreground underline hover:text-primary transition font-normal">GitHub</Button>
+      .
+    </div>
+  );
+};
+
 export const AppLayout: ParentComponent = (props) => {
   return (
     <div class="flex flex-col h-screen min-h-0">
       <Navbar />
 
       <div class="flex-1 pb-20 ">{props.children}</div>
+
+      <Footer />
+
     </div>
   );
 };
