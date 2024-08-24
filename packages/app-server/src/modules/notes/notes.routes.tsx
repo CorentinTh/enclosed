@@ -12,7 +12,7 @@ function registerNotesRoutes({ app }: { app: ServerInstance }) {
 }
 
 function setupGetNoteRoute({ app }: { app: ServerInstance }) {
-  app.get('/api/note/:noteId', async (context) => {
+  app.get('/api/notes/:noteId', async (context) => {
     const { noteId } = context.req.param();
 
     const storage = context.get('storage');

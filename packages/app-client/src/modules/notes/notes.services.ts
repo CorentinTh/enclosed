@@ -19,7 +19,7 @@ async function createNote({ content, isPasswordProtected, ttlInSeconds, deleteAf
 
 async function fetchNoteById({ noteId }: { noteId: string }) {
   const { note } = await apiClient<{ note: { content: string; isPasswordProtected: boolean } }>({
-    path: `/api/note/${noteId}`,
+    path: `/api/notes/${noteId}`,
     method: 'GET',
   });
 
