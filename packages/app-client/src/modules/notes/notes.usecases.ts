@@ -1,20 +1,24 @@
 import { base64UrlToBuffer, bufferToBase64Url } from '../shared/crypto/buffer';
 import { createRandomBuffer } from '../shared/random/random';
-import { createNoteUrl, decryptNoteContent, encryptNoteContent, getEncryptionKeyHash } from './notes.models';
+import { createNoteUrl, decryptNoteContent, deriveMasterKey, encryptNoteContent } from './notes.models';
 import { createNote } from './notes.services';
 
 export { encryptAndCreateNote, decryptNote };
 
 async function encryptAndCreateNote({ content, password, ttlInSeconds, deleteAfterReading }: { content: string; password?: string; ttlInSeconds: number; deleteAfterReading: boolean }) {
-  const baseEncryptionKeyBuffer = createRandomBuffer({ length: 32 });
+  // The base key ensure e2e encryption even if the user does not provide a password
+  const baseKey = createRandomBuffer({ length: 32 });
 
-  const encryptionHashBuffer = await getEncryptionKeyHash({ baseEncryptionKeyBuffer, password });
+  // If the user provides a password, we derive a master key from the base key and the password using PBKDF2
+  const masterKey = await deriveMasterKey({ baseKey, password });
 
-  const encryptedContent = await encryptNoteContent({ content, encryptionHashBuffer });
+  const encryptedContent = await encryptNoteContent({ content, masterKey });
 
+  // Send the encrypted note to the server for storage
   const { noteId } = await createNote({ content: encryptedContent, isPasswordProtected: Boolean(password), ttlInSeconds, deleteAfterReading });
 
-  const encryptionKey = bufferToBase64Url({ buffer: baseEncryptionKeyBuffer });
+  // The base key is stored in the URL hash fragment
+  const encryptionKey = bufferToBase64Url({ buffer: baseKey });
 
   const { noteUrl } = createNoteUrl({ noteId, encryptionKey });
 
@@ -22,11 +26,11 @@ async function encryptAndCreateNote({ content, password, ttlInSeconds, deleteAft
 }
 
 async function decryptNote({ encryptedContent, password, encryptionKey }: { encryptedContent: string; password?: string; encryptionKey: string }) {
-  const encryptionKeyBuffer = base64UrlToBuffer({ base64Url: encryptionKey });
+  const baseKey = base64UrlToBuffer({ base64Url: encryptionKey });
 
-  const decryptionHashBuffer = await getEncryptionKeyHash({ password, baseEncryptionKeyBuffer: encryptionKeyBuffer });
+  const masterKey = await deriveMasterKey({ baseKey, password });
 
-  const decryptedContent = await decryptNoteContent({ encryptedContent, decryptionHashBuffer });
+  const decryptedContent = await decryptNoteContent({ encryptedContent, masterKey });
 
   return { decryptedContent };
 }
