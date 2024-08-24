@@ -2,7 +2,7 @@
   "name": "@enclosed/root",
   "version": "1.0.0",
   "description": "Send private and secure note",
-  "packageManager": "pnpm@9.2.0",
+  "packageManager": "pnpm@9.8.0",
   "main": "index.js",
   "scripts": {
     "build:app": "pnpm -p --filter @enclosed/app-* run build && mkdir -p packages/app-server/dist-app && cp -r packages/app-*/dist/* packages/app-server/dist-app"
