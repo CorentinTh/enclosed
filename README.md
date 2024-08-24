@@ -7,7 +7,7 @@ All notes are end-to-end encrypted, ensuring that the server and storage have ze
 
 A live instance is available at [enclosed.cc](https://enclosed.cc).
 
-![Enclosed](./.github/enclosed-mockup.png)
+[![Enclosed](./.github/enclosed-mockup.png)](https://enclosed.cc)
 
 ## Features
 
