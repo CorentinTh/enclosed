@@ -70,16 +70,19 @@ export const Navbar: Component = () => {
 
 export const Footer: Component = () => {
   return (
-    <div class="bg-surface border-t border-border py-4 px-6 text-center text-muted-foreground">
-      Crafted by
-      {' '}
-      <Button variant="link" as="a" href="https://corentin.tech" target="_blank" class="p-0 text-muted-foreground underline hover:text-primary transition font-normal">Corentin Thomasset</Button>
-      .
-
-      Source code available on
-      {' '}
-      <Button variant="link" as="a" href="https://github.com/CorentinTh/enclosed" target="_blank" class="p-0 text-muted-foreground underline hover:text-primary transition font-normal">GitHub</Button>
-      .
+    <div class="bg-surface border-t border-border py-6 px-6 text-center text-muted-foreground flex flex-col sm:flex-row items-center justify-center gap-1">
+      <div>
+        Crafted by
+        {' '}
+        <Button variant="link" as="a" href="https://corentin.tech" target="_blank" class="p-0 text-muted-foreground underline hover:text-primary transition font-normal h-auto">Corentin Thomasset</Button>
+        .
+      </div>
+      <div>
+        Source code available on
+        {' '}
+        <Button variant="link" as="a" href="https://github.com/CorentinTh/enclosed" target="_blank" class="p-0 text-muted-foreground underline hover:text-primary transition font-normal h-auto">GitHub</Button>
+        .
+      </div>
     </div>
   );
 };
