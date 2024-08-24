@@ -60,13 +60,23 @@ services:
     restart: unless-stopped
 ```
 
-## Usage
+## How It Works
 
-1. Visit the application URL.
-2. Create a new note by entering the content.
-3. (Optional) Set a password and expiration time.
-4. Save the note, and you will receive a unique link.
-5. Share the link with the intended recipient.
+1. **Note Creation**: A user creates a note with some content and optionally sets a password.
+2. **Key Generation**: A **base key** is generated on the client side to ensure encryption, even if no password is set.
+3. **Master Key Derivation**: A **master key** is derived from the base key and the optional password using **PBKDF2 with SHA-256**.
+4. **Note Encryption**: The note is encrypted using the master key with **AES-GCM** encryption.
+5. **Sending to Server**: The encrypted note is sent to the server along with some metadata (ttl, is the note password-protected, should it self-destruct after reading).
+6. **Storage and ID Assignment**: The server stores the encrypted note and provides an **ID** for it.
+7. **Link Generation**: A **link** is generated that includes the note ID and the base key (included as a URL hash fragment to maximize security since hashes are not sent to the server).
+8. **Link Sharing**: The link is shared with the intended recipient.
+9. **Note Retrieval**: The recipient opens the link, and the app fetches the encrypted note and metadata from the server using the note ID.
+10. **Key Extraction**: The base key is extracted from the URL hash fragment.
+11. **Password Prompt (If Applicable)**: If the note is password-protected, the recipient is prompted to enter the password.
+12. **Master Key Derivation**: The master key is derived from the base key and the entered password using **PBKDF2 with SHA-256**.
+13. **Note Decryption**: The note is decrypted using the master key with **AES-GCM** and can now be read by the recipient.
+
+This ensures that the note remains securely encrypted during transmission and storage, with decryption only possible by those with the correct link and (if applicable) password.
 
 ## Project Structure
 
