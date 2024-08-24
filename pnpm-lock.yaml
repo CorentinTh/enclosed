@@ -86,7 +86,7 @@ importers:
       hono:
         specifier: ^4.5.8
         version: 4.5.8
-      lodash:
+      lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
       pino:
@@ -108,9 +108,9 @@ importers:
       '@cloudflare/workers-types':
         specifier: ^4.20240821.1
         version: 4.20240821.1
-      '@types/lodash':
-        specifier: ^4.17.7
-        version: 4.17.7
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
