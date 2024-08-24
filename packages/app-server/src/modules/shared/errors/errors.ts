@@ -12,7 +12,7 @@ type ErrorOptions = {
   isInternal?: boolean;
 };
 
-export class CustomError extends Error {
+class CustomError extends Error {
   code: string;
   cause?: Error | null;
   statusCode: StatusCode;
