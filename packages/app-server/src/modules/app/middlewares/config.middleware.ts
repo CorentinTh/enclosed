@@ -13,10 +13,7 @@ export function createConfigMiddleware({ config: initialConfig }: { config?: Con
     }
 
     const env = getEnv(c);
-    const baseConfig = getConfig({ env });
-    const overrideConfig = baseConfig.env === 'test' ? c.env.CONFIG_OVERRIDE : {};
-
-    const config = _.merge({}, baseConfig, overrideConfig);
+    const config = getConfig({ env });
 
     c.set('config', config);
 
