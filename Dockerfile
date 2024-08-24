@@ -11,17 +11,13 @@ COPY packages/app-client/package.json packages/app-client/package.json
 COPY packages/app-server/package.json packages/app-server/package.json
 
 # Install pnpm
-RUN npm install -g pnpm
-
-# Install dependencies
-RUN pnpm install --frozen-lockfile
+RUN npm install -g pnpm && pnpm install --frozen-lockfile --ignore-scripts
 
 # Copy the entire app
 COPY . .
 
 # Build the apps
-RUN pnpm --filter @enclosed/app-client run build
-RUN pnpm --filter @enclosed/app-server run build:node
+RUN pnpm --filter @enclosed/app-client run build && pnpm --filter @enclosed/app-server run build:node
 
 # Production image 
 FROM node:22-alpine
