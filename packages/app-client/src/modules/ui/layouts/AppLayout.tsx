@@ -35,12 +35,12 @@ export const Navbar: Component = () => {
             New note
           </Button>
 
-          <Button variant="ghost" class="text-lg px-0 size-9" as={A} href="https://github.com/CorentinTh/enclosed" target="_blank" rel="noopener noreferrer">
+          <Button variant="ghost" class="text-lg px-0 size-9" as={A} href="https://github.com/CorentinTh/enclosed" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">
             <div class="i-tabler-brand-github"></div>
           </Button>
 
           <DropdownMenu>
-            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9" variant="ghost">
+            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9" variant="ghost" aria-label="Change theme">
               <div classList={{ 'i-tabler-moon': themeStore.getColorMode() === 'dark', 'i-tabler-sun': themeStore.getColorMode() === 'light' }}></div>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
