@@ -11,10 +11,14 @@ A live instance is available at [enclosed.cc](https://enclosed.cc).
 
 ## Features
 
-- **End-to-End Encryption**: Your notes are encrypted on the client side, and only the intended recipient can decrypt them.
+- **End-to-End Encryption**: Your notes are encrypted on the client side, using AES-GCM with a 256-bit key derived using PBKDF2.
 - **Zero Knowledge**: The server does not have access to the content of the notes.
 - **Configurable Security Options**: Set a password, expiration time, and choose self-destruction after the note is read.
 - **Minimalistic UI**: Simple and intuitive user interface for quick note sharing.
+- **Dark Mode**: A dark theme for late-night note sharing.
+- **Responsive Design**: Works on all devices, from desktops to mobile phones.
+- **Open Source**: The source code is available under the Apache 2.0 License.
+- **Self-Hostable**: Run your instance of Enclosed for private note sharing.
 
 ## Self host
 
