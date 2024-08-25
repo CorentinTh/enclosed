@@ -43,7 +43,18 @@ function getStorageDriverFactory({ driverType }: { driverType: string }) {
         });
       }
 
-      return cloudflareKVBindingDriver({ binding });
+      const baseDriver = cloudflareKVBindingDriver({ binding });
+
+      return {
+        ...baseDriver,
+
+        // In current unstorage version (1.10.2) the options are not forwarded to the binding
+        // Current : https://github.com/unjs/unstorage/blob/v1.10.2/src/drivers/cloudflare-kv-binding.ts
+        // Future : https://github.com/unjs/unstorage/blob/main/src/drivers/cloudflare-kv-binding.ts
+        async setItem(key, value, options) {
+          return binding.put(key, value, options);
+        },
+      };
     },
   };
 
