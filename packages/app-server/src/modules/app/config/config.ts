@@ -26,6 +26,27 @@ export function getConfig({ env }: { env: any }) {
           env: 'CORS_ORIGIN',
         },
       },
+      tasks: {
+        deleteExpiredNotes: {
+          enabled: {
+            doc: 'Whether the delete expired notes task is enabled',
+            schema: z
+              .string()
+              .trim()
+              .toLowerCase()
+              .transform(x => x === 'true')
+              .pipe(z.boolean()),
+            default: 'true',
+            env: 'TASK_DELETE_EXPIRED_NOTES_ENABLED',
+          },
+          cron: {
+            doc: 'The cron expression for the delete expired notes task',
+            schema: z.string(),
+            default: '0 * * * *', // Every hour
+            env: 'TASK_DELETE_EXPIRED_NOTES_CRON',
+          },
+        },
+      },
       storage: {
         driver: {
           doc: 'The storage driver to use',

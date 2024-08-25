@@ -1,12 +1,16 @@
 import { describe, expect, test } from 'vitest';
 import memoryDriver from 'unstorage/drivers/memory';
+import { omit } from 'lodash-es';
+import { createStorage } from 'unstorage';
 import { createServer } from '../../app/server';
 
 describe('e2e', () => {
   describe('create and view note', () => {
     test('a note can be created and viewed', async () => {
+      const storage = createStorage({ driver: memoryDriver() });
+
       const { app } = createServer({
-        storageDriver: memoryDriver(),
+        getStorage: () => storage,
       });
 
       const note = {
@@ -38,7 +42,7 @@ describe('e2e', () => {
 
       const { note: retrievedNote } = await viewNoteResponse.json<any>();
 
-      expect(retrievedNote).to.eql({
+      expect(omit(retrievedNote, 'expirationDate')).to.eql({
         content: '<encrypted-content>',
         isPasswordProtected: false,
         deleteAfterReading: false,

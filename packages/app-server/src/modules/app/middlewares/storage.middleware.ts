@@ -1,15 +1,15 @@
 import { createMiddleware } from 'hono/factory';
-import type { Driver } from 'unstorage';
+import type { Driver, Storage } from 'unstorage';
 import { createStorage } from 'unstorage';
 import cloudflareKVBindingDriver from 'unstorage/drivers/cloudflare-kv-binding';
 import type { Config } from '../config/config.types';
 import type { Context } from '../server.types';
 import { createError } from '../../shared/errors/errors';
 
-export function createStorageMiddleware({ driver: initialDriver }: { driver?: Driver } = {}) {
+export function createStorageMiddleware({ getStorage }: { getStorage?: () => Storage } = {}) {
   return createMiddleware(async (context, next) => {
-    if (initialDriver) {
-      context.set('storage', createStorage({ driver: initialDriver }));
+    if (getStorage) {
+      context.set('storage', getStorage());
 
       await next();
       return;
