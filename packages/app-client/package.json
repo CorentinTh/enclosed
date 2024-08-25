@@ -39,7 +39,7 @@
     "@types/lodash-es": "^4.17.12",
     "eslint": "^9.9.0",
     "jsdom": "^24.1.1",
-    "solid-devtools": "^0.29.2",
+    "solid-devtools": "^0.30.0",
     "typescript": "^5.3.3",
     "unocss": "^0.62.2",
     "vite": "^5.0.11",

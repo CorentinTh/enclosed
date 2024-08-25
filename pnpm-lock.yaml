@@ -54,8 +54,8 @@ importers:
         specifier: ^24.1.1
         version: 24.1.3
       solid-devtools:
-        specifier: ^0.29.2
-        version: 0.29.3(solid-js@1.8.21)(vite@5.4.2(@types/node@22.5.0)(terser@5.31.6))
+        specifier: ^0.30.0
+        version: 0.30.1(solid-js@1.8.21)(vite@5.4.2(@types/node@22.5.0)(terser@5.31.6))
       typescript:
         specifier: ^5.3.3
         version: 5.5.4
@@ -1801,7 +1801,7 @@ packages:
     engines: {node: '>= 12.0.0'}
 
   concat-map@0.0.1:
-    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
+    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
 
   confbox@0.1.7:
     resolution: {integrity: sha512-uJcB/FKZtBMCJpK8MQji6bJHgu1tixKPxRLeGkNzBoOZzpnZUJm0jm2/sBDWcuBx1dYgxV4JU+g5hmNxCyAmdA==}
@@ -3106,8 +3106,8 @@ packages:
   slashes@3.0.12:
     resolution: {integrity: sha512-Q9VME8WyGkc7pJf6QEkj3wE+2CnvZMI+XJhwdTPR8Z/kWQRXi7boAWLDibRPyHRTUTPx5FaU7MsyrjI3yLB4HA==}
 
-  solid-devtools@0.29.3:
-    resolution: {integrity: sha512-9j3VxVbEoC54ML22gAMytR8ZS1nk9xKatsWziKSkI4c/Bcyh4sxQBGESHuXSLs9xaxpyGVTmFl3hknoxEpKzlA==}
+  solid-devtools@0.30.1:
+    resolution: {integrity: sha512-axpXL4JV1dnGhuei+nSGS8ewGeNkmIgFDsAlO90YyYY5t8wU1R0aYAQtL+I+5KICLKPBvfkzdcFa2br7AV4lAw==}
     peerDependencies:
       solid-js: ^1.8.0
       solid-start: ^0.3.0
@@ -6855,7 +6855,7 @@ snapshots:
 
   slashes@3.0.12: {}
 
-  solid-devtools@0.29.3(solid-js@1.8.21)(vite@5.4.2(@types/node@22.5.0)(terser@5.31.6)):
+  solid-devtools@0.30.1(solid-js@1.8.21)(vite@5.4.2(@types/node@22.5.0)(terser@5.31.6)):
     dependencies:
       '@babel/core': 7.25.2
       '@babel/plugin-syntax-typescript': 7.25.4(@babel/core@7.25.2)
