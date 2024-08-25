@@ -15,11 +15,11 @@ if (isNil(namespaceId)) {
   process.exit(1);
 }
 
-const noteIds = map(await $`npx wrangler kv key list --namespace-id ${namespaceId}`.json(), 'name');
+const noteIds: string[] = map(await $`npx wrangler kv key list --namespace-id ${namespaceId}`.json(), 'name');
 
 console.log(`Found ${noteIds.length} notes`);
 
-const noteDeletedIds = [];
+const noteDeletedIds: string[] = [];
 
 for (const noteId of noteIds) {
   const note = await $`npx wrangler kv key get --namespace-id ${namespaceId} ${noteId}`.json();
