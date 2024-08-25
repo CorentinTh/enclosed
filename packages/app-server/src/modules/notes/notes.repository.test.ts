@@ -1,13 +1,12 @@
-import { createStorage } from 'unstorage';
 import { describe, expect, test } from 'vitest';
-import memoryDriver from 'unstorage/drivers/memory';
+import { createMemoryStorage } from '../storage/factories/memory.storage';
 import { createNoteRepository } from './notes.repository';
 import { createNoteNotFoundError } from './notes.errors';
 
 describe('notes repository', () => {
   describe('getNoteById', () => {
     test('a note can be retrieved from storage by its id, with the dates coerced to Date objects', async () => {
-      const storage = createStorage({ driver: memoryDriver() });
+      const { storage } = createMemoryStorage();
 
       storage.setItem('note-1', {
         content: '<encrypted-content>',
@@ -29,7 +28,7 @@ describe('notes repository', () => {
     });
 
     test('an error is raised when trying to retrieve a note that does not exist in storage', async () => {
-      const storage = createStorage({ driver: memoryDriver() });
+      const { storage } = createMemoryStorage();
 
       storage.setItem('note-1', {
         content: '<encrypted-content>',
@@ -46,7 +45,7 @@ describe('notes repository', () => {
 
   describe('getNotesIds', () => {
     test('retrieves all note ids from storage, regardless of the expiration', async () => {
-      const storage = createStorage({ driver: memoryDriver() });
+      const { storage } = createMemoryStorage();
 
       storage.setItem('note-1', {
         content: '<encrypted-content>',
@@ -70,7 +69,7 @@ describe('notes repository', () => {
     });
 
     test('returns an empty list of ids when there are no notes in storage', async () => {
-      const storage = createStorage({ driver: memoryDriver() });
+      const { storage } = createMemoryStorage();
 
       const { getNotesIds } = createNoteRepository({ storage });
 
@@ -80,7 +79,7 @@ describe('notes repository', () => {
     });
 
     test('it does not delete notes from storage when retrieving their ids, even marked for deletion after reading', async () => {
-      const storage = createStorage({ driver: memoryDriver() });
+      const { storage } = createMemoryStorage();
 
       storage.setItem('note-1', {
         content: '<encrypted-content>',
@@ -101,7 +100,7 @@ describe('notes repository', () => {
 
   describe('deleteNoteById', () => {
     test('deletes a note from storage by its id', async () => {
-      const storage = createStorage({ driver: memoryDriver() });
+      const { storage } = createMemoryStorage();
 
       storage.setItem('note-1', {
         content: '<encrypted-content>',
@@ -127,7 +126,7 @@ describe('notes repository', () => {
     });
 
     test('when trying to delete a note that does not exist, no error is raised', async () => {
-      const storage = createStorage({ driver: memoryDriver() });
+      const { storage } = createMemoryStorage();
 
       const { deleteNoteById } = createNoteRepository({ storage });
 
@@ -139,7 +138,7 @@ describe('notes repository', () => {
 
   describe('saveNote', () => {
     test('store a note in storage with its content and metadata', async () => {
-      const storage = createStorage({ driver: memoryDriver() });
+      const { storage } = createMemoryStorage();
       let noteIdIndex = 1;
 
       const { saveNote } = createNoteRepository({ storage });

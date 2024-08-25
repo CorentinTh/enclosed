@@ -1,5 +1,8 @@
 import { createServer } from './modules/app/server';
+import { createCloudflareKVStorageFactory } from './modules/storage/factories/cloudflare-kv.storage';
 
-const { app } = createServer();
+const { storageFactory } = createCloudflareKVStorageFactory();
+
+const { app } = createServer({ storageFactory });
 
 export default app;

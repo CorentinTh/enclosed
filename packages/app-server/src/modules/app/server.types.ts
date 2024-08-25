@@ -1,5 +1,5 @@
 import type { Context as BaseContext, Hono } from 'hono';
-import type { Storage } from 'unstorage';
+import type { Storage } from '../storage/storage.types';
 import type { Config } from './config/config.types';
 
 export type ServerInstanceGenerics = {

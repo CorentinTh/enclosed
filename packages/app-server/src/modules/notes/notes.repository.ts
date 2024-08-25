@@ -1,4 +1,4 @@
-import type { Storage } from 'unstorage';
+import type { Storage } from '../storage/storage.types';
 import { injectArguments } from '../shared/injection/injection';
 import { generateId } from '../shared/utils/random';
 import { createNoteNotFoundError } from './notes.errors';

@@ -1,6 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { createStorage } from 'unstorage';
-import memoryDriver from 'unstorage/drivers/memory';
+import { createMemoryStorage } from '../storage/factories/memory.storage';
 import { getRefreshedNote } from './notes.usecases';
 import { createNoteRepository } from './notes.repository';
 import { createNoteNotFoundError } from './notes.errors';
@@ -8,7 +7,7 @@ import { createNoteNotFoundError } from './notes.errors';
 describe('notes usecases', () => {
   describe('getRefreshedNote', () => {
     test('a note whose expiration date is later than the current date can be retrieved', async () => {
-      const storage = createStorage({ driver: memoryDriver() });
+      const { storage } = createMemoryStorage();
 
       storage.setItem('note-1', {
         content: '<encrypted-content>',
@@ -32,7 +31,7 @@ describe('notes usecases', () => {
     });
 
     test('a note whose expiration date is earlier than the current date is considered expired and cannot be retrieved', async () => {
-      const storage = createStorage({ driver: memoryDriver() });
+      const { storage } = createMemoryStorage();
 
       storage.setItem('note-1', {
         content: '<encrypted-content>',
@@ -51,7 +50,7 @@ describe('notes usecases', () => {
     });
 
     test('a note whose expiration date is the same as the current date is considered expired and cannot be retrieved', async () => {
-      const storage = createStorage({ driver: memoryDriver() });
+      const { storage } = createMemoryStorage();
 
       storage.setItem('note-1', {
         content: '<encrypted-content>',
@@ -70,7 +69,7 @@ describe('notes usecases', () => {
     });
 
     test('a note is deleted after reading if the deleteAfterReading flag is set', async () => {
-      const storage = createStorage({ driver: memoryDriver() });
+      const { storage } = createMemoryStorage();
 
       storage.setItem('note-1', {
         content: '<encrypted-content>',
