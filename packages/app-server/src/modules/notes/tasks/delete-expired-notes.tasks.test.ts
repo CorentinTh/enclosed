@@ -1,15 +1,14 @@
 import { describe, expect, test } from 'vitest';
-import { createStorage } from 'unstorage';
-import memoryDriver from 'unstorage/drivers/memory';
 import type { Config } from '../../app/config/config.types';
 import { createTestLogger } from '../../shared/logger/logger.test-utils';
 import { createNoteNotFoundError } from '../notes.errors';
+import { createMemoryStorage } from '../../storage/factories/memory.storage';
 import { deleteExpiredNotesTask } from './delete-expired-notes.tasks';
 
 describe('delete-expired-notes tasks', () => {
   describe('deleteExpiredNotesTask', () => {
     test('this task removes notes with an expiration date in the past', async () => {
-      const storage = createStorage({ driver: memoryDriver() });
+      const { storage } = createMemoryStorage();
 
       storage.setItem('note-1', {
         content: '<encrypted-content>',
@@ -44,7 +43,8 @@ describe('delete-expired-notes tasks', () => {
     });
 
     test('if an error occurs while retrieving a note from storage (like the note no longer exists), it does not prevent the other notes from being deleted', async () => {
-      const storage = createStorage({ driver: memoryDriver() });
+      const { storage } = createMemoryStorage();
+
       const { getLoggerArgs, logger } = createTestLogger();
 
       storage.setItem('note-1', {
@@ -94,7 +94,8 @@ describe('delete-expired-notes tasks', () => {
     });
 
     test('if an error occurs while deleting a note from storage, it does not prevent the other notes from being deleted', async () => {
-      const storage = createStorage({ driver: memoryDriver() });
+      const { storage } = createMemoryStorage();
+
       const { getLoggerArgs, logger } = createTestLogger();
 
       storage.setItem('note-1', {

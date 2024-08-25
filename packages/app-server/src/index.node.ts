@@ -1,20 +1,17 @@
 import process, { env } from 'node:process';
 import { serve } from '@hono/node-server';
 import { serveStatic } from '@hono/node-server/serve-static';
-import fsLiteDriver from 'unstorage/drivers/fs-lite';
-import { createStorage } from 'unstorage';
 import { createServer } from './modules/app/server';
 import { getConfig } from './modules/app/config/config';
 
 import { deleteExpiredNotesTask } from './modules/notes/tasks/delete-expired-notes.tasks';
 import { createTaskScheduler } from './modules/tasks/task-scheduler';
+import { createFsLiteStorage } from './modules/storage/factories/fs-lite.storage';
 
 const config = getConfig({ env });
-const storage = createStorage({
-  driver: fsLiteDriver({ base: config.storage.driverConfig.fsLite.path }),
-});
+const { storage } = createFsLiteStorage({ config });
 
-const { app } = createServer({ config, getStorage: () => storage });
+const { app } = createServer({ config, storageFactory: () => ({ storage }) });
 
 app
   .use(

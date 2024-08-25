@@ -1,6 +1,6 @@
 // import schedule from 'node-schedule';
-import type { Storage } from 'unstorage';
 import cron from 'node-cron';
+import type { Storage } from '../storage/storage.types';
 import type { Config } from '../app/config/config.types';
 import { createLogger } from '../shared/logger/logger';
 import type { TaskDefinition } from './tasks.types';

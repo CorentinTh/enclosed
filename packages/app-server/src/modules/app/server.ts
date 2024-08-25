@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
 import { secureHeaders } from 'hono/secure-headers';
-import type { Storage } from 'unstorage';
 import { registerNotesRoutes } from '../notes/notes.routes';
+import type { BindableStorageFactory } from '../storage/storage.types';
 import type { ServerInstanceGenerics } from './server.types';
 import { corsMiddleware } from './middlewares/cors.middleware';
 import { createConfigMiddleware } from './middlewares/config.middleware';
@@ -12,13 +12,13 @@ import type { Config } from './config/config.types';
 
 export { createServer };
 
-function createServer({ config, getStorage }: { config?: Config; getStorage?: () => Storage } = {}) {
+function createServer({ config, storageFactory }: { config?: Config; storageFactory: BindableStorageFactory }) {
   const app = new Hono<ServerInstanceGenerics>({ strict: true });
 
   app.use(loggerMiddleware);
   app.use(createConfigMiddleware({ config }));
   app.use(corsMiddleware);
-  app.use(createStorageMiddleware({ getStorage }));
+  app.use(createStorageMiddleware({ storageFactory }));
   app.use(secureHeaders());
 
   registerErrorMiddleware({ app });

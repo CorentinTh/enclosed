@@ -1,16 +1,15 @@
 import { describe, expect, test } from 'vitest';
-import memoryDriver from 'unstorage/drivers/memory';
 import { omit } from 'lodash-es';
-import { createStorage } from 'unstorage';
 import { createServer } from '../../app/server';
+import { createMemoryStorage } from '../../storage/factories/memory.storage';
 
 describe('e2e', () => {
   describe('create and view note', () => {
     test('a note can be created and viewed', async () => {
-      const storage = createStorage({ driver: memoryDriver() });
+      const { storage } = createMemoryStorage();
 
       const { app } = createServer({
-        getStorage: () => storage,
+        storageFactory: () => ({ storage }),
       });
 
       const note = {
