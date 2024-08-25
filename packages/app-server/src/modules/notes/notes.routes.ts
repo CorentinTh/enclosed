@@ -5,6 +5,7 @@ import { validateJsonBody } from '../shared/validation/validation';
 import { createNoteRepository } from './notes.repository';
 import { ONE_MONTH_IN_SECONDS, TEN_MINUTES_IN_SECONDS } from './notes.constants';
 import { getRefreshedNote } from './notes.usecases';
+import { createNoteContentTooLargeError } from './notes.errors';
 
 export { registerNotesRoutes };
 
@@ -31,6 +32,7 @@ function setupGetNoteRoute({ app }: { app: ServerInstance }) {
 function setupCreateNoteRoute({ app }: { app: ServerInstance }) {
   app.post(
     '/api/notes',
+
     validateJsonBody(
       z.object({
         content: z.string(),
@@ -41,6 +43,18 @@ function setupCreateNoteRoute({ app }: { app: ServerInstance }) {
           .max(ONE_MONTH_IN_SECONDS),
       }),
     ),
+
+    async (context, next) => {
+      const config = context.get('config');
+      const { content } = context.req.valid('json');
+
+      if (content.length > config.notes.maxEncryptedContentLength) {
+        throw createNoteContentTooLargeError();
+      }
+
+      await next();
+    },
+
     async (context) => {
       const { content, isPasswordProtected, ttlInSeconds, deleteAfterReading } = context.req.valid('json');
       const storage = context.get('storage');
