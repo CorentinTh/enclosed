@@ -1,5 +1,5 @@
 
-# Enclosed
+# Enclosed - Send private and secure notes
 
 **Enclosed** is a minimalistic web application designed for sending private and secure notes.
 
