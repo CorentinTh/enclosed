@@ -45,11 +45,22 @@ export function getConfig({ env }: { env: any }) {
             default: '0 * * * *', // Every hour
             env: 'TASK_DELETE_EXPIRED_NOTES_CRON',
           },
+          runOnStartup: {
+            doc: 'Whether the delete expired notes task should run on startup',
+            schema: z
+              .string()
+              .trim()
+              .toLowerCase()
+              .transform(x => x === 'true')
+              .pipe(z.boolean()),
+            default: 'true',
+            env: 'TASK_DELETE_EXPIRED_NOTES_RUN_ON_STARTUP',
+          },
         },
       },
       storage: {
         driver: {
-          doc: 'The storage driver to use',
+          doc: 'The storage driver to use (cloudflare-kv-binding is not available for non-Cloudflare environments)',
           schema: z.enum(['cloudflare-kv-binding', 'fs-lite']),
           default: 'cloudflare-kv-binding',
           env: 'STORAGE_DRIVER',
