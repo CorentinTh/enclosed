@@ -4,7 +4,7 @@ import { createNoteRepository } from '../notes.repository';
 
 export const deleteExpiredNotesTask = defineTask({
   name: 'deleteExpiredNotes',
-  isEnabled: ({ config }) => config.tasks.deleteExpiredNotes.enabled,
+  isEnabled: ({ config }) => config.tasks.deleteExpiredNotes.isEnabled,
   cronSchedule: ({ config }) => config.tasks.deleteExpiredNotes.cron,
   runOnStartup: ({ config }) => config.tasks.deleteExpiredNotes.runOnStartup,
   handler: async ({ storage, logger, now }) => {

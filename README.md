@@ -60,6 +60,25 @@ services:
     restart: unless-stopped
 ```
 
+### Configuration
+
+You can configure the application using environment variables. Here are the available options:
+
+<!-- env-table-start -->
+
+| Environment Variable | Description | Default Value |
+| -------------------- | ----------- | ------------- |
+| `PORT` | The port to listen on when using node server | `8787` |
+| `CORS_ORIGIN` | The CORS origin the server should allow | `*` |
+| `TASK_DELETE_EXPIRED_NOTES_ENABLED` | Whether to enable a periodic task to delete expired notes (not available for cloudflare) | `true` |
+| `TASK_DELETE_EXPIRED_NOTES_CRON` | The frequency with which to run the task to delete expired notes (cron syntax) | `0 * * * *` |
+| `TASK_DELETE_EXPIRED_NOTES_RUN_ON_STARTUP` | Whether the task to delete expired notes should run on startup | `true` |
+| `STORAGE_DRIVER` | The storage driver to use (cloudflare-kv-binding is not available for non-Cloudflare environments) | `cloudflare-kv-binding` |
+| `STORAGE_DRIVER_CLOUDFLARE_KV_BINDING` | (only for cloudflare-kv-binding driver) The name of the Cloudflare KV binding to use | `notes` |
+| `STORAGE_DRIVER_FS_LITE_PATH` | (only for fs-lite driver) The path to the directory where the data will be stored | `./.data` |
+
+<!-- env-table-end -->
+
 ## How It Works
 
 1. **Note Creation**: A user creates a note with some content and optionally sets a password.
