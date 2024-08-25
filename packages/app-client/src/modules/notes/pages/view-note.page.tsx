@@ -6,7 +6,7 @@ import { TextField, TextFieldLabel, TextFieldRoot } from '@/modules/ui/component
 import { Card, CardContent, CardDescription, CardHeader } from '@/modules/ui/components/card';
 import { Button } from '@/modules/ui/components/button';
 import { isHttpErrorWithCode, isRateLimitError } from '@/modules/shared/http/http-errors';
-import { promiseAttempt } from '@/modules/shared/utils/attempt';
+import { safely } from '@/modules/shared/utils/safely';
 import { Alert, AlertDescription } from '@/modules/ui/components/alert';
 import { CopyButton } from '@/modules/shared/utils/copy';
 
@@ -79,7 +79,7 @@ export const ViewNotePage: Component = () => {
       });
     }
 
-    const [fetchedNote, fetchError] = await promiseAttempt(fetchNoteById({ noteId: params.noteId }));
+    const [fetchedNote, fetchError] = await safely(fetchNoteById({ noteId: params.noteId }));
 
     if (isRateLimitError({ error: fetchError })) {
       setError({
@@ -113,7 +113,7 @@ export const ViewNotePage: Component = () => {
       return;
     }
 
-    const [decryptedNote, decryptionError] = await promiseAttempt(decryptNote({
+    const [decryptedNote, decryptionError] = await safely(decryptNote({
       encryptedContent: note.content,
       encryptionKey: getEncryptionKey(),
     }));
@@ -132,7 +132,7 @@ export const ViewNotePage: Component = () => {
   const onPasswordEntered = async ({ password }: { password: string }) => {
     const { content } = getNote()!;
 
-    const [decryptionResult, decryptionError] = await promiseAttempt(decryptNote({
+    const [decryptionResult, decryptionError] = await safely(decryptNote({
       encryptedContent: content,
       encryptionKey: getEncryptionKey(),
       password,
