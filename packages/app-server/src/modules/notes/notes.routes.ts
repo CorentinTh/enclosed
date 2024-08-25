@@ -1,8 +1,10 @@
 import { z } from 'zod';
+import { omit } from 'lodash-es';
 import type { ServerInstance } from '../app/server.types';
 import { validateJsonBody } from '../shared/validation/validation';
 import { createNoteRepository } from './notes.repository';
 import { ONE_MONTH_IN_SECONDS, TEN_MINUTES_IN_SECONDS } from './notes.constants';
+import { getRefreshedNote } from './notes.usecases';
 
 export { registerNotesRoutes };
 
@@ -18,9 +20,11 @@ function setupGetNoteRoute({ app }: { app: ServerInstance }) {
     const storage = context.get('storage');
     const notesRepository = createNoteRepository({ storage });
 
-    const { note } = await notesRepository.getNoteById({ noteId });
+    const { note } = await getRefreshedNote({ noteId, notesRepository });
 
-    return context.json({ note });
+    const formattedNote = omit(note, 'expirationDate');
+
+    return context.json({ note: formattedNote });
   });
 }
 

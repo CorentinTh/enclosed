@@ -1,6 +1,6 @@
 import { Hono } from 'hono';
 import { secureHeaders } from 'hono/secure-headers';
-import type { Driver } from 'unstorage';
+import type { Storage } from 'unstorage';
 import { registerNotesRoutes } from '../notes/notes.routes';
 import type { ServerInstanceGenerics } from './server.types';
 import { corsMiddleware } from './middlewares/cors.middleware';
@@ -12,13 +12,13 @@ import type { Config } from './config/config.types';
 
 export { createServer };
 
-function createServer({ config, storageDriver }: { config?: Config; storageDriver?: Driver } = {}) {
+function createServer({ config, getStorage }: { config?: Config; getStorage?: () => Storage } = {}) {
   const app = new Hono<ServerInstanceGenerics>({ strict: true });
 
   app.use(loggerMiddleware);
   app.use(createConfigMiddleware({ config }));
   app.use(corsMiddleware);
-  app.use(createStorageMiddleware({ driver: storageDriver }));
+  app.use(createStorageMiddleware({ getStorage }));
   app.use(secureHeaders());
 
   registerErrorMiddleware({ app });

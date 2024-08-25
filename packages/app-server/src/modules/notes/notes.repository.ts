@@ -1,72 +1,88 @@
 import type { Storage } from 'unstorage';
-import { addSeconds, isBefore } from 'date-fns';
-import { omit } from 'lodash-es';
-import { generateNoteId } from './notes.models';
+import { injectArguments } from '../shared/injection/injection';
+import { generateId } from '../shared/utils/random';
 import { createNoteNotFoundError } from './notes.errors';
+import { getNoteExpirationDate } from './notes.models';
 
 export { createNoteRepository };
 
 function createNoteRepository({ storage }: { storage: Storage }) {
-  return {
-    async saveNote(
-      {
-        content,
-        isPasswordProtected,
-        ttlInSeconds,
-        deleteAfterReading,
-        now = new Date(),
-      }:
-      {
-        content: string;
-        isPasswordProtected: boolean;
-        ttlInSeconds: number;
-        deleteAfterReading: boolean;
-        now?: Date;
-      },
-    ) {
-      const noteId = generateNoteId();
-      const expirationDate = addSeconds(now, ttlInSeconds).toISOString();
-
-      await storage.setItem(
-        noteId,
-        {
-          content,
-          isPasswordProtected,
-          expirationDate,
-          deleteAfterReading,
-        },
-        {
-          // Some storage drivers have a different API for setting TTLs
-          ttl: ttlInSeconds,
-          // Cloudflare KV Binding - https://developers.cloudflare.com/kv/api/write-key-value-pairs/#create-expiring-keys
-          expirationTtl: ttlInSeconds,
-        },
-      );
-
-      return { noteId };
+  return injectArguments(
+    {
+      saveNote,
+      getNoteById,
+      getNotesIds,
+      deleteNoteById,
     },
+    {
+      storage,
+    },
+  );
+}
 
-    async getNoteById({ noteId, now = new Date() }: { noteId: string; now?: Date }) {
-      const note = await storage.getItem<{ content: string; isPasswordProtected: boolean; expirationDate: string; deleteAfterReading: boolean }>(noteId);
-      if (!note) {
-        throw createNoteNotFoundError();
-      }
+async function getNotesIds({ storage }: { storage: Storage }) {
+  const noteIds = await storage.getKeys();
 
-      const isExpired = isBefore(note.expirationDate, now);
+  return { noteIds };
+}
 
-      if (isExpired) {
-        await storage.removeItem(noteId);
+async function saveNote(
+  {
+    content,
+    isPasswordProtected,
+    ttlInSeconds,
+    deleteAfterReading,
+    storage,
+    generateNoteId = generateId,
+    now = new Date(),
+  }:
+  {
+    content: string;
+    isPasswordProtected: boolean;
+    ttlInSeconds: number;
+    deleteAfterReading: boolean;
+    storage: Storage;
+    generateNoteId?: () => string;
+    now?: Date;
+  },
+) {
+  const noteId = generateNoteId();
+  const { expirationDate } = getNoteExpirationDate({ ttlInSeconds, now });
 
-        throw createNoteNotFoundError();
-      }
+  await storage.setItem(
+    noteId,
+    {
+      content,
+      isPasswordProtected,
+      expirationDate: expirationDate.toISOString(),
+      deleteAfterReading,
+    },
+    {
+      // Some storage drivers have a different API for setting TTLs
+      ttl: ttlInSeconds,
+      // Cloudflare KV Binding - https://developers.cloudflare.com/kv/api/write-key-value-pairs/#create-expiring-keys
+      expirationTtl: ttlInSeconds,
+    },
+  );
 
-      if (note.deleteAfterReading) {
-        await storage.removeItem(noteId);
-      }
+  return { noteId };
+}
 
-      return {
-        note: omit(note, 'expirationDate'),
-      };
+async function getNoteById({ noteId, storage }: { noteId: string; storage: Storage }) {
+  const note = await storage.getItem<{ content: string; isPasswordProtected: boolean; expirationDate: string; deleteAfterReading: boolean }>(noteId);
+
+  if (!note) {
+    throw createNoteNotFoundError();
+  }
+
+  return {
+    note: {
+      ...note,
+      expirationDate: new Date(note.expirationDate),
     },
   };
+}
+
+async function deleteNoteById({ noteId, storage }: { noteId: string; storage: Storage }) {
+  await storage.removeItem(noteId, { removeMeta: true });
 }

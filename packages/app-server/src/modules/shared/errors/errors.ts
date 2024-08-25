@@ -8,7 +8,6 @@ type ErrorOptions = {
   code: string;
   cause?: unknown;
   statusCode: StatusCode;
-  documentationUrl?: string;
   isInternal?: boolean;
 };
 
@@ -17,16 +16,14 @@ class CustomError extends Error {
   cause?: Error | null;
   statusCode: StatusCode;
   isCustomError = true;
-  documentationUrl?: string;
   isInternal?: boolean;
 
-  constructor({ message, code, cause, statusCode, documentationUrl, isInternal }: ErrorOptions) {
+  constructor({ message, code, cause, statusCode, isInternal }: ErrorOptions) {
     super(message);
 
     this.code = code;
     this.cause = isError(cause) ? cause : new Error(toString(cause));
     this.statusCode = statusCode;
-    this.documentationUrl = documentationUrl;
     this.isInternal = isInternal;
   }
 }
@@ -42,5 +39,5 @@ function createErrorFactory(baseOption: ErrorOptions) {
 }
 
 function isCustomError(error: unknown): error is CustomError {
-  return get(error, 'isCustomError') === true;
+  return get(error, 'isCustomError') === true && isError(error);
 }
