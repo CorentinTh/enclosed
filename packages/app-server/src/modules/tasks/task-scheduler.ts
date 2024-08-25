@@ -21,6 +21,7 @@ function createTaskScheduler({
   const scheduledTasks = taskDefinitions.map((taskDefinition) => {
     const isEnabled = taskDefinition.getIsEnabled({ config });
     const cronSchedule = taskDefinition.getCronSchedule({ config });
+    const runOnStartup = taskDefinition.getRunOnStartup({ config });
 
     if (!isEnabled) {
       return undefined;
@@ -30,6 +31,7 @@ function createTaskScheduler({
       taskDefinition.run({ ...tasksArgs, config });
     }, {
       scheduled: false,
+      runOnInit: runOnStartup,
     });
 
     logger.info({ taskName: taskDefinition.taskName, cronSchedule }, 'Task registered');
@@ -42,7 +44,7 @@ function createTaskScheduler({
     start() {
       scheduledTasks.forEach(({ taskName, job }) => {
         job.start();
-        logger.info({ taskName }, 'Task started');
+        logger.info({ taskName }, 'Task scheduled');
       });
     },
   };

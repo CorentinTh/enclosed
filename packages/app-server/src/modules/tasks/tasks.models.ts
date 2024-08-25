@@ -10,12 +10,14 @@ function defineTask({
   name: taskName,
   cronSchedule,
   isEnabled,
+  runOnStartup = false,
   handler,
   logger: taskLogger = createLogger({ namespace: `tasks:${taskName}` }),
 }: {
   name: string;
   isEnabled: boolean | ((args: { config: Config }) => boolean);
   cronSchedule: string | ((args: { config: Config }) => string);
+  runOnStartup?: boolean | ((args: { config: Config }) => boolean);
   handler: (handlerArgs: { storage: Storage; config: Config; logger: Logger; now: Date }) => Promise<void>;
   logger?: Logger;
 }) {
@@ -48,5 +50,6 @@ function defineTask({
     run,
     getIsEnabled: (args: { config: Config }) => (isFunction(isEnabled) ? isEnabled(args) : isEnabled),
     getCronSchedule: (args: { config: Config }) => (isFunction(cronSchedule) ? cronSchedule(args) : cronSchedule),
+    getRunOnStartup: (args: { config: Config }) => (isFunction(runOnStartup) ? runOnStartup(args) : runOnStartup),
   };
 }
