@@ -58,27 +58,21 @@ export const configDefinition = {
     },
   },
   storage: {
-    driver: {
-      doc: 'The storage driver to use (cloudflare-kv-binding is not available for non-Cloudflare environments)',
-      schema: z.enum(['cloudflare-kv-binding', 'fs-lite']),
-      default: 'cloudflare-kv-binding',
-      env: 'STORAGE_DRIVER',
-    },
     driverConfig: {
-      cloudflareKVBinding: {
-        bindingName: {
-          doc: '(only for cloudflare-kv-binding driver) The name of the Cloudflare KV binding to use',
-          schema: z.string(),
-          default: 'notes',
-          env: 'STORAGE_DRIVER_CLOUDFLARE_KV_BINDING',
-        },
-      },
       fsLite: {
         path: {
-          doc: '(only for fs-lite driver) The path to the directory where the data will be stored',
+          doc: '(only in node env) The path to the directory where the data will be stored',
           schema: z.string(),
           default: './.data',
           env: 'STORAGE_DRIVER_FS_LITE_PATH',
+        },
+      },
+      cloudflareKVBinding: {
+        bindingName: {
+          doc: '(only in cloudflare env) The name of the Cloudflare KV binding to use',
+          schema: z.string(),
+          default: 'notes',
+          env: 'STORAGE_DRIVER_CLOUDFLARE_KV_BINDING',
         },
       },
     },
