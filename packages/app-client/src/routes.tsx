@@ -1,5 +1,5 @@
 import { A, type RouteDefinition } from '@solidjs/router';
-import { AppLayout } from './modules/ui/layouts/AppLayout';
+import { AppLayout } from './modules/ui/layouts/app.layout';
 import { CreateNotePage } from './modules/notes/pages/create-note.page';
 import { ViewNotePage } from './modules/notes/pages/view-note.page';
 import { Button } from './modules/ui/components/button';

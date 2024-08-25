@@ -58,10 +58,6 @@ export const Navbar: Component = () => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-
-          {/* <Button variant="ghost" class="text-lg px-0 size-9">
-            <div class="i-tabler-dots-vertical"></div>
-          </Button> */}
         </div>
       </div>
     </div>
