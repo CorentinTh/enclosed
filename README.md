@@ -70,6 +70,7 @@ You can configure the application using environment variables. Here are the avai
 | -------------------- | ----------- | ------------- |
 | `PORT` | The port to listen on when using node server | `8787` |
 | `CORS_ORIGIN` | The CORS origin the server should allow | `*` |
+| `NOTES_MAX_ENCRYPTED_CONTENT_LENGTH` | The maximum length of the encrypted content of a note allowed by the api | `5242880` |
 | `TASK_DELETE_EXPIRED_NOTES_ENABLED` | Whether to enable a periodic task to delete expired notes (not available for cloudflare) | `true` |
 | `TASK_DELETE_EXPIRED_NOTES_CRON` | The frequency with which to run the task to delete expired notes (cron syntax) | `0 * * * *` |
 | `TASK_DELETE_EXPIRED_NOTES_RUN_ON_STARTUP` | Whether the task to delete expired notes should run on startup | `true` |

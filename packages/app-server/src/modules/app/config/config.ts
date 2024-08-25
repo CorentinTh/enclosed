@@ -25,6 +25,14 @@ export const configDefinition = {
       env: 'CORS_ORIGIN',
     },
   },
+  notes: {
+    maxEncryptedContentLength: {
+      doc: 'The maximum length of the encrypted content of a note allowed by the api',
+      schema: z.number().min(1),
+      default: 1024 * 1024 * 5, // 5MB
+      env: 'NOTES_MAX_ENCRYPTED_CONTENT_LENGTH',
+    },
+  },
   tasks: {
     deleteExpiredNotes: {
       isEnabled: {
@@ -79,7 +87,7 @@ export const configDefinition = {
   },
 } as const satisfies ConfigDefinition;
 
-export function getConfig({ env }: { env: any }) {
+export function getConfig({ env }: { env?: Record<string, string | undefined> } = {}) {
   const { config } = defineConfig(
     configDefinition,
     { envSource: env },

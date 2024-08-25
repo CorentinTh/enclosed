@@ -9,7 +9,7 @@ import { Tabs, TabsIndicator, TabsList, TabsTrigger } from '@/modules/ui/compone
 import { SwitchControl, SwitchLabel, SwitchThumb, Switch as SwitchUiComponent } from '@/modules/ui/components/switch';
 import { Alert, AlertDescription } from '@/modules/ui/components/alert';
 import { CopyButton } from '@/modules/shared/utils/copy';
-import { isRateLimitError } from '@/modules/shared/http/http-errors';
+import { isHttpErrorWithCode, isRateLimitError } from '@/modules/shared/http/http-errors';
 
 export const CreateNotePage: Component = () => {
   const [getContent, setContent] = createSignal('');
@@ -59,6 +59,11 @@ export const CreateNotePage: Component = () => {
     } catch (error) {
       if (isRateLimitError({ error })) {
         setErrorMessage('You have exceeded the rate limit for creating notes. Please try again later.');
+        return;
+      }
+
+      if (isHttpErrorWithCode({ error, code: 'note.content_too_large' })) {
+        setErrorMessage('The note content is too large.');
         return;
       }
 
