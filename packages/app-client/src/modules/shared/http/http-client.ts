@@ -1,3 +1,4 @@
+import { getBody } from './http-client.models';
 import { config } from '@/modules/config/config';
 
 export { apiClient };
@@ -19,7 +20,7 @@ async function apiClient<T>({ path, method, body }: { path: string; method: stri
     const error = new Error(response.statusText);
     Object.assign(error, {
       status: response.status,
-      body: await response.json(),
+      body: await getBody({ response }),
     });
 
     throw error;

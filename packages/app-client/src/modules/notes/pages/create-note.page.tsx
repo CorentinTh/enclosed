@@ -58,7 +58,7 @@ export const CreateNotePage: Component = () => {
       setIsNoteCreated(true);
     } catch (error) {
       if (isRateLimitError({ error })) {
-        setErrorMessage('You have reached the maximum number of notes you can create. Please wait a few minutes before trying again.');
+        setErrorMessage('You have exceeded the rate limit for creating notes. Please try again later.');
         return;
       }
 
