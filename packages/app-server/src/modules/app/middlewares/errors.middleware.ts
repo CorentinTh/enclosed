@@ -14,7 +14,6 @@ export function registerErrorMiddleware({ app }: { app: ServerInstance }) {
           error: {
             message: error.message,
             code: error.code,
-            ...(error.documentationUrl && { documentationUrl: error.documentationUrl }),
           },
         },
         error.statusCode,
