@@ -38,7 +38,7 @@
     "@iconify-json/tabler": "^1.1.120",
     "@types/lodash-es": "^4.17.12",
     "eslint": "^9.9.0",
-    "jsdom": "^24.1.1",
+    "jsdom": "^25.0.0",
     "solid-devtools": "^0.30.0",
     "typescript": "^5.3.3",
     "unocss": "^0.62.2",
