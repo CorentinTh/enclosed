@@ -85,7 +85,7 @@ importers:
         version: 2.0.0
       hono:
         specifier: ^4.5.8
-        version: 4.5.8
+        version: 4.5.9
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -2338,8 +2338,8 @@ packages:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
 
-  hono@4.5.8:
-    resolution: {integrity: sha512-pqpSlcdqGkpTTRpLYU1PnCz52gVr0zVR9H5GzMyJWuKQLLEBQxh96q45QizJ2PPX8NATtz2mu31/PKW/Jt+90Q==}
+  hono@4.5.9:
+    resolution: {integrity: sha512-zz8ktqMDRrZETjxBrv8C5PQRFbrTRCLNVAjD1SNQyOzv4VjmX68Uxw83xQ6oxdAB60HiWnGEatiKA8V3SZLDkQ==}
     engines: {node: '>=16.0.0'}
 
   hosted-git-info@2.8.9:
@@ -6002,7 +6002,7 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  hono@4.5.8: {}
+  hono@4.5.9: {}
 
   hosted-git-info@2.8.9: {}
 
