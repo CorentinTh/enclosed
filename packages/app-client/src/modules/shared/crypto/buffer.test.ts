@@ -9,6 +9,23 @@ describe('buffer', () => {
 
       expect(base64Url).toBe('AAECAwQFBgcICQ');
     });
+
+    test('the trailing "=" characters are removed from the base64url string', () => {
+      // "a" char is encoded as "YQ==" in regular base64
+      const buffer = new Uint8Array([97]);
+      const base64Url = bufferToBase64Url({ buffer });
+
+      expect(base64Url).toBe('YQ');
+    });
+
+    test('the "+" characters are replaced with "-" in the base64url string and the "/" characters are replaced with "_"', () => {
+      // this buffer translate to An1aThIn/OeGWQUn+e4o2nEXvdtEagY2lJxCQN1SgKc= in regular base64
+      const buffer = new Uint8Array([2, 125, 90, 78, 18, 39, 252, 231, 134, 89, 5, 39, 249, 238, 40, 218, 113, 23, 189, 219, 68, 106, 6, 54, 148, 156, 66, 64, 221, 82, 128, 167]);
+
+      const base64Url = bufferToBase64Url({ buffer });
+
+      expect(base64Url).toBe('An1aThIn_OeGWQUn-e4o2nEXvdtEagY2lJxCQN1SgKc');
+    });
   });
 
   describe('base64UrlToBuffer', () => {
