@@ -1,3 +1,5 @@
+import { trimEnd } from 'lodash-es';
+
 export { createRandomBuffer, mergeBuffers, createBuffer, bufferToBase64Url, base64UrlToBuffer };
 
 function createRandomBuffer({ length = 16 }: { length?: number } = {}): Uint8Array {
@@ -26,13 +28,19 @@ function createBuffer({ value }: { value: string }): Uint8Array {
 
 function bufferToBase64Url({ buffer }: { buffer: Uint8Array }): string {
   const base64 = btoa(String.fromCharCode(...buffer));
-  const base64Url = base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  const base64Url = trimEnd(base64, '=')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_');
 
   return base64Url;
 }
 
 function base64UrlToBuffer({ base64Url }: { base64Url: string }): Uint8Array {
-  const base64 = base64Url.padEnd(base64Url.length + (4 - base64Url.length % 4) % 4, '=').replace(/-/g, '+').replace(/_/g, '/');
+  const base64 = base64Url
+    .padEnd(base64Url.length + (4 - base64Url.length % 4) % 4, '=')
+    .replace(/-/g, '+')
+    .replace(/_/g, '/');
+
   const buffer = new Uint8Array(atob(base64).split('').map(char => char.charCodeAt(0)));
 
   return buffer;
