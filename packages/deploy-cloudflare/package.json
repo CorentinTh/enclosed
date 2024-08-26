@@ -1,7 +1,7 @@
 {
-  "name": "@enclosed/root",
+  "name": "@enclosed/deploy-cloudflare",
   "version": "0.0.0",
-  "description": "Send private and secure note",
+  "description": "Deploy scripts for Cloudflare Pages",
   "packageManager": "pnpm@9.8.0",
   "license": "Apache-2.0",
   "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
@@ -9,14 +9,7 @@
     "type": "git",
     "url": "https://github.com/CorentinTh/enclosed"
   },
-  "keywords": [
-    "note",
-    "secure",
-    "private",
-    "end-to-end",
-    "encryption",
-    "password",
-    "manager",
-    "expiration"
-  ]
+  "scripts": {
+    "build": "./build.sh"
+  }
 }

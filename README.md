@@ -101,8 +101,9 @@ This ensures that the note remains securely encrypted during transmission and st
 
 This project is organized as a monorepo using `pnpm` workspaces. The structure is as follows:
 
-- **packages/app-client**: Frontend application built with SolidJS.
-- **packages/app-server**: Backend application using HonoJS.
+- **[packages/app-client](./packages/app-client/)**: Frontend application built with SolidJS.
+- **[packages/app-server](./packages/app-server/)**: Backend application using HonoJS.
+- **[packages/deploy-cloudflare](./packages/deploy-cloudflare/)**: Cloudflare Pages build scripts and configuration.
 
 ## Contributing
 
