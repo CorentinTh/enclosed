@@ -1,4 +1,4 @@
-name: CI - App Server
+name: CI - Deploy Cloudflare
 
 on:
   pull_request:
@@ -7,11 +7,11 @@ on:
       - main
 
 jobs:
-  ci-app-server:
+  ci-deploy-cloudflare:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: packages/app-server
+        working-directory: packages/deploy-cloudflare
 
     steps:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
@@ -26,17 +26,5 @@ jobs:
         run: pnpm i
         working-directory: ./
 
-      - name: Run linters
-        run: pnpm lint
-
-      - name: Type check
-        run: pnpm typecheck
-
-      - name: Run unit test
-        run: pnpm test
-
-      - name: Build the app for Node.js
-        run: pnpm build:node
-
-      - name: Build the app for Cloudflare
-        run: pnpm build:cloudflare
+      - name: Build the app
+        run: pnpm build

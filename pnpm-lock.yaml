@@ -148,6 +148,8 @@ importers:
         specifier: ^8.1.4
         version: 8.1.4
 
+  packages/deploy-cloudflare: {}
+
 packages:
 
   '@ampproject/remapping@2.3.0':
