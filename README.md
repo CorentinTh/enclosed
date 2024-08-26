@@ -116,25 +116,31 @@ This project is licensed under the Apache 2.0 License. See the [LICENSE](./LICEN
 
 This project is crafted with ❤️ by [Corentin Thomasset](https://corentin.tech).
 
-It would not have been possible without the following open-source projects:
+### Stack
 
-### Frontend
+Enclosed would not have been possible without the following open-source projects:
 
-- **SolidJS**: A declarative JavaScript library for building user interfaces.
-- **shadcn-solid.com**: UI components library for SolidJS.
-- **Tabler Icons**: A set of open-source icons.
+- **Frontend**
+  - **[SolidJS](https://www.solidjs.com)**: A declarative JavaScript library for building user interfaces.
+  - **[Shadcn Solid](https://shadcn-solid.com/)**: UI components library for SolidJS based on Shadcn designs.
+  - **[UnoCSS](https://unocss.dev/)**: An instant on-demand atomic CSS engine.
+  - **[Tabler Icons](https://tablericons.com/)**: A set of open-source icons.
+  - And other dependencies listed in the **[client package.json](./packages/app-client/package.json)**
+- **Backend**
+  - **[HonoJS](https://hono.dev/)**: A small, fast, and lightweight web framework for building APIs.
+  - **[Unstorage](https://unstorage.unjs.io/)**: An unified key-value storage API.
+  - **[Zod](https://github.com/colinhacks/zod)**: A TypeScript-first schema declaration and validation library.
+  - And other dependencies listed in the **[server package.json](./packages/app-server/package.json)**
 
-### Backend
+### Hosting
 
-- **HonoJS**: A small, fast, and lightweight web framework for building APIs.
-- **unstorage**: A universal storage API.
-- **Zod**: A TypeScript-first schema declaration and validation library.
+The [live instance](https://enclosed.cc) of Enclosed is hosted on [Cloudflare Pages](https://pages.cloudflare.com/) using [Cloudflare KV](https://developers.cloudflare.com/kv/) for storage.
 
 ### Inspiration
 
 - **[PrivateBin](https://github.com/PrivateBin/PrivateBin)**: A minimalist, open-source online pastebin where the server has zero knowledge of pasted data.
 - **[Bitwarden Send](https://bitwarden.com/products/send/)**: A secure and ephemeral way to share sensitive information.
-- The [shadcn playground](https://ui.shadcn.com/examples/playground) for the ui
+- The **[shadcn playground example](https://ui.shadcn.com/examples/playground)** for the ui
 
 ## Contact Information
 
