@@ -23,6 +23,7 @@
     "test": "pnpm run test:unit",
     "test:unit": "vitest run",
     "test:unit:watch": "vitest watch",
+    "test:e2e": "playwright test",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -44,7 +45,9 @@
   "devDependencies": {
     "@antfu/eslint-config": "^3.0.0",
     "@iconify-json/tabler": "^1.1.120",
+    "@playwright/test": "^1.46.1",
     "@types/lodash-es": "^4.17.12",
+    "@types/node": "^22.5.0",
     "eslint": "^9.10.0",
     "jsdom": "^25.0.0",
     "typescript": "^5.3.3",
