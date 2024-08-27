@@ -9,6 +9,9 @@
     "type": "git",
     "url": "https://github.com/CorentinTh/enclosed"
   },
+  "engines": {
+    "node": ">=22.0.0"
+   },
   "keywords": [
     "note",
     "secure",
