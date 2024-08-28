@@ -4,7 +4,11 @@ export function createTestLogger() {
   const loggerArgs: Record<string, unknown[]> = {};
 
   const logFn = (level: string) => (...args: unknown[]) => {
-    (loggerArgs[level] ??= []).push(args);
+    if (!loggerArgs[level]) {
+      loggerArgs[level] = [];
+    }
+
+    loggerArgs[level].push(args);
   };
 
   const logger = {
