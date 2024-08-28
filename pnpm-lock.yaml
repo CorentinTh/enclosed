@@ -12,7 +12,7 @@ importers:
     dependencies:
       '@kobalte/core':
         specifier: ^0.13.4
-        version: 0.13.4(solid-js@1.8.22)
+        version: 0.13.6(solid-js@1.8.22)
       '@solidjs/router':
         specifier: ^0.14.3
         version: 0.14.3(solid-js@1.8.22)
@@ -944,15 +944,15 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@kobalte/core@0.13.4':
-    resolution: {integrity: sha512-ElvazoxoQU/z5pQUdHtXAzjiZA60J+Fo36WgO+j8sMvycIGwrlv+Fdr+uXcLSm1onYOYoSG1+vumD3Ce5OYzzw==}
+  '@kobalte/core@0.13.6':
+    resolution: {integrity: sha512-MuO9tBDjfmYISF4weKpcRi0+7FEUhqz8wHbcayfSHR5mulXQbru5PRE5gdfhf84C7UdOHTZBLiPeQD2VppdfIQ==}
     peerDependencies:
       solid-js: ^1.8.15
 
-  '@kobalte/utils@0.9.0':
-    resolution: {integrity: sha512-TYVCpQcpqo1+0HBn3NXoGEBzxd4tH6Um1oc07nrYw1V7Qq0qbMaYAOnfBc1qhlh7sGV4XZldmb0j13Of0FrZQg==}
+  '@kobalte/utils@0.9.1':
+    resolution: {integrity: sha512-eeU60A3kprIiBDAfv9gUJX1tXGLuZiKMajUfSQURAF2pk4ZoMYiqIzmrMBvzcxP39xnYttgTyQEVLwiTZnrV4w==}
     peerDependencies:
-      solid-js: ^1.7.11
+      solid-js: ^1.8.8
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -4297,18 +4297,19 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@kobalte/core@0.13.4(solid-js@1.8.22)':
+  '@kobalte/core@0.13.6(solid-js@1.8.22)':
     dependencies:
       '@floating-ui/dom': 1.6.10
       '@internationalized/date': 3.5.5
       '@internationalized/number': 3.5.3
-      '@kobalte/utils': 0.9.0(solid-js@1.8.22)
+      '@kobalte/utils': 0.9.1(solid-js@1.8.22)
       '@solid-primitives/props': 3.1.11(solid-js@1.8.22)
+      '@solid-primitives/resize-observer': 2.0.26(solid-js@1.8.22)
       solid-js: 1.8.22
       solid-presence: 0.1.8(solid-js@1.8.22)
       solid-prevent-scroll: 0.1.10(solid-js@1.8.22)
 
-  '@kobalte/utils@0.9.0(solid-js@1.8.22)':
+  '@kobalte/utils@0.9.1(solid-js@1.8.22)':
     dependencies:
       '@solid-primitives/event-listener': 2.3.3(solid-js@1.8.22)
       '@solid-primitives/keyed': 1.2.2(solid-js@1.8.22)
