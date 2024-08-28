@@ -42,7 +42,6 @@
     "@types/lodash-es": "^4.17.12",
     "eslint": "^9.9.0",
     "jsdom": "^25.0.0",
-    "solid-devtools": "^0.30.0",
     "typescript": "^5.3.3",
     "unocss": "^0.62.2",
     "vite": "^5.0.11",
