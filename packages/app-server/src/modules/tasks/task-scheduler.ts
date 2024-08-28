@@ -1,4 +1,3 @@
-// import schedule from 'node-schedule';
 import cron from 'node-cron';
 import type { Storage } from '../storage/storage.types';
 import type { Config } from '../app/config/config.types';
