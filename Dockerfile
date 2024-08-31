@@ -31,8 +31,8 @@ WORKDIR /app
 COPY --from=builder /app/packages/app-client/dist ./public
 COPY --from=builder /app/packages/app-server/dist-node/index.cjs ./index.cjs
 
-# Change the owner of the app directory
-RUN chown -R nonroot:nonroot /app
+# Create the .data directory and set permissions
+RUN mkdir -p /app/.data && chown -R nonroot:nonroot /app
 
 # Change the user to nonroot
 USER nonroot
