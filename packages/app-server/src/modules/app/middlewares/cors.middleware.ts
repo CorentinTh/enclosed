@@ -1,15 +1,11 @@
 import { cors } from 'hono/cors';
+import { createMiddleware } from 'hono/factory';
 import type { Context } from '../server.types';
 
-export const corsMiddleware = cors({
-  origin: (origin, context: Context) => {
-    const allowedOrigins = context.get('config').server.corsOrigin;
+export const corsMiddleware = createMiddleware(async (context: Context, next) => {
+  const { server: { corsOrigins } } = context.get('config');
 
-    if (allowedOrigins.length === 1 && allowedOrigins[0] === '*') {
-      return origin;
-    }
+  const corsHandler = cors({ origin: corsOrigins });
 
-    return allowedOrigins.find(allowedOrigin => allowedOrigin === origin);
-  },
-  credentials: true,
+  return corsHandler(context, next);
 });
