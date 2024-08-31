@@ -38,9 +38,9 @@ Replace `/path/to/local/data` with the path to your local data directory.
 
 ```bash
 # From docker hub
-docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data corentinth/enclosed
+docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data --user $(id -u):$(id -g) corentinth/enclosed
 # or from GitHub Container Registry
-docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data ghcr.io/corentin-th/enclosed
+docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data --user $(id -u):$(id -g) ghcr.io/corentin-th/enclosed
 ```
 
 ### Docker Compose
@@ -56,8 +56,18 @@ services:
     ports:
       - 8787:8787
     volumes:
-      - /path/to/local/data:/app/.data
+      - enclosed-data:/app/.data
     restart: unless-stopped
+
+volumes:
+  enclosed-data:
+    driver: local
+```
+
+Run the following commands to start the application.
+```bash
+curl -O https://raw.githubusercontent.com/CorentinTh/enclosed/main/docker-compose.yml
+docker-compose up -d
 ```
 
 ### Configuration
