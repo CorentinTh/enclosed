@@ -1,6 +1,5 @@
 import { defineCommand } from 'citty';
-import picocolors from 'picocolors';
-import { keys, map } from 'lodash-es';
+import { keys } from 'lodash-es';
 import { configDefinition } from './config.constants';
 import { deleteConfig, getConfig, resetConfig, setConfig } from './config.models';
 
