@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import _ from 'lodash-es';
+import { isArray, isEmpty, isNil } from 'lodash-es';
 import type { ConfigDefinition, ConfigDefinitionElement } from 'figue';
 import { fs } from 'zx';
 import { configDefinition } from '../modules/app/config/config';
@@ -25,7 +25,8 @@ const configDetails = walk(configDefinition);
 const rows = configDetails
   .filter(({ path }) => path[0] !== 'env')
   .map(({ doc, default: defaultValue, env }) => {
-    const defaultValueString = _.isNil(defaultValue) ? 'No default value' : `\`${defaultValue}\``;
+    const isEmptyDefaultValue = isNil(defaultValue) || (isArray(defaultValue) && isEmpty(defaultValue));
+    const defaultValueString = isEmptyDefaultValue ? '_No default value_' : `\`${defaultValue}\``;
 
     return `| \`${env}\` | ${doc} | ${defaultValueString} |`;
   });

@@ -15,14 +15,14 @@ export const configDefinition = {
       default: 8787,
       env: 'PORT',
     },
-    corsOrigin: {
-      doc: 'The CORS origin the server should allow',
+    corsOrigins: {
+      doc: 'The CORS origin for the api server',
       schema: z.union([
         z.string(),
         z.array(z.string()),
       ]).transform(value => (typeof value === 'string' ? value.split(',') : value)),
-      default: '*',
-      env: 'CORS_ORIGIN',
+      default: [],
+      env: 'SERVER_CORS_ORIGINS',
     },
   },
   notes: {
