@@ -15,6 +15,12 @@ export const configDefinition = {
       default: 8787,
       env: 'PORT',
     },
+    routeTimeoutMs: {
+      doc: 'The maximum time in milliseconds for a route to complete before timing out',
+      schema: z.coerce.number().int().positive(),
+      default: 5_000,
+      env: 'SERVER_API_ROUTES_TIMEOUT_MS',
+    },
     corsOrigins: {
       doc: 'The CORS origin for the api server',
       schema: z.union([
@@ -28,7 +34,7 @@ export const configDefinition = {
   notes: {
     maxEncryptedContentLength: {
       doc: 'The maximum length of the encrypted content of a note allowed by the api',
-      schema: z.number().min(1),
+      schema: z.coerce.number().int().positive().min(1),
       default: 1024 * 1024 * 5, // 5MB
       env: 'NOTES_MAX_ENCRYPTED_CONTENT_LENGTH',
     },
