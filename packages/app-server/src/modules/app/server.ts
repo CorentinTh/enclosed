@@ -9,6 +9,7 @@ import { loggerMiddleware } from './middlewares/logger.middleware';
 import { registerErrorMiddleware } from './middlewares/errors.middleware';
 import { createStorageMiddleware } from './middlewares/storage.middleware';
 import type { Config } from './config/config.types';
+import { timeoutMiddleware } from './middlewares/timeout.middleware';
 
 export { createServer };
 
@@ -17,6 +18,7 @@ function createServer({ config, storageFactory }: { config?: Config; storageFact
 
   app.use(loggerMiddleware);
   app.use(createConfigMiddleware({ config }));
+  app.use(timeoutMiddleware);
   app.use(corsMiddleware);
   app.use(createStorageMiddleware({ storageFactory }));
   app.use(secureHeaders());
