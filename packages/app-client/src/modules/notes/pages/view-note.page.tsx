@@ -1,7 +1,7 @@
 import { useLocation, useParams } from '@solidjs/router';
 import { type Component, Match, Show, Switch, createSignal, onMount } from 'solid-js';
+import { decryptNote } from '@enclosed/lib';
 import { fetchNoteById } from '../notes.services';
-import { decryptNote } from '../notes.usecases';
 import { TextField, TextFieldLabel, TextFieldRoot } from '@/modules/ui/components/textfield';
 import { Card, CardContent, CardDescription, CardHeader } from '@/modules/ui/components/card';
 import { Button } from '@/modules/ui/components/button';

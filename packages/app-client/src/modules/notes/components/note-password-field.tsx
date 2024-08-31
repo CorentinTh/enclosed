@@ -1,13 +1,13 @@
 import { type Component, createSignal } from 'solid-js';
+import { createRandomPassword } from '../notes.models';
 import { TextField } from '@/modules/ui/components/textfield';
 import { Button } from '@/modules/ui/components/button';
-import { createRandomString } from '@/modules/shared/random/random';
 
 export const NotePasswordField: Component<{ getPassword: () => string; setPassword: (value: string) => void }> = (props) => {
   const [getShowPassword, setShowPassword] = createSignal(false);
 
   const generateRandomPassword = () => {
-    const password = createRandomString({ length: 16 });
+    const password = createRandomPassword({ length: 16 });
 
     setShowPassword(true);
     props.setPassword(password);
