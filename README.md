@@ -110,7 +110,9 @@ This ensures that the note remains securely encrypted during transmission and st
 
 ## CLI
 
-The Enclosed CLI allows you to create notes from the terminal. You can install it globally using npm, yarn, or pnpm.
+The Enclosed CLI allows you to create notes from the terminal. You can install it globally using npm, yarn, or pnpm. 
+
+### Installation
 
 ```bash
 # with npm
@@ -123,10 +125,25 @@ yarn global add @enclosed/cli
 pnpm add -g @enclosed/cli
 ```
 
+### Create a note
 
 ```bash
+# Basic usage
+enclosed create "Hello, World!"
 
+# Using stdin
+cat file.txt | enclosed create
 
+# With full options
+enclosed create --deleteAfterReading --password "password" --ttl 3600 "Hello, World!"
+```
+
+### Configure the enclosed instance to use
+
+```bash
+# By default, the CLI uses the public instance at enclosed.cc
+enclosed config set instance-url https://enclosed.cc
+```
 
 ## Project Structure
 
