@@ -19,6 +19,7 @@ A live instance is available at [enclosed.cc](https://enclosed.cc).
 - **Responsive Design**: Works on all devices, from desktops to mobile phones.
 - **Open Source**: The source code is available under the Apache 2.0 License.
 - **Self-Hostable**: Run your instance of Enclosed for private note sharing.
+- **CLI**: A command-line interface for creating notes from the terminal.
 
 ## Self host
 
@@ -107,6 +108,26 @@ You can configure the application using environment variables. Here are the avai
 
 This ensures that the note remains securely encrypted during transmission and storage, with decryption only possible by those with the correct link and (if applicable) password.
 
+## CLI
+
+The Enclosed CLI allows you to create notes from the terminal. You can install it globally using npm, yarn, or pnpm.
+
+```bash
+# with npm
+npm install -g @enclosed/cli
+
+# with yarn
+yarn global add @enclosed/cli
+
+# with pnpm
+pnpm add -g @enclosed/cli
+```
+
+
+```bash
+
+
+
 ## Project Structure
 
 This project is organized as a monorepo using `pnpm` workspaces. The structure is as follows:
@@ -114,6 +135,8 @@ This project is organized as a monorepo using `pnpm` workspaces. The structure i
 - **[packages/app-client](./packages/app-client/)**: Frontend application built with SolidJS.
 - **[packages/app-server](./packages/app-server/)**: Backend application using HonoJS.
 - **[packages/deploy-cloudflare](./packages/deploy-cloudflare/)**: Cloudflare Pages build scripts and configuration.
+- **[packages/lib](./packages/lib/)**: Core functionalities of Enclosed.
+- **[packages/cli](./packages/cli/)**: Command-line interface for Enclosed.
 
 ## Contributing
 
