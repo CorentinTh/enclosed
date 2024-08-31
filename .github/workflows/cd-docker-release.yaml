@@ -5,6 +5,13 @@ on:
     tags:
       - 'v*.*.*'
 
+  workflow_dispatch:
+    inputs:
+      release_version:
+        description: 'Release version (no v prefix)'
+        required: true
+        default: '0.0.0'
+
 permissions:
   contents: read
   packages: write
@@ -13,8 +20,13 @@ jobs:
   docker-release:
     runs-on: ubuntu-latest
     steps:
-      - name: Get release version
+      - name: Get release version from tag
+        if: ${{ github.event_name == 'push' }}
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+    
+      - name: Get release version from input
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: echo "RELEASE_VERSION=${{ github.event.inputs.release_version }}" >> $GITHUB_ENV
 
       - name: Checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4

@@ -7,6 +7,7 @@ WORKDIR /app
 # Copy package.json and pnpm-lock.yaml to install dependencies
 COPY pnpm-lock.yaml ./
 COPY pnpm-workspace.yaml ./
+COPY packages/lib/package.json packages/lib/package.json
 COPY packages/app-client/package.json packages/app-client/package.json
 COPY packages/app-server/package.json packages/app-server/package.json
 
