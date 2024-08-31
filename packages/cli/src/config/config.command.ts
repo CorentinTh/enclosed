@@ -55,7 +55,6 @@ export const configCommand = defineCommand({
         const value = getConfig({ key: String(key) });
 
         if (value) {
-          // eslint-disable-next-line no-console
           console.log(value ?? '');
         }
       },

@@ -63,7 +63,6 @@ export const createNoteCommand = defineCommand({
 
       spinner.succeed('Note created successfully');
 
-      // eslint-disable-next-line no-console
       console.log(`\nNote url: ${pc.green(noteUrl)}`);
     } catch (error) {
       spinner.fail('Failed to create note');

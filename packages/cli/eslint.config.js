@@ -17,5 +17,6 @@ export default antfu({
       varsIgnorePattern: '^_',
       caughtErrorsIgnorePattern: '^_',
     }],
+    'no-console': 'off',
   },
 });
