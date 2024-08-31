@@ -1,7 +1,7 @@
 {
   "name": "@enclosed/lib",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "packageManager": "pnpm@9.9.0",
   "description": "Enclosed lib to create secure notes.",
   "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
@@ -71,7 +71,8 @@
     "test": "pnpm run test:unit",
     "test:unit": "vitest run",
     "test:unit:watch": "vitest watch",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
     "ofetch": "^1.3.4"

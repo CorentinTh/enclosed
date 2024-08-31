@@ -15,27 +15,21 @@ async function storeNote({
   deleteAfterReading: boolean;
   noteCreationApiUrl: string;
 }): Promise<{ noteId: string }> {
-  try {
-    const { noteId } = await ofetch<{ noteId: string }>(
-      noteCreationApiUrl,
-      {
-        method: 'POST',
-        body: {
-          content,
-          isPasswordProtected,
-          ttlInSeconds,
-          deleteAfterReading,
-        },
+  const { noteId } = await ofetch<{ noteId: string }>(
+    noteCreationApiUrl,
+    {
+      method: 'POST',
+      body: {
+        content,
+        isPasswordProtected,
+        ttlInSeconds,
+        deleteAfterReading,
       },
-    );
+      onResponseError: async ({ response }) => {
+        throw Object.assign(new Error('Failed to create note'), { response });
+      },
+    },
+  );
 
-    return { noteId };
-  } catch (baseError) {
-    const error = new Error('Failed to store note');
-    Object.assign(error, {
-      cause: baseError,
-    });
-
-    throw error;
-  }
+  return { noteId };
 }

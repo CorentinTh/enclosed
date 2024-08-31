@@ -4,7 +4,6 @@ export { createEnclosedLib };
 
 const ONE_HOUR_IN_SECONDS = 60 * 60;
 const BASE_URL = 'https://enclosed.cc';
-const DEFAULT_NOTE_CREATION_API_URL = 'https://enclosed.cc/api/notes';
 
 function createEnclosedLib({
   encryptNote,
@@ -19,8 +18,8 @@ function createEnclosedLib({
       password,
       ttlInSeconds = ONE_HOUR_IN_SECONDS,
       deleteAfterReading = false,
-      noteCreationApiUrl = DEFAULT_NOTE_CREATION_API_URL,
       clientBaseUrl = BASE_URL,
+      noteCreationApiUrl = new URL('/api/notes', clientBaseUrl).toString(),
       createNoteUrl = createNoteUrlImpl,
       storeNote = params => storeNoteImpl({ ...params, noteCreationApiUrl }),
     }: {
@@ -47,4 +46,4 @@ function createEnclosedLib({
       };
     },
   };
-}
+};

@@ -1,0 +1,55 @@
+{
+  "name": "@enclosed/cli",
+  "type": "module",
+  "version": "0.0.2",
+  "packageManager": "pnpm@9.9.0",
+  "description": "Enclosed cli to create secure notes.",
+  "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CorentinTh/enclosed"
+  },
+  "main": "./dist/cli.cjs",
+  "module": "./dist/cli.mjs",
+  "bin": {
+    "enclosed": "./bin/enclosed.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev": "tsx ./src/cli.ts",
+    "build": "unbuild",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "test": "pnpm run test:unit",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest watch",
+    "prepublishOnly": "pnpm run build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@enclosed/lib": "workspace:*",
+    "citty": "^0.1.6",
+    "conf": "^13.0.1",
+    "lodash-es": "^4.17.21",
+    "ora": "^8.1.0",
+    "picocolors": "^1.0.1",
+    "tsx": "^4.17.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.27.0",
+    "@types/lodash-es": "^4.17.12",
+    "@vitest/coverage-v8": "^2.0.5",
+    "dotenv": "^16.4.5",
+    "eslint": "^9.9.0",
+    "typescript": "^5.5.4",
+    "unbuild": "^2.0.0",
+    "vitest": "^2.0.5"
+  }
+}
