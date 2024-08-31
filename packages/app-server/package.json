@@ -14,9 +14,9 @@
     "node": ">=22.0.0"
   },
   "scripts": {
-    "dev": "$npm_execpath run dev:cloudflare",
+    "dev": "$npm_execpath run dev:node",
     "build": "$npm_execpath run build:cloudflare",
-    "dev:node": "tsx -r dotenv/config --watch src/index.node.ts",
+    "dev:node": "tsx -r dotenv/config --watch src/index.node.ts | pino-pretty",
     "dev:cloudflare": "wrangler dev --test-scheduled --port=8787 src/index.cloudflare.ts",
     "build:cloudflare": "esbuild --bundle src/index.cloudflare.ts --format=esm --outfile=dist-cloudflare/_worker.js --minify",
     "build:node": "esbuild --bundle src/index.node.ts --platform=node --format=cjs --outfile=dist-node/index.cjs --minify",
@@ -50,6 +50,7 @@
     "dotenv": "^16.4.5",
     "esbuild": "^0.23.1",
     "eslint": "^9.9.0",
+    "pino-pretty": "^11.2.2",
     "tsx": "^4.17.0",
     "typescript": "^5.5.4",
     "vitest": "^2.0.5",
