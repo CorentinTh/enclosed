@@ -26,6 +26,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@enclosed/lib": "workspace:*",
     "@kobalte/core": "^0.13.4",
     "@solidjs/router": "^0.14.3",
     "@unocss/reset": "^0.62.2",

@@ -1,7 +1,17 @@
 import { describe, expect, test } from 'vitest';
-import { decryptNote, encryptNote } from './notes.usecases';
+import { createDecryptUsecase, createEncryptUsecase } from './crypto.usecases';
+import * as nodeCryptoLib from './node/crypto.node.usecases';
+import * as webCryptoLib from './web/crypto.web.usecases';
 
-describe('notes usecases', () => {
+export { runCommonCryptoUsecasesTests };
+
+function runCommonCryptoUsecasesTests({
+  encryptNote,
+  decryptNote,
+}: {
+  encryptNote: (args: { content: string; password?: string }) => Promise<{ encryptedContent: string; encryptionKey: string }>;
+  decryptNote: (args: { encryptedContent: string; password?: string; encryptionKey: string }) => Promise<{ decryptedContent: string }>;
+}) {
   describe('encryption and decryption', () => {
     describe('without password', () => {
       test('a note can be decrypted with the same key used for encryption', async () => {
@@ -61,6 +71,23 @@ describe('notes usecases', () => {
             encryptionKey,
           }),
         ).rejects.toThrow();
+      });
+
+      test('an empty string as a password is the same as no password', async () => {
+        const content = 'Hello, world!';
+
+        const { encryptedContent, encryptionKey } = await encryptNote({
+          content,
+          password: '',
+        });
+
+        const { decryptedContent } = await decryptNote({
+          encryptedContent,
+          encryptionKey,
+          password: '',
+        });
+
+        expect(decryptedContent).toBe(content);
       });
     });
 
@@ -153,5 +180,71 @@ describe('notes usecases', () => {
         ).rejects.toThrow();
       });
     });
+
+    test('if the encrypted content does not include the iv, the note cannot be decrypted', async () => {
+      const content = 'Hello, world!';
+      const password = 'password';
+
+      const { encryptedContent, encryptionKey } = await encryptNote({
+        content,
+        password,
+      });
+
+      const [_ivString, encryptedStringWithAuthTag] = encryptedContent.split(':').map(part => part.trim());
+
+      const encryptedContentWithoutIv = encryptedStringWithAuthTag;
+
+      expect(
+        decryptNote({
+          encryptedContent: encryptedContentWithoutIv,
+          encryptionKey,
+          password,
+        }),
+      ).rejects.toThrow();
+    });
+  });
+}
+
+describe('cross-environment encryption and decryption', () => {
+  test('a note encrypted in the web environment can be decrypted in the node environment', async () => {
+    const content = 'Hello, world!';
+    const password = 'password';
+
+    const { encryptNote } = createEncryptUsecase(webCryptoLib);
+    const { decryptNote } = createDecryptUsecase(nodeCryptoLib);
+
+    const { encryptedContent, encryptionKey } = await encryptNote({
+      content,
+      password,
+    });
+
+    const { decryptedContent } = await decryptNote({
+      encryptedContent,
+      encryptionKey,
+      password,
+    });
+
+    expect(decryptedContent).toBe(content);
+  });
+
+  test('a note encrypted in the node environment can be decrypted in the web environment', async () => {
+    const content = 'Hello, world!';
+    const password = 'password';
+
+    const { encryptNote } = createEncryptUsecase(nodeCryptoLib);
+    const { decryptNote } = createDecryptUsecase(webCryptoLib);
+
+    const { encryptedContent, encryptionKey } = await encryptNote({
+      content,
+      password,
+    });
+
+    const { decryptedContent } = await decryptNote({
+      encryptedContent,
+      encryptionKey,
+      password,
+    });
+
+    expect(decryptedContent).toBe(content);
   });
 });

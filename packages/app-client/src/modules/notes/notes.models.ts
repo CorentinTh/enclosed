@@ -1,41 +1,13 @@
-import { createBuffer, mergeBuffers } from '../shared/crypto/buffer';
-import { aesDecrypt, aesEncrypt, deriveKey } from '../shared/crypto/encryption';
+import _ from 'lodash-es';
 
-export { encryptNoteContent, decryptNoteContent, createNoteUrl, deriveMasterKey };
+export { createRandomPassword };
 
-function createBufferFromPassword({ password }: { password?: string }) {
-  if (!password) {
-    return new Uint8Array(0);
-  }
+function createRandomPassword({ length = 16 }: { length?: number } = {}): string {
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+  const numbers = '0123456789';
+  const specialChars = '!@#$%^&*()_+';
 
-  return new TextEncoder().encode(password);
-}
+  const corpus = alphabet + alphabet.toUpperCase() + numbers + specialChars;
 
-async function encryptNoteContent({ content, masterKey }: { content: string; masterKey: Uint8Array }) {
-  const contentBuffer = createBuffer({ value: content });
-  const encryptedContent = await aesEncrypt({ data: contentBuffer, key: masterKey });
-
-  return encryptedContent;
-}
-
-async function decryptNoteContent({ encryptedContent, masterKey }: { encryptedContent: string; masterKey: Uint8Array }) {
-  const decryptedContent = await aesDecrypt({ data: encryptedContent, key: masterKey });
-
-  return decryptedContent;
-}
-
-function createNoteUrl({ noteId, encryptionKey }: { noteId: string; encryptionKey: string }): { noteUrl: string } {
-  const url = new URL(`/${noteId}`, window.location.origin);
-  url.hash = encryptionKey;
-
-  const noteUrl = url.toString();
-
-  return { noteUrl };
-}
-
-function deriveMasterKey({ baseKey, password }: { baseKey: Uint8Array; password?: string }) {
-  const passwordBuffer = createBufferFromPassword({ password });
-  const mergedBuffers = mergeBuffers(baseKey, passwordBuffer);
-
-  return deriveKey({ key: mergedBuffers });
+  return _.times(length, () => _.sample(corpus)).join('');
 }

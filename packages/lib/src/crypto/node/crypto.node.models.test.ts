@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
-import { base64UrlToBuffer, bufferToBase64Url } from './buffer';
+import { base64UrlToBuffer, bufferToBase64Url } from './crypto.node.models';
 
-describe('buffer', () => {
+describe('crypto node models', () => {
   describe('bufferToBase64Url', () => {
     test('an 8-bit buffer is converted to a base64url string (no "+", "/", or "=")', () => {
       const buffer = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
@@ -30,10 +30,8 @@ describe('buffer', () => {
 
   describe('base64UrlToBuffer', () => {
     test('a base64url string is converted to an 8-bit buffer', () => {
-      const base64Url = 'AAECAwQFBgcICQ';
-      const buffer = base64UrlToBuffer({ base64Url });
-
-      expect(buffer).toEqual(new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]));
+      expect(base64UrlToBuffer({ base64Url: 'AAECAwQFBgcICQ' })).to.eql(new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]));
+      expect(base64UrlToBuffer({ base64Url: 'An1aThIn_OeGWQUn-e4o2nEXvdtEagY2lJxCQN1SgKc' })).to.eql(new Uint8Array([2, 125, 90, 78, 18, 39, 252, 231, 134, 89, 5, 39, 249, 238, 40, 218, 113, 23, 189, 219, 68, 106, 6, 54, 148, 156, 66, 64, 221, 82, 128, 167]));
     });
   });
 });
