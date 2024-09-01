@@ -139,6 +139,16 @@ cat file.txt | enclosed create
 enclosed create --deleteAfterReading --password "password" --ttl 3600 "Hello, World!"
 ```
 
+### View a note
+
+```bash
+# The password will be prompted if the note is password-protected
+enclosed view <note-url>
+
+# Or you can provide the password directly
+enclosed view --password "password" <note-url>
+```
+
 ### Configure the enclosed instance to use
 
 ```bash

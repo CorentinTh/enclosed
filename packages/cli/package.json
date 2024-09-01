@@ -1,7 +1,7 @@
 {
   "name": "@enclosed/cli",
   "type": "module",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "packageManager": "pnpm@9.9.0",
   "description": "Enclosed cli to create secure notes.",
   "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@enclosed/lib": "workspace:*",
+    "@inquirer/prompts": "^5.3.8",
     "citty": "^0.1.6",
     "conf": "^13.0.1",
     "lodash-es": "^4.17.21",
