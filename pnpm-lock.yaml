@@ -46,7 +46,7 @@ importers:
         version: 2.27.3(@typescript-eslint/utils@8.3.0(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(@vue/compiler-sfc@3.4.38)(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)(vitest@2.0.5(@types/node@22.5.1)(jsdom@25.0.0)(terser@5.31.6))
       '@iconify-json/tabler':
         specifier: ^1.1.120
-        version: 1.1.121
+        version: 1.2.0
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
@@ -1131,8 +1131,8 @@ packages:
     resolution: {integrity: sha512-d2CGZR2o7fS6sWB7DG/3a95bGKQyHMACZ5aW8qGkkqQpUoZV6C0X7Pc7l4ZNMZkfNBf4VWNe9E1jRsf0G146Ew==}
     engines: {node: '>=18.18'}
 
-  '@iconify-json/tabler@1.1.121':
-    resolution: {integrity: sha512-XZN+uEi2H6UNCltd0WPTrirKZNsByZeKofA4wmmUadsd5NZDfk+2Jw8neT6umeHZcuXzCRnlQ+fFMtFRMqiPIQ==}
+  '@iconify-json/tabler@1.2.0':
+    resolution: {integrity: sha512-ke7ESt/wurkWr/VrMrAguN8jOmf8tD9LOOqhn3OwAx8kg0lYwMkOahV6jTGXh2zU90z1drsD34cKV7RoNe0PuQ==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -5062,7 +5062,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.3.0': {}
 
-  '@iconify-json/tabler@1.1.121':
+  '@iconify-json/tabler@1.2.0':
     dependencies:
       '@iconify/types': 2.0.0
 
