@@ -1,0 +1,19 @@
+:root {
+    --vp-c-brand-1: #000000;
+    --vp-c-brand-2: #000000;
+}
+
+.dark {
+    --vp-c-brand-1: #ffffff;
+    --vp-c-brand-2: #ffffff;
+
+    --vp-c-text-1: rgba(255, 255, 245, 0.92);
+    --vp-c-text-2: rgba(235, 235, 245, 0.6);
+    --vp-c-text-3: rgba(235, 235, 245, 0.38);
+}
+
+
+.VPSocialLink span{
+    height: 18px !important;
+    width: 18px !important;
+}

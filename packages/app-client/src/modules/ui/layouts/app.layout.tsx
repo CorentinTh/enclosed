@@ -1,10 +1,11 @@
 import { A, useNavigate } from '@solidjs/router';
 import type { Component, ParentComponent } from 'solid-js';
 import { DropdownMenu } from '@kobalte/core/dropdown-menu';
-import { DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../components/dropdown-menu';
+import { DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '../components/dropdown-menu';
 import { Button } from '@/modules/ui/components/button';
 import { useThemeStore } from '@/modules/theme/theme.store';
 import { useNoteContext } from '@/modules/notes/notes.context';
+import { buildDocUrl } from '@/modules/docs/docs.models';
 
 export const Navbar: Component = () => {
   const themeStore = useThemeStore();
@@ -43,20 +44,47 @@ export const Navbar: Component = () => {
             <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9" variant="ghost" aria-label="Change theme">
               <div classList={{ 'i-tabler-moon': themeStore.getColorMode() === 'dark', 'i-tabler-sun': themeStore.getColorMode() === 'light' }}></div>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem onClick={() => themeStore.setColorMode({ mode: 'light' })} class="flex items-center gap-2">
+            <DropdownMenuContent class="w-42">
+              <DropdownMenuItem onClick={() => themeStore.setColorMode({ mode: 'light' })} class="flex items-center gap-2 cursor-pointer">
                 <div class="i-tabler-sun text-lg"></div>
                 Light mode
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => themeStore.setColorMode({ mode: 'dark' })} class="flex items-center gap-2">
+              <DropdownMenuItem onClick={() => themeStore.setColorMode({ mode: 'dark' })} class="flex items-center gap-2 cursor-pointer">
                 <div class="i-tabler-moon text-lg"></div>
                 Dark mode
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => themeStore.setColorMode({ mode: 'system' })} class="flex items-center gap-2">
+              <DropdownMenuItem onClick={() => themeStore.setColorMode({ mode: 'system' })} class="flex items-center gap-2 cursor-pointer">
                 <div class="i-tabler-device-laptop text-lg"></div>
                 System
               </DropdownMenuItem>
             </DropdownMenuContent>
+          </DropdownMenu>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9" variant="ghost" aria-label="Change theme">
+              <div class="i-tabler-dots-vertical"></div>
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent class="w-46">
+              <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" href={buildDocUrl({ path: '/' })}>
+                <div class="i-tabler-file-text text-lg"></div>
+                Documentation
+              </DropdownMenuItem>
+
+              <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" href={buildDocUrl({ path: '/integrations/cli' })}>
+                <div class="i-tabler-terminal text-lg"></div>
+                Enclosed CLI
+              </DropdownMenuItem>
+
+              <DropdownMenuSeparator />
+
+              <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" href="https://buymeacoffee.com/cthmsst" rel="noopener noreferrer">
+                <div class="i-tabler-pig-money text-lg"></div>
+                Support Enclosed
+              </DropdownMenuItem>
+
+            </DropdownMenuContent>
+
           </DropdownMenu>
         </div>
       </div>

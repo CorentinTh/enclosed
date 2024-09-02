@@ -1,0 +1,23 @@
+{
+  "name": "@enclosed/docs",
+  "version": "0.0.0",
+  "type": "module",
+  "packageManager": "pnpm@9.9.0",
+  "description": "Documentation website for Enclosed.",
+  "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CorentinTh/enclosed"
+  },
+  "main": "index.js",
+  "scripts": {
+    "dev": "vitepress dev --port 3001",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "vitepress": "^1.3.4"
+  }
+}
