@@ -1,5 +1,6 @@
 
 # Enclosed - Send private and secure notes
+[Demo](https://enclosed.cc) &nbsp;&nbsp;-&nbsp;&nbsp; [Docs](https://docs.enclosed.cc) &nbsp;&nbsp;-&nbsp;&nbsp; [CLI](https://www.npmjs.com/package/@enclosed/cli) &nbsp;&nbsp;-&nbsp;&nbsp; [Self-hosting](https://docs.enclosed.cc/self-hosting/docker)
 
 **Enclosed** is a minimalistic web application designed for sending private and secure notes.
 
@@ -73,23 +74,7 @@ docker-compose up -d
 
 ### Configuration
 
-You can configure the application using environment variables. Here are the available options:
-
-<!-- env-table-start -->
-
-| Environment Variable | Description | Default Value |
-| -------------------- | ----------- | ------------- |
-| `PORT` | The port to listen on when using node server | `8787` |
-| `SERVER_API_ROUTES_TIMEOUT_MS` | The maximum time in milliseconds for a route to complete before timing out | `5000` |
-| `SERVER_CORS_ORIGINS` | The CORS origin for the api server | _No default value_ |
-| `NOTES_MAX_ENCRYPTED_CONTENT_LENGTH` | The maximum length of the encrypted content of a note allowed by the api | `5242880` |
-| `TASK_DELETE_EXPIRED_NOTES_ENABLED` | Whether to enable a periodic task to delete expired notes (not available for cloudflare) | `true` |
-| `TASK_DELETE_EXPIRED_NOTES_CRON` | The frequency with which to run the task to delete expired notes (cron syntax) | `0 * * * *` |
-| `TASK_DELETE_EXPIRED_NOTES_RUN_ON_STARTUP` | Whether the task to delete expired notes should run on startup | `true` |
-| `STORAGE_DRIVER_FS_LITE_PATH` | (only in node env) The path to the directory where the data will be stored | `./.data` |
-| `STORAGE_DRIVER_CLOUDFLARE_KV_BINDING` | (only in cloudflare env) The name of the Cloudflare KV binding to use | `notes` |
-
-<!-- env-table-end -->
+You can refer to the [configuration documentation](https://docs.enclosed.cc/self-hosting/configuration) for more information on how to configure the application.
 
 ## How It Works
 
