@@ -13,10 +13,12 @@ describe('e2e', () => {
       });
 
       const note = {
-        content: '<encrypted-content>',
+        payload: '<encrypted-content>',
         isPasswordProtected: false,
         deleteAfterReading: false,
         ttlInSeconds: 600,
+        encryptionAlgorithm: 'aes-256-gcm',
+        serializationFormat: 'cbor-array',
       };
 
       const createNoteResponse = await app.request(
@@ -42,9 +44,86 @@ describe('e2e', () => {
       const { note: retrievedNote } = await viewNoteResponse.json<any>();
 
       expect(omit(retrievedNote, 'expirationDate')).to.eql({
-        content: '<encrypted-content>',
+        payload: '<encrypted-content>',
         isPasswordProtected: false,
-        deleteAfterReading: false,
+        encryptionAlgorithm: 'aes-256-gcm',
+        serializationFormat: 'cbor-array',
+      });
+    });
+
+    test('an enregistered serialization format results in a bad request', async () => {
+      const { storage } = createMemoryStorage();
+
+      const { app } = createServer({
+        storageFactory: () => ({ storage }),
+      });
+
+      const response = await app.request(
+        '/api/notes',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            payload: '<encrypted-content>',
+            isPasswordProtected: false,
+            deleteAfterReading: false,
+            ttlInSeconds: 600,
+            encryptionAlgorithm: 'aes-256-gcm',
+            serializationFormat: 'foo', // <- invalid serialization format
+          }),
+          headers: new Headers({ 'Content-Type': 'application/json' }),
+        },
+      );
+
+      expect(response.status).to.eql(400);
+      expect(await response.json()).to.eql({
+        error: {
+          code: 'server.invalid_request.body',
+          message: 'Invalid request body',
+          details: [
+            {
+              message: 'Invalid enum value. Expected \'cbor-array\', received \'foo\'',
+              path: 'serializationFormat',
+            },
+          ],
+        },
+      });
+    });
+
+    test('a note with an invalid encryption algorithm results in a bad request', async () => {
+      const { storage } = createMemoryStorage();
+
+      const { app } = createServer({
+        storageFactory: () => ({ storage }),
+      });
+
+      const response = await app.request(
+        '/api/notes',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            payload: '<encrypted-content>',
+            isPasswordProtected: false,
+            deleteAfterReading: false,
+            ttlInSeconds: 600,
+            encryptionAlgorithm: 'foo', // <- invalid encryption algorithm
+            serializationFormat: 'cbor-array',
+          }),
+          headers: new Headers({ 'Content-Type': 'application/json' }),
+        },
+      );
+
+      expect(response.status).to.eql(400);
+      expect(await response.json()).to.eql({
+        error: {
+          code: 'server.invalid_request.body',
+          message: 'Invalid request body',
+          details: [
+            {
+              message: 'Invalid enum value. Expected \'aes-256-gcm\', received \'foo\'',
+              path: 'encryptionAlgorithm',
+            },
+          ],
+        },
       });
     });
   });

@@ -1,7 +1,14 @@
 export { bufferToBase64Url, base64UrlToBuffer };
 
 function bufferToBase64Url({ buffer }: { buffer: Uint8Array }): string {
-  const base64 = btoa(String.fromCharCode(...buffer));
+  let binaryString = '';
+  const chunkSize = 0x8000; // 32KB chunks to avoid stack overflow
+  for (let i = 0; i < buffer.length; i += chunkSize) {
+    const chunk = buffer.subarray(i, i + chunkSize);
+    binaryString += String.fromCharCode(...chunk);
+  }
+
+  const base64 = btoa(binaryString);
   const base64Url = base64
     .replace(/\+/g, '-')
     .replace(/\//g, '_')

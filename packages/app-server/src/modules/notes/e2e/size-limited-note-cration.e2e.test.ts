@@ -12,7 +12,7 @@ describe('e2e', () => {
         storageFactory: () => ({ storage }),
         config: overrideConfig({
           notes: {
-            maxEncryptedContentLength: 1024 * 1024,
+            maxEncryptedPayloadLength: 1024 * 1024,
           },
         }),
       });
@@ -21,7 +21,9 @@ describe('e2e', () => {
         isPasswordProtected: false,
         deleteAfterReading: false,
         ttlInSeconds: 600,
-        content: 'a'.repeat(1024 * 1024 + 1),
+        payload: 'a'.repeat(1024 * 1024 + 1),
+        encryptionAlgorithm: 'aes-256-gcm',
+        serializationFormat: 'cbor-array',
       };
 
       const createNoteResponse = await app.request(
@@ -38,8 +40,8 @@ describe('e2e', () => {
       expect(createNoteResponse.status).to.eql(413);
       expect(reply).to.eql({
         error: {
-          code: 'note.content_too_large',
-          message: 'Note content is too large',
+          code: 'note.payload_too_large',
+          message: 'Note payload is too large',
         },
       });
     });

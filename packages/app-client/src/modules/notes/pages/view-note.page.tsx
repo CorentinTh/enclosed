@@ -1,14 +1,17 @@
 import { useLocation, useParams } from '@solidjs/router';
 import { type Component, Match, Show, Switch, createSignal, onMount } from 'solid-js';
-import { decryptNote } from '@enclosed/lib';
+import { decryptNote, noteAssetsToFiles } from '@enclosed/lib';
+import JSZip from 'jszip';
+import { formatBytes, safely } from '@corentinth/chisels';
 import { fetchNoteById } from '../notes.services';
 import { TextField, TextFieldLabel, TextFieldRoot } from '@/modules/ui/components/textfield';
 import { Card, CardContent, CardDescription, CardHeader } from '@/modules/ui/components/card';
 import { Button } from '@/modules/ui/components/button';
 import { isHttpErrorWithCode, isRateLimitError } from '@/modules/shared/http/http-errors';
-import { safely } from '@/modules/shared/utils/safely';
 import { Alert, AlertDescription } from '@/modules/ui/components/alert';
 import { CopyButton } from '@/modules/shared/utils/copy';
+import { getFileIcon } from '@/modules/files/files.models';
+import { cn } from '@/modules/shared/style/cn';
 
 const RequestPasswordForm: Component<{ onPasswordEntered: (args: { password: string }) => void; getIsPasswordInvalid: () => boolean; setIsPasswordInvalid: (value: boolean) => void }> = (props) => {
   const [getPassword, setPassword] = createSignal('');
@@ -65,9 +68,11 @@ export const ViewNotePage: Component = () => {
   const location = useLocation();
   const [isPasswordEntered, setIsPasswordEntered] = createSignal(false);
   const [getError, setError] = createSignal<{ title: string; description: string } | null>(null);
-  const [getNote, setNote] = createSignal<{ content: string; isPasswordProtected: boolean } | null>(null);
+  const [getNote, setNote] = createSignal<{ payload: string; isPasswordProtected: boolean; encryptionAlgorithm: string; serializationFormat: string } | null>(null);
   const [getDecryptedNote, setDecryptedNote] = createSignal<string | null>(null);
   const [getIsPasswordInvalid, setIsPasswordInvalid] = createSignal(false);
+  const [fileAssets, setFileAssets] = createSignal<File[]>([]);
+  const [isDownloadingAllLoading, setIsDownloadingAllLoading] = createSignal(false);
 
   const getEncryptionKey = () => location.hash.slice(1);
 
@@ -113,9 +118,13 @@ export const ViewNotePage: Component = () => {
       return;
     }
 
-    const [decryptedNote, decryptionError] = await safely(decryptNote({
-      encryptedContent: note.content,
+    const { payload, encryptionAlgorithm, serializationFormat } = note;
+
+    const [decryptedNoteResult, decryptionError] = await safely(decryptNote({
+      encryptedPayload: payload,
       encryptionKey: getEncryptionKey(),
+      encryptionAlgorithm: encryptionAlgorithm as 'aes-256-gcm', // TODO: export type from lib
+      serializationFormat: serializationFormat as 'cbor-array', // TODO: export type from lib
     }));
 
     if (decryptionError) {
@@ -126,16 +135,22 @@ export const ViewNotePage: Component = () => {
       return;
     }
 
-    setDecryptedNote(decryptedNote.decryptedContent);
+    const { note: decryptedNote } = decryptedNoteResult;
+
+    const files = await noteAssetsToFiles({ noteAssets: decryptedNote.assets });
+    setFileAssets(files);
+    setDecryptedNote(decryptedNote.content);
   });
 
   const onPasswordEntered = async ({ password }: { password: string }) => {
-    const { content } = getNote()!;
+    const { payload, encryptionAlgorithm, serializationFormat } = getNote()!;
 
     const [decryptionResult, decryptionError] = await safely(decryptNote({
-      encryptedContent: content,
+      encryptedPayload: payload,
       encryptionKey: getEncryptionKey(),
       password,
+      encryptionAlgorithm: encryptionAlgorithm as 'aes-256-gcm', // TODO: export type from lib
+      serializationFormat: serializationFormat as 'cbor-array', // TODO: export type from lib
     }));
 
     if (decryptionError) {
@@ -143,10 +158,36 @@ export const ViewNotePage: Component = () => {
       return;
     }
 
-    const { decryptedContent } = decryptionResult;
+    const { note } = decryptionResult;
 
-    setDecryptedNote(decryptedContent);
+    setDecryptedNote(note.content);
     setIsPasswordEntered(true);
+  };
+
+  const downloadFile = async ({ file }: { file: File }) => {
+    const url = URL.createObjectURL(file);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = file.name;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const downloadAllFiles = async () => {
+    setIsDownloadingAllLoading(true);
+    const zipFile = new JSZip();
+    fileAssets().forEach((file) => {
+      zipFile.file(file.name, file);
+    });
+
+    const blob = await zipFile.generateAsync({ type: 'blob' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'note-files.zip';
+    a.click();
+    URL.revokeObjectURL(url);
+    setIsDownloadingAllLoading(false);
   };
 
   return (
@@ -172,24 +213,83 @@ export const ViewNotePage: Component = () => {
           <RequestPasswordForm onPasswordEntered={onPasswordEntered} getIsPasswordInvalid={getIsPasswordInvalid} setIsPasswordInvalid={setIsPasswordInvalid} />
         </Match>
 
-        <Match when={getDecryptedNote()}>
-          {getNoteContent => (
-            <div class="mx-auto max-w-1200px px-6 mt-6 flex gap-4 flex-col ">
-              <Card class="w-full rounded-md shadow-sm">
-                <CardContent class="p-6">
-                  <div class="whitespace-pre-wrap">{getNoteContent()}</div>
-                </CardContent>
-              </Card>
+        <Match when={getDecryptedNote() || fileAssets().length > 0}>
 
-              <div class="min-w-300px">
+          <div class="mx-auto max-w-1200px px-6 mt-6 flex gap-4 md:flex-row-reverse flex-col justify-center min-w-0">
+            {getDecryptedNote() && (
+              <div class="flex-1 mb-4">
+                <div class="flex items-center gap-2 mb-4 justify-between">
+                  <div class="text-muted-foreground">
+                    Note content
+                  </div>
+                  <CopyButton text={getDecryptedNote()!} variant="secondary" />
+                </div>
 
-                <CopyButton text={getNoteContent()} variant="secondary" />
+                <Card class="w-full rounded-md shadow-sm mb-2">
+                  <CardContent class="p-6">
+                    <div class="break-all">{getDecryptedNote()}</div>
+                  </CardContent>
+                </Card>
+
               </div>
-            </div>
-          )}
+            )}
+
+            {fileAssets().length > 0 && (
+              <div class="flex flex-col gap-4">
+                <div class="flex md:min-w-500px items-center h-9">
+                  <div class="text-muted-foreground">
+                    {`${fileAssets().length} file${fileAssets().length > 1 ? 's' : ''} attached to this note`}
+                  </div>
+
+                  {fileAssets().length > 1 && (
+                    <Button
+                      class="ml-auto"
+                      variant="secondary"
+                      onClick={downloadAllFiles}
+                      disabled={isDownloadingAllLoading()}
+                    >
+                      {isDownloadingAllLoading()
+                        ? <div class="i-tabler-loader-2 mr-2 text-lg animate-spin"></div>
+                        : <div class="i-tabler-file-zip mr-2 text-lg"></div>}
+
+                      Download all files
+                    </Button>
+                  )}
+                </div>
+
+                <div class="flex flex-col gap-2 md:min-w-500px">
+                  {
+                    fileAssets().map(file => (
+                      <Card class="w-full rounded-md shadow-sm ">
+                        <CardContent class="p-4 flex items-center gap-3">
+                          <div class={cn('text-4xl text-muted-foreground op-50 flex-shrink-0', getFileIcon({ file }))} />
+                          <div class="flex flex-col min-w-0">
+                            <button class="p-0 h-auto cursor-pointer hover:underline truncate block" onClick={() => downloadFile({ file })} title={file.name}>
+                              {file.name}
+                            </button>
+                            <div class="text-muted-foreground text-xs">
+                              {formatBytes({ bytes: file.size })}
+                            </div>
+                          </div>
+                          <div class="ml-auto">
+                            <Button variant="secondary" onClick={() => downloadFile({ file })}>
+                              <div class="i-tabler-download mr-2 text-lg"></div>
+                              Download
+                            </Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))
+                  }
+                </div>
+
+              </div>
+
+            )}
+
+          </div>
         </Match>
       </Switch>
-
     </div>
   );
 };

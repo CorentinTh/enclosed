@@ -1,4 +1,4 @@
-import { createNote } from '@enclosed/lib';
+import { createNote, filesToNoteAssets } from '@enclosed/lib';
 import { storeNote } from './notes.services';
 
 export { encryptAndCreateNote };
@@ -8,10 +8,14 @@ async function encryptAndCreateNote(args: {
   password?: string;
   ttlInSeconds: number;
   deleteAfterReading: boolean;
+  fileAssets: File[];
 }) {
   return createNote({
     ...args,
     storeNote,
     clientBaseUrl: window.location.origin,
+    assets: [
+      ...await filesToNoteAssets({ files: args.fileAssets }),
+    ],
   });
 }

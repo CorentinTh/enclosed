@@ -1,11 +1,12 @@
 import { z } from 'zod';
-import { omit } from 'lodash-es';
+import { encryptionAlgorithms, serializationFormats } from '@enclosed/lib';
 import type { ServerInstance } from '../app/server.types';
 import { validateJsonBody } from '../shared/validation/validation';
 import { createNoteRepository } from './notes.repository';
 import { ONE_MONTH_IN_SECONDS, TEN_MINUTES_IN_SECONDS } from './notes.constants';
 import { getRefreshedNote } from './notes.usecases';
-import { createNoteContentTooLargeError } from './notes.errors';
+import { createNotePayloadTooLargeError } from './notes.errors';
+import { formatNoteForApi } from './notes.models';
 
 export { registerNotesRoutes };
 
@@ -23,9 +24,9 @@ function setupGetNoteRoute({ app }: { app: ServerInstance }) {
 
     const { note } = await getRefreshedNote({ noteId, notesRepository });
 
-    const formattedNote = omit(note, 'expirationDate');
+    const { apiNote } = formatNoteForApi({ note });
 
-    return context.json({ note: formattedNote });
+    return context.json({ note: apiNote });
   });
 }
 
@@ -35,33 +36,38 @@ function setupCreateNoteRoute({ app }: { app: ServerInstance }) {
 
     validateJsonBody(
       z.object({
-        content: z.string(),
+        payload: z.string(),
         isPasswordProtected: z.boolean(),
         deleteAfterReading: z.boolean(),
         ttlInSeconds: z.number()
           .min(TEN_MINUTES_IN_SECONDS)
           .max(ONE_MONTH_IN_SECONDS),
+
+        // @ts-expect-error zod wants strict non empty array
+        encryptionAlgorithm: z.enum(encryptionAlgorithms),
+        // @ts-expect-error zod wants strict non empty array
+        serializationFormat: z.enum(serializationFormats),
       }),
     ),
 
     async (context, next) => {
       const config = context.get('config');
-      const { content } = context.req.valid('json');
+      const { payload } = context.req.valid('json');
 
-      if (content.length > config.notes.maxEncryptedContentLength) {
-        throw createNoteContentTooLargeError();
+      if (payload.length > config.notes.maxEncryptedPayloadLength) {
+        throw createNotePayloadTooLargeError();
       }
 
       await next();
     },
 
     async (context) => {
-      const { content, isPasswordProtected, ttlInSeconds, deleteAfterReading } = context.req.valid('json');
+      const { payload, isPasswordProtected, ttlInSeconds, deleteAfterReading, encryptionAlgorithm, serializationFormat } = context.req.valid('json');
       const storage = context.get('storage');
 
       const notesRepository = createNoteRepository({ storage });
 
-      const { noteId } = await notesRepository.saveNote({ content, isPasswordProtected, ttlInSeconds, deleteAfterReading });
+      const { noteId } = await notesRepository.saveNote({ payload, isPasswordProtected, ttlInSeconds, deleteAfterReading, encryptionAlgorithm, serializationFormat });
 
       return context.json({ noteId });
     },

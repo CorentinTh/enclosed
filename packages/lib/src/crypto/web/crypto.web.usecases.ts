@@ -1,6 +1,6 @@
-import { base64UrlToBuffer, bufferToBase64Url } from './crypto.web.models';
+export { generateBaseKey, deriveMasterKey, createRandomBuffer };
 
-export { generateBaseKey, deriveMasterKey, encryptNoteContent, decryptNoteContent };
+export { getEncryptionMethod, getDecryptionMethod } from './encryption-algorithms/encryption-algorithms.registry';
 
 function createRandomBuffer({ length = 16 }: { length?: number } = {}): Uint8Array {
   const randomValues = new Uint8Array(length);
@@ -37,37 +37,4 @@ async function deriveMasterKey({ baseKey, password = '' }: { baseKey: Uint8Array
   return {
     masterKey: new Uint8Array(exportedKey),
   };
-}
-
-async function encryptNoteContent({ content, masterKey }: { content: string; masterKey: Uint8Array }) {
-  const contentBuffer = new TextEncoder().encode(content);
-  const iv = createRandomBuffer({ length: 12 });
-
-  const key = await crypto.subtle.importKey('raw', masterKey, 'AES-GCM', false, ['encrypt']);
-  const encrypted = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, contentBuffer);
-
-  const ivString = bufferToBase64Url({ buffer: iv });
-  const encryptedString = bufferToBase64Url({ buffer: new Uint8Array(encrypted) });
-
-  return {
-    encryptedContent: `${ivString}:${encryptedString}`,
-  };
-}
-
-async function decryptNoteContent({ encryptedContent, masterKey }: { encryptedContent: string; masterKey: Uint8Array }) {
-  const [ivString, encryptedString] = encryptedContent.split(':').map(part => part.trim());
-
-  if (!ivString || !encryptedString) {
-    throw new Error('Invalid data');
-  }
-
-  const iv = base64UrlToBuffer({ base64Url: ivString });
-  const encrypted = base64UrlToBuffer({ base64Url: encryptedString });
-
-  const key = await crypto.subtle.importKey('raw', masterKey, 'AES-GCM', false, ['decrypt']);
-  const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, encrypted);
-
-  const decryptedContent = new TextDecoder().decode(decrypted);
-
-  return { decryptedContent };
 }

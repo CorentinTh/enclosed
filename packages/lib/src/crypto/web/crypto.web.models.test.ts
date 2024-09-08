@@ -26,6 +26,19 @@ describe('crypto models', () => {
 
       expect(base64Url).toBe('An1aThIn_OeGWQUn-e4o2nEXvdtEagY2lJxCQN1SgKc');
     });
+
+    test('it can stringify a large buffer', () => {
+      const length = 10_000_000;
+      const buffer = new Uint8Array(length);
+
+      for (let i = 0; i < length; i++) {
+        buffer[i] = i % 256;
+      }
+
+      const base64Url = bufferToBase64Url({ buffer });
+
+      expect(base64Url).toBeDefined();
+    });
   });
 
   describe('base64UrlToBuffer', () => {

@@ -10,7 +10,7 @@ function isNoteExpired({ note, now = new Date() }: { note: { expirationDate: Dat
 
 function formatNoteForApi({ note }: { note: StoredNote }) {
   return {
-    apiNote: omit(note, ['expirationDate']),
+    apiNote: omit(note, ['expirationDate', 'deleteAfterReading']),
   };
 }
 

@@ -1,8 +1,9 @@
-import { createCipheriv, createDecipheriv, pbkdf2, randomBytes } from 'node:crypto';
+import { pbkdf2, randomBytes } from 'node:crypto';
 import { TextEncoder, promisify } from 'node:util';
-import { base64UrlToBuffer, bufferToBase64Url } from './crypto.node.models';
 
-export { generateBaseKey, deriveMasterKey, encryptNoteContent, decryptNoteContent };
+export { getEncryptionMethod, getDecryptionMethod } from './encryption-algorithms/encryption-algorithms.registry';
+
+export { generateBaseKey, deriveMasterKey, createRandomBuffer };
 
 const deriveWithPbkdf2 = promisify(pbkdf2);
 
@@ -24,43 +25,5 @@ async function deriveMasterKey({ baseKey, password = '' }: { baseKey: Uint8Array
 
   return {
     masterKey,
-  };
-}
-
-async function encryptNoteContent({ content, masterKey }: { content: string; masterKey: Uint8Array }) {
-  const iv = createRandomBuffer({ length: 12 });
-
-  const cipher = createCipheriv('aes-256-gcm', masterKey, iv);
-
-  const encryptedBuffer = new Uint8Array([...cipher.update(content), ...cipher.final(), ...cipher.getAuthTag()]);
-  const encrypted = bufferToBase64Url({ buffer: encryptedBuffer });
-
-  return {
-    encryptedContent: `${bufferToBase64Url({ buffer: iv })}:${encrypted}`,
-  };
-}
-
-async function decryptNoteContent({ encryptedContent, masterKey }: { encryptedContent: string; masterKey: Uint8Array }) {
-  const [ivString, encryptedStringWithAuthTag] = encryptedContent.split(':').map(part => part.trim());
-
-  if (!ivString || !encryptedStringWithAuthTag) {
-    throw new Error('Invalid encrypted content');
-  }
-
-  const iv = base64UrlToBuffer({ base64Url: ivString });
-  const encryptedContentAndTagBuffer = base64UrlToBuffer({ base64Url: encryptedStringWithAuthTag });
-
-  const encryptedBuffer = encryptedContentAndTagBuffer.slice(0, -16);
-  const authTag = encryptedContentAndTagBuffer.slice(-16);
-
-  const decipher = createDecipheriv('aes-256-gcm', masterKey, iv);
-  decipher.setAuthTag(authTag);
-
-  const decryptedBuffer = new Uint8Array([...decipher.update(encryptedBuffer), ...decipher.final()]);
-
-  const decryptedContent = new TextDecoder().decode(decryptedBuffer);
-
-  return {
-    decryptedContent,
   };
 }

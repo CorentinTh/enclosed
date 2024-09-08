@@ -213,18 +213,21 @@ describe('cross-environment encryption and decryption', () => {
     const { encryptNote } = createEncryptUsecase(webCryptoLib);
     const { decryptNote } = createDecryptUsecase(nodeCryptoLib);
 
-    const { encryptedContent, encryptionKey } = await encryptNote({
+    const { encryptedPayload, encryptionKey } = await encryptNote({
       content,
       password,
     });
 
-    const { decryptedContent } = await decryptNote({
-      encryptedContent,
+    const { note } = await decryptNote({
+      encryptedPayload,
       encryptionKey,
       password,
     });
 
-    expect(decryptedContent).toBe(content);
+    expect(note).to.eql({
+      content: 'Hello, world!',
+      assets: [],
+    });
   });
 
   test('a note encrypted in the node environment can be decrypted in the web environment', async () => {
@@ -234,17 +237,20 @@ describe('cross-environment encryption and decryption', () => {
     const { encryptNote } = createEncryptUsecase(nodeCryptoLib);
     const { decryptNote } = createDecryptUsecase(webCryptoLib);
 
-    const { encryptedContent, encryptionKey } = await encryptNote({
+    const { encryptedPayload, encryptionKey } = await encryptNote({
       content,
       password,
     });
 
-    const { decryptedContent } = await decryptNote({
-      encryptedContent,
+    const { note } = await decryptNote({
+      encryptedPayload,
       encryptionKey,
       password,
     });
 
-    expect(decryptedContent).toBe(content);
+    expect(note).to.eql({
+      content: 'Hello, world!',
+      assets: [],
+    });
   });
 });

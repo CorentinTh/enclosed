@@ -30,19 +30,22 @@ describe('notes models', () => {
   });
 
   describe('formatNoteForApi', () => {
-    test('the expiration date is omitted when formatting a note for the API', () => {
+    test('the expiration date and the flag stating the note should be deleted after read are omitted when formatting a note for the API', () => {
       const storedNote = {
-        content: '<encrypted-content>',
+        payload: '<encrypted-content>',
         isPasswordProtected: false,
         expirationDate: new Date('2024-01-01T00:00:00Z'),
         deleteAfterReading: false,
+        serializationFormat: 'cbor-array',
+        encryptionAlgorithm: 'aes-256-gcm',
       };
 
       expect(formatNoteForApi({ note: storedNote })).to.eql({
         apiNote: {
-          content: '<encrypted-content>',
+          payload: '<encrypted-content>',
           isPasswordProtected: false,
-          deleteAfterReading: false,
+          encryptionAlgorithm: 'aes-256-gcm',
+          serializationFormat: 'cbor-array',
         },
       });
     });
