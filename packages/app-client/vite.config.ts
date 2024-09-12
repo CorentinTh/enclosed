@@ -1,4 +1,5 @@
 import path from 'node:path';
+import process from 'node:process';
 import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
 import unoCssPlugin from 'unocss/vite';
@@ -8,6 +9,10 @@ export default defineConfig({
     unoCssPlugin(),
     solidPlugin(),
   ],
+  define: {
+    // package.json version
+    'import.meta.env.VITE_ENCLOSED_VERSION': JSON.stringify(process.env.npm_package_version),
+  },
   server: {
     port: 3000,
     proxy: {

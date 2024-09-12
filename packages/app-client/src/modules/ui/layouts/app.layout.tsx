@@ -6,6 +6,7 @@ import { Button } from '@/modules/ui/components/button';
 import { useThemeStore } from '@/modules/theme/theme.store';
 import { useNoteContext } from '@/modules/notes/notes.context';
 import { buildDocUrl } from '@/modules/docs/docs.models';
+import { config } from '@/modules/config/config';
 
 export const Navbar: Component = () => {
   const themeStore = useThemeStore();
@@ -106,6 +107,16 @@ export const Footer: Component = () => {
         {' '}
         <Button variant="link" as="a" href="https://github.com/CorentinTh/enclosed" target="_blank" class="p-0 text-muted-foreground underline hover:text-primary transition font-normal h-auto">GitHub</Button>
         .
+      </div>
+
+      <div>
+        Version
+        {' '}
+        <Button variant="link" as="a" href={`https://github.com/CorentinTh/enclosed/tree/v${config.enclosedVersion}`} target="_blank" class="p-0 text-muted-foreground underline hover:text-primary transition font-normal h-auto">
+          v
+          {config.enclosedVersion}
+        </Button>
+
       </div>
     </div>
   );
