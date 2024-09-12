@@ -13,7 +13,8 @@ A live instance is available at [enclosed.cc](https://enclosed.cc).
 ## Features
 
 - **End-to-End Encryption**: Your notes are encrypted on the client side, using AES-GCM with a 256-bit key derived using PBKDF2.
-- **Zero Knowledge**: The server does not have access to the content of the notes.
+- **File Attachments**: Share files securely with your notes.
+- **Zero Knowledge**: The server does not have access to the content of the notes or files.
 - **Configurable Security Options**: Set a password, expiration time, and choose self-destruction after the note is read.
 - **Minimalistic UI**: Simple and intuitive user interface for quick note sharing.
 - **Dark Mode**: A dark theme for late-night note sharing.
