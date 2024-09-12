@@ -6,6 +6,7 @@ import { isApiClientErrorWithCode, isApiClientErrorWithStatusCode } from './api/
 import { fileToNoteAsset, filesToNoteAssets, noteAssetToFile, noteAssetsToFiles } from './files/files.models';
 import { encryptionAlgorithms, getDecryptionMethod, getEncryptionMethod } from './crypto/web/encryption-algorithms/encryption-algorithms.registry';
 import { serializationFormats } from './crypto/serialization/serialization.registry';
+import { createNoteUrlHashFragment, parseNoteUrlHashFragment } from './notes/notes.models';
 
 const { encryptNote } = createEncryptUsecase({ generateBaseKey, deriveMasterKey, getEncryptionMethod });
 const { decryptNote } = createDecryptUsecase({ deriveMasterKey, getDecryptionMethod });
@@ -28,4 +29,6 @@ export {
   parseNoteUrl,
   serializationFormats,
   encryptionAlgorithms,
+  parseNoteUrlHashFragment,
+  createNoteUrlHashFragment,
 };

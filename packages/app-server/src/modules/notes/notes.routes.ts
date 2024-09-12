@@ -37,7 +37,6 @@ function setupCreateNoteRoute({ app }: { app: ServerInstance }) {
     validateJsonBody(
       z.object({
         payload: z.string(),
-        isPasswordProtected: z.boolean(),
         deleteAfterReading: z.boolean(),
         ttlInSeconds: z.number()
           .min(TEN_MINUTES_IN_SECONDS)
@@ -62,12 +61,12 @@ function setupCreateNoteRoute({ app }: { app: ServerInstance }) {
     },
 
     async (context) => {
-      const { payload, isPasswordProtected, ttlInSeconds, deleteAfterReading, encryptionAlgorithm, serializationFormat } = context.req.valid('json');
+      const { payload, ttlInSeconds, deleteAfterReading, encryptionAlgorithm, serializationFormat } = context.req.valid('json');
       const storage = context.get('storage');
 
       const notesRepository = createNoteRepository({ storage });
 
-      const { noteId } = await notesRepository.saveNote({ payload, isPasswordProtected, ttlInSeconds, deleteAfterReading, encryptionAlgorithm, serializationFormat });
+      const { noteId } = await notesRepository.saveNote({ payload, ttlInSeconds, deleteAfterReading, encryptionAlgorithm, serializationFormat });
 
       return context.json({ noteId });
     },

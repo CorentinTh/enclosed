@@ -30,7 +30,6 @@ async function getNotesIds({ storage }: { storage: Storage }) {
 async function saveNote(
   {
     payload,
-    isPasswordProtected,
     ttlInSeconds,
     deleteAfterReading,
     storage,
@@ -41,7 +40,6 @@ async function saveNote(
   }:
   {
     payload: string;
-    isPasswordProtected: boolean;
     ttlInSeconds: number;
     deleteAfterReading: boolean;
     storage: Storage;
@@ -58,7 +56,6 @@ async function saveNote(
     noteId,
     {
       payload,
-      isPasswordProtected,
       expirationDate: expirationDate.toISOString(),
       deleteAfterReading,
       encryptionAlgorithm,

@@ -1,6 +1,6 @@
 import { useLocation, useParams } from '@solidjs/router';
 import { type Component, Match, Show, Switch, createSignal, onMount } from 'solid-js';
-import { decryptNote, noteAssetsToFiles } from '@enclosed/lib';
+import { decryptNote, noteAssetsToFiles, parseNoteUrlHashFragment } from '@enclosed/lib';
 import JSZip from 'jszip';
 import { formatBytes, safely } from '@corentinth/chisels';
 import { fetchNoteById } from '../notes.services';
@@ -74,14 +74,19 @@ export const ViewNotePage: Component = () => {
   const [fileAssets, setFileAssets] = createSignal<File[]>([]);
   const [isDownloadingAllLoading, setIsDownloadingAllLoading] = createSignal(false);
 
-  const getEncryptionKey = () => location.hash.slice(1);
+  const parseHashFragment = () => parseNoteUrlHashFragment({ hashFragment: location.hash });
+  const getEncryptionKey = () => parseHashFragment().encryptionKey;
+  const getIsPasswordProtected = () => parseHashFragment().isPasswordProtected;
 
   onMount(async () => {
-    if (!getEncryptionKey()) {
+    const encryptionKey = getEncryptionKey();
+
+    if (!encryptionKey) {
       setError({
         title: 'Invalid note URL',
         description: 'This note URL is invalid. Please make sure you are using the correct URL.',
       });
+      return;
     }
 
     const [fetchedNote, fetchError] = await safely(fetchNoteById({ noteId: params.noteId }));
@@ -114,7 +119,7 @@ export const ViewNotePage: Component = () => {
 
     setNote(note);
 
-    if (note.isPasswordProtected) {
+    if (getIsPasswordProtected()) {
       return;
     }
 
@@ -122,7 +127,7 @@ export const ViewNotePage: Component = () => {
 
     const [decryptedNoteResult, decryptionError] = await safely(decryptNote({
       encryptedPayload: payload,
-      encryptionKey: getEncryptionKey(),
+      encryptionKey,
       encryptionAlgorithm: encryptionAlgorithm as 'aes-256-gcm', // TODO: export type from lib
       serializationFormat: serializationFormat as 'cbor-array', // TODO: export type from lib
     }));
@@ -209,7 +214,7 @@ export const ViewNotePage: Component = () => {
           )}
         </Match>
 
-        <Match when={getNote()?.isPasswordProtected && !isPasswordEntered()}>
+        <Match when={getIsPasswordProtected() && !isPasswordEntered()}>
           <RequestPasswordForm onPasswordEntered={onPasswordEntered} getIsPasswordInvalid={getIsPasswordInvalid} setIsPasswordInvalid={setIsPasswordInvalid} />
         </Match>
 

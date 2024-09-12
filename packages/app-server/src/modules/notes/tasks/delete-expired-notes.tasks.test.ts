@@ -12,21 +12,18 @@ describe('delete-expired-notes tasks', () => {
 
       storage.setItem('note-1', {
         content: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: false,
       });
 
       storage.setItem('note-2', {
         content: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: '2024-01-02T00:00:00.000Z',
         deleteAfterReading: false,
       });
 
       storage.setItem('note-3', {
         content: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: '2024-01-03T00:00:00.000Z',
         deleteAfterReading: false,
       });
@@ -49,21 +46,18 @@ describe('delete-expired-notes tasks', () => {
 
       storage.setItem('note-1', {
         content: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: false,
       });
 
       storage.setItem('note-2', {
         content: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: '2024-01-02T00:00:00.000Z',
         deleteAfterReading: false,
       });
 
       storage.setItem('note-3', {
         content: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: '2024-01-03T00:00:00.000Z',
         deleteAfterReading: false,
       });
@@ -100,21 +94,18 @@ describe('delete-expired-notes tasks', () => {
 
       storage.setItem('note-1', {
         content: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: false,
       });
 
       storage.setItem('note-2', {
         content: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: '2024-01-02T00:00:00.000Z',
         deleteAfterReading: false,
       });
 
       storage.setItem('note-3', {
         content: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: '2024-01-03T00:00:00.000Z',
         deleteAfterReading: false,
       });

@@ -18,7 +18,6 @@ describe('e2e', () => {
       });
 
       const note = {
-        isPasswordProtected: false,
         deleteAfterReading: false,
         ttlInSeconds: 600,
         payload: 'a'.repeat(1024 * 1024 + 1),

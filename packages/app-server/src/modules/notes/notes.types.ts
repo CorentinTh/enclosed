@@ -12,8 +12,4 @@ export type StoredNote = {
   // compressionAlgorithm: string
   // keyDerivationAlgorithm: string;
 
-  /**
-   * @deprecated Password protection information should be stored in the url
-   */
-  isPasswordProtected: boolean;
 };

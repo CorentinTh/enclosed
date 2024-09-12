@@ -11,7 +11,6 @@ describe('notes usecases', () => {
 
       storage.setItem('note-1', {
         content: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: false,
       });
@@ -24,7 +23,6 @@ describe('notes usecases', () => {
 
       expect(note).to.eql({
         content: '<encrypted-content>',
-        isPasswordProtected: false,
         deleteAfterReading: false,
         expirationDate: new Date('2024-01-01T00:01:00.000Z'),
       });
@@ -35,7 +33,6 @@ describe('notes usecases', () => {
 
       storage.setItem('note-1', {
         content: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: false,
       });
@@ -54,7 +51,6 @@ describe('notes usecases', () => {
 
       storage.setItem('note-1', {
         content: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: '2024-01-01T00:00:00.000Z',
         deleteAfterReading: false,
       });
@@ -73,7 +69,6 @@ describe('notes usecases', () => {
 
       storage.setItem('note-1', {
         content: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: '2024-01-02T00:00:00.000Z',
         deleteAfterReading: true,
       });
