@@ -1,5 +1,6 @@
 import type { ConfigDefinition } from 'figue';
-import { defineConfig, z } from 'figue';
+import { defineConfig } from 'figue';
+import { z } from 'zod';
 
 export const configDefinition = {
   env: {
