@@ -161,7 +161,7 @@ importers:
         version: 3.74.0(@cloudflare/workers-types@4.20240909.0)
       zx:
         specifier: ^8.1.4
-        version: 8.1.5
+        version: 8.1.6
 
   packages/cli:
     dependencies:
@@ -4994,8 +4994,8 @@ packages:
   zod@3.23.8:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
 
-  zx@8.1.5:
-    resolution: {integrity: sha512-gvmiYPvDDEz2Gcc37x7pJkipTKcFIE18q9QlSI1p5qoPDtoSn3jmGuWD0eEb7HuxEH5aDD7N/RVgH8BqSxbKzA==}
+  zx@8.1.6:
+    resolution: {integrity: sha512-SYAriWG+i2CFqMOJcF8QayI8wprlMYQsrmP6tFD7rSPnDLcImNSW7n/8crOYvNVrB2EFgz8LAQk23U1+Y7WrKA==}
     engines: {node: '>= 12.17.0'}
     hasBin: true
 
@@ -6397,7 +6397,7 @@ snapshots:
   '@types/fs-extra@11.0.4':
     dependencies:
       '@types/jsonfile': 6.1.4
-      '@types/node': 22.5.2
+      '@types/node': 22.5.4
     optional: true
 
   '@types/hast@3.0.4':
@@ -6408,7 +6408,7 @@ snapshots:
 
   '@types/jsonfile@6.1.4':
     dependencies:
-      '@types/node': 22.5.2
+      '@types/node': 22.5.4
     optional: true
 
   '@types/linkify-it@5.0.0': {}
@@ -9960,7 +9960,7 @@ snapshots:
 
   zod@3.23.8: {}
 
-  zx@8.1.5:
+  zx@8.1.6:
     optionalDependencies:
       '@types/fs-extra': 11.0.4
-      '@types/node': 22.5.2
+      '@types/node': 22.5.4
