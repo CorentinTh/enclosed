@@ -29,3 +29,4 @@ logs
 .wrangler
 coverage
 cache
+.zed

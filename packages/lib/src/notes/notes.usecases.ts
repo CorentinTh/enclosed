@@ -1,4 +1,7 @@
+import type { EncryptionAlgorithm } from '../crypto/crypto.types';
+import type { SerializationFormat } from '../crypto/serialization/serialization.types';
 import { createNoteUrl as createNoteUrlImpl, parseNoteUrl } from './notes.models';
+import type { NoteAsset } from './notes.types';
 
 export { createEnclosedLib };
 
@@ -11,9 +14,24 @@ function createEnclosedLib({
   storeNote: storeNoteImpl,
   // fetchNote: fetchNoteImpl,
 }: {
-  encryptNote: (args: { content: string; password?: string }) => Promise<{ encryptedContent: string; encryptionKey: string }>;
+  encryptNote: (args: {
+    content: string;
+    password?: string;
+    assets?: NoteAsset[];
+    encryptionAlgorithm?: EncryptionAlgorithm;
+    serializationFormat?: SerializationFormat;
+  }) => Promise<{
+    encryptedPayload: string;
+    encryptionKey: string;
+  }>;
   // decryptNote: (args: { encryptedContent: string; encryptionKey: string }) => Promise<{ content: string }>;
-  storeNote: (params: { content: string; isPasswordProtected: boolean; ttlInSeconds: number; deleteAfterReading: boolean; apiBaseUrl?: string }) => Promise<{ noteId: string }>;
+  storeNote: (params: {
+    payload: string;
+    isPasswordProtected: boolean;
+    ttlInSeconds: number;
+    deleteAfterReading: boolean;
+    apiBaseUrl?: string;
+  }) => Promise<{ noteId: string }>;
   // fetchNote: (params: { noteId: string; apiBaseUrl?: string }) => Promise<{ content: string; isPasswordProtected: boolean }>;
 }) {
   return {
@@ -29,6 +47,9 @@ function createEnclosedLib({
       apiBaseUrl = clientBaseUrl,
       createNoteUrl = createNoteUrlImpl,
       storeNote = params => storeNoteImpl({ ...params, apiBaseUrl }),
+      assets = [],
+      encryptionAlgorithm = 'aes-256-gcm',
+      serializationFormat = 'cbor-array',
     }: {
       content: string;
       password?: string;
@@ -36,17 +57,38 @@ function createEnclosedLib({
       deleteAfterReading?: boolean;
       clientBaseUrl?: string;
       apiBaseUrl?: string;
-      createNoteUrl?: (args: { noteId: string; encryptionKey: string; clientBaseUrl: string }) => { noteUrl: string };
-      storeNote?: (params: { content: string; isPasswordProtected: boolean; ttlInSeconds: number; deleteAfterReading: boolean }) => Promise<{ noteId: string }>;
+      assets?: NoteAsset[];
+      encryptionAlgorithm?: EncryptionAlgorithm;
+      serializationFormat?: SerializationFormat;
+      createNoteUrl?: (args: {
+        noteId: string;
+        encryptionKey: string;
+        clientBaseUrl: string;
+      }) => { noteUrl: string };
+      storeNote?: (params: {
+        payload: string;
+        isPasswordProtected: boolean;
+        ttlInSeconds: number;
+        deleteAfterReading: boolean;
+        encryptionAlgorithm: EncryptionAlgorithm;
+        serializationFormat: SerializationFormat;
+      }) => Promise<{ noteId: string }>;
     }) => {
-      const { encryptedContent, encryptionKey } = await encryptNote({ content, password });
+      const { encryptedPayload, encryptionKey } = await encryptNote({ content, password, assets, encryptionAlgorithm, serializationFormat });
 
-      const { noteId } = await storeNote({ content: encryptedContent, isPasswordProtected: Boolean(password), ttlInSeconds, deleteAfterReading });
+      const { noteId } = await storeNote({
+        payload: encryptedPayload,
+        isPasswordProtected: Boolean(password),
+        ttlInSeconds,
+        deleteAfterReading,
+        encryptionAlgorithm,
+        serializationFormat,
+      });
 
       const { noteUrl } = createNoteUrl({ noteId, encryptionKey, clientBaseUrl });
 
       return {
-        encryptedContent,
+        encryptedPayload,
         encryptionKey,
         noteId,
         noteUrl,

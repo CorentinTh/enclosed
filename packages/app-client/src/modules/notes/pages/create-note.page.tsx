@@ -2,6 +2,7 @@ import { type Component, Match, Show, Switch, createSignal, onCleanup, onMount }
 import { encryptAndCreateNote } from '../notes.usecases';
 import { useNoteContext } from '../notes.context';
 import { NotePasswordField } from '../components/note-password-field';
+import { FileUploaderButton } from '../components/file-uploader';
 import { TextArea } from '@/modules/ui/components/textarea';
 import { TextField, TextFieldLabel, TextFieldRoot } from '@/modules/ui/components/textfield';
 import { Button } from '@/modules/ui/components/button';
@@ -10,6 +11,8 @@ import { SwitchControl, SwitchLabel, SwitchThumb, Switch as SwitchUiComponent } 
 import { Alert, AlertDescription } from '@/modules/ui/components/alert';
 import { CopyButton } from '@/modules/shared/utils/copy';
 import { isHttpErrorWithCode, isRateLimitError } from '@/modules/shared/http/http-errors';
+import { cn } from '@/modules/shared/style/cn';
+import { getFileIcon } from '@/modules/files/files.models';
 
 export const CreateNotePage: Component = () => {
   const [getContent, setContent] = createSignal('');
@@ -19,6 +22,7 @@ export const CreateNotePage: Component = () => {
   const [getIsNoteCreated, setIsNoteCreated] = createSignal(false);
   const [getTtlInSeconds, setTtlInSeconds] = createSignal(3600);
   const [getDeleteAfterReading, setDeleteAfterReading] = createSignal(false);
+  const [getUploadedFiles, setUploadedFiles] = createSignal<File[]>([]);
 
   const { onResetNoteForm, removeResetNoteFormHandler } = useNoteContext();
 
@@ -30,6 +34,7 @@ export const CreateNotePage: Component = () => {
     setIsNoteCreated(false);
     setTtlInSeconds(3600);
     setDeleteAfterReading(false);
+    setUploadedFiles([]);
   }
 
   onMount(() => {
@@ -41,8 +46,8 @@ export const CreateNotePage: Component = () => {
   });
 
   const createNote = async () => {
-    if (!getContent()) {
-      setErrorMessage('Please enter a note content.');
+    if (!getContent() && getUploadedFiles().length === 0) {
+      setErrorMessage('Please enter a note content or attach a file.');
       return;
     }
 
@@ -52,6 +57,7 @@ export const CreateNotePage: Component = () => {
         password: getPassword(),
         ttlInSeconds: getTtlInSeconds(),
         deleteAfterReading: getDeleteAfterReading(),
+        fileAssets: getUploadedFiles(),
       });
 
       setNoteUrl(noteUrl);
@@ -62,8 +68,8 @@ export const CreateNotePage: Component = () => {
         return;
       }
 
-      if (isHttpErrorWithCode({ error, code: 'note.content_too_large' })) {
-        setErrorMessage('The note content is too large.');
+      if (isHttpErrorWithCode({ error, code: 'note.payload_too_large' })) {
+        setErrorMessage('The note content and attachments are too large. Please reduce the size and try again.');
         return;
       }
 
@@ -137,9 +143,33 @@ export const CreateNotePage: Component = () => {
               </SwitchUiComponent>
             </TextFieldRoot>
 
-            <Button class="w-full mt-2" onClick={createNote}>
-              Create note
-            </Button>
+            <div>
+              <FileUploaderButton variant="secondary" class="mt-2 w-full" multiple onFilesUpload={({ files }) => setUploadedFiles(prevFiles => [...prevFiles, ...files])}>
+                <div class="i-tabler-upload mr-2 text-lg text-muted-foreground"></div>
+                Attach files
+              </FileUploaderButton>
+
+              <Button class="mt-2 w-full" onClick={createNote}>
+                <div class="i-tabler-plus mr-2 text-lg text-muted-foreground"></div>
+                Create note
+              </Button>
+            </div>
+
+            <div class="flex flex-col gap-1">
+              {getUploadedFiles().map(file => (
+                <div class="flex items-center gap-2">
+                  <div class={cn('text-lg text-muted-foreground flex-shrink-0', getFileIcon({ file }))} />
+                  <div class="truncate" title={file.name}>
+                    {file.name}
+                  </div>
+                  {/* <div class="text-muted-foreground text-sm">{(file.size)}</div> */}
+
+                  <Button class="size-9 ml-auto" variant="ghost" onClick={() => setUploadedFiles(prevFiles => prevFiles.filter(f => f !== file))}>
+                    <div class="i-tabler-x text-lg text-muted-foreground cursor-pointer flex-shrink-0"></div>
+                  </Button>
+                </div>
+              ))}
+            </div>
 
             <Show when={getErrorMessage()}>
               {getMessage => (

@@ -7,6 +7,8 @@ import {
   transformerVariantGroup,
 } from 'unocss';
 import presetAnimations from 'unocss-preset-animations';
+import { chain } from 'lodash-es';
+import { iconByFileType } from '@/modules/files/files.models';
 
 export default defineConfig({
   presets: [
@@ -98,4 +100,7 @@ export default defineConfig({
       },
     },
   },
+  safelist: [
+    ...chain(iconByFileType).values().uniq().value(),
+  ],
 });

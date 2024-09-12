@@ -1,5 +1,5 @@
 import { merge } from 'lodash-es';
-import type { DeepPartial } from '../../shared/types';
+import type { DeepPartial } from '@corentinth/chisels';
 import { getConfig } from './config';
 import type { Config } from './config.types';
 

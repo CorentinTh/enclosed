@@ -28,6 +28,8 @@
     "script:generate-config-table": "tsx -r dotenv/config src/scripts/generate-config-table.script.ts"
   },
   "dependencies": {
+    "@corentinth/chisels": "^1.0.4",
+    "@enclosed/lib": "workspace:*",
     "@hono/node-server": "^1.12.1",
     "date-fns": "^3.6.0",
     "figue": "^2.0.0",

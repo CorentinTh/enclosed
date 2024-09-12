@@ -1,8 +1,9 @@
+import { injectArguments } from '@corentinth/chisels';
 import type { Storage } from '../storage/storage.types';
-import { injectArguments } from '../shared/injection/injection';
 import { generateId } from '../shared/utils/random';
 import { createNoteNotFoundError } from './notes.errors';
 import { getNoteExpirationDate } from './notes.models';
+import type { StoredNote } from './notes.types';
 
 export { createNoteRepository };
 
@@ -28,22 +29,26 @@ async function getNotesIds({ storage }: { storage: Storage }) {
 
 async function saveNote(
   {
-    content,
+    payload,
     isPasswordProtected,
     ttlInSeconds,
     deleteAfterReading,
     storage,
     generateNoteId = generateId,
     now = new Date(),
+    encryptionAlgorithm,
+    serializationFormat,
   }:
   {
-    content: string;
+    payload: string;
     isPasswordProtected: boolean;
     ttlInSeconds: number;
     deleteAfterReading: boolean;
     storage: Storage;
     generateNoteId?: () => string;
     now?: Date;
+    encryptionAlgorithm: string;
+    serializationFormat: string;
   },
 ) {
   const noteId = generateNoteId();
@@ -52,10 +57,12 @@ async function saveNote(
   await storage.setItem(
     noteId,
     {
-      content,
+      payload,
       isPasswordProtected,
       expirationDate: expirationDate.toISOString(),
       deleteAfterReading,
+      encryptionAlgorithm,
+      serializationFormat,
     },
     {
       // Some storage drivers have a different API for setting TTLs
@@ -69,7 +76,7 @@ async function saveNote(
 }
 
 async function getNoteById({ noteId, storage }: { noteId: string; storage: Storage }) {
-  const note = await storage.getItem<{ content: string; isPasswordProtected: boolean; expirationDate: string; deleteAfterReading: boolean }>(noteId);
+  const note = await storage.getItem<StoredNote>(noteId);
 
   if (!note) {
     throw createNoteNotFoundError();

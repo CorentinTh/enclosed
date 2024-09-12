@@ -11,7 +11,7 @@ Enclosed is configured primarily through environment variables. Below is a list 
 | `PORT` | The port to listen on when using node server | `8787` |
 | `SERVER_API_ROUTES_TIMEOUT_MS` | The maximum time in milliseconds for a route to complete before timing out | `5000` |
 | `SERVER_CORS_ORIGINS` | The CORS origin for the api server | _No default value_ |
-| `NOTES_MAX_ENCRYPTED_CONTENT_LENGTH` | The maximum length of the encrypted content of a note allowed by the api | `5242880` |
+| `NOTES_MAX_ENCRYPTED_PAYLOAD_LENGTH` | The maximum length of the encrypted content of a note allowed by the api | `5242880` |
 | `TASK_DELETE_EXPIRED_NOTES_ENABLED` | Whether to enable a periodic task to delete expired notes (not available for cloudflare) | `true` |
 | `TASK_DELETE_EXPIRED_NOTES_CRON` | The frequency with which to run the task to delete expired notes (cron syntax) | `0 * * * *` |
 | `TASK_DELETE_EXPIRED_NOTES_RUN_ON_STARTUP` | Whether the task to delete expired notes should run on startup | `true` |

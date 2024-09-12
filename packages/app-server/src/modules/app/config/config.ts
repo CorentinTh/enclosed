@@ -32,11 +32,11 @@ export const configDefinition = {
     },
   },
   notes: {
-    maxEncryptedContentLength: {
-      doc: 'The maximum length of the encrypted content of a note allowed by the api',
+    maxEncryptedPayloadLength: {
+      doc: 'The maximum length of the encrypted payload of a note allowed by the api',
       schema: z.coerce.number().int().positive().min(1),
-      default: 1024 * 1024 * 5, // 5MB
-      env: 'NOTES_MAX_ENCRYPTED_CONTENT_LENGTH',
+      default: 1024 * 1024 * 50, // 50MB
+      env: 'NOTES_MAX_ENCRYPTED_PAYLOAD_LENGTH',
     },
   },
   tasks: {

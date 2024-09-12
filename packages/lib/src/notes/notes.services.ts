@@ -3,27 +3,33 @@ import { apiClient } from '../api/api.client';
 export { storeNote, fetchNote };
 
 async function storeNote({
-  content,
+  payload,
   isPasswordProtected,
   ttlInSeconds,
   deleteAfterReading,
   apiBaseUrl,
+  serializationFormat,
+  encryptionAlgorithm,
 }: {
-  content: string;
+  payload: string;
   isPasswordProtected: boolean;
   ttlInSeconds: number;
   deleteAfterReading: boolean;
   apiBaseUrl?: string;
+  serializationFormat: string;
+  encryptionAlgorithm: string;
 }): Promise<{ noteId: string }> {
   const { noteId } = await apiClient<{ noteId: string }>({
     path: 'api/notes',
     baseUrl: apiBaseUrl,
     method: 'POST',
     body: {
-      content,
+      payload,
       isPasswordProtected,
       ttlInSeconds,
       deleteAfterReading,
+      serializationFormat,
+      encryptionAlgorithm,
     },
   });
 
@@ -37,7 +43,10 @@ async function fetchNote({
   noteId: string;
   apiBaseUrl?: string;
 }) {
-  const { note } = await apiClient<{ note: { content: string; isPasswordProtected: boolean } }>({
+  const { note } = await apiClient<{ note: {
+    payload: string;
+    isPasswordProtected: boolean;
+  }; }>({
     path: `api/notes/${noteId}`,
     baseUrl: apiBaseUrl,
     method: 'GET',
