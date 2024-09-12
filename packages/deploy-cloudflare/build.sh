@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e  # Exit the script if any command fails
 
 # Build the app server and client
 pnpm --filter @enclosed/app-server build:cloudflare
