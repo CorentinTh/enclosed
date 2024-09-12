@@ -42,7 +42,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.27.0",
+    "@antfu/eslint-config": "^3.0.0",
     "@cloudflare/workers-types": "^4.20240821.1",
     "@total-typescript/ts-reset": "^0.6.0",
     "@types/lodash-es": "^4.17.12",
