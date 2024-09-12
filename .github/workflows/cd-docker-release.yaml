@@ -7,10 +7,29 @@ on:
 
   workflow_dispatch:
     inputs:
+
       release_version:
         description: 'Release version (no v prefix)'
         required: true
         default: '0.0.0'
+
+      publish_lib:
+        description: 'Publish lib to npm'
+        required: true
+        type: boolean
+        default: true
+
+      publish_cli:
+        description: 'Publish CLI to npm'
+        required: true
+        type: boolean
+        default: true
+
+      release_docker:
+        description: 'Release Docker images'
+        required: true
+        type: boolean
+        default: true
 
 permissions:
   contents: read
@@ -19,7 +38,11 @@ permissions:
 jobs:
   publish-lib:
     name: Publish lib to npm
+    if: ${{ github.event.inputs.publish_lib || github.event_name == 'push' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     defaults:
       run:
         working-directory: packages/lib
@@ -32,20 +55,25 @@ jobs:
           node-version: 22
           corepack: true
           cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: pnpm i
         working-directory: ./
 
       - name: Publish lib to npm
-        run: pnpm publish --access public
+        run: pnpm publish --access public --no-git-checks
         env:
           NPM_CONFIG_PROVENANCE: true
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   publish-cli:
     name: Publish CLI to npm
+    if: ${{ github.event.inputs.publish_cli || github.event_name == 'push' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     defaults:
       run:
         working-directory: packages/cli
@@ -58,19 +86,21 @@ jobs:
           node-version: 22
           corepack: true
           cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: pnpm i
         working-directory: ./
 
       - name: Publish lib to npm
-        run: pnpm publish --access public
+        run: pnpm publish --access public --no-git-checks
         env:
           NPM_CONFIG_PROVENANCE: true
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   docker-release:
     name: Release Docker images
+    if: ${{ github.event.inputs.release_docker || github.event_name == 'push'}}
     runs-on: ubuntu-latest
     steps:
       - name: Get release version from tag
