@@ -41,10 +41,12 @@ Replace `/path/to/local/data` with the path to your local data directory.
 
 ```bash
 # From docker hub
-docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data --user $(id -u):$(id -g) corentinth/enclosed
+docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data corentinth/enclosed
 # or from GitHub Container Registry
-docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data --user $(id -u):$(id -g) ghcr.io/corentin-th/enclosed
+docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data ghcr.io/corentin-th/enclosed
 ```
+
+> **Note**: A rootless version of the Docker image is available under the `corentinth/enclosed:latest-rootless` tag.
 
 ### Docker Compose
 
