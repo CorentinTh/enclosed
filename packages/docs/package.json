@@ -2,7 +2,7 @@
   "name": "@enclosed/docs",
   "version": "0.0.0",
   "type": "module",
-  "packageManager": "pnpm@9.9.0",
+  "packageManager": "pnpm@9.10.0",
   "description": "Documentation website for Enclosed.",
   "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
   "license": "Apache-2.0",
