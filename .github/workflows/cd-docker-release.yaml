@@ -17,7 +17,60 @@ permissions:
   packages: write
 
 jobs:
+  publish-lib:
+    name: Publish lib to npm
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/lib
+
+    steps:
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          corepack: true
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm i
+        working-directory: ./
+
+      - name: Publish lib to npm
+        run: pnpm publish --access public
+        env:
+          NPM_CONFIG_PROVENANCE: true
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  publish-cli:
+    name: Publish CLI to npm
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/cli
+
+    steps:
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          corepack: true
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm i
+        working-directory: ./
+
+      - name: Publish lib to npm
+        run: pnpm publish --access public
+        env:
+          NPM_CONFIG_PROVENANCE: true
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
   docker-release:
+    name: Release Docker images
     runs-on: ubuntu-latest
     steps:
       - name: Get release version from tag
