@@ -1,4 +1,4 @@
-import _ from 'lodash-es';
+import { sample, times } from 'lodash-es';
 
 export { createRandomPassword };
 
@@ -9,5 +9,5 @@ function createRandomPassword({ length = 16 }: { length?: number } = {}): string
 
   const corpus = alphabet + alphabet.toUpperCase() + numbers + specialChars;
 
-  return _.times(length, () => _.sample(corpus)).join('');
+  return times(length, () => sample(corpus)).join('');
 }
