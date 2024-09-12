@@ -88,6 +88,7 @@ export default defineConfig({
         items: [
           { text: 'CLI', link: '/integrations/cli' },
           { text: 'NPM package', link: '/integrations/npm-package' },
+          { text: 'Versioning', link: '/integrations/versioning' },
         ]
       },
     ],
