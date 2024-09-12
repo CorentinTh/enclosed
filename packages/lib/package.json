@@ -74,7 +74,8 @@
     "test:unit": "vitest run",
     "test:unit:watch": "vitest watch",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "release": "bumpp --commit --push --tag && npm publish"
   },
   "dependencies": {
     "cbor-x": "^1.6.0",
@@ -87,6 +88,7 @@
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^22.5.4",
     "@vitest/coverage-v8": "^2.0.5",
+    "bumpp": "^9.5.2",
     "dotenv": "^16.4.5",
     "eslint": "^9.9.0",
     "tsx": "^4.17.0",

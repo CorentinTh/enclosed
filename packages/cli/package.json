@@ -30,7 +30,8 @@
     "test:unit": "vitest run",
     "test:unit:watch": "vitest watch",
     "prepublishOnly": "pnpm run build",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "release": "bumpp --commit --push --tag && npm publish"
   },
   "dependencies": {
     "@enclosed/lib": "workspace:*",
@@ -47,6 +48,7 @@
     "@antfu/eslint-config": "^2.27.0",
     "@types/lodash-es": "^4.17.12",
     "@vitest/coverage-v8": "^2.0.5",
+    "bumpp": "^9.5.2",
     "dotenv": "^16.4.5",
     "eslint": "^9.9.0",
     "typescript": "^5.5.4",
