@@ -36,7 +36,7 @@ async function apiClient<T>({
       baseURL: baseUrl,
       onResponseError: async ({ response }) => {
         throw Object.assign(
-          new Error('Failed to fetch note'),
+          new Error('Failed to make API request'),
           {
             response: {
               status: response.status,

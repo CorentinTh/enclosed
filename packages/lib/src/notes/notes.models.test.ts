@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { createNoteUrl, parseNoteUrl } from './notes.models';
+import { createNoteUrl, createNoteUrlHashFragment, parseNoteUrl, parseNoteUrlHashFragment } from './notes.models';
 
 describe('note models', () => {
   describe('createNoteUrl', () => {
@@ -8,6 +8,14 @@ describe('note models', () => {
         createNoteUrl({ noteId: '123', encryptionKey: 'abc', clientBaseUrl: 'https://example.com' }),
       ).to.eql({
         noteUrl: 'https://example.com/123#abc',
+      });
+    });
+
+    test('a note protected with a password is indicated in the hash fragment', () => {
+      expect(
+        createNoteUrl({ noteId: '123', encryptionKey: 'abc', clientBaseUrl: 'https://example.com', isPasswordProtected: true }),
+      ).to.eql({
+        noteUrl: 'https://example.com/123#pw:abc',
       });
     });
 
@@ -27,6 +35,17 @@ describe('note models', () => {
       ).to.eql({
         noteId: '123',
         encryptionKey: 'abc',
+        isPasswordProtected: false,
+      });
+    });
+
+    test('a note protected with a password is indicated in the hash fragment', () => {
+      expect(
+        parseNoteUrl({ noteUrl: 'https://example.com/123#pw:abc' }),
+      ).to.eql({
+        noteId: '123',
+        encryptionKey: 'abc',
+        isPasswordProtected: true,
       });
     });
 
@@ -36,6 +55,8 @@ describe('note models', () => {
       ).to.eql({
         noteId: '123',
         encryptionKey: 'abc',
+        isPasswordProtected: false,
+
       });
     });
 
@@ -45,6 +66,7 @@ describe('note models', () => {
       ).to.eql({
         noteId: '456',
         encryptionKey: 'abc',
+        isPasswordProtected: false,
       });
     });
 
@@ -55,15 +77,88 @@ describe('note models', () => {
 
       expect(() => {
         parseNoteUrl({ noteUrl: 'https://example.com/123#' });
-      }).to.throw('Invalid note url');
+      }).to.throw('Hash fragment is missing');
 
       expect(() => {
         parseNoteUrl({ noteUrl: 'https://example.com/123' });
-      }).to.throw('Invalid note url');
+      }).to.throw('Hash fragment is missing');
 
       expect(() => {
         parseNoteUrl({ noteUrl: 'https://example.com/' });
       }).to.throw('Invalid note url');
+    });
+  });
+
+  describe('creation + parsing', () => {
+    test('a note url can be parsed back to its original parts', () => {
+      const { noteUrl } = createNoteUrl({ noteId: '123', encryptionKey: 'abc', clientBaseUrl: 'https://example.com', isPasswordProtected: true });
+      const { noteId, encryptionKey, isPasswordProtected } = parseNoteUrl({ noteUrl });
+
+      expect(noteId).to.equal('123');
+      expect(encryptionKey).to.equal('abc');
+      expect(isPasswordProtected).to.equal(true);
+    });
+  });
+
+  describe('createNoteUrlHashFragment', () => {
+    test('creates a hash fragment from an encryption key', () => {
+      expect(
+        createNoteUrlHashFragment({ encryptionKey: 'abc' }),
+      ).to.equal('abc');
+    });
+
+    test('indicates that the note is password protected', () => {
+      expect(
+        createNoteUrlHashFragment({ encryptionKey: 'abc', isPasswordProtected: true }),
+      ).to.equal('pw:abc');
+    });
+  });
+
+  describe('parseNoteUrlHashFragment', () => {
+    test('parses an encryption key from a hash fragment', () => {
+      expect(
+        parseNoteUrlHashFragment({ hashFragment: 'abc' }),
+      ).to.eql({
+        encryptionKey: 'abc',
+        isPasswordProtected: false,
+      });
+    });
+
+    test('the fragment can indicate that the note is password protected', () => {
+      expect(
+        parseNoteUrlHashFragment({ hashFragment: 'pw:abc' }),
+      ).to.eql({
+        encryptionKey: 'abc',
+        isPasswordProtected: true,
+      });
+    });
+
+    test('the fragment can start with a #', () => {
+      expect(
+        parseNoteUrlHashFragment({ hashFragment: '#abc' }),
+      ).to.eql({
+        encryptionKey: 'abc',
+        isPasswordProtected: false,
+      });
+
+      expect(
+        parseNoteUrlHashFragment({ hashFragment: '#pw:abc' }),
+      ).to.eql({
+        encryptionKey: 'abc',
+        isPasswordProtected: true,
+      });
+    });
+
+    test('throws an error if the hash fragment has more than two segments', () => {
+      expect(() => {
+        parseNoteUrlHashFragment({ hashFragment: 'pw:abc:123' });
+      }).to.throw('Invalid hash fragment');
+    });
+
+    test('throws an error if the hash fragment is empty', () => {
+      expect(() => {
+        parseNoteUrlHashFragment({ hashFragment: '' });
+      }).to.throw('Hash fragment is missing');
     });
   });
 });

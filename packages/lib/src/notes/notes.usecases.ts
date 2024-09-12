@@ -27,7 +27,6 @@ function createEnclosedLib({
   // decryptNote: (args: { encryptedContent: string; encryptionKey: string }) => Promise<{ content: string }>;
   storeNote: (params: {
     payload: string;
-    isPasswordProtected: boolean;
     ttlInSeconds: number;
     deleteAfterReading: boolean;
     apiBaseUrl?: string;
@@ -64,10 +63,10 @@ function createEnclosedLib({
         noteId: string;
         encryptionKey: string;
         clientBaseUrl: string;
+        isPasswordProtected: boolean;
       }) => { noteUrl: string };
       storeNote?: (params: {
         payload: string;
-        isPasswordProtected: boolean;
         ttlInSeconds: number;
         deleteAfterReading: boolean;
         encryptionAlgorithm: EncryptionAlgorithm;
@@ -75,17 +74,22 @@ function createEnclosedLib({
       }) => Promise<{ noteId: string }>;
     }) => {
       const { encryptedPayload, encryptionKey } = await encryptNote({ content, password, assets, encryptionAlgorithm, serializationFormat });
+      const isPasswordProtected = Boolean(password);
 
       const { noteId } = await storeNote({
         payload: encryptedPayload,
-        isPasswordProtected: Boolean(password),
         ttlInSeconds,
         deleteAfterReading,
         encryptionAlgorithm,
         serializationFormat,
       });
 
-      const { noteUrl } = createNoteUrl({ noteId, encryptionKey, clientBaseUrl });
+      const { noteUrl } = createNoteUrl({
+        noteId,
+        encryptionKey,
+        clientBaseUrl,
+        isPasswordProtected,
+      });
 
       return {
         encryptedPayload,

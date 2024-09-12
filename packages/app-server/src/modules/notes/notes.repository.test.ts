@@ -10,7 +10,6 @@ describe('notes repository', () => {
 
       storage.setItem('note-1', {
         payload: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: false,
         encryptionAlgorithm: 'aes-256-gcm',
@@ -23,7 +22,6 @@ describe('notes repository', () => {
 
       expect(note).to.eql({
         payload: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: new Date('2024-01-01T00:01:00.000Z'),
         deleteAfterReading: false,
         encryptionAlgorithm: 'aes-256-gcm',
@@ -36,7 +34,6 @@ describe('notes repository', () => {
 
       storage.setItem('note-1', {
         payload: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: false,
         encryptionAlgorithm: 'aes-256-gcm',
@@ -55,7 +52,6 @@ describe('notes repository', () => {
 
       storage.setItem('note-1', {
         payload: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: false,
         encryptionAlgorithm: 'aes-256-gcm',
@@ -64,7 +60,6 @@ describe('notes repository', () => {
 
       storage.setItem('note-2', {
         payload: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: false,
         encryptionAlgorithm: 'aes-256-gcm',
@@ -93,7 +88,6 @@ describe('notes repository', () => {
 
       storage.setItem('note-1', {
         payload: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: true,
         encryptionAlgorithm: 'aes-256-gcm',
@@ -116,7 +110,6 @@ describe('notes repository', () => {
 
       storage.setItem('note-1', {
         payload: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: false,
         encryptionAlgorithm: 'aes-256-gcm',
@@ -125,7 +118,6 @@ describe('notes repository', () => {
 
       storage.setItem('note-2', {
         payload: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: false,
         encryptionAlgorithm: 'aes-256-gcm',
@@ -163,7 +155,6 @@ describe('notes repository', () => {
 
       const { noteId } = await saveNote({
         payload: '<encrypted-content>',
-        isPasswordProtected: false,
         ttlInSeconds: 60,
         deleteAfterReading: false,
         generateNoteId: () => `note-${noteIdIndex++}`,
@@ -177,7 +168,6 @@ describe('notes repository', () => {
 
       expect(await storage.getItem<any>('note-1')).to.eql({
         payload: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: false,
         encryptionAlgorithm: 'aes-256-gcm',

@@ -4,7 +4,6 @@ export { storeNote, fetchNote };
 
 async function storeNote({
   payload,
-  isPasswordProtected,
   ttlInSeconds,
   deleteAfterReading,
   apiBaseUrl,
@@ -12,7 +11,6 @@ async function storeNote({
   encryptionAlgorithm,
 }: {
   payload: string;
-  isPasswordProtected: boolean;
   ttlInSeconds: number;
   deleteAfterReading: boolean;
   apiBaseUrl?: string;
@@ -25,7 +23,6 @@ async function storeNote({
     method: 'POST',
     body: {
       payload,
-      isPasswordProtected,
       ttlInSeconds,
       deleteAfterReading,
       serializationFormat,
@@ -45,7 +42,6 @@ async function fetchNote({
 }) {
   const { note } = await apiClient<{ note: {
     payload: string;
-    isPasswordProtected: boolean;
   }; }>({
     path: `api/notes/${noteId}`,
     baseUrl: apiBaseUrl,

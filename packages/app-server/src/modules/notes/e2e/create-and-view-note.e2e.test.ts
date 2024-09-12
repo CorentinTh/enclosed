@@ -14,7 +14,6 @@ describe('e2e', () => {
 
       const note = {
         payload: '<encrypted-content>',
-        isPasswordProtected: false,
         deleteAfterReading: false,
         ttlInSeconds: 600,
         encryptionAlgorithm: 'aes-256-gcm',
@@ -45,7 +44,6 @@ describe('e2e', () => {
 
       expect(omit(retrievedNote, 'expirationDate')).to.eql({
         payload: '<encrypted-content>',
-        isPasswordProtected: false,
         encryptionAlgorithm: 'aes-256-gcm',
         serializationFormat: 'cbor-array',
       });
@@ -64,7 +62,6 @@ describe('e2e', () => {
           method: 'POST',
           body: JSON.stringify({
             payload: '<encrypted-content>',
-            isPasswordProtected: false,
             deleteAfterReading: false,
             ttlInSeconds: 600,
             encryptionAlgorithm: 'aes-256-gcm',
@@ -102,7 +99,6 @@ describe('e2e', () => {
           method: 'POST',
           body: JSON.stringify({
             payload: '<encrypted-content>',
-            isPasswordProtected: false,
             deleteAfterReading: false,
             ttlInSeconds: 600,
             encryptionAlgorithm: 'foo', // <- invalid encryption algorithm

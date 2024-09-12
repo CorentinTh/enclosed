@@ -33,7 +33,6 @@ describe('notes models', () => {
     test('the expiration date and the flag stating the note should be deleted after read are omitted when formatting a note for the API', () => {
       const storedNote = {
         payload: '<encrypted-content>',
-        isPasswordProtected: false,
         expirationDate: new Date('2024-01-01T00:00:00Z'),
         deleteAfterReading: false,
         serializationFormat: 'cbor-array',
@@ -43,7 +42,6 @@ describe('notes models', () => {
       expect(formatNoteForApi({ note: storedNote })).to.eql({
         apiNote: {
           payload: '<encrypted-content>',
-          isPasswordProtected: false,
           encryptionAlgorithm: 'aes-256-gcm',
           serializationFormat: 'cbor-array',
         },

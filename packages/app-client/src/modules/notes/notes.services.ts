@@ -4,14 +4,12 @@ export { storeNote, fetchNoteById };
 
 async function storeNote({
   payload,
-  isPasswordProtected,
   ttlInSeconds,
   deleteAfterReading,
   encryptionAlgorithm,
   serializationFormat,
 }: {
   payload: string;
-  isPasswordProtected: boolean;
   ttlInSeconds: number;
   deleteAfterReading: boolean;
   encryptionAlgorithm: string;
@@ -22,7 +20,6 @@ async function storeNote({
     method: 'POST',
     body: {
       payload,
-      isPasswordProtected,
       ttlInSeconds,
       deleteAfterReading,
       serializationFormat,
