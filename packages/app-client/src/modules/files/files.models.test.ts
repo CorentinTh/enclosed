@@ -1,6 +1,6 @@
+import { icons as tablerIconSet } from '@iconify-json/tabler';
 import { values } from 'lodash-es';
 import { describe, expect, test } from 'vitest';
-import { icons as tablerIconSet } from '@iconify-json/tabler';
 import { getFileIcon, iconByFileType } from './files.models';
 
 describe('files models', () => {

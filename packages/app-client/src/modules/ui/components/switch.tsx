@@ -3,10 +3,10 @@ import type {
   SwitchControlProps,
   SwitchThumbProps,
 } from '@kobalte/core/switch';
-import { Switch as SwitchPrimitive } from '@kobalte/core/switch';
 import type { ParentProps, ValidComponent, VoidProps } from 'solid-js';
-import { splitProps } from 'solid-js';
 import { cn } from '@/modules/shared/style/cn';
+import { Switch as SwitchPrimitive } from '@kobalte/core/switch';
+import { splitProps } from 'solid-js';
 
 export const SwitchLabel = SwitchPrimitive.Label;
 export const Switch = SwitchPrimitive;

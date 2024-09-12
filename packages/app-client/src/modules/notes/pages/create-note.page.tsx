@@ -1,18 +1,18 @@
-import { type Component, Match, Show, Switch, createSignal, onCleanup, onMount } from 'solid-js';
-import { encryptAndCreateNote } from '../notes.usecases';
-import { useNoteContext } from '../notes.context';
-import { NotePasswordField } from '../components/note-password-field';
-import { FileUploaderButton } from '../components/file-uploader';
-import { TextArea } from '@/modules/ui/components/textarea';
-import { TextField, TextFieldLabel, TextFieldRoot } from '@/modules/ui/components/textfield';
-import { Button } from '@/modules/ui/components/button';
-import { Tabs, TabsIndicator, TabsList, TabsTrigger } from '@/modules/ui/components/tabs';
-import { SwitchControl, SwitchLabel, SwitchThumb, Switch as SwitchUiComponent } from '@/modules/ui/components/switch';
-import { Alert, AlertDescription } from '@/modules/ui/components/alert';
-import { CopyButton } from '@/modules/shared/utils/copy';
+import { getFileIcon } from '@/modules/files/files.models';
 import { isHttpErrorWithCode, isRateLimitError } from '@/modules/shared/http/http-errors';
 import { cn } from '@/modules/shared/style/cn';
-import { getFileIcon } from '@/modules/files/files.models';
+import { CopyButton } from '@/modules/shared/utils/copy';
+import { Alert, AlertDescription } from '@/modules/ui/components/alert';
+import { Button } from '@/modules/ui/components/button';
+import { SwitchControl, SwitchLabel, SwitchThumb, Switch as SwitchUiComponent } from '@/modules/ui/components/switch';
+import { Tabs, TabsIndicator, TabsList, TabsTrigger } from '@/modules/ui/components/tabs';
+import { TextArea } from '@/modules/ui/components/textarea';
+import { TextField, TextFieldLabel, TextFieldRoot } from '@/modules/ui/components/textfield';
+import { type Component, createSignal, Match, onCleanup, onMount, Show, Switch } from 'solid-js';
+import { FileUploaderButton } from '../components/file-uploader';
+import { NotePasswordField } from '../components/note-password-field';
+import { useNoteContext } from '../notes.context';
+import { encryptAndCreateNote } from '../notes.usecases';
 
 export const CreateNotePage: Component = () => {
   const [getContent, setContent] = createSignal('');

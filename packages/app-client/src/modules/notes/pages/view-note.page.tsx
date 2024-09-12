@@ -1,17 +1,17 @@
-import { useLocation, useParams } from '@solidjs/router';
-import { type Component, Match, Show, Switch, createSignal, onMount } from 'solid-js';
-import { decryptNote, noteAssetsToFiles, parseNoteUrlHashFragment } from '@enclosed/lib';
-import JSZip from 'jszip';
-import { formatBytes, safely } from '@corentinth/chisels';
-import { fetchNoteById } from '../notes.services';
-import { TextField, TextFieldLabel, TextFieldRoot } from '@/modules/ui/components/textfield';
-import { Card, CardContent, CardDescription, CardHeader } from '@/modules/ui/components/card';
-import { Button } from '@/modules/ui/components/button';
-import { isHttpErrorWithCode, isRateLimitError } from '@/modules/shared/http/http-errors';
-import { Alert, AlertDescription } from '@/modules/ui/components/alert';
-import { CopyButton } from '@/modules/shared/utils/copy';
 import { getFileIcon } from '@/modules/files/files.models';
+import { isHttpErrorWithCode, isRateLimitError } from '@/modules/shared/http/http-errors';
 import { cn } from '@/modules/shared/style/cn';
+import { CopyButton } from '@/modules/shared/utils/copy';
+import { Alert, AlertDescription } from '@/modules/ui/components/alert';
+import { Button } from '@/modules/ui/components/button';
+import { Card, CardContent, CardDescription, CardHeader } from '@/modules/ui/components/card';
+import { TextField, TextFieldLabel, TextFieldRoot } from '@/modules/ui/components/textfield';
+import { formatBytes, safely } from '@corentinth/chisels';
+import { decryptNote, noteAssetsToFiles, parseNoteUrlHashFragment } from '@enclosed/lib';
+import { useLocation, useParams } from '@solidjs/router';
+import JSZip from 'jszip';
+import { type Component, createSignal, Match, onMount, Show, Switch } from 'solid-js';
+import { fetchNoteById } from '../notes.services';
 
 const RequestPasswordForm: Component<{ onPasswordEntered: (args: { password: string }) => void; getIsPasswordInvalid: () => boolean; setIsPasswordInvalid: (value: boolean) => void }> = (props) => {
   const [getPassword, setPassword] = createSignal('');

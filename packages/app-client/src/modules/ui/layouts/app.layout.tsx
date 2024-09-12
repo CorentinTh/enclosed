@@ -1,12 +1,12 @@
-import { A, useNavigate } from '@solidjs/router';
 import type { Component, ParentComponent } from 'solid-js';
-import { DropdownMenu } from '@kobalte/core/dropdown-menu';
-import { DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '../components/dropdown-menu';
-import { Button } from '@/modules/ui/components/button';
-import { useThemeStore } from '@/modules/theme/theme.store';
-import { useNoteContext } from '@/modules/notes/notes.context';
-import { buildDocUrl } from '@/modules/docs/docs.models';
 import { config } from '@/modules/config/config';
+import { buildDocUrl } from '@/modules/docs/docs.models';
+import { useNoteContext } from '@/modules/notes/notes.context';
+import { useThemeStore } from '@/modules/theme/theme.store';
+import { Button } from '@/modules/ui/components/button';
+import { DropdownMenu } from '@kobalte/core/dropdown-menu';
+import { A, useNavigate } from '@solidjs/router';
+import { DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '../components/dropdown-menu';
 
 export const Navbar: Component = () => {
   const themeStore = useThemeStore();

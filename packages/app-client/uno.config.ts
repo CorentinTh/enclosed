@@ -1,3 +1,4 @@
+import { chain } from 'lodash-es';
 import {
   defineConfig,
   presetIcons,
@@ -7,7 +8,6 @@ import {
   transformerVariantGroup,
 } from 'unocss';
 import presetAnimations from 'unocss-preset-animations';
-import { chain } from 'lodash-es';
 import { iconByFileType } from './src/modules/files/files.models';
 
 export default defineConfig({

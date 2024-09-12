@@ -1,6 +1,6 @@
 import { Buffer } from 'node:buffer';
 
-export { bufferToBase64Url, base64UrlToBuffer };
+export { base64UrlToBuffer, bufferToBase64Url };
 
 function bufferToBase64Url({ buffer }: { buffer: Uint8Array }): string {
   const base64Url = Buffer.from(buffer).toString('base64url');

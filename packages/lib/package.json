@@ -88,7 +88,7 @@
     "@types/node": "^22.5.4",
     "@vitest/coverage-v8": "^2.0.5",
     "dotenv": "^16.4.5",
-    "eslint": "^9.9.0",
+    "eslint": "^9.10.0",
     "tsx": "^4.17.0",
     "typescript": "^5.5.4",
     "unbuild": "^2.0.0",

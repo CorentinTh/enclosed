@@ -1,8 +1,8 @@
-import { describe, expect, test } from 'vitest';
 import type { Config } from '../../app/config/config.types';
+import { describe, expect, test } from 'vitest';
 import { createTestLogger } from '../../shared/logger/logger.test-utils';
-import { createNoteNotFoundError } from '../notes.errors';
 import { createMemoryStorage } from '../../storage/factories/memory.storage';
+import { createNoteNotFoundError } from '../notes.errors';
 import { deleteExpiredNotesTask } from './delete-expired-notes.tasks';
 
 describe('delete-expired-notes tasks', () => {

@@ -1,7 +1,7 @@
+import { Button } from '@/modules/ui/components/button';
+import { TextField } from '@/modules/ui/components/textfield';
 import { type Component, createSignal } from 'solid-js';
 import { createRandomPassword } from '../notes.models';
-import { TextField } from '@/modules/ui/components/textfield';
-import { Button } from '@/modules/ui/components/button';
 
 export const NotePasswordField: Component<{ getPassword: () => string; setPassword: (value: string) => void }> = (props) => {
   const [getShowPassword, setShowPassword] = createSignal(false);

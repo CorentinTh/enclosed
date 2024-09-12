@@ -1,8 +1,8 @@
 import type { Driver } from 'unstorage';
 import { createStorage } from 'unstorage';
 import cloudflareKVBindingDriver from 'unstorage/drivers/cloudflare-kv-binding';
-import { defineBindableStorageFactory } from '../storage.models';
 import { createError } from '../../shared/errors/errors';
+import { defineBindableStorageFactory } from '../storage.models';
 
 export const createCloudflareKVStorageFactory = defineBindableStorageFactory(() => {
   return {

@@ -1,12 +1,12 @@
 import process, { env } from 'node:process';
 import { serve } from '@hono/node-server';
 import { serveStatic } from '@hono/node-server/serve-static';
-import { createServer } from './modules/app/server';
 import { getConfig } from './modules/app/config/config';
+import { createServer } from './modules/app/server';
 
 import { deleteExpiredNotesTask } from './modules/notes/tasks/delete-expired-notes.tasks';
-import { createTaskScheduler } from './modules/tasks/task-scheduler';
 import { createFsLiteStorage } from './modules/storage/factories/fs-lite.storage';
+import { createTaskScheduler } from './modules/tasks/task-scheduler';
 
 const config = getConfig({ env });
 const { storage } = createFsLiteStorage({ config });

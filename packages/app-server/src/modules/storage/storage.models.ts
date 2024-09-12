@@ -1,6 +1,6 @@
 import type { BindableStorageFactory, Storage } from './storage.types';
 
-export { defineStorage, defineBindableStorageFactory };
+export { defineBindableStorageFactory, defineStorage };
 
 function defineStorage<InitialsArgs = void>(fn: (args: InitialsArgs) => { storage: Storage }) {
   return fn;

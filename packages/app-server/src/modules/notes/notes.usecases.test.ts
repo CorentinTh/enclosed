@@ -1,8 +1,8 @@
 import { describe, expect, test } from 'vitest';
 import { createMemoryStorage } from '../storage/factories/memory.storage';
-import { getRefreshedNote } from './notes.usecases';
-import { createNoteRepository } from './notes.repository';
 import { createNoteNotFoundError } from './notes.errors';
+import { createNoteRepository } from './notes.repository';
+import { getRefreshedNote } from './notes.usecases';
 
 describe('notes usecases', () => {
   describe('getRefreshedNote', () => {

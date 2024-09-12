@@ -1,6 +1,6 @@
+import type { ServerInstance } from '../server.types';
 import { isCustomError } from '../../shared/errors/errors';
 import { createLogger } from '../../shared/logger/logger';
-import type { ServerInstance } from '../server.types';
 
 const logger = createLogger({ namespace: 'middlewares:error' });
 

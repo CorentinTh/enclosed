@@ -61,7 +61,7 @@ importers:
         specifier: ^4.17.12
         version: 4.17.12
       eslint:
-        specifier: ^9.9.0
+        specifier: ^9.10.0
         version: 9.10.0(jiti@1.21.6)
       jsdom:
         specifier: ^25.0.0
@@ -146,7 +146,7 @@ importers:
         specifier: ^0.23.1
         version: 0.23.1
       eslint:
-        specifier: ^9.9.0
+        specifier: ^9.10.0
         version: 9.10.0(jiti@1.21.6)
       pino-pretty:
         specifier: ^11.2.2
@@ -210,7 +210,7 @@ importers:
         specifier: ^16.4.5
         version: 16.4.5
       eslint:
-        specifier: ^9.9.0
+        specifier: ^9.10.0
         version: 9.10.0(jiti@1.21.6)
       typescript:
         specifier: ^5.5.4
@@ -261,7 +261,7 @@ importers:
         specifier: ^16.4.5
         version: 16.4.5
       eslint:
-        specifier: ^9.9.0
+        specifier: ^9.10.0
         version: 9.10.0(jiti@1.21.6)
       tsx:
         specifier: ^4.17.0
@@ -2496,7 +2496,7 @@ packages:
     resolution: {integrity: sha512-W9pAhw0ja1Edb5GVdIF1mjZw/ASI0AlShXM83UUGe2DVr5TdAPEA1OA8m/g8zWp9x6On7gqufY+FatDbC3MDQg==}
 
   concat-map@0.0.1:
-    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
+    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
 
   conf@13.0.1:
     resolution: {integrity: sha512-l9Uwc9eOnz39oADzGO2cSBDi7siv8lwO+31ocQ2nOJijnDiW3pxqm9VV10DPYUO28wW83DjABoUqY1nfHRR2hQ==}

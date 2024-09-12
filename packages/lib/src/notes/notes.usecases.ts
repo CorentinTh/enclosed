@@ -1,7 +1,7 @@
 import type { EncryptionAlgorithm } from '../crypto/crypto.types';
 import type { SerializationFormat } from '../crypto/serialization/serialization.types';
-import { createNoteUrl as createNoteUrlImpl, parseNoteUrl } from './notes.models';
 import type { NoteAsset } from './notes.types';
+import { createNoteUrl as createNoteUrlImpl, parseNoteUrl } from './notes.models';
 
 export { createEnclosedLib };
 

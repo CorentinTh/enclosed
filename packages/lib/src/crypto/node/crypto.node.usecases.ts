@@ -1,9 +1,9 @@
 import { pbkdf2, randomBytes } from 'node:crypto';
-import { TextEncoder, promisify } from 'node:util';
+import { promisify, TextEncoder } from 'node:util';
 
-export { getEncryptionMethod, getDecryptionMethod } from './encryption-algorithms/encryption-algorithms.registry';
+export { getDecryptionMethod, getEncryptionMethod } from './encryption-algorithms/encryption-algorithms.registry';
 
-export { generateBaseKey, deriveMasterKey, createRandomBuffer };
+export { createRandomBuffer, deriveMasterKey, generateBaseKey };
 
 const deriveWithPbkdf2 = promisify(pbkdf2);
 

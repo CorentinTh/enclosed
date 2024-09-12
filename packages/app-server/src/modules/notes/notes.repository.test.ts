@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import { createMemoryStorage } from '../storage/factories/memory.storage';
-import { createNoteRepository } from './notes.repository';
 import { createNoteNotFoundError } from './notes.errors';
+import { createNoteRepository } from './notes.repository';
 
 describe('notes repository', () => {
   describe('getNoteById', () => {

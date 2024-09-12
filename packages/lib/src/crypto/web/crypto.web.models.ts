@@ -1,4 +1,4 @@
-export { bufferToBase64Url, base64UrlToBuffer };
+export { base64UrlToBuffer, bufferToBase64Url };
 
 function bufferToBase64Url({ buffer }: { buffer: Uint8Array }): string {
   let binaryString = '';

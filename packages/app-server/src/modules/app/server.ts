@@ -1,14 +1,14 @@
+import type { BindableStorageFactory } from '../storage/storage.types';
+import type { Config } from './config/config.types';
+import type { ServerInstanceGenerics } from './server.types';
 import { Hono } from 'hono';
 import { secureHeaders } from 'hono/secure-headers';
 import { registerNotesRoutes } from '../notes/notes.routes';
-import type { BindableStorageFactory } from '../storage/storage.types';
-import type { ServerInstanceGenerics } from './server.types';
-import { corsMiddleware } from './middlewares/cors.middleware';
 import { createConfigMiddleware } from './middlewares/config.middleware';
-import { loggerMiddleware } from './middlewares/logger.middleware';
+import { corsMiddleware } from './middlewares/cors.middleware';
 import { registerErrorMiddleware } from './middlewares/errors.middleware';
+import { loggerMiddleware } from './middlewares/logger.middleware';
 import { createStorageMiddleware } from './middlewares/storage.middleware';
-import type { Config } from './config/config.types';
 import { timeoutMiddleware } from './middlewares/timeout.middleware';
 
 export { createServer };
