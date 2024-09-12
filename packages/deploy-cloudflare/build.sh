@@ -1,16 +1,31 @@
 #!/bin/bash
 
-# Build the app server and client
-pnpm --filter @enclosed/app-server build:cloudflare
-pnpm --filter @enclosed/app-client build
+# Exit script on any error, use unset variables as error, and catch failures in pipelines
+set -euo pipefail
 
-# Reset the dist folder
+log() {
+    local TIMESTAMP
+    TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+    echo "[$TIMESTAMP] [INFO] $1"
+}
+
+log "Building the server"
+pnpm --filter @enclosed/app-server --fail-if-no-match build:cloudflare
+
+log "Building the client"
+pnpm --filter @enclosed/app-client --fail-if-no-match build
+
+log "Resetting the dist folder"
 rm -rf dist
-mkdir dist
+mkdir -p dist
 
-# Copy the app server and client to the dist folder
+log "Copying the app server files to the dist folder"
 cp -r ../app-server/dist-cloudflare/* dist/
+
+log "Copying the app client files to the dist folder"
 cp -r ../app-client/dist/* dist/
 
-# Copy routes.json to the dist folder
+log "Copying routes.json to the dist folder"
 cp _routes.json dist/
+
+log "Build complete"

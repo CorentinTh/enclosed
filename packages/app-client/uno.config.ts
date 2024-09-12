@@ -8,7 +8,7 @@ import {
 } from 'unocss';
 import presetAnimations from 'unocss-preset-animations';
 import { chain } from 'lodash-es';
-import { iconByFileType } from '@/modules/files/files.models';
+import { iconByFileType } from './src/modules/files/files.models';
 
 export default defineConfig({
   presets: [
