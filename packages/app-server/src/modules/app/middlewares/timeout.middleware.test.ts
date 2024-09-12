@@ -1,7 +1,7 @@
-import { describe, expect, test } from 'vitest';
 import { Hono } from 'hono';
-import { timeoutMiddleware } from './timeout.middleware';
+import { describe, expect, test } from 'vitest';
 import { registerErrorMiddleware } from './errors.middleware';
+import { timeoutMiddleware } from './timeout.middleware';
 
 describe('middlewares', () => {
   describe('timeoutMiddleware', () => {

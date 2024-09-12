@@ -1,5 +1,5 @@
-import { describe, expect, test } from 'vitest';
 import type { Note } from '../../notes/notes.types';
+import { describe, expect, test } from 'vitest';
 
 export { runCommonSerializationTests };
 

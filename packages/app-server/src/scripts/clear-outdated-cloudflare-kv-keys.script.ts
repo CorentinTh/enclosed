@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import process from 'node:process';
-import { $, minimist } from 'zx';
 import { isNil, map } from 'lodash-es';
+import { $, minimist } from 'zx';
 import { isNoteExpired } from '../modules/notes/notes.models';
 
 const { namespaceId } = minimist(process.argv.slice(2), {

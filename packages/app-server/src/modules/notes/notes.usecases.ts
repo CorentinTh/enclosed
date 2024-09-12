@@ -1,6 +1,6 @@
+import type { NotesRepository } from './notes.types';
 import { createNoteNotFoundError } from './notes.errors';
 import { isNoteExpired } from './notes.models';
-import type { NotesRepository } from './notes.types';
 
 export { getRefreshedNote };
 

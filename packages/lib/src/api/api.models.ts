@@ -1,6 +1,6 @@
 import { get, isError } from 'lodash-es';
 
-export { isApiClientErrorWithStatusCode, isApiClientErrorWithCode };
+export { isApiClientErrorWithCode, isApiClientErrorWithStatusCode };
 
 function isApiClientErrorWithStatusCode({ error, statusCode }: { error: unknown; statusCode: number }): boolean {
   if (!isError(error)) {

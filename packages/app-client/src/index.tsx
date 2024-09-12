@@ -1,13 +1,13 @@
 /* @refresh reload */
+
+import { ColorModeProvider, ColorModeScript, createLocalStorageManager } from '@kobalte/core/color-mode';
+import { Router } from '@solidjs/router';
+import { render, Suspense } from 'solid-js/web';
+import { NoteContextProvider } from './modules/notes/notes.context';
+import { routes } from './routes';
 import '@unocss/reset/tailwind.css';
 import 'virtual:uno.css';
 import './app.css';
-
-import { Suspense, render } from 'solid-js/web';
-import { Router } from '@solidjs/router';
-import { ColorModeProvider, ColorModeScript, createLocalStorageManager } from '@kobalte/core/color-mode';
-import { routes } from './routes';
-import { NoteContextProvider } from './modules/notes/notes.context';
 
 render(
   () => {

@@ -1,5 +1,5 @@
-import { decode, encode } from 'cbor-x';
 import type { Note } from '../../../notes/notes.types';
+import { decode, encode } from 'cbor-x';
 import { defineSerializationMethods } from '../serialization.models';
 
 export const cborArraySerializationDefinition = defineSerializationMethods({

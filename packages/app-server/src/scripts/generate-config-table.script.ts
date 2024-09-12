@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import { isArray, isEmpty, isNil } from 'lodash-es';
 import type { ConfigDefinition, ConfigDefinitionElement } from 'figue';
+import { isArray, isEmpty, isNil } from 'lodash-es';
 import { fs } from 'zx';
 import { configDefinition } from '../modules/app/config/config';
 

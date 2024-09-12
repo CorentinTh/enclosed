@@ -1,10 +1,10 @@
 import type { NoteAsset } from '../notes/notes.types';
 import type { EncryptionAlgorithm } from './crypto.types';
-import { getParsingMethod, getSerializationMethod } from './serialization/serialization.registry';
 import type { SerializationFormat } from './serialization/serialization.types';
+import { getParsingMethod, getSerializationMethod } from './serialization/serialization.registry';
 import { base64UrlToBuffer, bufferToBase64Url } from './web/crypto.web.models';
 
-export { createEncryptUsecase, createDecryptUsecase };
+export { createDecryptUsecase, createEncryptUsecase };
 
 function createEncryptUsecase({
   generateBaseKey,

@@ -1,9 +1,9 @@
 import { A, type RouteDefinition } from '@solidjs/router';
-import { AppLayout } from './modules/ui/layouts/app.layout';
+import { NOTE_ID_REGEX } from './modules/notes/notes.constants';
 import { CreateNotePage } from './modules/notes/pages/create-note.page';
 import { ViewNotePage } from './modules/notes/pages/view-note.page';
 import { Button } from './modules/ui/components/button';
-import { NOTE_ID_REGEX } from './modules/notes/notes.constants';
+import { AppLayout } from './modules/ui/layouts/app.layout';
 
 export const routes: RouteDefinition[] = [
   {

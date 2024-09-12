@@ -1,7 +1,7 @@
-import { merge } from 'lodash-es';
 import type { DeepPartial } from '@corentinth/chisels';
-import { getConfig } from './config';
 import type { Config } from './config.types';
+import { merge } from 'lodash-es';
+import { getConfig } from './config';
 
 export { overrideConfig };
 

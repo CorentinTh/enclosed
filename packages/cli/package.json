@@ -44,11 +44,11 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.27.0",
+    "@antfu/eslint-config": "^3.0.0",
     "@types/lodash-es": "^4.17.12",
     "@vitest/coverage-v8": "^2.0.5",
     "dotenv": "^16.4.5",
-    "eslint": "^9.9.0",
+    "eslint": "^9.10.0",
     "typescript": "^5.5.4",
     "unbuild": "^2.0.0",
     "vitest": "^2.0.5"

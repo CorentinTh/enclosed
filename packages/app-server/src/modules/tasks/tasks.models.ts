@@ -1,8 +1,8 @@
-import { isFunction } from 'lodash-es';
-import type { Storage } from '../storage/storage.types';
 import type { Config } from '../app/config/config.types';
-import { createLogger } from '../shared/logger/logger';
 import type { Logger } from '../shared/logger/logger.types';
+import type { Storage } from '../storage/storage.types';
+import { isFunction } from 'lodash-es';
+import { createLogger } from '../shared/logger/logger';
 
 export { defineTask };
 

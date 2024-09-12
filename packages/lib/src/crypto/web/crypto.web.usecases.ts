@@ -1,6 +1,6 @@
-export { generateBaseKey, deriveMasterKey, createRandomBuffer };
+export { createRandomBuffer, deriveMasterKey, generateBaseKey };
 
-export { getEncryptionMethod, getDecryptionMethod } from './encryption-algorithms/encryption-algorithms.registry';
+export { getDecryptionMethod, getEncryptionMethod } from './encryption-algorithms/encryption-algorithms.registry';
 
 function createRandomBuffer({ length = 16 }: { length?: number } = {}): Uint8Array {
   const randomValues = new Uint8Array(length);

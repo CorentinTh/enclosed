@@ -1,5 +1,5 @@
-import { keyBy } from 'lodash-es';
 import type { EncryptionMethodsDefinition } from './encryption-algorithms.types';
+import { keyBy } from 'lodash-es';
 
 export { createEncryptionAlgorithmsRegistry };
 

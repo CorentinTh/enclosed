@@ -1,6 +1,6 @@
 import { apiClient } from '../shared/http/http-client';
 
-export { storeNote, fetchNoteById };
+export { fetchNoteById, storeNote };
 
 async function storeNote({
   payload,

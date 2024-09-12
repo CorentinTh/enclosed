@@ -1,6 +1,6 @@
 import { defineCommand, runMain } from 'citty';
-import { createNoteCommand } from './create-note/create-note.command';
 import { configCommand } from './config/config.command';
+import { createNoteCommand } from './create-note/create-note.command';
 import { viewNoteCommand } from './view-note/view-note.command';
 
 const main = defineCommand({

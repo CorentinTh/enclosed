@@ -1,7 +1,7 @@
-import { get } from 'lodash-es';
 import type { NoteAsset } from '../notes/notes.types';
+import { get } from 'lodash-es';
 
-export { fileToNoteAsset, filesToNoteAssets, noteAssetToFile, noteAssetsToFiles };
+export { filesToNoteAssets, fileToNoteAsset, noteAssetsToFiles, noteAssetToFile };
 
 async function fileToNoteAsset({ file }: { file: File }): Promise<NoteAsset> {
   const content = new Uint8Array(await file.arrayBuffer());

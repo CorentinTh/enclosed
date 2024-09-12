@@ -1,6 +1,6 @@
 import type { ValidationTargets } from 'hono';
-import { validator } from 'hono/validator';
 import type z from 'zod';
+import { validator } from 'hono/validator';
 
 function formatValidationError({ error }: { error: z.ZodError }) {
   const details = (error.errors ?? []).map((e) => {

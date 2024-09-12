@@ -9,11 +9,11 @@ import type {
   DropdownMenuSeparatorProps,
   DropdownMenuSubTriggerProps,
 } from '@kobalte/core/dropdown-menu';
-import { DropdownMenu as DropdownMenuPrimitive } from '@kobalte/core/dropdown-menu';
 import type { PolymorphicProps } from '@kobalte/core/polymorphic';
 import type { ComponentProps, ParentProps, ValidComponent } from 'solid-js';
-import { mergeProps, splitProps } from 'solid-js';
 import { cn } from '@/modules/shared/style/cn';
+import { DropdownMenu as DropdownMenuPrimitive } from '@kobalte/core/dropdown-menu';
+import { mergeProps, splitProps } from 'solid-js';
 
 export const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
 export const DropdownMenuGroup = DropdownMenuPrimitive.Group;

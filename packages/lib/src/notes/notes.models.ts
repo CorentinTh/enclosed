@@ -1,6 +1,6 @@
 import { isEmpty } from 'lodash-es';
 
-export { createNoteUrl, parseNoteUrl, createNoteUrlHashFragment, parseNoteUrlHashFragment };
+export { createNoteUrl, createNoteUrlHashFragment, parseNoteUrl, parseNoteUrlHashFragment };
 
 function createNoteUrlHashFragment({ encryptionKey, isPasswordProtected }: { encryptionKey: string; isPasswordProtected?: boolean }) {
   const hashFragment = [

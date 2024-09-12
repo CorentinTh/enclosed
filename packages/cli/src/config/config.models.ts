@@ -2,7 +2,7 @@ import Conf from 'conf';
 import picocolors from 'picocolors';
 import { configDefinition } from './config.constants';
 
-export { createConfigBindings, setConfig, getConfig, deleteConfig, resetConfig };
+export { createConfigBindings, deleteConfig, getConfig, resetConfig, setConfig };
 
 type ConfigKey = keyof typeof configDefinition | (string & {});
 const config = new Conf<Record<ConfigKey, string>>({ projectName: 'enclosed' });

@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
+import { overrideConfig } from '../../app/config/config.test-utils';
 import { createServer } from '../../app/server';
 import { createMemoryStorage } from '../../storage/factories/memory.storage';
-import { overrideConfig } from '../../app/config/config.test-utils';
 
 describe('e2e', () => {
   describe('body limit note creation', async () => {

@@ -1,5 +1,5 @@
-import { defineCommand } from 'citty';
 import { decryptNote, fetchNote, isApiClientErrorWithStatusCode, parseNoteUrl } from '@enclosed/lib';
+import { defineCommand } from 'citty';
 import picocolors from 'picocolors';
 import { getInstanceUrl } from '../config/config.usecases';
 import { promptForPassword } from './view-note.models';

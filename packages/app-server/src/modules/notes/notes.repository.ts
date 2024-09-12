@@ -1,9 +1,9 @@
-import { injectArguments } from '@corentinth/chisels';
 import type { Storage } from '../storage/storage.types';
+import type { StoredNote } from './notes.types';
+import { injectArguments } from '@corentinth/chisels';
 import { generateId } from '../shared/utils/random';
 import { createNoteNotFoundError } from './notes.errors';
 import { getNoteExpirationDate } from './notes.models';
-import type { StoredNote } from './notes.types';
 
 export { createNoteRepository };
 

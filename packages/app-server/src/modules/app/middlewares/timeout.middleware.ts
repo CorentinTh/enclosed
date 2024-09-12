@@ -1,5 +1,5 @@
-import { createMiddleware } from 'hono/factory';
 import type { Context } from '../server.types';
+import { createMiddleware } from 'hono/factory';
 import { createError } from '../../shared/errors/errors';
 
 export const timeoutMiddleware = createMiddleware(async (context: Context, next) => {

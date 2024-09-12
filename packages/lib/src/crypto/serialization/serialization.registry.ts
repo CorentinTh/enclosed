@@ -1,8 +1,8 @@
+import type { SerializationFormat, SerializationMethodsDefinition } from './serialization.types';
 import { keyBy, map } from 'lodash-es';
 import { cborArraySerializationDefinition } from './cbor-array/cbor-array.serialization';
-import type { SerializationFormat, SerializationMethodsDefinition } from './serialization.types';
 
-export { getSerializationMethod, getParsingMethod };
+export { getParsingMethod, getSerializationMethod };
 
 export const serializationMethodDefinitions = [
   cborArraySerializationDefinition,

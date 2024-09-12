@@ -1,5 +1,5 @@
-import { getBody } from './http-client.models';
 import { config } from '@/modules/config/config';
+import { getBody } from './http-client.models';
 
 export { apiClient };
 

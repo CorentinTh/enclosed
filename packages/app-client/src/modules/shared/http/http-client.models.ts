@@ -1,4 +1,4 @@
-export { isFetchResponseJson, getBody };
+export { getBody, isFetchResponseJson };
 
 function isFetchResponseJson({ response }: { response: Response }): boolean {
   return Boolean(response.headers.get('content-type')?.includes('application/json'));
