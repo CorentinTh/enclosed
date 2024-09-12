@@ -10,19 +10,30 @@ Enclosed can be easily installed and run using Docker. This method is recommende
 
 Before you begin, ensure that you have Docker installed on your system. You can download and install Docker from the [official Docker website](https://www.docker.com/get-started).
 
+## Rootless and Non-rootless Docker Images
+
+Starting from version `1.5.1`, Enclosed provides both rootless and non-rootless Docker images. The rootless image, tagged as `latest-rootless` or `<version>-rootless` (e.g., `1.5.1-rootless`), allows you to run the container without requiring root privileges. This is useful in environments where running containers as root is discouraged for security reasons.
+
+The non-rootless image, tagged as `latest` or `<version>` (e.g., `1.5.1`), does not require binding the user in Docker commands and can be used in scenarios where root privileges are acceptable.
+
+## Image Sources
+
+Enclosed Docker images are available on both Docker Hub and GitHub Container Registry (GHCR). You can choose the source that best suits your needs.
+
 ## Basic Docker Run
 
 To run Enclosed using Docker, you can use the following command:
 
-From Docker Hub
-```bash
+::: code-group
+
+```bash [From Docker Hub]
 docker run -d --name enclosed --restart unless-stopped -p 8787:8787 corentinth/enclosed
 ```
 
-From GitHub Container Registry
-```bash
+```bash [From GHCR]
 docker run -d --name enclosed --restart unless-stopped -p 8787:8787 ghcr.io/corentin-th/enclosed
 ```
+:::
 
 This command will download the Enclosed image and start the application, making it accessible at `http://localhost:8787`.
 
@@ -38,15 +49,27 @@ This command will download the Enclosed image and start the application, making 
 
 To ensure that your notes and settings are preserved even if the container is stopped or removed, you can run Enclosed with volume persistence. Replace `/path/to/local/data` with the path to your local data directory:
 
-From Docker Hub:
-```bash
-docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data --user $(id -u):$(id -g) corentinth/enclosed
+::: code-group
+```bash [From Docker Hub]
+docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data corentinth/enclosed
 ```
 
-From GitHub Container Registry:
-```bash
-docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data --user $(id -u):$(id -g) ghcr.io/corentin-th/enclosed
+```bash [From GHCR]
+docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data ghcr.io/corentin-th/enclosed
 ```
+:::
+
+For the rootless image, you can use the following command (specifying the `latest-rootless` tag and the user ID and group ID):
+
+::: code-group
+```bash [From Docker Hub]
+docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data --user $(id -u):$(id -g) corentinth/enclosed:latest-rootless
+```
+
+```bash [From GHCR]
+docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data --user $(id -u):$(id -g) ghcr.io/corentin-th/enclosed:latest-rootless
+```
+:::
 
 ### Explanation of Additional Flags
 
