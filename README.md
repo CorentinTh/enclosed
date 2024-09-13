@@ -25,53 +25,20 @@ A live instance is available at [enclosed.cc](https://enclosed.cc).
 
 ## Self host
 
-### Docker
+### Try it with Docker
 
 You can quickly run the application using Docker.
 
 ```bash
-# From docker hub
 docker run -d --name enclosed --restart unless-stopped -p 8787:8787 corentinth/enclosed
-# or from GitHub Container Registry
-docker run -d --name enclosed --restart unless-stopped -p 8787:8787 ghcr.io/corentin-th/enclosed
 ```
+### To go further
 
-**With volume persistency**
-Replace `/path/to/local/data` with the path to your local data directory.  
-
-```bash
-# From docker hub
-docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data corentinth/enclosed
-# or from GitHub Container Registry
-docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data ghcr.io/corentin-th/enclosed
-```
-
-> **Note**: A rootless version of the Docker image is available under the `corentinth/enclosed:latest-rootless` tag.
-
-### Docker Compose
-
-You can also use Docker Compose to run the application.
-
-```yaml
-services:
-  enclosed:
-    image: corentinth/enclosed
-    ports:
-      - 8787:8787
-    volumes:
-      - enclosed-data:/app/.data
-    restart: unless-stopped
-
-volumes:
-  enclosed-data:
-    driver: local
-```
-
-Run the following commands to start the application.
-```bash
-curl -O https://raw.githubusercontent.com/CorentinTh/enclosed/main/docker-compose.yml
-docker-compose up -d
-```
+Please refer to the [self-hosting documentation](https://docs.enclosed.cc/self-hosting/docker) for more information on how to configure and run the application.
+For example:
+- [Setup persistent storage](https://docs.enclosed.cc/self-hosting/docker#docker-with-volume-persistence)
+- [Use rootless image](https://docs.enclosed.cc/self-hosting/docker#rootless-and-non-rootless-docker-images)
+- [Use Docker Compose](https://docs.enclosed.cc/self-hosting/docker-compose)
 
 ### Configuration
 
