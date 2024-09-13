@@ -11,14 +11,12 @@ Ensure that you have Docker and Docker Compose installed on your system. You can
 Below is a sample `docker-compose.yml` file that you can use to deploy Enclosed. This configuration includes options for persistent storage and automatic restart.
 
 ```yaml
-version: '3.8'
-
 services:
   enclosed:
     image: corentinth/enclosed
     container_name: enclosed
     ports:
-      - '8787:8787'
+      - "8787:8787"
     volumes:
       - enclosed-data:/app/.data
     restart: unless-stopped
