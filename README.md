@@ -156,7 +156,7 @@ This project is organized as a monorepo using `pnpm` workspaces. The structure i
 
 ## Contributing
 
-Contributions are welcome! Please refer to the `CONTRIBUTING.md` file for guidelines on how to get started, report issues, and submit pull requests.
+Contributions are welcome! Please refer to the [`CONTRIBUTING.md`](./CONTRIBUTING.md) file for guidelines on how to get started, report issues, and submit pull requests.
 
 ## License
 
