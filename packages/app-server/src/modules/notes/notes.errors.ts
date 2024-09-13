@@ -11,3 +11,9 @@ export const createNotePayloadTooLargeError = createErrorFactory({
   code: 'note.payload_too_large',
   statusCode: 413,
 });
+
+export const createCannotCreatePrivateNoteOnPublicInstanceError = createErrorFactory({
+  message: 'Cannot create private note on public instance',
+  code: 'note.cannot_create_private_note_on_public_instance',
+  statusCode: 403,
+});

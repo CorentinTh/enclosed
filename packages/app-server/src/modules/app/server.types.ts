@@ -6,6 +6,7 @@ export type ServerInstanceGenerics = {
   Variables: {
     config: Config;
     storage: Storage;
+    isAuthenticated: boolean;
   };
 };
 

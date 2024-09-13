@@ -1,4 +1,5 @@
 import { A, type RouteDefinition } from '@solidjs/router';
+import { LoginPage } from './modules/auth/pages/login.page';
 import { NOTE_ID_REGEX } from './modules/notes/notes.constants';
 import { CreateNotePage } from './modules/notes/pages/create-note.page';
 import { ViewNotePage } from './modules/notes/pages/view-note.page';
@@ -10,6 +11,7 @@ export const routes: RouteDefinition[] = [
     path: '/',
     component: AppLayout,
     children: [
+
       {
         path: '/',
         component: CreateNotePage,
@@ -37,5 +39,9 @@ export const routes: RouteDefinition[] = [
         ),
       },
     ],
+  },
+  {
+    path: '/login',
+    component: LoginPage,
   },
 ];

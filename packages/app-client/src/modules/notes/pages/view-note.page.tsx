@@ -1,3 +1,4 @@
+import { authStore } from '@/modules/auth/auth.store';
 import { getFileIcon } from '@/modules/files/files.models';
 import { isHttpErrorWithCode, isRateLimitError } from '@/modules/shared/http/http-errors';
 import { cn } from '@/modules/shared/style/cn';
@@ -6,11 +7,11 @@ import { Alert, AlertDescription } from '@/modules/ui/components/alert';
 import { Button } from '@/modules/ui/components/button';
 import { Card, CardContent, CardDescription, CardHeader } from '@/modules/ui/components/card';
 import { TextField, TextFieldLabel, TextFieldRoot } from '@/modules/ui/components/textfield';
-import { formatBytes, safely } from '@corentinth/chisels';
+import { formatBytes, safely, safelySync } from '@corentinth/chisels';
 import { decryptNote, noteAssetsToFiles, parseNoteUrlHashFragment } from '@enclosed/lib';
-import { useLocation, useParams } from '@solidjs/router';
+import { useLocation, useNavigate, useParams } from '@solidjs/router';
 import JSZip from 'jszip';
-import { type Component, createSignal, Match, onMount, Show, Switch } from 'solid-js';
+import { type Component, createSignal, type JSX, Match, onMount, Show, Switch } from 'solid-js';
 import { fetchNoteById } from '../notes.services';
 
 const RequestPasswordForm: Component<{ onPasswordEntered: (args: { password: string }) => void; getIsPasswordInvalid: () => boolean; setIsPasswordInvalid: (value: boolean) => void }> = (props) => {
@@ -67,19 +68,33 @@ export const ViewNotePage: Component = () => {
   const params = useParams();
   const location = useLocation();
   const [isPasswordEntered, setIsPasswordEntered] = createSignal(false);
-  const [getError, setError] = createSignal<{ title: string; description: string } | null>(null);
+  const [getError, setError] = createSignal<{ title: string; description: string; action?: JSX.Element } | null>(null);
   const [getNote, setNote] = createSignal<{ payload: string; isPasswordProtected: boolean; encryptionAlgorithm: string; serializationFormat: string } | null>(null);
   const [getDecryptedNote, setDecryptedNote] = createSignal<string | null>(null);
   const [getIsPasswordInvalid, setIsPasswordInvalid] = createSignal(false);
   const [fileAssets, setFileAssets] = createSignal<File[]>([]);
   const [isDownloadingAllLoading, setIsDownloadingAllLoading] = createSignal(false);
 
-  const parseHashFragment = () => parseNoteUrlHashFragment({ hashFragment: location.hash });
-  const getEncryptionKey = () => parseHashFragment().encryptionKey;
-  const getIsPasswordProtected = () => parseHashFragment().isPasswordProtected;
+  const [getEncryptionKey, setEncryptionKey] = createSignal('');
+  const [getIsPasswordProtected, setIsPasswordProtected] = createSignal(false);
+
+  const navigate = useNavigate();
 
   onMount(async () => {
-    const encryptionKey = getEncryptionKey();
+    const [parsedHashFragment, parsingError] = safelySync(() => parseNoteUrlHashFragment({ hashFragment: location.hash }));
+
+    if (parsingError) {
+      setError({
+        title: 'Invalid note URL',
+        description: 'This note URL is invalid. Please make sure you are using the correct URL.',
+      });
+      return;
+    }
+
+    const { encryptionKey, isPasswordProtected } = parsedHashFragment;
+
+    setIsPasswordProtected(isPasswordProtected);
+    setEncryptionKey(encryptionKey);
 
     if (!encryptionKey) {
       setError({
@@ -95,6 +110,26 @@ export const ViewNotePage: Component = () => {
       setError({
         title: 'Rate limit exceeded',
         description: 'You have exceeded the rate limit for fetching notes. Please try again later.',
+      });
+      return;
+    }
+
+    if (isHttpErrorWithCode({ error: fetchError, code: 'auth.unauthorized' })) {
+      setError({
+        title: 'Unauthorized',
+        description: 'This note is private. You need to be logged in to view it.',
+        action: (
+          <Button
+            onClick={() => {
+              authStore.setRedirectUrl(location.pathname + location.hash);
+              navigate('/login');
+            }}
+            variant="secondary"
+          >
+            <div class="i-tabler-login-2 mr-2 text-lg"></div>
+            Log in
+          </Button>
+        ),
       });
       return;
     }
@@ -209,9 +244,11 @@ export const ViewNotePage: Component = () => {
               <div class="text-lg font-bold mt-2">
                 {error().title}
               </div>
-              <div class="mt-2 text-muted-foreground">
+              <div class="mt-2 mb-4 text-muted-foreground text-pretty">
                 {error().description}
               </div>
+
+              {error().action}
             </div>
           )}
         </Match>

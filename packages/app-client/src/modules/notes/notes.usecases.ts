@@ -9,6 +9,7 @@ async function encryptAndCreateNote(args: {
   ttlInSeconds: number;
   deleteAfterReading: boolean;
   fileAssets: File[];
+  isPublic?: boolean;
 }) {
   return createNote({
     ...args,

@@ -29,6 +29,7 @@
     "@corentinth/chisels": "^1.0.2",
     "@enclosed/lib": "workspace:*",
     "@kobalte/core": "^0.13.4",
+    "@solid-primitives/storage": "^4.2.1",
     "@solidjs/router": "^0.14.3",
     "@unocss/reset": "^0.62.2",
     "class-variance-authority": "^0.7.0",

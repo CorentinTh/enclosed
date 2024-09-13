@@ -30,6 +30,7 @@ function createEnclosedLib({
     ttlInSeconds: number;
     deleteAfterReading: boolean;
     apiBaseUrl?: string;
+    isPublic?: boolean;
   }) => Promise<{ noteId: string }>;
   // fetchNote: (params: { noteId: string; apiBaseUrl?: string }) => Promise<{ content: string; isPasswordProtected: boolean }>;
 }) {
@@ -49,6 +50,7 @@ function createEnclosedLib({
       assets = [],
       encryptionAlgorithm = 'aes-256-gcm',
       serializationFormat = 'cbor-array',
+      isPublic = true,
     }: {
       content: string;
       password?: string;
@@ -59,6 +61,7 @@ function createEnclosedLib({
       assets?: NoteAsset[];
       encryptionAlgorithm?: EncryptionAlgorithm;
       serializationFormat?: SerializationFormat;
+      isPublic?: boolean;
       createNoteUrl?: (args: {
         noteId: string;
         encryptionKey: string;
@@ -71,6 +74,7 @@ function createEnclosedLib({
         deleteAfterReading: boolean;
         encryptionAlgorithm: EncryptionAlgorithm;
         serializationFormat: SerializationFormat;
+        isPublic?: boolean;
       }) => Promise<{ noteId: string }>;
     }) => {
       const { encryptedPayload, encryptionKey } = await encryptNote({ content, password, assets, encryptionAlgorithm, serializationFormat });
@@ -82,6 +86,7 @@ function createEnclosedLib({
         deleteAfterReading,
         encryptionAlgorithm,
         serializationFormat,
+        isPublic,
       });
 
       const { noteUrl } = createNoteUrl({

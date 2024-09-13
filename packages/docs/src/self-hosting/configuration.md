@@ -1,3 +1,7 @@
+<script setup>
+import { data } from '../data/configuration.data.ts'
+</script>
+
 # Self-Host Configuration
 
 Configuring your self-hosted instance of Enclosed allows you to customize the application to better suit your environment and requirements. This guide covers the key environment variables you can set to control various aspects of the application, including port settings, security options, and storage configurations.
@@ -6,17 +10,11 @@ Configuring your self-hosted instance of Enclosed allows you to customize the ap
 
 Enclosed is configured primarily through environment variables. Below is a list of the available variables, along with their descriptions and default values.
 
-| Environment Variable | Description | Default Value |
-| -------------------- | ----------- | ------------- |
-| `PORT` | The port to listen on when using node server | `8787` |
-| `SERVER_API_ROUTES_TIMEOUT_MS` | The maximum time in milliseconds for a route to complete before timing out | `5000` |
-| `SERVER_CORS_ORIGINS` | The CORS origin for the api server | _No default value_ |
-| `NOTES_MAX_ENCRYPTED_PAYLOAD_LENGTH` | The maximum length of the encrypted content of a note allowed by the api | `5242880` |
-| `TASK_DELETE_EXPIRED_NOTES_ENABLED` | Whether to enable a periodic task to delete expired notes (not available for cloudflare) | `true` |
-| `TASK_DELETE_EXPIRED_NOTES_CRON` | The frequency with which to run the task to delete expired notes (cron syntax) | `0 * * * *` |
-| `TASK_DELETE_EXPIRED_NOTES_RUN_ON_STARTUP` | Whether the task to delete expired notes should run on startup | `true` |
-| `STORAGE_DRIVER_FS_LITE_PATH` | (only in node env) The path to the directory where the data will be stored | `./.data` |
-| `STORAGE_DRIVER_CLOUDFLARE_KV_BINDING` | (only in cloudflare env) The name of the Cloudflare KV binding to use | `notes` |
+<div v-for="row in data">
+<hr />
+<div><strong>{{ row.env }}</strong></div>
+<div v-html="row.documentation"></div>
+</div>
 
 ## Applying Configuration Changes
 

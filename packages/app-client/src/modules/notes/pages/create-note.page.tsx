@@ -1,3 +1,5 @@
+import { authStore } from '@/modules/auth/auth.store';
+import { useConfig } from '@/modules/config/config.provider';
 import { getFileIcon } from '@/modules/files/files.models';
 import { isHttpErrorWithCode, isRateLimitError } from '@/modules/shared/http/http-errors';
 import { cn } from '@/modules/shared/style/cn';
@@ -8,6 +10,8 @@ import { SwitchControl, SwitchLabel, SwitchThumb, Switch as SwitchUiComponent } 
 import { Tabs, TabsIndicator, TabsList, TabsTrigger } from '@/modules/ui/components/tabs';
 import { TextArea } from '@/modules/ui/components/textarea';
 import { TextField, TextFieldLabel, TextFieldRoot } from '@/modules/ui/components/textfield';
+import { safely } from '@corentinth/chisels';
+import { useNavigate } from '@solidjs/router';
 import { type Component, createSignal, Match, onCleanup, onMount, Show, Switch } from 'solid-js';
 import { FileUploaderButton } from '../components/file-uploader';
 import { NotePasswordField } from '../components/note-password-field';
@@ -18,11 +22,15 @@ export const CreateNotePage: Component = () => {
   const [getContent, setContent] = createSignal('');
   const [getPassword, setPassword] = createSignal('');
   const [getNoteUrl, setNoteUrl] = createSignal('');
-  const [getErrorMessage, setErrorMessage] = createSignal('');
+  const [getError, setError] = createSignal<{ message: string; details?: string } | null>(null);
   const [getIsNoteCreated, setIsNoteCreated] = createSignal(false);
+  const [getIsPublic, setIsPublic] = createSignal(true);
   const [getTtlInSeconds, setTtlInSeconds] = createSignal(3600);
   const [getDeleteAfterReading, setDeleteAfterReading] = createSignal(false);
   const [getUploadedFiles, setUploadedFiles] = createSignal<File[]>([]);
+
+  const { config } = useConfig();
+  const navigate = useNavigate();
 
   const { onResetNoteForm, removeResetNoteFormHandler } = useNoteContext();
 
@@ -30,7 +38,8 @@ export const CreateNotePage: Component = () => {
     setContent('');
     setPassword('');
     setNoteUrl('');
-    setErrorMessage('');
+    setError(null);
+    setIsPublic(true);
     setIsNoteCreated(false);
     setTtlInSeconds(3600);
     setDeleteAfterReading(false);
@@ -38,6 +47,11 @@ export const CreateNotePage: Component = () => {
   }
 
   onMount(() => {
+    if (config.isAuthenticationRequired && !authStore.getIsAuthenticated()) {
+      navigate('/login');
+      return;
+    }
+
     onResetNoteForm(resetNoteForm);
   });
 
@@ -47,39 +61,48 @@ export const CreateNotePage: Component = () => {
 
   const createNote = async () => {
     if (!getContent() && getUploadedFiles().length === 0) {
-      setErrorMessage('Please enter a note content or attach a file.');
+      setError({ message: 'Please enter a note content or attach a file.' });
       return;
     }
 
-    try {
-      const { noteUrl } = await encryptAndCreateNote({
-        content: getContent(),
-        password: getPassword(),
-        ttlInSeconds: getTtlInSeconds(),
-        deleteAfterReading: getDeleteAfterReading(),
-        fileAssets: getUploadedFiles(),
-      });
+    const [createdNote, error] = await safely(encryptAndCreateNote({
+      content: getContent(),
+      password: getPassword(),
+      ttlInSeconds: getTtlInSeconds(),
+      deleteAfterReading: getDeleteAfterReading(),
+      fileAssets: getUploadedFiles(),
+      isPublic: getIsPublic(),
+    }));
+
+    if (!error) {
+      const { noteUrl } = createdNote;
 
       setNoteUrl(noteUrl);
       setIsNoteCreated(true);
-    } catch (error) {
-      if (isRateLimitError({ error })) {
-        setErrorMessage('You have exceeded the rate limit for creating notes. Please try again later.');
-        return;
-      }
-
-      if (isHttpErrorWithCode({ error, code: 'note.payload_too_large' })) {
-        setErrorMessage('The note content and attachments are too large. Please reduce the size and try again.');
-        return;
-      }
-
-      setErrorMessage('An error occurred while creating the note, please try again.');
+      return;
     }
+
+    if (isRateLimitError({ error })) {
+      setError({ message: 'You have exceeded the rate limit for creating notes. Please try again later.' });
+      return;
+    }
+
+    if (isHttpErrorWithCode({ error, code: 'note.payload_too_large' })) {
+      setError({ message: 'The note content and attachments are too large. Please reduce the size and try again.' });
+      return;
+    }
+
+    if (isHttpErrorWithCode({ error, code: 'auth.unauthorized' })) {
+      setError({ message: 'You are not authorized to create notes. Please login and try again.' });
+      return;
+    }
+
+    setError({ message: 'An error occurred while creating the note, please try again.', details: error.message });
   };
 
   function updateContent(text: string) {
     setContent(text);
-    setErrorMessage('');
+    setError(null);
   }
 
   const getIsShareApiSupported = () => navigator.share !== undefined;
@@ -130,6 +153,24 @@ export const CreateNotePage: Component = () => {
                 </TabsList>
               </Tabs>
             </TextFieldRoot>
+            {/*
+            {config.isAuthenticationRequired && (
+              <TextFieldRoot class="w-full">
+                <TextFieldLabel>
+                  Note visibility
+                </TextFieldLabel>
+                <Tabs
+                  value={getIsPublic() ? 'true' : 'false'}
+                  onChange={(value: string) => setIsPublic(value === 'true')}
+                >
+                  <TabsList>
+                    <TabsIndicator />
+                    <TabsTrigger value="true">Public</TabsTrigger>
+                    <TabsTrigger value="false">Private</TabsTrigger>
+                  </TabsList>
+                </Tabs>
+              </TextFieldRoot>
+            )} */}
 
             <TextFieldRoot class="w-full">
               <TextFieldLabel>Delete after reading</TextFieldLabel>
@@ -171,11 +212,11 @@ export const CreateNotePage: Component = () => {
               ))}
             </div>
 
-            <Show when={getErrorMessage()}>
-              {getMessage => (
+            <Show when={getError()}>
+              {error => (
                 <Alert variant="destructive">
                   <AlertDescription>
-                    {getMessage()}
+                    {error().message}
                   </AlertDescription>
                 </Alert>
               )}

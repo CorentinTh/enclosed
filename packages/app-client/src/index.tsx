@@ -3,6 +3,7 @@
 import { ColorModeProvider, ColorModeScript, createLocalStorageManager } from '@kobalte/core/color-mode';
 import { Router } from '@solidjs/router';
 import { render, Suspense } from 'solid-js/web';
+import { ConfigProvider } from './modules/config/config.provider';
 import { NoteContextProvider } from './modules/notes/notes.context';
 import { routes } from './routes';
 import '@unocss/reset/tailwind.css';
@@ -20,15 +21,17 @@ render(
         children={routes}
         root={props => (
           <Suspense>
-            <NoteContextProvider>
-              <ColorModeScript storageType={localStorageManager.type} storageKey={colorModeStorageKey} initialColorMode={initialColorMode} />
-              <ColorModeProvider
-                initialColorMode={initialColorMode}
-                storageManager={localStorageManager}
-              >
-                <div class="min-h-screen font-sans text-sm font-400">{props.children}</div>
-              </ColorModeProvider>
-            </NoteContextProvider>
+            <ConfigProvider>
+              <NoteContextProvider>
+                <ColorModeScript storageType={localStorageManager.type} storageKey={colorModeStorageKey} initialColorMode={initialColorMode} />
+                <ColorModeProvider
+                  initialColorMode={initialColorMode}
+                  storageManager={localStorageManager}
+                >
+                  <div class="min-h-screen font-sans text-sm font-400">{props.children}</div>
+                </ColorModeProvider>
+              </NoteContextProvider>
+            </ConfigProvider>
           </Suspense>
         )}
       />
