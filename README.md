@@ -53,8 +53,6 @@ docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/
 You can also use Docker Compose to run the application.
 
 ```yaml
-version: '3.8'
-
 services:
   enclosed:
     image: corentinth/enclosed
