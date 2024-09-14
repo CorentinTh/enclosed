@@ -1,6 +1,29 @@
+<p align="center">
+<picture>
+    <source srcset="./.github/icon-dark.png" media="(prefers-color-scheme: light)">
+    <source srcset="./.github/icon-light.png" media="(prefers-color-scheme: dark)">
+    <img src="./.github/icon-dark.png" alt="Header banner">
+</picture>
+</p>
 
-# Enclosed - Send private and secure notes
-[Demo](https://enclosed.cc) &nbsp;&nbsp;-&nbsp;&nbsp; [Docs](https://docs.enclosed.cc) &nbsp;&nbsp;-&nbsp;&nbsp; [CLI](https://www.npmjs.com/package/@enclosed/cli) &nbsp;&nbsp;-&nbsp;&nbsp; [Self-hosting](https://docs.enclosed.cc/self-hosting/docker)
+<h1 align="center">
+  Enclosed - Send private and secure notes
+</h1>
+<p align="center">
+  Minimalistic web application designed for sending end-to-end encrypted notes and files.
+</p>
+
+<p align="center">
+  <a href="https://enclosed.cc">Demo</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://docs.enclosed.cc">Docs</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://www.npmjs.com/package/@enclosed/cli">CLI</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://docs.enclosed.cc/self-hosting/docker">Self-hosting</a>
+</p>
+
+## Introduction
 
 **Enclosed** is a minimalistic web application designed for sending private and secure notes.
 
@@ -32,10 +55,12 @@ You can quickly run the application using Docker.
 ```bash
 docker run -d --name enclosed --restart unless-stopped -p 8787:8787 corentinth/enclosed
 ```
+
 ### To go further
 
 Please refer to the [self-hosting documentation](https://docs.enclosed.cc/self-hosting/docker) for more information on how to configure and run the application.
 For example:
+
 - [Setup persistent storage](https://docs.enclosed.cc/self-hosting/docker#docker-with-volume-persistence)
 - [Use rootless image](https://docs.enclosed.cc/self-hosting/docker#rootless-and-non-rootless-docker-images)
 - [Use Docker Compose](https://docs.enclosed.cc/self-hosting/docker-compose)
@@ -64,7 +89,7 @@ This ensures that the note remains securely encrypted during transmission and st
 
 ## CLI
 
-The Enclosed CLI allows you to create notes from the terminal. You can install it globally using npm, yarn, or pnpm. 
+The Enclosed CLI allows you to create notes from the terminal. You can install it globally using npm, yarn, or pnpm.
 
 ### Installation
 
