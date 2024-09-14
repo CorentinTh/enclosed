@@ -165,6 +165,8 @@ export const ViewNotePage: Component = () => {
 
     const { note } = decryptionResult;
 
+    const files = await noteAssetsToFiles({ noteAssets: note.assets });
+    setFileAssets(files);
     setDecryptedNote(note.content);
     setIsPasswordEntered(true);
   };
