@@ -1,0 +1,133 @@
+{
+  "app": {
+    "title": "Enclosed",
+    "description": "Enviar notas privadas y seguras"
+  },
+  "navbar": {
+    "new-note": "Nueva nota",
+    "theme": {
+      "light-mode": "Modo claro",
+      "dark-mode": "Modo oscuro",
+      "system-mode": "Sistema"
+    },
+    "settings": {
+      "documentation": "Documentación",
+      "cli": "Enclosed CLI",
+      "support": "Soporte Enclosed",
+      "report-bug": "Reportar un error",
+      "logout": "Cerrar sesión",
+      "contribute-to-i18n": "Contribuir a i18n"
+    }
+  },
+  "footer": {
+    "crafted-by": "Creado por",
+    "source-code": "Código fuente disponible en",
+    "github": "GitHub",
+    "version": "Versión"
+  },
+  "login": {
+    "title": "Iniciar sesión en Enclosed",
+    "description": "Esta es una instancia privada de Enclosed. Introduzca sus credenciales para poder crear notas.",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Iniciar sesión",
+    "errors": {
+      "invalid-credentials": "Correo electrónico o contraseña incorrectos.",
+      "unknown": "Ocurrió un error desconocido. Por favor, inténtelo de nuevo más tarde."
+    },
+    "footer": [
+      "¿No tienes una cuenta?",
+      "Contacta al propietario de la instancia."
+    ]
+  },
+  "create": {
+    "errors": {
+      "empty-note": "Por favor, introduzca el contenido de la nota o adjunte un archivo.",
+      "rate-limit": "Ha superado el límite de creación de notas. Por favor, inténtelo de nuevo más tarde.",
+      "too-large": "El contenido de la nota y los archivos adjuntos son demasiado grandes. Reduzca el tamaño e inténtelo de nuevo.",
+      "unauthorized": "No está autorizado para crear notas. Por favor, inicie sesión e inténtelo de nuevo.",
+      "unknown": "Ocurrió un error al crear la nota, por favor inténtelo de nuevo."
+    },
+    "share": {
+      "button": "Compartir nota",
+      "title": "Nota compartida",
+      "description": "Aquí tienes una nota compartida contigo."
+    },
+    "settings": {
+      "placeholder": "Escriba su nota aquí...",
+      "password": {
+        "label": "Contraseña de la nota",
+        "placeholder": "Contraseña..."
+      },
+      "expiration": "Plazo de expiración",
+      "delays": {
+        "1h": "1 hora",
+        "1d": "1 día",
+        "1w": "1 semana",
+        "1m": "1 mes"
+      },
+      "delete-after-reading": {
+        "label": "Eliminar después de leer",
+        "description": "Eliminar la nota después de leerla"
+      },
+      "attach-files": "Adjuntar archivos",
+      "drop-files": {
+        "title": "Suelte los archivos aquí",
+        "description": "Arrastre y suelte los archivos aquí para adjuntarlos a la nota"
+      },
+      "create": "Crear nota"
+    },
+    "success": {
+      "title": "Nota creada con éxito",
+      "description": "Su nota ha sido creada. Ahora puede compartirla utilizando el siguiente enlace.",
+      "with-deletion": "La nota se eliminará después de ser leída.",
+      "copy-link": "Copiar enlace",
+      "copy-success": "Enlace copiado"
+    }
+  },
+  "view": {
+    "note-content": "Contenido de la nota",
+    "download": "Descargar",
+    "download-all": "Descargar todos los archivos",
+    "request-password": {
+      "description": "Esta nota está protegida con contraseña. Introduzca la contraseña para desbloquearla.",
+      "form": {
+        "label": "Contraseña",
+        "placeholder": "Contraseña de la nota...",
+        "unlock-button": "Desbloquear nota",
+        "invalid": "La contraseña que ingresó es inválida o la URL de la nota es incorrecta."
+      }
+    },
+    "error": {
+      "invalid-url": {
+        "title": "URL de la nota inválido",
+        "description": "La URL de esta nota no es válida. Asegúrese de estar utilizando la URL correcta."
+      },
+      "rate-limit": {
+        "title": "Límite excedido",
+        "description": "Ha superado el límite para recuperar notas. Por favor, inténtelo de nuevo más tarde."
+      },
+      "unauthorized": {
+        "title": "No autorizado",
+        "description": "Esta nota es privada. Debe iniciar sesión para verla.",
+        "button": "Iniciar sesión"
+      },
+      "note-not-found": {
+        "title": "Nota no encontrada",
+        "description": "Esta nota no existe, ha expirado o ha sido eliminada."
+      },
+      "fetch-error": {
+        "title": "Ocurrió un error",
+        "description": "Ocurrió un error al recuperar la nota. Por favor, inténtelo de nuevo más tarde."
+      },
+      "decryption": {
+        "title": "Ocurrió un error",
+        "description": "Ocurrió un error al descifrar la nota. La URL puede ser inválida."
+      }
+    }
+  },
+  "copy": {
+    "label": "Copiar al portapapeles",
+    "success": "¡Copiado!"
+  }
+}
