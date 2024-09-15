@@ -24,7 +24,6 @@ This tool generates the value for the `AUTHENTICATION_USERS` environment variabl
 
 <CredentialInputs v-model="credentials" />
 
-
 ```txt-vue
 AUTHENTICATION_USERS={{ envValue }}
 ```

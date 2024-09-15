@@ -1,9 +1,10 @@
+import process from 'node:process';
 import { defineConfig } from 'vitepress';
 import { getPlausibleScripts } from './plausible';
 
 const basePath = process.env.DOCS_BASE_PATH; // undefined for root /
 
-const createAbsoluteUrl = (path: string) => 'https://enclosed.cc/' +  path.replace(/(^\/$)/g, '');
+const createAbsoluteUrl = (path: string) => `https://enclosed.cc/${path.replace(/(^\/$)/g, '')}`;
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -27,27 +28,25 @@ export default defineConfig({
     ['meta', { name: 'keywords', content: 'Enclosed, notes, secure, private, encrypted, self-hosted' }],
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     ['link', { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' }],
-    ['link', {rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png'}],
-    ['link', {rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png'}],
+    ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' }],
+    ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' }],
 
-    ['meta', {name: 'theme-color', content: '#ffffff'}],
+    ['meta', { name: 'theme-color', content: '#ffffff' }],
 
+    ['meta', { name: 'og:title', content: 'Enclosed documentation' }],
+    ['meta', { name: 'og:description', content: 'Send private and secure notes' }],
+    ['meta', { name: 'og:image', content: createAbsoluteUrl('og-image.png') }],
+    ['meta', { name: 'og:url', content: 'https://enclosed.cc' }],
+    ['meta', { name: 'og:type', content: 'website' }],
+    ['meta', { name: 'og:site_name', content: 'Enclosed' }],
+    ['meta', { name: 'og:locale', content: 'en_US' }],
 
-
-    ['meta', {name: 'og:title', content: 'Enclosed documentation'}],
-    ['meta', {name: 'og:description', content: 'Send private and secure notes'}],
-    ['meta', {name: 'og:image', content: createAbsoluteUrl('og-image.png')}],
-    ['meta', {name: 'og:url', content: 'https://enclosed.cc'}],
-    ['meta', {name: 'og:type', content: 'website'}],
-    ['meta', {name: 'og:site_name', content: 'Enclosed'}],
-    ['meta', {name: 'og:locale', content: 'en_US'}],
-
-    ['meta', {name: 'twitter:card', content: 'summary'}],
-    ['meta', {name: 'twitter:site', content: '@cthmsst'}],
-    ['meta', {name: 'twitter:creator', content: '@cthmsst'}],
-    ['meta', {name: 'twitter:title', content: 'Enclosed documentation'}],
-    ['meta', {name: 'twitter:description', content: 'Send private and secure notes'}],
-    ['meta', {name: 'twitter:image', content: createAbsoluteUrl('og-image.png')}],
+    ['meta', { name: 'twitter:card', content: 'summary' }],
+    ['meta', { name: 'twitter:site', content: '@cthmsst' }],
+    ['meta', { name: 'twitter:creator', content: '@cthmsst' }],
+    ['meta', { name: 'twitter:title', content: 'Enclosed documentation' }],
+    ['meta', { name: 'twitter:description', content: 'Send private and secure notes' }],
+    ['meta', { name: 'twitter:image', content: createAbsoluteUrl('og-image.png') }],
 
     ...getPlausibleScripts(),
   ],
@@ -90,10 +89,9 @@ export default defineConfig({
           { text: 'CLI', link: '/integrations/cli' },
           { text: 'NPM package', link: '/integrations/npm-package' },
           { text: 'Versioning', link: '/integrations/versioning' },
-        ]
+        ],
       },
     ],
-
 
     footer: {
       copyright: 'Copyright © 2024-present Corentin Thomasset',
@@ -134,4 +132,3 @@ export default defineConfig({
     },
   },
 });
- 

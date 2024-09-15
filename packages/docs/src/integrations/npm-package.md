@@ -1,7 +1,7 @@
 # NPM Package
 
 ::: warning
-This page is a work in progress. 
+This page is a work in progress.
 :::
 
 The Enclosed lib is available as an npm package. You can use it to create and manage Enclosed notes.
@@ -27,6 +27,3 @@ yarn global add @enclosed/lib
 ```bash
 pnpm add -g @enclosed/lib
 ```
-
-
-
