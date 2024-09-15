@@ -1,4 +1,4 @@
-import { config } from '../config/config';
+import { buildTimeConfig } from '../config/config.constants';
 
 export { buildDocUrl, joinUrlParts };
 
@@ -8,7 +8,7 @@ function joinUrlParts(...parts: string[]): string {
 
 function buildDocUrl({
   path,
-  baseUrl = config.documentationBaseUrl,
+  baseUrl = buildTimeConfig.documentationBaseUrl,
 }: {
   path: string;
   baseUrl?: string;

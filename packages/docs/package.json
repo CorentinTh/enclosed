@@ -18,6 +18,14 @@
   },
   "keywords": [],
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/lodash-es": "^4.17.12",
+    "figue": "^2.1.0",
+    "less": "^4.2.0",
+    "lodash-es": "^4.17.21",
     "vitepress": "^1.3.4"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3"
   }
 }

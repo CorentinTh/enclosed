@@ -13,7 +13,9 @@
     "node": ">=22.0.0"
   },
   "scripts": {
-    "release": "bumpp --commit --tag --push --recursive"
+    "release": "bumpp --commit --tag --push --recursive",
+    "docker:build": "docker build -t enclosed .",
+    "docker:run": "docker run -d -p 8788:8787 enclosed"
   },
   "keywords": [
     "note",

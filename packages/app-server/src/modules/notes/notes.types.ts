@@ -8,6 +8,7 @@ export type StoredNote = {
   serializationFormat: string;
   expirationDate: Date;
   deleteAfterReading: boolean;
+  isPublic: boolean;
 
   // compressionAlgorithm: string
   // keyDerivationAlgorithm: string;

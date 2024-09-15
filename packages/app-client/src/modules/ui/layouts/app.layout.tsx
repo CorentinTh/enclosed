@@ -1,5 +1,7 @@
 import type { Component, ParentComponent } from 'solid-js';
-import { config } from '@/modules/config/config';
+import { authStore } from '@/modules/auth/auth.store';
+import { buildTimeConfig } from '@/modules/config/config.constants';
+import { useConfig } from '@/modules/config/config.provider';
 import { buildDocUrl } from '@/modules/docs/docs.models';
 import { useNoteContext } from '@/modules/notes/notes.context';
 import { useThemeStore } from '@/modules/theme/theme.store';
@@ -12,6 +14,8 @@ export const Navbar: Component = () => {
   const themeStore = useThemeStore();
   const { triggerResetNoteForm } = useNoteContext();
   const navigate = useNavigate();
+
+  const { config } = useConfig();
 
   const newNoteClicked = () => {
     triggerResetNoteForm();
@@ -84,6 +88,16 @@ export const Navbar: Component = () => {
                 Support Enclosed
               </DropdownMenuItem>
 
+              {config.isAuthenticationRequired && authStore.getIsAuthenticated() && (
+                <>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem class="flex items-center gap-2 cursor-pointer" onClick={() => authStore.logout()}>
+                    <div class="i-tabler-logout text-lg"></div>
+                    Logout
+                  </DropdownMenuItem>
+                </>
+              )}
+
             </DropdownMenuContent>
 
           </DropdownMenu>
@@ -112,9 +126,9 @@ export const Footer: Component = () => {
       <div>
         Version
         {' '}
-        <Button variant="link" as="a" href={`https://github.com/CorentinTh/enclosed/tree/v${config.enclosedVersion}`} target="_blank" class="p-0 text-muted-foreground underline hover:text-primary transition font-normal h-auto">
+        <Button variant="link" as="a" href={`https://github.com/CorentinTh/enclosed/tree/v${buildTimeConfig.enclosedVersion}`} target="_blank" class="p-0 text-muted-foreground underline hover:text-primary transition font-normal h-auto">
           v
-          {config.enclosedVersion}
+          {buildTimeConfig.enclosedVersion}
         </Button>
 
       </div>

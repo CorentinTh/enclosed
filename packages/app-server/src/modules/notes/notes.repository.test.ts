@@ -161,6 +161,7 @@ describe('notes repository', () => {
         now: new Date('2024-01-01T00:00:00.000Z'),
         encryptionAlgorithm: 'aes-256-gcm',
         serializationFormat: 'cbor-array',
+        isPublic: true,
       });
 
       expect(noteId).to.eql('note-1');
@@ -172,6 +173,7 @@ describe('notes repository', () => {
         deleteAfterReading: false,
         encryptionAlgorithm: 'aes-256-gcm',
         serializationFormat: 'cbor-array',
+        isPublic: true,
       });
     });
   });

@@ -4,7 +4,7 @@ import { createServer } from '../../app/server';
 import { createMemoryStorage } from '../../storage/factories/memory.storage';
 
 describe('e2e', () => {
-  describe('create and view note', () => {
+  describe('create and view note with authentication disabled (public instance)', () => {
     test('a note can be created and viewed', async () => {
       const { storage } = createMemoryStorage();
 
@@ -119,6 +119,38 @@ describe('e2e', () => {
               path: 'encryptionAlgorithm',
             },
           ],
+        },
+      });
+    });
+
+    test('on a public instance we cannot create a non-public note', async () => {
+      const { storage } = createMemoryStorage();
+
+      const { app } = createServer({
+        storageFactory: () => ({ storage }),
+      });
+
+      const response = await app.request(
+        '/api/notes',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            payload: '<encrypted-content>',
+            deleteAfterReading: false,
+            ttlInSeconds: 600,
+            encryptionAlgorithm: 'aes-256-gcm',
+            serializationFormat: 'cbor-array',
+            isPublic: false, // <- non-public note
+          }),
+          headers: new Headers({ 'Content-Type': 'application/json' }),
+        },
+      );
+
+      expect(response.status).to.eql(403);
+      expect(await response.json()).to.eql({
+        error: {
+          code: 'note.cannot_create_private_note_on_public_instance',
+          message: 'Cannot create private note on public instance',
         },
       });
     });

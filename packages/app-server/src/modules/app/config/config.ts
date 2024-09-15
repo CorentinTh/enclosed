@@ -76,7 +76,7 @@ export const configDefinition = {
     driverConfig: {
       fsLite: {
         path: {
-          doc: '(only in node env) The path to the directory where the data will be stored',
+          doc: 'The path to the directory where the data will be stored (only in node env)',
           schema: z.string(),
           default: './.data',
           env: 'STORAGE_DRIVER_FS_LITE_PATH',
@@ -84,12 +84,71 @@ export const configDefinition = {
       },
       cloudflareKVBinding: {
         bindingName: {
-          doc: '(only in cloudflare env) The name of the Cloudflare KV binding to use',
+          doc: 'The name of the Cloudflare KV binding to use (only in cloudflare env)',
           schema: z.string(),
           default: 'notes',
           env: 'STORAGE_DRIVER_CLOUDFLARE_KV_BINDING',
         },
       },
+    },
+  },
+  public: {
+    isAuthenticationRequired: {
+      doc: 'Whether to require authentication to access the public api',
+      schema: z
+        .string()
+        .trim()
+        .toLowerCase()
+        .transform(x => x === 'true')
+        .pipe(z.boolean()),
+      default: 'false',
+      env: 'PUBLIC_IS_AUTHENTICATION_REQUIRED',
+    },
+  },
+  authentication: {
+    jwtSecret: {
+      doc: 'The secret used to sign the JWT tokens',
+      schema: z.string(),
+      default: 'change-me',
+      env: 'AUTHENTICATION_JWT_SECRET',
+    },
+    jwtDurationSeconds: {
+      doc: 'The duration in seconds for which the JWT token is valid',
+      schema: z.coerce.number().int().positive(),
+      default: 60 * 60 * 24 * 7, // 1 week
+      env: 'AUTHENTICATION_JWT_DURATION_SECONDS',
+    },
+    authUsers: {
+      doc: 'The list of users allowed to authenticate. Comma-separated list of email and bcrypt password hash, like: `email1:passwordHash1,email2:passwordHash2`. Easily generate the value for this env variable here: https://docs.enclosed.cc/self-hosting/users-authentication-key-generator',
+      schema: z
+        .string()
+        .transform((value) => {
+          if (!value) {
+            return [];
+          }
+
+          return value
+            .split(',')
+            .map((user) => {
+              const [email, passwordHash] = user.split(':');
+              return { email, passwordHash };
+            });
+        })
+        .refine(
+          (value) => {
+            const result = z.array(z.object({
+              email: z.string().email(),
+              passwordHash: z.string(),
+            })).safeParse(value);
+
+            return result.success;
+          },
+          {
+            message: 'AUTHENTICATION_USERS: Invalid format. Must be a comma-separated list of email:passwordHash',
+          },
+        ),
+      default: '',
+      env: 'AUTHENTICATION_USERS',
     },
   },
 } as const satisfies ConfigDefinition;

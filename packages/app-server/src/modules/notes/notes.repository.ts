@@ -37,6 +37,7 @@ async function saveNote(
     now = new Date(),
     encryptionAlgorithm,
     serializationFormat,
+    isPublic,
   }:
   {
     payload: string;
@@ -47,6 +48,7 @@ async function saveNote(
     now?: Date;
     encryptionAlgorithm: string;
     serializationFormat: string;
+    isPublic: boolean;
   },
 ) {
   const noteId = generateNoteId();
@@ -60,6 +62,7 @@ async function saveNote(
       deleteAfterReading,
       encryptionAlgorithm,
       serializationFormat,
+      isPublic,
     },
     {
       // Some storage drivers have a different API for setting TTLs

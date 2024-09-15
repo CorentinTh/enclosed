@@ -37,6 +37,7 @@ describe('notes models', () => {
         deleteAfterReading: false,
         serializationFormat: 'cbor-array',
         encryptionAlgorithm: 'aes-256-gcm',
+        isPublic: false,
       };
 
       expect(formatNoteForApi({ note: storedNote })).to.eql({
