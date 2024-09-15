@@ -1,5 +1,6 @@
 import { authStore } from '@/modules/auth/auth.store';
 import { getFileIcon } from '@/modules/files/files.models';
+import { useI18n } from '@/modules/i18n/i18n.provider';
 import { isHttpErrorWithCode, isRateLimitError } from '@/modules/shared/http/http-errors';
 import { cn } from '@/modules/shared/style/cn';
 import { CopyButton } from '@/modules/shared/utils/copy';
@@ -16,6 +17,7 @@ import { fetchNoteById } from '../notes.services';
 
 const RequestPasswordForm: Component<{ onPasswordEntered: (args: { password: string }) => void; getIsPasswordInvalid: () => boolean; setIsPasswordInvalid: (value: boolean) => void }> = (props) => {
   const [getPassword, setPassword] = createSignal('');
+  const { t } = useI18n();
 
   function updatePassword(text: string) {
     setPassword(text);
@@ -27,7 +29,7 @@ const RequestPasswordForm: Component<{ onPasswordEntered: (args: { password: str
       <Card class="w-full max-w-sm mx-auto">
         <CardHeader>
           <CardDescription>
-            This note is password protected. Please enter the password to unlock it.
+            {t('view.request-password.description')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -38,23 +40,19 @@ const RequestPasswordForm: Component<{ onPasswordEntered: (args: { password: str
           >
             <div>
               <TextFieldRoot>
-                <TextFieldLabel>Password</TextFieldLabel>
-                <TextField type="password" placeholder="Note password..." value={getPassword()} onInput={e => updatePassword(e.currentTarget.value)} autofocus />
+                <TextFieldLabel>{t('view.request-password.form.label')}</TextFieldLabel>
+                <TextField type="password" placeholder={t('view.request-password.form.placeholder')} value={getPassword()} onInput={e => updatePassword(e.currentTarget.value)} autofocus />
               </TextFieldRoot>
             </div>
-            <Button
-              class="w-full mt-4"
-              type="submit"
-            >
+            <Button class="w-full mt-4" type="submit">
               <div class="i-tabler-lock-open mr-2 text-lg"></div>
-              Unlock note
+              {t('view.request-password.form.unlock-button')}
             </Button>
-
           </form>
           <Show when={props.getIsPasswordInvalid()}>
             <Alert class="mt-4" variant="destructive">
               <AlertDescription>
-                The password you entered is invalid or the note URL is incorrect.
+                {t('view.request-password.form.invalid')}
               </AlertDescription>
             </Alert>
           </Show>
@@ -78,6 +76,7 @@ export const ViewNotePage: Component = () => {
   const [getEncryptionKey, setEncryptionKey] = createSignal('');
   const [getIsPasswordProtected, setIsPasswordProtected] = createSignal(false);
 
+  const { t } = useI18n();
   const navigate = useNavigate();
 
   onMount(async () => {
@@ -85,8 +84,8 @@ export const ViewNotePage: Component = () => {
 
     if (parsingError) {
       setError({
-        title: 'Invalid note URL',
-        description: 'This note URL is invalid. Please make sure you are using the correct URL.',
+        title: t('view.error.invalid-url.title'),
+        description: t('view.error.invalid-url.description'),
       });
       return;
     }
@@ -98,8 +97,8 @@ export const ViewNotePage: Component = () => {
 
     if (!encryptionKey) {
       setError({
-        title: 'Invalid note URL',
-        description: 'This note URL is invalid. Please make sure you are using the correct URL.',
+        title: t('view.error.invalid-url.title'),
+        description: t('view.error.invalid-url.description'),
       });
       return;
     }
@@ -108,16 +107,16 @@ export const ViewNotePage: Component = () => {
 
     if (isRateLimitError({ error: fetchError })) {
       setError({
-        title: 'Rate limit exceeded',
-        description: 'You have exceeded the rate limit for fetching notes. Please try again later.',
+        title: t('view.error.rate-limit.title'),
+        description: t('view.error.rate-limit.description'),
       });
       return;
     }
 
     if (isHttpErrorWithCode({ error: fetchError, code: 'auth.unauthorized' })) {
       setError({
-        title: 'Unauthorized',
-        description: 'This note is private. You need to be logged in to view it.',
+        title: t('view.error.unauthorized.title'),
+        description: t('view.error.unauthorized.description'),
         action: (
           <Button
             onClick={() => {
@@ -127,7 +126,7 @@ export const ViewNotePage: Component = () => {
             variant="secondary"
           >
             <div class="i-tabler-login-2 mr-2 text-lg"></div>
-            Log in
+            {t('view.error.unauthorized.button')}
           </Button>
         ),
       });
@@ -136,16 +135,16 @@ export const ViewNotePage: Component = () => {
 
     if (isHttpErrorWithCode({ error: fetchError, code: 'note.not_found' })) {
       setError({
-        title: 'Note not found',
-        description: 'This note does not exist, has expired, or has been deleted.',
+        title: t('view.error.note-not-found.title'),
+        description: t('view.error.note-not-found.description'),
       });
       return;
     }
 
     if (fetchError) {
       setError({
-        title: 'An error occurred',
-        description: 'An error occurred while fetching the note. Please try again later.',
+        title: t('view.error.fetch-error.title'),
+        description: t('view.error.fetch-error.description'),
       });
       return;
     }
@@ -169,8 +168,8 @@ export const ViewNotePage: Component = () => {
 
     if (decryptionError) {
       setError({
-        title: 'An error occurred',
-        description: 'An error occurred while decrypting the note. The url may be invalid.',
+        title: t('view.error.decryption.title'),
+        description: t('view.error.decryption.description'),
       });
       return;
     }
@@ -264,7 +263,7 @@ export const ViewNotePage: Component = () => {
               <div class="flex-1 mb-4">
                 <div class="flex items-center gap-2 mb-4 justify-between">
                   <div class="text-muted-foreground">
-                    Note content
+                    {t('view.note-content')}
                   </div>
                   <CopyButton text={getDecryptedNote()!} variant="secondary" />
                 </div>
@@ -296,7 +295,7 @@ export const ViewNotePage: Component = () => {
                         ? <div class="i-tabler-loader-2 mr-2 text-lg animate-spin"></div>
                         : <div class="i-tabler-file-zip mr-2 text-lg"></div>}
 
-                      Download all files
+                      {t('view.download-all')}
                     </Button>
                   )}
                 </div>
@@ -318,7 +317,7 @@ export const ViewNotePage: Component = () => {
                           <div class="ml-auto">
                             <Button variant="secondary" onClick={() => downloadFile({ file })}>
                               <div class="i-tabler-download mr-2 text-lg"></div>
-                              Download
+                              {t('view.download')}
                             </Button>
                           </div>
                         </CardContent>
@@ -326,11 +325,8 @@ export const ViewNotePage: Component = () => {
                     ))
                   }
                 </div>
-
               </div>
-
             )}
-
           </div>
         </Match>
       </Switch>

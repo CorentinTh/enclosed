@@ -3,7 +3,9 @@ import { authStore } from '@/modules/auth/auth.store';
 import { buildTimeConfig } from '@/modules/config/config.constants';
 import { useConfig } from '@/modules/config/config.provider';
 import { buildDocUrl } from '@/modules/docs/docs.models';
+import { useI18n } from '@/modules/i18n/i18n.provider';
 import { useNoteContext } from '@/modules/notes/notes.context';
+import { cn } from '@/modules/shared/style/cn';
 import { useThemeStore } from '@/modules/theme/theme.store';
 import { Button } from '@/modules/ui/components/button';
 import { DropdownMenu } from '@kobalte/core/dropdown-menu';
@@ -14,6 +16,7 @@ export const Navbar: Component = () => {
   const themeStore = useThemeStore();
   const { triggerResetNoteForm } = useNoteContext();
   const navigate = useNavigate();
+  const { t, getLocale, setLocale, locales } = useI18n();
 
   const { config } = useConfig();
 
@@ -27,18 +30,18 @@ export const Navbar: Component = () => {
       <div class="flex items-center justify-between px-6 py-3 mx-auto max-w-1200px">
         <div class="flex items-baseline gap-4">
           <Button variant="link" class="text-lg font-semibold border-b border-transparent hover:(no-underline !border-border) h-auto py-0 px-1 ml--1 rounded-none !transition-border-color-250" onClick={newNoteClicked}>
-            Enclosed
+            {t('app.title')}
           </Button>
 
           <span class="text-muted-foreground hidden sm:block">
-            Send private and secure notes
+            {t('app.description')}
           </span>
         </div>
 
         <div class="flex gap-2 items-center">
           <Button variant="secondary" onClick={newNoteClicked}>
             <div class="i-tabler-plus mr-1 text-muted-foreground"></div>
-            New note
+            {t('navbar.new-note')}
           </Button>
 
           <Button variant="ghost" class="text-lg px-0 size-9" as={A} href="https://github.com/CorentinTh/enclosed" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">
@@ -52,16 +55,36 @@ export const Navbar: Component = () => {
             <DropdownMenuContent class="w-42">
               <DropdownMenuItem onClick={() => themeStore.setColorMode({ mode: 'light' })} class="flex items-center gap-2 cursor-pointer">
                 <div class="i-tabler-sun text-lg"></div>
-                Light mode
+                {t('navbar.theme.light-mode')}
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => themeStore.setColorMode({ mode: 'dark' })} class="flex items-center gap-2 cursor-pointer">
                 <div class="i-tabler-moon text-lg"></div>
-                Dark mode
+                {t('navbar.theme.dark-mode')}
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => themeStore.setColorMode({ mode: 'system' })} class="flex items-center gap-2 cursor-pointer">
                 <div class="i-tabler-device-laptop text-lg"></div>
-                System
+                {t('navbar.theme.system-mode')}
               </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9" variant="ghost" aria-label="Language">
+              <div class="i-custom-language size-4"></div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              {locales.map(locale => (
+                <DropdownMenuItem onClick={() => setLocale(locale.key)} class={cn('flex items-center gap-2 cursor-pointer', { 'font-semibold': getLocale() === locale.key })}>
+                  {locale.name}
+                </DropdownMenuItem>
+              ))}
+
+              <DropdownMenuSeparator />
+
+              <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" rel="noopener noreferrer" href="https://github.com/CorentinTh/enclosed/tree/main/packages/app-client/src/locales">
+                {t('navbar.settings.contribute-to-i18n')}
+              </DropdownMenuItem>
+
             </DropdownMenuContent>
           </DropdownMenu>
 
@@ -73,19 +96,22 @@ export const Navbar: Component = () => {
             <DropdownMenuContent class="w-46">
               <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" href={buildDocUrl({ path: '/' })}>
                 <div class="i-tabler-file-text text-lg"></div>
-                Documentation
+                {t('navbar.settings.documentation')}
               </DropdownMenuItem>
 
               <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" href={buildDocUrl({ path: '/integrations/cli' })}>
                 <div class="i-tabler-terminal text-lg"></div>
-                Enclosed CLI
+                {t('navbar.settings.cli')}
               </DropdownMenuItem>
 
-              <DropdownMenuSeparator />
+              <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" href="https://github.com/CorentinTh/enclosed/issues/new/choose" rel="noopener noreferrer">
+                <div class="i-tabler-bug text-lg"></div>
+                {t('navbar.settings.report-bug')}
+              </DropdownMenuItem>
 
               <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" href="https://buymeacoffee.com/cthmsst" rel="noopener noreferrer">
                 <div class="i-tabler-pig-money text-lg"></div>
-                Support Enclosed
+                {t('navbar.settings.support')}
               </DropdownMenuItem>
 
               {config.isAuthenticationRequired && authStore.getIsAuthenticated() && (
@@ -93,7 +119,7 @@ export const Navbar: Component = () => {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem class="flex items-center gap-2 cursor-pointer" onClick={() => authStore.logout()}>
                     <div class="i-tabler-logout text-lg"></div>
-                    Logout
+                    {t('navbar.settings.logout')}
                   </DropdownMenuItem>
                 </>
               )}
@@ -108,23 +134,25 @@ export const Navbar: Component = () => {
 };
 
 export const Footer: Component = () => {
+  const { t } = useI18n();
+
   return (
     <div class="bg-surface border-t border-border py-6 px-6 text-center text-muted-foreground flex flex-col sm:flex-row items-center justify-center gap-1">
       <div>
-        Crafted by
+        {t('footer.crafted-by')}
         {' '}
         <Button variant="link" as="a" href="https://corentin.tech" target="_blank" class="p-0 text-muted-foreground underline hover:text-primary transition font-normal h-auto">Corentin Thomasset</Button>
         .
       </div>
       <div>
-        Source code available on
+        {t('footer.source-code')}
         {' '}
-        <Button variant="link" as="a" href="https://github.com/CorentinTh/enclosed" target="_blank" class="p-0 text-muted-foreground underline hover:text-primary transition font-normal h-auto">GitHub</Button>
+        <Button variant="link" as="a" href="https://github.com/CorentinTh/enclosed" target="_blank" class="p-0 text-muted-foreground underline hover:text-primary transition font-normal h-auto">{t('footer.github')}</Button>
         .
       </div>
 
       <div>
-        Version
+        {t('footer.version')}
         {' '}
         <Button variant="link" as="a" href={`https://github.com/CorentinTh/enclosed/tree/v${buildTimeConfig.enclosedVersion}`} target="_blank" class="p-0 text-muted-foreground underline hover:text-primary transition font-normal h-auto">
           v

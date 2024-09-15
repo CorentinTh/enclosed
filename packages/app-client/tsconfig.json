@@ -9,6 +9,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
+    "resolveJsonModule": true,
     "types": ["vite/client"],
     "strict": true,
     "noEmit": true,

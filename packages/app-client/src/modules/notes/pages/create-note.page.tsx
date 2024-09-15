@@ -1,6 +1,7 @@
 import { authStore } from '@/modules/auth/auth.store';
 import { useConfig } from '@/modules/config/config.provider';
 import { getFileIcon } from '@/modules/files/files.models';
+import { useI18n } from '@/modules/i18n/i18n.provider';
 import { isHttpErrorWithCode, isRateLimitError } from '@/modules/shared/http/http-errors';
 import { cn } from '@/modules/shared/style/cn';
 import { CopyButton } from '@/modules/shared/utils/copy';
@@ -28,6 +29,8 @@ export const CreateNotePage: Component = () => {
   const [getTtlInSeconds, setTtlInSeconds] = createSignal(3600);
   const [getDeleteAfterReading, setDeleteAfterReading] = createSignal(false);
   const [getUploadedFiles, setUploadedFiles] = createSignal<File[]>([]);
+
+  const { t } = useI18n();
 
   const { config } = useConfig();
   const navigate = useNavigate();
@@ -61,7 +64,7 @@ export const CreateNotePage: Component = () => {
 
   const createNote = async () => {
     if (!getContent() && getUploadedFiles().length === 0) {
-      setError({ message: 'Please enter a note content or attach a file.' });
+      setError({ message: t('create.errors.empty-note') });
       return;
     }
 
@@ -83,21 +86,21 @@ export const CreateNotePage: Component = () => {
     }
 
     if (isRateLimitError({ error })) {
-      setError({ message: 'You have exceeded the rate limit for creating notes. Please try again later.' });
+      setError({ message: t('create.errors.rate-limit') });
       return;
     }
 
     if (isHttpErrorWithCode({ error, code: 'note.payload_too_large' })) {
-      setError({ message: 'The note content and attachments are too large. Please reduce the size and try again.' });
+      setError({ message: t('create.errors.too-large') });
       return;
     }
 
     if (isHttpErrorWithCode({ error, code: 'auth.unauthorized' })) {
-      setError({ message: 'You are not authorized to create notes. Please login and try again.' });
+      setError({ message: t('create.errors.unauthorized') });
       return;
     }
 
-    setError({ message: 'An error occurred while creating the note, please try again.', details: error.message });
+    setError({ message: t('create.errors.unknown'), details: error.message });
   };
 
   function updateContent(text: string) {
@@ -114,8 +117,8 @@ export const CreateNotePage: Component = () => {
 
     try {
       await navigator.share({
-        title: 'Shared note',
-        text: 'Here is a note for you',
+        title: t('create.share.title'),
+        text: t('create.share.description'),
         url: getNoteUrl(),
       });
     } catch (error) {
@@ -128,28 +131,32 @@ export const CreateNotePage: Component = () => {
       <Switch>
         <Match when={!getIsNoteCreated()}>
           <TextFieldRoot class="w-full ">
-            <TextArea placeholder="Type your note here." class="flex-1 p-4 min-h-300px sm:min-h-700px" value={getContent()} onInput={e => updateContent(e.currentTarget.value)} />
+            <TextArea placeholder={t('create.settings.placeholder')} class="flex-1 p-4 min-h-300px sm:min-h-700px" value={getContent()} onInput={e => updateContent(e.currentTarget.value)} />
           </TextFieldRoot>
 
           <div class="w-full sm:w-320px flex flex-col gap-4 flex-shrink-0">
             <TextFieldRoot class="w-full">
-              <TextFieldLabel>Note password</TextFieldLabel>
+              <TextFieldLabel>
+                {t('create.settings.password.label')}
+              </TextFieldLabel>
               <NotePasswordField getPassword={getPassword} setPassword={setPassword} />
 
             </TextFieldRoot>
 
             <TextFieldRoot class="w-full">
-              <TextFieldLabel>Expiration delay</TextFieldLabel>
+              <TextFieldLabel>
+                {t('create.settings.expiration')}
+              </TextFieldLabel>
               <Tabs
                 value={getTtlInSeconds().toString()}
                 onChange={(value: string) => setTtlInSeconds(Number(value))}
               >
                 <TabsList>
                   <TabsIndicator />
-                  <TabsTrigger value="3600">1 hour</TabsTrigger>
-                  <TabsTrigger value="86400">1 day</TabsTrigger>
-                  <TabsTrigger value="604800">1 week</TabsTrigger>
-                  <TabsTrigger value="2592000">1 month</TabsTrigger>
+                  <TabsTrigger value="3600">{t('create.settings.delays.1h')}</TabsTrigger>
+                  <TabsTrigger value="86400">{t('create.settings.delays.1d')}</TabsTrigger>
+                  <TabsTrigger value="604800">{t('create.settings.delays.1w')}</TabsTrigger>
+                  <TabsTrigger value="2592000">{t('create.settings.delays.1m')}</TabsTrigger>
                 </TabsList>
               </Tabs>
             </TextFieldRoot>
@@ -173,13 +180,15 @@ export const CreateNotePage: Component = () => {
             )} */}
 
             <TextFieldRoot class="w-full">
-              <TextFieldLabel>Delete after reading</TextFieldLabel>
+              <TextFieldLabel>
+                {t('create.settings.delete-after-reading.label')}
+              </TextFieldLabel>
               <SwitchUiComponent class="flex items-center space-x-2" checked={getDeleteAfterReading()} onChange={setDeleteAfterReading}>
                 <SwitchControl>
                   <SwitchThumb />
                 </SwitchControl>
                 <SwitchLabel class="text-sm text-muted-foreground">
-                  Delete the note after reading
+                  {t('create.settings.delete-after-reading.description')}
                 </SwitchLabel>
               </SwitchUiComponent>
             </TextFieldRoot>
@@ -187,12 +196,12 @@ export const CreateNotePage: Component = () => {
             <div>
               <FileUploaderButton variant="secondary" class="mt-2 w-full" multiple onFilesUpload={({ files }) => setUploadedFiles(prevFiles => [...prevFiles, ...files])}>
                 <div class="i-tabler-upload mr-2 text-lg text-muted-foreground"></div>
-                Attach files
+                {t('create.settings.attach-files')}
               </FileUploaderButton>
 
               <Button class="mt-2 w-full" onClick={createNote}>
                 <div class="i-tabler-plus mr-2 text-lg text-muted-foreground"></div>
-                Create note
+                {t('create.settings.create')}
               </Button>
             </div>
 
@@ -203,7 +212,6 @@ export const CreateNotePage: Component = () => {
                   <div class="truncate" title={file.name}>
                     {file.name}
                   </div>
-                  {/* <div class="text-muted-foreground text-sm">{(file.size)}</div> */}
 
                   <Button class="size-9 ml-auto" variant="ghost" onClick={() => setUploadedFiles(prevFiles => prevFiles.filter(f => f !== file))}>
                     <div class="i-tabler-x text-lg text-muted-foreground cursor-pointer flex-shrink-0"></div>
@@ -230,12 +238,16 @@ export const CreateNotePage: Component = () => {
           <div class="flex flex-col justify-center items-center gap-2 w-full mt-12  mx-auto">
             <div class="i-tabler-circle-check text-primary text-5xl"></div>
             <div class="text-xl font-semibold">
-              Note created successfully
+              {t('create.success.title')}
             </div>
 
             <div class="text-muted-foreground text-center max-w-400px">
-              Your note has been created. You can now share it using the following link.
-              {getDeleteAfterReading() && (' This note will be deleted after reading.')}
+              {
+                [
+                  t('create.success.description'),
+                  getDeleteAfterReading() && t('create.success.with-deletion'),
+                ].filter(Boolean).join(' ')
+              }
 
             </div>
 
@@ -250,14 +262,14 @@ export const CreateNotePage: Component = () => {
                 class="flex-shrink-0 w-full sm:w-auto"
                 autofocus
                 text={getNoteUrl()}
-                label="Copy link"
-                copiedLabel="Link copied"
+                label={t('create.success.copy-link')}
+                copiedLabel={t('create.success.copy-success')}
               />
 
               <Show when={getIsShareApiSupported()}>
                 <Button variant="secondary" class="flex-shrink-0 w-full sm:w-auto" onClick={shareNote}>
                   <div class="i-tabler-share mr-2 text-lg"></div>
-                  Share
+                  {t('create.share.button')}
                 </Button>
               </Show>
             </div>
