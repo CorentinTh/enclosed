@@ -26,5 +26,8 @@ jobs:
         run: pnpm i
         working-directory: ./
 
+      - name: Run linters
+        run: pnpm lint
+
       - name: Build the lib
         run: pnpm build

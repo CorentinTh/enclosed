@@ -12,7 +12,6 @@ Below is a sample `docker-compose.yml` file that you can use to deploy Enclosed.
 
 <<< @/../../../docker-compose.yml
 
-
 ### Explanation of the Configuration
 
 - **version**: Specifies the version of Docker Compose file format.

@@ -1,12 +1,11 @@
 import type { ConfigDefinition, ConfigDefinitionElement } from 'figue';
 import { isArray, isEmpty, isNil } from 'lodash-es';
+import { createMarkdownRenderer, type SiteConfig } from 'vitepress';
+
 import { configDefinition } from '../../../app-server/src/modules/app/config/config';
 
-import { createMarkdownRenderer, type SiteConfig } from 'vitepress'
-
-const config = globalThis.VITEPRESS_CONFIG as SiteConfig
-const md = await createMarkdownRenderer(config.srcDir, config.markdown, config.site.base, config.logger)
-
+const config = globalThis.VITEPRESS_CONFIG as SiteConfig;
+const md = await createMarkdownRenderer(config.srcDir, config.markdown, config.site.base, config.logger);
 
 function walk(configDefinition: ConfigDefinition, path: string[] = []): (ConfigDefinitionElement & { path: string[] })[] {
   return Object
@@ -22,32 +21,31 @@ function walk(configDefinition: ConfigDefinition, path: string[] = []): (ConfigD
 
 const configDetails = walk(configDefinition);
 
-function formatDoc(doc:string|undefined):string {
-  const coerced = (doc ?? '').trim()
+function formatDoc(doc: string | undefined): string {
+  const coerced = (doc ?? '').trim();
 
   if (coerced.endsWith('.')) {
-    return coerced
+    return coerced;
   }
 
-  return coerced + '.'
+  return `${coerced}.`;
 }
 
 const rows = configDetails
   .filter(({ path }) => path[0] !== 'env')
   .map(({ doc, default: defaultValue, env }) => {
-    const isEmptyDefaultValue = isNil(defaultValue) || (isArray(defaultValue) && isEmpty(defaultValue)) || defaultValue === ''
+    const isEmptyDefaultValue = isNil(defaultValue) || (isArray(defaultValue) && isEmpty(defaultValue)) || defaultValue === '';
 
-    const rawDocumentation = formatDoc(doc) + (isEmptyDefaultValue ? '' : ` Default value: \`${defaultValue}\`.`)
+    const rawDocumentation = formatDoc(doc) + (isEmptyDefaultValue ? '' : ` Default value: \`${defaultValue}\`.`);
 
     return {
-      env: env ,
+      env,
       documentation: md.render(rawDocumentation),
     };
   });
 
-
 export default {
   async load() {
-      return rows
-  }
-}
+    return rows;
+  },
+};

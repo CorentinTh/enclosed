@@ -1,7 +1,7 @@
 {
   "name": "@enclosed/docs",
-  "version": "1.5.1",
   "type": "module",
+  "version": "1.5.1",
   "packageManager": "pnpm@9.10.0",
   "description": "Documentation website for Enclosed.",
   "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
@@ -10,22 +10,27 @@
     "type": "git",
     "url": "https://github.com/CorentinTh/enclosed"
   },
+  "keywords": [],
   "main": "index.js",
   "scripts": {
     "dev": "vitepress dev --port 3001",
     "build": "vitepress build",
-    "preview": "vitepress preview"
-  },
-  "keywords": [],
-  "devDependencies": {
-    "@types/bcryptjs": "^2.4.6",
-    "@types/lodash-es": "^4.17.12",
-    "figue": "^2.1.0",
-    "less": "^4.2.0",
-    "lodash-es": "^4.17.21",
-    "vitepress": "^1.3.4"
+    "preview": "vitepress preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "dependencies": {
     "bcryptjs": "^2.4.3"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^3.0.0",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/lodash-es": "^4.17.12",
+    "eslint": "^9.10.0",
+    "figue": "^2.1.0",
+    "less": "^4.2.0",
+    "lodash-es": "^4.17.21",
+    "typescript": "^5.6.2",
+    "vitepress": "^1.3.4"
   }
 }
