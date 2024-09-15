@@ -27,6 +27,9 @@ function setupLoginRoute({ app }: { app: ServerInstance }) {
       const { user } = getUserByEmail({ email });
 
       if (!user) {
+        // This is a security measure to prevent timing attacks and don't leak the existence of the user
+        await arePasswordsMatching({ password, passwordHash: 'dummy' });
+
         throw createUnauthorizedError();
       }
 
@@ -38,9 +41,7 @@ function setupLoginRoute({ app }: { app: ServerInstance }) {
 
       const { token } = await createJwtToken({
         jwtSecret: config.authentication.jwtSecret,
-        payload: {
-          exp: Math.floor(Date.now() / 1000) + config.authentication.jwtDurationSeconds,
-        },
+        durationSec: config.authentication.jwtDurationSeconds,
       });
 
       return context.json({

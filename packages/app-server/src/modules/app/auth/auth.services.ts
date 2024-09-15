@@ -1,4 +1,3 @@
-import type { JWTPayload } from 'hono/utils/jwt/types';
 import bcrypt from 'bcryptjs';
 import { sign, verify } from 'hono/jwt';
 
@@ -8,8 +7,14 @@ async function arePasswordsMatching({ password, passwordHash }: { password: stri
   return await bcrypt.compare(password, passwordHash);
 }
 
-async function createJwtToken({ jwtSecret, payload = {} }: { jwtSecret: string; payload?: JWTPayload }) {
-  const token = await sign(payload, jwtSecret, 'HS256');
+async function createJwtToken({ jwtSecret, durationSec }: { jwtSecret: string; durationSec?: number }) {
+  const token = await sign(
+    {
+      ...(durationSec ? { exp: Math.floor(Date.now() / 1000) + durationSec } : {}),
+    },
+    jwtSecret,
+    'HS256',
+  );
 
   return {
     token,
