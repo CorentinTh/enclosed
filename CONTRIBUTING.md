@@ -4,7 +4,7 @@ First off, thanks for taking the time to contribute to Enclosed! We welcome cont
 
 ## Code of Conduct
 
-This project adheres to the [Contributor Covenant](https://www.contributor-covenant.org/). By participating, you are expected to uphold this code. Please report unacceptable behavior to corentinth@proton.me
+This project adheres to the [Contributor Covenant](https://www.contributor-covenant.org/). By participating, you are expected to uphold this code. Please report unacceptable behavior to <corentinth@proton.me>
 
 ## How Can I Contribute?
 
@@ -17,6 +17,7 @@ If you find a bug, have a feature request, or need help, feel free to open an is
 We follow a **GitHub Flow** model where all PRs should target the `main` branch, which is continuously deployed to production.
 
 **Guidelines for submitting PRs:**
+
 - Each PR should be small and atomic. Please avoid solving multiple unrelated issues in a single PR.
 - Ensure that the **CI is green** before submitting. Some of the following checks are automatically run for each package: linting, type checking, testing, and building.
 - PRs without a corresponding issue are welcome.
@@ -34,6 +35,16 @@ We follow a **GitHub Flow** model where all PRs should target the `main` branch,
 
 We use **[Conventional Commits](https://www.conventionalcommits.org/)** to keep commit messages consistent and meaningful. Please follow these guidelines when writing commit messages. While you can structure commits however you like, PRs will be squashed on merge.
 
+## i18n
+
+### Adding a New Language
+
+To contribute to the translation of the app, you can add a new language file in the [`packages/app-client/src/locales`](./packages/app-client/src/locales) directory. The file should be named according to the language code (e.g., `fr.json` for French). You can then add the new language to the `locales` array in the [`packages/app-client/src/modules/i18n/i18n.provider.tsx`](./packages/app-client/src/modules/i18n/i18n.provider.tsx) file.
+
+### Updating an Existing Language
+
+If you want to update an existing language file, you can do so directly in the corresponding JSON file in the [`packages/app-client/src/locales`](./packages/app-client/src/locales) directory.
+
 ## Development Setup
 
 ### Local Environment Setup
@@ -41,23 +52,27 @@ We use **[Conventional Commits](https://www.conventionalcommits.org/)** to keep 
 We recommend running the app locally for development. Follow these steps:
 
 1. Clone the repository and navigate inside the project directory.
+
    ```bash
    git clone https://github.com/CorentinTh/enclosed.git
    cd enclosed
    ```
 
 2. Install dependencies:
+
    ```bash
    pnpm install
    ```
 
 3. Start the development server for the backend:
+
    ```bash
    cd packages/app-server
    pnpm dev
    ```
 
 4. Start the frontend:
+
    ```bash
    cd packages/app-client
    pnpm dev
@@ -67,14 +82,16 @@ We recommend running the app locally for development. Follow these steps:
 
 ### Testing
 
-We use **Vitest** for testing. Each package comes with its own testing commands. 
+We use **Vitest** for testing. Each package comes with its own testing commands.
 
 - To run the tests for any package:
+
    ```bash
    pnpm test
    ```
 
 - To run tests in watch mode:
+
    ```bash
    pnpm test:watch
    ```
@@ -88,11 +105,13 @@ If your code changes affect the documentation, you must update the docs. The doc
 To start the documentation server for local development:
 
 1. Navigate to the `packages/docs` directory:
+
    ```bash
    cd packages/docs
    ```
 
 2. Start the documentation server:
+
    ```bash
    pnpm dev
    ```
@@ -112,4 +131,3 @@ Look out for issues tagged as **good first issue** for tasks that are well-suite
 ## License
 
 By contributing, you agree that your contributions will be licensed under the Apache 2.0 License, the same as the project itself.
-
