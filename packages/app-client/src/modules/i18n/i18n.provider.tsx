@@ -20,6 +20,11 @@ const locales = [
     file: 'fr',
     name: 'Français',
   },
+  {
+    key: 'es',
+    file: 'es',
+    name: 'Español',
+  },
 ] as const;
 
 type Locale = typeof locales[number]['key'];
