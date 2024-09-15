@@ -1,0 +1,133 @@
+{
+  "app": {
+    "title": "Enclosed",
+    "description": "Send private and secure notes"
+  },
+  "navbar": {
+    "new-note": "New note",
+    "theme": {
+      "light-mode": "Light mode",
+      "dark-mode": "Dark mode",
+      "system-mode": "System"
+    },
+    "settings": {
+      "documentation": "Documentation",
+      "cli": "Enclosed CLI",
+      "support": "Support Enclosed",
+      "report-bug": "Report a bug",
+      "logout": "Logout",
+      "contribute-to-i18n": "Contribute to i18n"
+    }
+  },
+  "footer": {
+    "crafted-by": "Crafted by",
+    "source-code": "Source code available on",
+    "github": "GitHub",
+    "version": "Version"
+  },
+  "login": {
+    "title": "Login to Enclosed",
+    "description": "This is a private instance of Enclosed. Enter your credentials to be able to create notes.",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Login",
+    "errors": {
+      "invalid-credentials": "Invalid email or password.",
+      "unknown": "An unknown error occurred. Please try again later."
+    },
+    "footer": [
+      "Don't have an account?",
+      "Contact the owner of the instance."
+    ]
+  },
+  "create": {
+    "errors": {
+      "empty-note": "Please enter a note content or attach a file.",
+      "rate-limit": "You have exceeded the rate limit for creating notes. Please try again later.",
+      "too-large": "The note content and attachments are too large. Please reduce the size and try again.",
+      "unauthorized": "You are not authorized to create notes. Please login and try again.",
+      "unknown": "An error occurred while creating the note, please try again."
+    },
+    "share": {
+      "button": "Share note",
+      "title": "Shared note",
+      "description": "Here is a note shared with you."
+    },
+    "settings": {
+      "placeholder": "Type your note here...",
+      "password": {
+        "label": "Note password",
+        "placeholder": "Password..."
+      },
+      "expiration": "Expiration delay",
+      "delays": {
+        "1h": "1 hour",
+        "1d": "1 day",
+        "1w": "1 week",
+        "1m": "1 month"
+      },
+      "delete-after-reading": {
+        "label": "Delete after reading",
+        "description": "Delete the note after reading"
+      },
+      "attach-files": "Attach files",
+      "drop-files": {
+        "title": "Drop files here",
+        "description": "Drag and drop files here to attach them to the note"
+      },
+      "create": "Create note"
+    },
+    "success": {
+      "title": "Note created successfully",
+      "description": "Your note has been created. You can now share it using the following link.",
+      "with-deletion": "The note will be deleted after reading.",
+      "copy-link": "Copy link",
+      "copy-success": "Link copied"
+    }
+  },
+  "view": {
+    "note-content": "Note content",
+    "download": "Download",
+    "download-all": "Download all files",
+    "request-password": {
+      "description": "This note is password protected. Please enter the password to unlock it.",
+      "form": {
+        "label": "Password",
+        "placeholder": "Note password...",
+        "unlock-button": "Unlock note",
+        "invalid": "The password you entered is invalid or the note URL is incorrect."
+      }
+    },
+    "error": {
+      "invalid-url": {
+        "title": "Invalid note URL",
+        "description": "This note URL is invalid. Please make sure you are using the correct URL."
+      },
+      "rate-limit": {
+        "title": "Rate limit exceeded",
+        "description": "You have exceeded the rate limit for fetching notes. Please try again later."
+      },
+      "unauthorized": {
+        "title": "Unauthorized",
+        "description": "This note is private. You need to be logged in to view it.",
+        "button": "Log in"
+      },
+      "note-not-found": {
+        "title": "Note not found",
+        "description": "This note does not exist, has expired, or has been deleted."
+      },
+      "fetch-error": {
+        "title": "An error occurred",
+        "description": "An error occurred while fetching the note. Please try again later."
+      },
+      "decryption": {
+        "title": "An error occurred",
+        "description": "An error occurred while decrypting the note. The url may be invalid."
+      }
+    }
+  },
+  "copy": {
+    "label": "Copy to clipboard",
+    "success": "Copied!"
+  }
+}

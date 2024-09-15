@@ -1,9 +1,11 @@
+import { useI18n } from '@/modules/i18n/i18n.provider';
 import { cn } from '@/modules/shared/style/cn';
 import { Button } from '@/modules/ui/components/button';
 import { type Component, type ComponentProps, createSignal, onCleanup, type ParentComponent, splitProps } from 'solid-js';
 
 const DropArea: Component<{ onFilesDrop?: (args: { files: File[] }) => void }> = (props) => {
   const [isDragging, setIsDragging] = createSignal(false);
+  const { t } = useI18n();
 
   const handleDragOver = (e: DragEvent) => {
     e.preventDefault();
@@ -46,9 +48,11 @@ const DropArea: Component<{ onFilesDrop?: (args: { files: File[] }) => void }> =
     >
       <div class="flex items-center justify-center h-full text-center flex-col">
         <div class="i-tabler-file-plus text-6xl text-muted-foreground mx-auto"></div>
-        <div class="text-xl my-2 font-semibold text-muted-foreground">Drop files here</div>
+        <div class="text-xl my-2 font-semibold text-muted-foreground">
+          {t('create.settings.drop-files.title')}
+        </div>
         <div class="text-base text-muted-foreground">
-          Drag and drop files here to attach them to the note
+          {t('create.settings.drop-files.description')}
         </div>
       </div>
     </div>
@@ -97,7 +101,7 @@ export const FileUploaderButton: ParentComponent<{
       />
       <DropArea onFilesDrop={uploadFiles} />
       <Button onClick={onButtonClick} {...rest}>
-        {props.children ?? 'Upload File'}
+        {props.children}
       </Button>
     </>
   );

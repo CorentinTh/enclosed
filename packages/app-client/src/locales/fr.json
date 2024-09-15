@@ -1,0 +1,134 @@
+{
+  "app": {
+    "title": "Enclosed",
+    "description": "Envoyez des notes privées et sécurisées"
+  },
+  "navbar": {
+    "new-note": "Nouvelle note",
+    "theme": {
+      "light-mode": "Mode clair",
+      "dark-mode": "Mode sombre",
+      "system-mode": "Mode système"
+    },
+    "settings": {
+      "documentation": "Documentation",
+      "cli": "Enclosed CLI",
+      "support": "Soutenir Enclosed",
+      "report-bug": "Signaler un bug",
+      "logout": "Se déconnecter",
+      "contribute-to-i18n": "Contribuer à l'i18n"
+    }
+  },
+  "footer": {
+    "crafted-by": "Créé par",
+    "source-code": "Code source disponible sur",
+    "github": "GitHub",
+    "version": "Version"
+  },
+  "login": {
+    "title": "Connexion à Enclosed",
+    "description": "Ceci est une instance privée de Enclosed. Entrez vos identifiants pour pouvoir créer des notes.",
+    "email": "Email",
+    "password": "Mot de passe",
+    "submit": "Se connecter",
+    "errors": {
+      "invalid-credentials": "Email ou mot de passe invalide.",
+      "unknown": "Une erreur inconnue est survenue. Veuillez réessayer plus tard."
+    },
+    "footer": [
+      "Vous n'avez pas de compte ?",
+      "Contactez le propriétaire de l'instance."
+    ]
+  },
+  "create": {
+    "errors": {
+      "empty-note": "Veuillez entrer le contenu d'une note ou joindre un fichier.",
+      "rate-limit": "Vous avez dépassé la limite de création de notes. Veuillez réessayer plus tard.",
+      "too-large": "Le contenu de la note et les pièces jointes sont trop volumineux. Veuillez réduire la taille et réessayer.",
+      "unauthorized": "Vous n'êtes pas autorisé à créer des notes. Veuillez vous connecter et réessayer.",
+      "unknown": "Une erreur est survenue lors de la création de la note, veuillez réessayer."
+    },
+    "share": {
+      "button": "Partager la note",
+      "title": "Note partagée",
+      "description": "Voici une note partagée avec vous."
+    },
+    "settings": {
+      "placeholder": "Saisissez votre note ici...",
+      "password": {
+        "label": "Mot de passe de la note",
+        "placeholder": "Mot de passe..."
+      },
+      "expiration": "Délai d'expiration",
+      "delays": {
+        "1h": "1 heure",
+        "1d": "1 jour",
+        "1w": "1 semaine",
+        "1m": "1 mois"
+      },
+      "delete-after-reading": {
+        "label": "Supprimer après lecture",
+        "description": "Supprimer la note après lecture"
+      },
+      "attach-files": "Joindre des fichiers",
+      "drop-files": {
+        "title": "Déposez les fichiers ici",
+        "description": "Glissez et déposez les fichiers ici pour les joindre à la note"
+      },
+      "create": "Créer une note"
+    },
+    "success": {
+      "title": "Note créée avec succès",
+      "description": "Votre note a été créée. Vous pouvez maintenant la partager à l'aide du lien suivant.",
+      "with-deletion": "La note sera supprimée après lecture.",
+      "copy-link": "Copier le lien",
+      "copy-success": "Lien copié"
+    }
+  },
+  "view": {
+    "note-content": "Contenu de la note",
+    "download": "Télécharger",
+    "download-all": "Télécharger tous les fichiers",
+    "request-password": {
+      "description": "Cette note est protégée par un mot de passe. Veuillez entrer le mot de passe pour la déverrouiller.",
+      "form": {
+        "label": "Mot de passe",
+        "placeholder": "Mot de passe de la note...",
+        "unlock-button": "Déverrouiller la note",
+        "invalid": "Le mot de passe que vous avez entré est incorrect ou l'URL de la note est incorrecte."
+      }
+    },
+    "error": {
+
+      "invalid-url": {
+        "title": "URL de note invalide",
+        "description": "Cette URL de note est invalide. Veuillez vous assurer d'utiliser la bonne URL."
+      },
+      "rate-limit": {
+        "title": "Limite de taux dépassée",
+        "description": "Vous avez dépassé la limite de taux pour récupérer des notes. Veuillez réessayer plus tard."
+      },
+      "unauthorized": {
+        "title": "Non autorisé",
+        "description": "Cette note est privée. Vous devez être connecté pour la voir.",
+        "button": "Se connecter"
+      },
+      "note-not-found": {
+        "title": "Note introuvable",
+        "description": "Cette note n'existe pas, a expiré ou a été supprimée."
+      },
+      "fetch-error": {
+        "title": "Une erreur s'est produite",
+        "description": "Une erreur s'est produite lors de la récupération de la note. Veuillez réessayer plus tard."
+      },
+      "decryption": {
+        "title": "Une erreur s'est produite",
+        "description": "Une erreur s'est produite lors du déchiffrement de la note. L'URL peut être invalide."
+      }
+    }
+  },
+  "copy": {
+    "label": "Copier",
+    "success": "Copié!"
+  }
+}

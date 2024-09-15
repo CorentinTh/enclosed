@@ -1,11 +1,12 @@
 import { useConfig } from '@/modules/config/config.provider';
+import { useI18n } from '@/modules/i18n/i18n.provider';
 import { isHttpErrorWithStatusCode } from '@/modules/shared/http/http-errors';
 import { Alert, AlertDescription } from '@/modules/ui/components/alert';
 import { Button } from '@/modules/ui/components/button';
 import { TextField, TextFieldLabel, TextFieldRoot } from '@/modules/ui/components/textfield';
 import { safely } from '@corentinth/chisels';
 import { useNavigate } from '@solidjs/router';
-import { sample } from 'lodash-es';
+import { castArray, sample } from 'lodash-es';
 import { type Component, createSignal, onMount, Show } from 'solid-js';
 import { login } from '../auth.services';
 import { authStore } from '../auth.store';
@@ -42,6 +43,7 @@ export const LoginPage: Component = () => {
   const [getError, setError] = createSignal<{ message: string; details?: string } | null>(null);
   const [getEmail, setEmail] = createSignal('');
   const [getPassword, setPassword] = createSignal('');
+  const { t } = useI18n();
 
   const { config } = useConfig();
   const navigate = useNavigate();
@@ -59,12 +61,12 @@ export const LoginPage: Component = () => {
     }));
 
     if (isHttpErrorWithStatusCode({ error, statusCode: 401 })) {
-      setError({ message: 'Invalid email or password.' });
+      setError({ message: t('login.errors.invalid-credentials') });
       return;
     }
 
     if (error) {
-      setError({ message: 'An error occurred. Please try again later.' });
+      setError({ message: t('login.errors.unknown') });
       return;
     }
 
@@ -80,11 +82,11 @@ export const LoginPage: Component = () => {
       <div class="h-full hidden xl:flex flex-1 max-w-36% text-white p-6 flex-col justify-between  bg-zinc-900">
         <div>
           <Button variant="link" class="text-white text-lg border-b border-transparent hover:(no-underline !border-border) h-auto py-0 px-0 rounded-none !transition-border-color-250">
-            Enclosed
+            {t('app.title')}
           </Button>
 
           <span class="text-muted-foreground hidden sm:block">
-            Send private and secure notes
+            {t('app.description')}
           </span>
         </div>
 
@@ -105,10 +107,10 @@ export const LoginPage: Component = () => {
       <div class="px-6 mt-12 lg:mt-200px flex-1">
         <div class="md:max-w-sm mx-auto">
           <h1 class="text-lg font-semibold">
-            Login to Enclosed
+            {t('login.title')}
           </h1>
           <div class="text-muted-foreground text-pretty">
-            This is a private instance of Enclosed. Enter your credentials to be able to create and view notes.
+            {t('login.description')}
           </div>
 
           <form onSubmit={(e) => {
@@ -117,10 +119,12 @@ export const LoginPage: Component = () => {
           }}
           >
             <TextFieldRoot class="my-4">
-              <TextFieldLabel class="sr-only">Email</TextFieldLabel>
+              <TextFieldLabel class="sr-only">
+                {t('login.email')}
+              </TextFieldLabel>
               <TextField
                 type="email"
-                placeholder="Email"
+                placeholder={t('login.email')}
                 onInput={(e) => {
                   setEmail(e.currentTarget.value);
                   setError(null);
@@ -130,10 +134,12 @@ export const LoginPage: Component = () => {
             </TextFieldRoot>
 
             <TextFieldRoot class="mt-4">
-              <TextFieldLabel class="sr-only">Password</TextFieldLabel>
+              <TextFieldLabel class="sr-only">
+                {t('login.password')}
+              </TextFieldLabel>
               <TextField
                 type="password"
-                placeholder="Password"
+                placeholder={t('login.password')}
                 onInput={(e) => {
                   setPassword(e.currentTarget.value);
                   setError(null);
@@ -143,13 +149,11 @@ export const LoginPage: Component = () => {
             </TextFieldRoot>
 
             <Button class="mt-4 w-full" variant="default" type="submit">
-              Login
+              {t('login.submit')}
             </Button>
 
             <p class="text-center text-muted-foreground text-sm mt-4">
-              Don't have an account?
-              <br />
-              Contact the owner of the instance.
+              {castArray(t('login.footer')).map(text => (<div>{text}</div>))}
             </p>
 
             <Show when={getError()}>
