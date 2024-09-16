@@ -1,15 +1,38 @@
+/* CSS variables available: https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css */
+
 :root {
     --vp-c-brand-1: #000000;
     --vp-c-brand-2: #000000;
+
+    --vp-c-bg: #ffffff;
+    --vp-c-bg-alt: #ffffff;
+
+    --vp-c-text-1: #171717;
+    --vp-c-text-2: #737373;
+
+    --vp-c-border: #e5e5e5;
+    --vp-c-divider: #e5e5e5;
+    --vp-c-gutter: #e5e5e5;
+
+    th {
+        color: var(--vp-c-text-1);
+    }
 }
 
 .dark {
-    --vp-c-brand-1: #ffffff;
-    --vp-c-brand-2: #ffffff;
+    --vp-c-brand-1: #fafafa;
+    --vp-c-brand-2: #fafafa;
 
-    --vp-c-text-1: rgba(255, 255, 245, 0.92);
-    --vp-c-text-2: rgba(235, 235, 245, 0.6);
-    --vp-c-text-3: rgba(235, 235, 245, 0.38);
+    --vp-c-text-1: #fafafa;
+    --vp-c-text-2: #a3a3a3;
+
+    --vp-c-bg: #0a0a0a;
+    --vp-c-bg-alt: #0a0a0a;
+    --vp-c-bg-soft: #262626;
+
+    --vp-c-border: #262626;
+    --vp-c-divider: #262626;
+    --vp-c-gutter: #262626;
 }
 
 
