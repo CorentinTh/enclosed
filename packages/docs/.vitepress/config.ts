@@ -15,6 +15,7 @@ export default defineConfig({
   lastUpdated: true,
   srcDir: './src',
   outDir: './dist',
+  cleanUrls: true,
 
   markdown: {
     theme: {
