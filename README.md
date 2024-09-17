@@ -40,6 +40,7 @@ A live instance is available at [enclosed.cc](https://enclosed.cc).
 - **Zero Knowledge**: The server does not have access to the content of the notes or files.
 - **Configurable Security Options**: Set a password, expiration time, and choose self-destruction after the note is read.
 - **Minimalistic UI**: Simple and intuitive user interface for quick note sharing.
+- **i18n Support**: Available in multiple languages.
 - **Dark Mode**: A dark theme for late-night note sharing.
 - **Responsive Design**: Works on all devices, from desktops to mobile phones.
 - **Open Source**: The source code is available under the Apache 2.0 License.
@@ -147,6 +148,7 @@ This project is organized as a monorepo using `pnpm` workspaces. The structure i
 ## Contributing
 
 Contributions are welcome! Please refer to the [`CONTRIBUTING.md`](./CONTRIBUTING.md) file for guidelines on how to get started, report issues, and submit pull requests.
+You can find easy-to-pick-up tasks with the [`good first issue` label](https://github.com/CorentinTh/enclosed/issues?q=sort%3Aupdated-desc+is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22).
 
 ## License
 
@@ -155,6 +157,7 @@ This project is licensed under the Apache 2.0 License. See the [LICENSE](./LICEN
 ## Credits and Acknowledgements
 
 This project is crafted with ❤️ by [Corentin Thomasset](https://corentin.tech).
+If you find this project helpful, please consider [supporting my work](https://buymeacoffee.com/cthmsst).
 
 ### Stack
 
