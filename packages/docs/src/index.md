@@ -11,9 +11,11 @@ The name **Enclosed** is inspired by the idea of keeping your notes safe and sec
 ## Key Features
 
 - **End-to-End Encryption**: All notes are encrypted on the client side using AES-GCM with a 256-bit key, ensuring that only the intended recipient can read them.
+- **File Attachments**: Share files securely with your notes.
 - **Zero Knowledge**: The server does not have access to the content of your notes, making it impossible for anyone else to decrypt them.
 - **Configurable Security**: Users can set a password, define an expiration period (TTL), and choose to have the note self-destruct after being read.
 - **Minimalistic UI**: Enclosed's interface is simple and intuitive, allowing for quick and easy note sharing.
+- **i18n Support**: Available in multiple languages.
 - **Dark Mode**: Enjoy a dark theme for comfortable usage, especially in low-light environments.
 - **Responsive Design**: The application works seamlessly on all devices, from desktops to mobile phones.
 - **Open Source**: The source code is available under the Apache 2.0 License, allowing for community contributions and self-hosting.
