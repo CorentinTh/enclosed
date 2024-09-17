@@ -75,7 +75,8 @@
         "title": "Déposez les fichiers ici",
         "description": "Glissez et déposez les fichiers ici pour les joindre à la note"
       },
-      "create": "Créer une note"
+      "create": "Créer une note",
+      "creating": "Création en cours..."
     },
     "success": {
       "title": "Note créée avec succès",
