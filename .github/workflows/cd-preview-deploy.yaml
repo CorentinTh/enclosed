@@ -1,0 +1,64 @@
+name: CD - Preview Deploy
+
+on:
+  workflow_run:
+    workflows: [CD - Preview Build]
+    types:
+      - completed
+
+permissions:
+  actions: read
+  deployments: write
+  contents: read
+  pull-requests: write
+
+jobs:
+  deploy-app-preview:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    name: Deploy app preview
+    steps:
+      - name: Download app build artifact
+        uses: actions/download-artifact@v4
+        id: preview-app-build-artifact
+        with:
+          name: preview-app-build
+          path: build
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+
+      - name: Deploy preview app to Cloudflare Pages
+        uses: AdrianGonz97/refined-cf-pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          projectName: enclosed
+          deploymentName: Preview
+          directory: ${{ steps.preview-app-build-artifact.outputs.download-path }}
+          wranglerVersion: '3'
+
+  deploy-docs-preview:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    name: Deploy docs preview
+    steps:
+      - name: Download docs build artifact
+        uses: actions/download-artifact@v4
+        id: preview-docs-build-artifact
+        with:
+          name: preview-docs-build
+          path: build
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+
+      - name: Deploy preview docs to Cloudflare Pages
+        uses: AdrianGonz97/refined-cf-pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          projectName: enclosed-docs
+          deploymentName: Preview
+          directory: ${{ steps.preview-docs-build-artifact.outputs.download-path }}
+          wranglerVersion: '3'
