@@ -98,7 +98,7 @@ importers:
         version: link:../lib
       '@hono/node-server':
         specifier: ^1.12.1
-        version: 1.12.2(hono@4.6.2)
+        version: 1.13.0(hono@4.6.2)
       bcryptjs:
         specifier: ^2.4.3
         version: 2.4.3
@@ -1303,8 +1303,8 @@ packages:
   '@floating-ui/utils@0.2.7':
     resolution: {integrity: sha512-X8R8Oj771YRl/w+c1HqAC1szL8zWQRwFvgDwT129k9ACdBoud/+/rX9V0qiMl6LWUdP9voC2nDVZYPMQQsb6eA==}
 
-  '@hono/node-server@1.12.2':
-    resolution: {integrity: sha512-xjzhqhSWUE/OhN0g3KCNVzNsQMlFUAL+/8GgPUr3TKcU7cvgZVBGswFofJ8WwGEHTqobzze1lDpGJl9ZNckDhA==}
+  '@hono/node-server@1.13.0':
+    resolution: {integrity: sha512-kz323qIQkNQElEGroo/E9MKPDuIR5pkuk/XEWd50K+cSEKdmdiYx0PKWUdaNY2ecJYngtF+njDMsMKplL6zfEg==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
       hono: ^4
@@ -5990,7 +5990,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.7': {}
 
-  '@hono/node-server@1.12.2(hono@4.6.2)':
+  '@hono/node-server@1.13.0(hono@4.6.2)':
     dependencies:
       hono: 4.6.2
 
