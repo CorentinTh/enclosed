@@ -29,6 +29,7 @@ export const CreateNotePage: Component = () => {
   const [getTtlInSeconds, setTtlInSeconds] = createSignal(3600);
   const [getDeleteAfterReading, setDeleteAfterReading] = createSignal(false);
   const [getUploadedFiles, setUploadedFiles] = createSignal<File[]>([]);
+  const [getIsNoteCreating, setIsNoteCreating] = createSignal(false);
 
   const { t } = useI18n();
 
@@ -47,6 +48,7 @@ export const CreateNotePage: Component = () => {
     setTtlInSeconds(3600);
     setDeleteAfterReading(false);
     setUploadedFiles([]);
+    setIsNoteCreating(false);
   }
 
   onMount(() => {
@@ -68,6 +70,8 @@ export const CreateNotePage: Component = () => {
       return;
     }
 
+    setIsNoteCreating(true);
+
     const [createdNote, error] = await safely(encryptAndCreateNote({
       content: getContent(),
       password: getPassword(),
@@ -76,6 +80,8 @@ export const CreateNotePage: Component = () => {
       fileAssets: getUploadedFiles(),
       isPublic: getIsPublic(),
     }));
+
+    setIsNoteCreating(false);
 
     if (!error) {
       const { noteUrl } = createdNote;
@@ -199,9 +205,9 @@ export const CreateNotePage: Component = () => {
                 {t('create.settings.attach-files')}
               </FileUploaderButton>
 
-              <Button class="mt-2 w-full" onClick={createNote}>
-                <div class="i-tabler-plus mr-2 text-lg text-muted-foreground"></div>
-                {t('create.settings.create')}
+              <Button class="mt-2 w-full" onClick={createNote} disabled={getIsNoteCreating()}>
+                <div class={cn('mr-2 text-lg text-muted-foreground', getIsNoteCreating() ? 'i-tabler-loader-2 animate-spin' : 'i-tabler-plus')}></div>
+                {getIsNoteCreating() ? t('create.settings.creating') : t('create.settings.create')}
               </Button>
             </div>
 

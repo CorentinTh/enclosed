@@ -75,7 +75,8 @@
         "title": "Drop files here",
         "description": "Drag and drop files here to attach them to the note"
       },
-      "create": "Create note"
+      "create": "Create note",
+      "creating": "Creating note..."
     },
     "success": {
       "title": "Note created successfully",

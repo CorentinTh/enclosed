@@ -75,7 +75,8 @@
         "title": "Suelte los archivos aquí",
         "description": "Arrastre y suelte los archivos aquí para adjuntarlos a la nota"
       },
-      "create": "Crear nota"
+      "create": "Crear nota",
+      "creating": "Creando nota..."
     },
     "success": {
       "title": "Nota creada con éxito",
