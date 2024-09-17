@@ -41,6 +41,7 @@ A live instance is available at [enclosed.cc](https://enclosed.cc).
 - **Configurable Security Options**: Set a password, expiration time, and choose self-destruction after the note is read.
 - **Minimalistic UI**: Simple and intuitive user interface for quick note sharing.
 - **i18n Support**: Available in multiple languages.
+- **Authentication**: Optional email/password authentication to create notes.
 - **Dark Mode**: A dark theme for late-night note sharing.
 - **Responsive Design**: Works on all devices, from desktops to mobile phones.
 - **Open Source**: The source code is available under the Apache 2.0 License.
