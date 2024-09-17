@@ -177,7 +177,7 @@ importers:
         version: 3.78.3(@cloudflare/workers-types@4.20240909.0)
       zx:
         specifier: ^8.1.4
-        version: 8.1.6
+        version: 8.1.7
 
   packages/cli:
     dependencies:
@@ -1916,9 +1916,6 @@ packages:
 
   '@types/node-forge@1.3.11':
     resolution: {integrity: sha512-FQx220y22OKNTqaByeBGqHWYz4cl94tpcxeFdvBo3wjG6XPBuZ0BNgNZRV5J5TFmmcsJ4IzsLkmGRiQbnYsBEQ==}
-
-  '@types/node@22.5.4':
-    resolution: {integrity: sha512-FDuKUJQm/ju9fT/SeX/6+gBzoPzlVCzfzmGkwKvRHQVxi4BntVbyIwf6a4Xn62mrvndLiml6z/UBXIdEVjQLXg==}
 
   '@types/node@22.5.5':
     resolution: {integrity: sha512-Xjs4y5UPO/CLdzpgR6GirZJx36yScjh73+2NlLlkFRSoQN8B0DpfXPdZGnvVmLRLOsqDpOfTNv7D9trgGhmOIA==}
@@ -5271,8 +5268,8 @@ packages:
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
-  zx@8.1.6:
-    resolution: {integrity: sha512-SYAriWG+i2CFqMOJcF8QayI8wprlMYQsrmP6tFD7rSPnDLcImNSW7n/8crOYvNVrB2EFgz8LAQk23U1+Y7WrKA==}
+  zx@8.1.7:
+    resolution: {integrity: sha512-vPXetXOnlJ6a6bGSCIN1iaxjK2QZbOqwyOfMhFzqUpKF1aHPGQvQXu8ijwDQMe4lUMyk1Mo0qpIhrNzYXES6nw==}
     engines: {node: '>= 12.17.0'}
     hasBin: true
 
@@ -6668,7 +6665,7 @@ snapshots:
   '@types/fs-extra@11.0.4':
     dependencies:
       '@types/jsonfile': 6.1.4
-      '@types/node': 22.5.4
+      '@types/node': 22.5.5
     optional: true
 
   '@types/hast@3.0.4':
@@ -6677,7 +6674,7 @@ snapshots:
 
   '@types/jsonfile@6.1.4':
     dependencies:
-      '@types/node': 22.5.4
+      '@types/node': 22.5.5
     optional: true
 
   '@types/linkify-it@5.0.0': {}
@@ -6710,11 +6707,6 @@ snapshots:
   '@types/node-forge@1.3.11':
     dependencies:
       '@types/node': 22.5.5
-
-  '@types/node@22.5.4':
-    dependencies:
-      undici-types: 6.19.8
-    optional: true
 
   '@types/node@22.5.5':
     dependencies:
@@ -8311,7 +8303,7 @@ snapshots:
       defu: 6.1.4
       node-fetch-native: 1.6.4
       nypm: 0.3.11
-      ohash: 1.1.4
+      ohash: 1.1.3
       pathe: 1.1.2
       tar: 6.2.1
 
@@ -10613,7 +10605,7 @@ snapshots:
 
   zwitch@2.0.4: {}
 
-  zx@8.1.6:
+  zx@8.1.7:
     optionalDependencies:
       '@types/fs-extra': 11.0.4
-      '@types/node': 22.5.4
+      '@types/node': 22.5.5
