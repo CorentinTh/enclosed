@@ -36,7 +36,7 @@ jobs:
           projectName: enclosed
           workingDirectory: packages/deploy-cloudflare
           directory: dist
-          deploymentName: Production
+          deploymentName: Production App
           branch: main
           wranglerVersion: '3'
 
@@ -70,6 +70,6 @@ jobs:
           projectName: enclosed-docs
           workingDirectory: packages/docs
           directory: dist
-          deploymentName: Production
+          deploymentName: Production Docs
           branch: main
           wranglerVersion: '3'
