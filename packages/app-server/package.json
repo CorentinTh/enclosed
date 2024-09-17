@@ -32,7 +32,7 @@
     "@enclosed/lib": "workspace:*",
     "@hono/node-server": "^1.12.1",
     "bcryptjs": "^2.4.3",
-    "date-fns": "^3.6.0",
+    "date-fns": "^4.0.0",
     "figue": "^2.1.0",
     "hono": "^4.5.8",
     "lodash-es": "^4.17.21",
