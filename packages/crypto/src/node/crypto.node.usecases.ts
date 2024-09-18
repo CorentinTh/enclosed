@@ -1,11 +1,22 @@
+import { Buffer } from 'node:buffer';
 import { pbkdf2, randomBytes } from 'node:crypto';
 import { promisify, TextEncoder } from 'node:util';
 
-export { getDecryptionMethod, getEncryptionMethod } from './encryption-algorithms/encryption-algorithms.registry';
-
-export { createRandomBuffer, deriveMasterKey, generateBaseKey };
+export { base64UrlToBuffer, bufferToBase64Url, createRandomBuffer, deriveMasterKey, generateBaseKey };
 
 const deriveWithPbkdf2 = promisify(pbkdf2);
+
+function bufferToBase64Url({ buffer }: { buffer: Uint8Array }): string {
+  const base64Url = Buffer.from(buffer).toString('base64url');
+
+  return base64Url;
+}
+
+function base64UrlToBuffer({ base64Url }: { base64Url: string }): Uint8Array {
+  const buffer = Buffer.from(base64Url, 'base64url');
+
+  return new Uint8Array(buffer);
+}
 
 function generateBaseKey(): { baseKey: Uint8Array } {
   return { baseKey: createRandomBuffer({ length: 32 }) };

@@ -1,0 +1,93 @@
+{
+  "name": "@enclosed/crypto",
+  "type": "module",
+  "version": "1.6.2",
+  "packageManager": "pnpm@9.10.0",
+  "description": "Enclosed cross-env crypto primitives",
+  "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CorentinTh/enclosed"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "browser": "./dist/index.web.mjs",
+      "bun": "./dist/index.web.mjs",
+      "deno": "./dist/index.web.mjs",
+      "edge-light": "./dist/index.web.mjs",
+      "edge-routine": "./dist/index.web.mjs",
+      "netlify": "./dist/index.web.mjs",
+      "react-native": "./dist/index.web.mjs",
+      "wintercg": "./dist/index.web.mjs",
+      "worker": "./dist/index.web.mjs",
+      "workerd": "./dist/index.web.mjs",
+      "node": {
+        "import": {
+          "types": "./dist/index.node.d.mts",
+          "default": "./dist/index.node.mjs"
+        },
+        "require": {
+          "types": "./dist/index.node.d.cts",
+          "default": "./dist/index.node.cjs"
+        }
+      },
+      "types": "./dist/index.web.d.mts",
+      "import": {
+        "types": "./dist/index.web.d.mts",
+        "default": "./dist/index.web.mjs"
+      },
+      "require": {
+        "types": "./dist/index.node.d.cts",
+        "default": "./dist/index.node.cjs"
+      },
+      "default": "./dist/index.web.mjs"
+    },
+    "./node": {
+      "import": {
+        "types": "./dist/index.node.d.mts",
+        "default": "./dist/index.node.mjs"
+      },
+      "require": {
+        "types": "./dist/index.node.d.cts",
+        "default": "./dist/index.node.cjs"
+      }
+    }
+  },
+  "main": "./dist/index.node.cjs",
+  "module": "./dist/index.web.mjs",
+  "types": "./dist/index.web.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "react-native": "./dist/index.web.mjs",
+  "scripts": {
+    "prepare": "pnpm run build",
+    "build": "unbuild",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "test": "pnpm run test:unit",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest watch",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm run build"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.21"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^3.0.0",
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^22.5.4",
+    "@vitest/coverage-v8": "^2.0.5",
+    "eslint": "^9.10.0",
+    "tsx": "^4.17.0",
+    "typescript": "^5.5.4",
+    "unbuild": "^2.0.0",
+    "vitest": "^2.0.5"
+  }
+}

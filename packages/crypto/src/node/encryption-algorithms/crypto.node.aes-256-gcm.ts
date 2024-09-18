@@ -1,10 +1,8 @@
 import { createCipheriv, createDecipheriv } from 'node:crypto';
 import { defineEncryptionMethods } from '../../encryption-algorithms/encryption-algorithms.models';
-import { base64UrlToBuffer, bufferToBase64Url } from '../crypto.node.models';
-import { createRandomBuffer } from '../crypto.node.usecases';
+import { base64UrlToBuffer, bufferToBase64Url, createRandomBuffer } from '../crypto.node.usecases';
 
 export const aes256GcmEncryptionAlgorithmDefinition = defineEncryptionMethods({
-  name: 'aes-256-gcm',
 
   encryptBuffer: async ({ buffer, encryptionKey }) => {
     const iv = createRandomBuffer({ length: 12 });

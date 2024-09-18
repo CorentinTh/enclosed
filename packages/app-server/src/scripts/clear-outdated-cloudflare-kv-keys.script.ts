@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import process from 'node:process';
 import { isNil, map } from 'lodash-es';
 import { $, minimist } from 'zx';

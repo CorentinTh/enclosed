@@ -36,8 +36,40 @@ permissions:
   packages: write
 
 jobs:
+  publish-crypto:
+    name: Publish @enclosed/crypto to npm
+    if: ${{ github.event.inputs.publish_lib || github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    defaults:
+      run:
+        working-directory: packages/crypto
+
+    steps:
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          corepack: true
+          cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: pnpm i
+        working-directory: ./
+
+      - name: Publish @enclosed/crypto to npm
+        run: pnpm publish --access public --no-git-checks
+        env:
+          NPM_CONFIG_PROVENANCE: true
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+
   publish-lib:
-    name: Publish lib to npm
+    name: Publish @enclosed/lib to npm
     if: ${{ github.event.inputs.publish_lib || github.event_name == 'push' }}
     runs-on: ubuntu-latest
     permissions:
@@ -61,14 +93,14 @@ jobs:
         run: pnpm i
         working-directory: ./
 
-      - name: Publish lib to npm
+      - name: Publish  @enclosed/lib to npm
         run: pnpm publish --access public --no-git-checks
         env:
           NPM_CONFIG_PROVENANCE: true
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   publish-cli:
-    name: Publish CLI to npm
+    name: Publish @enclosed/cli to npm
     if: ${{ github.event.inputs.publish_cli || github.event_name == 'push' }}
     runs-on: ubuntu-latest
     permissions:
@@ -92,7 +124,7 @@ jobs:
         run: pnpm i
         working-directory: ./
 
-      - name: Publish lib to npm
+      - name: Publish @enclosed/lib to npm
         run: pnpm publish --access public --no-git-checks
         env:
           NPM_CONFIG_PROVENANCE: true
