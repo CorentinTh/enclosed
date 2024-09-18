@@ -1,4 +1,3 @@
-import type { Component, ParentComponent } from 'solid-js';
 import { authStore } from '@/modules/auth/auth.store';
 import { buildTimeConfig } from '@/modules/config/config.constants';
 import { useConfig } from '@/modules/config/config.provider';
@@ -10,6 +9,7 @@ import { useThemeStore } from '@/modules/theme/theme.store';
 import { Button } from '@/modules/ui/components/button';
 import { DropdownMenu } from '@kobalte/core/dropdown-menu';
 import { A, useNavigate } from '@solidjs/router';
+import { type Component, type ParentComponent, Show } from 'solid-js';
 import { DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '../components/dropdown-menu';
 
 export const Navbar: Component = () => {
@@ -165,8 +165,25 @@ export const Footer: Component = () => {
 };
 
 export const AppLayout: ParentComponent = (props) => {
+  const getIsSecureContext = () => {
+    return window.isSecureContext ?? window.location.protocol === 'https:';
+  };
+
+  const { t } = useI18n();
+
   return (
     <div class="flex flex-col h-screen min-h-0">
+      <Show when={!getIsSecureContext()}>
+        <div class="bg-warning px-6 py-2 text-center gap-2 justify-center bg-op-20 text-warning text-pretty">
+          <div class="i-tabler-alert-triangle text-base hidden lg:inline-block vertical-mid mr-2"></div>
+          {t('insecureContextWarning.description')}
+          {' '}
+          <a href={buildDocUrl({ path: '/self-hosting/troubleshooting#why-do-i-see-a-warning-about-insecure-connexion' })} target="_blank" rel="noopener noreferrer" class="underline hover:text-primary transition">
+            {t('insecureContextWarning.learn-more')}
+          </a>
+        </div>
+      </Show>
+
       <Navbar />
 
       <div class="flex-1 pb-20 ">{props.children}</div>

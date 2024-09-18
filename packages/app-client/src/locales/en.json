@@ -3,6 +3,10 @@
     "title": "Enclosed",
     "description": "Send private and secure notes"
   },
+  "insecureContextWarning": {
+    "description": "Your connection is not secure, the app must be served over HTTPS to work properly. You won't be able to create or view notes.",
+    "learn-more": "Learn more"
+  },
   "navbar": {
     "new-note": "New note",
     "theme": {
