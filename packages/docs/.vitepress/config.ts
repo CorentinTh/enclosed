@@ -81,6 +81,7 @@ export default defineConfig({
         items: [
           { text: 'Using Docker', link: '/self-hosting/docker' },
           { text: 'Using Docker Compose', link: '/self-hosting/docker-compose' },
+          { text: 'Deploy on other platforms', link: '/self-hosting/other-platforms' },
           { text: 'Configuration', link: '/self-hosting/configuration' },
           { text: 'Troubleshooting', link: '/self-hosting/troubleshooting' },
         ],
