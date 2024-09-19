@@ -177,7 +177,7 @@ importers:
         version: 3.78.6(@cloudflare/workers-types@4.20240909.0)
       zx:
         specifier: ^8.1.4
-        version: 8.1.7
+        version: 8.1.8
 
   packages/cli:
     dependencies:
@@ -5210,8 +5210,8 @@ packages:
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
-  zx@8.1.7:
-    resolution: {integrity: sha512-vPXetXOnlJ6a6bGSCIN1iaxjK2QZbOqwyOfMhFzqUpKF1aHPGQvQXu8ijwDQMe4lUMyk1Mo0qpIhrNzYXES6nw==}
+  zx@8.1.8:
+    resolution: {integrity: sha512-m8s48skYQ8EcRz9KXfc7rZCjqlZevOGiNxq5tNhDiGnhOvXKRGxVr+ajUma9B6zxMdHGSSbnjV/R/r7Ue2xd+A==}
     engines: {node: '>= 12.17.0'}
     hasBin: true
 
@@ -10449,7 +10449,7 @@ snapshots:
 
   zwitch@2.0.4: {}
 
-  zx@8.1.7:
+  zx@8.1.8:
     optionalDependencies:
       '@types/fs-extra': 11.0.4
       '@types/node': 22.5.5
