@@ -1,6 +1,6 @@
 {
   "name": "@enclosed/root",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "Send private and secure note",
   "packageManager": "pnpm@9.10.0",
   "license": "Apache-2.0",
