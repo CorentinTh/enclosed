@@ -40,8 +40,8 @@ export const Navbar: Component = () => {
 
         <div class="flex gap-2 items-center">
           <Button variant="secondary" onClick={newNoteClicked}>
-            <div class="i-tabler-plus mr-1 text-muted-foreground"></div>
-            {t('navbar.new-note')}
+            <div class="i-tabler-plus text-muted-foreground sm:text-base text-2xl"></div>
+            <span class="hidden ml-1 sm:inline-block">{t('navbar.new-note')}</span>
           </Button>
 
           <Button variant="ghost" class="text-lg px-0 size-9" as={A} href="https://github.com/CorentinTh/enclosed" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">
