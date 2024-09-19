@@ -174,7 +174,7 @@ importers:
         version: 2.1.1(@types/node@22.5.5)(jsdom@25.0.0)(less@4.2.0)(terser@5.32.0)
       wrangler:
         specifier: ^3.72.1
-        version: 3.78.5(@cloudflare/workers-types@4.20240909.0)
+        version: 3.78.6(@cloudflare/workers-types@4.20240909.0)
       zx:
         specifier: ^8.1.4
         version: 8.1.7
@@ -3751,8 +3751,8 @@ packages:
     resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==}
     engines: {node: '>=4'}
 
-  miniflare@3.20240909.3:
-    resolution: {integrity: sha512-HsWMexA4m0Ti8wTjqRdg50otufgoQ/I/rL3AHxf3dI/TN8zJC/5aMApqspW6I88Lzm24C+SRKnW0nm465PStIw==}
+  miniflare@3.20240909.4:
+    resolution: {integrity: sha512-uiMjmv9vYIMgUn5PovS/2XzvnSgm04GxtoreNb7qiaDdp1YMhPPtnmV+EKOKyPSlVc7fCt/glzqSX9atUBXa2A==}
     engines: {node: '>=16.13'}
     hasBin: true
 
@@ -5115,8 +5115,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  wrangler@3.78.5:
-    resolution: {integrity: sha512-EqCQOuuxHCBHLSjWw7kWT/1PDSw38XUhSxPC3VnDcL7F6TukVBfHHyLFO4NYGTDDoH+G8KVK1bL1q8LXY2Rcbg==}
+  wrangler@3.78.6:
+    resolution: {integrity: sha512-1PaN9FB2D5sTlse15adhMIhm33rCJYCPxeN71h/6siW45F0QjDrv+BxInwy9LBg8gfEqm71eI1iIlTGyV3l+1A==}
     engines: {node: '>=16.17.0'}
     hasBin: true
     peerDependencies:
@@ -8935,7 +8935,7 @@ snapshots:
 
   min-indent@1.0.1: {}
 
-  miniflare@3.20240909.3:
+  miniflare@3.20240909.4:
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       acorn: 8.12.1
@@ -10351,7 +10351,7 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20240909.0
       '@cloudflare/workerd-windows-64': 1.20240909.0
 
-  wrangler@3.78.5(@cloudflare/workers-types@4.20240909.0):
+  wrangler@3.78.6(@cloudflare/workers-types@4.20240909.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.4
       '@cloudflare/workers-shared': 0.5.3
@@ -10361,7 +10361,7 @@ snapshots:
       chokidar: 3.6.0
       date-fns: 3.6.0
       esbuild: 0.17.19
-      miniflare: 3.20240909.3
+      miniflare: 3.20240909.4
       nanoid: 3.3.7
       path-to-regexp: 6.3.0
       resolve: 1.22.8
