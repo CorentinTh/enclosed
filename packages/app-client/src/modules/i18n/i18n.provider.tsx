@@ -29,7 +29,7 @@ const locales = [
     key: 'es',
     file: 'es',
     name: 'Español',
-  }
+  },
 ] as const;
 
 type Locale = typeof locales[number]['key'];
