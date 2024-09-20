@@ -5,7 +5,7 @@
   },
   "insecureContextWarning": {
     "description": "Deine Verbindung ist nicht sicher, die Anwendung muss über HTTPS verfügen um richtig zu funktionierne. Du kannst keine Notizen erstellen oder anzeigen.",
-    "learn-more": "Learn more"
+    "learn-more": "Mehr erfahren"
   },
   "navbar": {
     "new-note": "Neue Notiz",
@@ -37,7 +37,7 @@
     "submit": "Anmelden",
     "errors": {
       "invalid-credentials": "Falsche E-Mail oder Passwort.",
-      "unknown": "In unbekannter Fehler ist aufgetreten. Bitte versuche es später erneut."
+      "unknown": "Ein unbekannter Fehler ist aufgetreten. Bitte versuche es später erneut."
     },
     "footer": [
       "Du hast noch keinen Account?",
@@ -49,7 +49,7 @@
       "empty-note": "Füge Inhalt zu deiner Notiz hinzu oder hänge eine Datei zum senden an.",
       "rate-limit": "Du hast das Limit zum Erstellen von Notizen erreicht. Versuche es später noch einmal.",
       "too-large": "Der Inhalt deiner Notiz oder Dateianhang ist zu groß. Reduziere den Inhalt/die Dateigröße oder versuche es später erneut.",
-      "unauthorized": "Du hast nicht die Berechtigung um Notizen zu erstellen. Melde dich an und versuche es erneut.",
+      "unauthorized": "Du hast keine Berechtigung um Notizen zu erstellen. Melde dich an und versuche es erneut.",
       "unknown": "Ein Fehler ist während dem Erstellen der Notiz aufgetreten. Bitte versuche es erneut."
     },
     "share": {
