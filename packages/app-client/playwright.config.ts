@@ -1,8 +1,10 @@
 import process from 'node:process';
 import { defineConfig, devices } from '@playwright/test';
 
-const baseURL = process.env.BASE_URL ?? 'http://localhost:3000/';
+const port = process.env.PORT ?? '3999';
+const baseURL = process.env.BASE_URL ?? `http://localhost:${port}/`;
 const isCI = Boolean(process.env.CI);
+const startPreviewServer = Boolean(process.env.USE_PREVIEW_SERVER);
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -49,4 +51,17 @@ export default defineConfig({
       use: { ...devices['Desktop Safari'] },
     },
   ],
+
+  ...(startPreviewServer
+    ? {
+        webServer: {
+          command: 'cd dist-app && node index.cjs',
+          reuseExistingServer: true,
+          env: {
+            PORT: port,
+          },
+        },
+      }
+    : {}),
+
 });

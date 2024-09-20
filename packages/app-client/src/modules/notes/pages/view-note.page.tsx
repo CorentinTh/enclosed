@@ -262,7 +262,7 @@ export const ViewNotePage: Component = () => {
             {getDecryptedNote() && (
               <div class="flex-1 mb-4">
                 <div class="flex items-center gap-2 mb-4 justify-between">
-                  <div class="text-muted-foreground" data-test-id="note-content-display">
+                  <div class="text-muted-foreground">
                     {t('view.note-content')}
                   </div>
                   <CopyButton text={getDecryptedNote()!} variant="secondary" />
@@ -270,7 +270,7 @@ export const ViewNotePage: Component = () => {
 
                 <Card class="w-full rounded-md shadow-sm mb-2">
                   <CardContent class="p-6">
-                    <div class="break-all">{getDecryptedNote()}</div>
+                    <div class="break-all" data-test-id="note-content-display">{getDecryptedNote()}</div>
                   </CardContent>
                 </Card>
 
