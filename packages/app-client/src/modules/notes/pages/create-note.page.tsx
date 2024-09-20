@@ -137,7 +137,13 @@ export const CreateNotePage: Component = () => {
       <Switch>
         <Match when={!getIsNoteCreated()}>
           <TextFieldRoot class="w-full ">
-            <TextArea placeholder={t('create.settings.placeholder')} class="flex-1 p-4 min-h-300px sm:min-h-700px" value={getContent()} onInput={e => updateContent(e.currentTarget.value)} />
+            <TextArea
+              placeholder={t('create.settings.placeholder')}
+              class="flex-1 p-4 min-h-300px sm:min-h-700px"
+              value={getContent()}
+              onInput={e => updateContent(e.currentTarget.value)}
+              data-test-id="note-content"
+            />
           </TextFieldRoot>
 
           <div class="w-full sm:w-320px flex flex-col gap-4 flex-shrink-0">
@@ -145,8 +151,7 @@ export const CreateNotePage: Component = () => {
               <TextFieldLabel>
                 {t('create.settings.password.label')}
               </TextFieldLabel>
-              <NotePasswordField getPassword={getPassword} setPassword={setPassword} />
-
+              <NotePasswordField getPassword={getPassword} setPassword={setPassword} dataTestId="note-password" />
             </TextFieldRoot>
 
             <TextFieldRoot class="w-full">
@@ -190,7 +195,7 @@ export const CreateNotePage: Component = () => {
                 {t('create.settings.delete-after-reading.label')}
               </TextFieldLabel>
               <SwitchUiComponent class="flex items-center space-x-2" checked={getDeleteAfterReading()} onChange={setDeleteAfterReading}>
-                <SwitchControl>
+                <SwitchControl data-test-id="delete-after-reading">
                   <SwitchThumb />
                 </SwitchControl>
                 <SwitchLabel class="text-sm text-muted-foreground">
@@ -200,7 +205,7 @@ export const CreateNotePage: Component = () => {
             </TextFieldRoot>
 
             <div>
-              <FileUploaderButton variant="secondary" class="mt-2 w-full" multiple onFilesUpload={({ files }) => setUploadedFiles(prevFiles => [...prevFiles, ...files])}>
+              <FileUploaderButton variant="secondary" class="mt-2 w-full" multiple onFilesUpload={({ files }) => setUploadedFiles(prevFiles => [...prevFiles, ...files])} data-test-id="create-note">
                 <div class="i-tabler-upload mr-2 text-lg text-muted-foreground"></div>
                 {t('create.settings.attach-files')}
               </FileUploaderButton>
@@ -258,7 +263,7 @@ export const CreateNotePage: Component = () => {
             </div>
 
             <TextFieldRoot class="w-full max-w-800px mt-4">
-              <TextField value={getNoteUrl()} readonly class="w-full text-center" />
+              <TextField value={getNoteUrl()} readonly class="w-full text-center" data-test-id="note-url" />
             </TextFieldRoot>
 
             <div class="flex items-center gap-2 w-full mx-auto mt-2 justify-center flex-col sm:flex-row">
