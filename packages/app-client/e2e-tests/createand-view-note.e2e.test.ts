@@ -1,5 +1,7 @@
 import { expect, test } from '@playwright/test';
 
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 test('Can create and view a note', async ({ page }) => {
   await page.goto('/');
 
@@ -11,6 +13,8 @@ test('Can create and view a note', async ({ page }) => {
   await page.getByTestId('delete-after-reading').click();
 
   await page.getByTestId('create-note').click();
+  await sleep(1000);
+
   const noteUrl = await page.getByTestId('note-url').inputValue();
 
   expect(noteUrl).toBeDefined();

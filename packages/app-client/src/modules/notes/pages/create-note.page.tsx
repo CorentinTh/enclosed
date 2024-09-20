@@ -205,12 +205,12 @@ export const CreateNotePage: Component = () => {
             </TextFieldRoot>
 
             <div>
-              <FileUploaderButton variant="secondary" class="mt-2 w-full" multiple onFilesUpload={({ files }) => setUploadedFiles(prevFiles => [...prevFiles, ...files])} data-test-id="create-note">
+              <FileUploaderButton variant="secondary" class="mt-2 w-full" multiple onFilesUpload={({ files }) => setUploadedFiles(prevFiles => [...prevFiles, ...files])}>
                 <div class="i-tabler-upload mr-2 text-lg text-muted-foreground"></div>
                 {t('create.settings.attach-files')}
               </FileUploaderButton>
 
-              <Button class="mt-2 w-full" onClick={createNote} disabled={getIsNoteCreating()}>
+              <Button class="mt-2 w-full" onClick={createNote} disabled={getIsNoteCreating()} data-test-id="create-note">
                 <div class={cn('mr-2 text-lg text-muted-foreground', getIsNoteCreating() ? 'i-tabler-loader-2 animate-spin' : 'i-tabler-plus')}></div>
                 {getIsNoteCreating() ? t('create.settings.creating') : t('create.settings.create')}
               </Button>
