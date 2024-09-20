@@ -90,7 +90,8 @@ export const Navbar: Component = () => {
 
           <DropdownMenu>
             <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9" variant="ghost" aria-label="Change theme">
-              <div class="i-tabler-dots-vertical"></div>
+              <div class="i-tabler-dots-vertical hidden sm:block"></div>
+              <div class="i-tabler-menu-2 block sm:hidden"></div>
             </DropdownMenuTrigger>
 
             <DropdownMenuContent class="w-46">
