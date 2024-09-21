@@ -25,7 +25,7 @@ jobs:
 
     - name: Get Playwright version
       id: playwright-version
-      run: echo "PLAYWRIGHT_VERSION=$(jq -r .devDependencies.\"@playwright/test\" package.json)" >> "$GITHUB_OUTPUT"
+      run: echo "PLAYWRIGHT_VERSION=$(pnpm list --json | jq -r .[0].devDependencies.\"@playwright/test\".version)" >> "$GITHUB_OUTPUT"
 
     - name: Install dependencies
       run: pnpm i
