@@ -8,6 +8,7 @@ on:
 
 jobs:
   ci-app-server:
+    name: CI - App Server
     runs-on: ubuntu-latest
     defaults:
       run:
