@@ -1,7 +1,7 @@
 {
   "name": "@enclosed/crypto",
   "type": "module",
-  "version": "1.6.2",
+  "version": "1.6.4",
   "packageManager": "pnpm@9.10.0",
   "description": "Enclosed cross-env crypto primitives",
   "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
