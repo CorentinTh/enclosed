@@ -47,6 +47,7 @@ A live instance is available at [enclosed.cc](https://enclosed.cc).
 - **Open Source**: The source code is available under the Apache 2.0 License.
 - **Self-Hostable**: Run your instance of Enclosed for private note sharing.
 - **CLI**: A command-line interface for creating notes from the terminal.
+- **Very low environmental impact**: [enclosed.cc is rated A+ on websitecarbon.com](https://www.websitecarbon.com/website/enclosed-cc/).
 
 ## Self host
 
