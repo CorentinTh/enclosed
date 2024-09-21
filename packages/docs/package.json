@@ -1,7 +1,7 @@
 {
   "name": "@enclosed/docs",
   "type": "module",
-  "version": "1.6.6",
+  "version": "1.6.7",
   "packageManager": "pnpm@9.11.0",
   "description": "Documentation website for Enclosed.",
   "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
