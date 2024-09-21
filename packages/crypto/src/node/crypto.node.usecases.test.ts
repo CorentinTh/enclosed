@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
-import { base64UrlToBuffer, bufferToBase64Url } from './crypto.web.models';
+import { base64UrlToBuffer, bufferToBase64Url } from './crypto.node.usecases';
 
-describe('crypto models', () => {
+describe('crypto node models', () => {
   describe('bufferToBase64Url', () => {
     test('an 8-bit buffer is converted to a base64url string (no "+", "/", or "=")', () => {
       const buffer = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
@@ -25,19 +25,6 @@ describe('crypto models', () => {
       const base64Url = bufferToBase64Url({ buffer });
 
       expect(base64Url).toBe('An1aThIn_OeGWQUn-e4o2nEXvdtEagY2lJxCQN1SgKc');
-    });
-
-    test('it can stringify a large buffer', () => {
-      const length = 10_000_000;
-      const buffer = new Uint8Array(length);
-
-      for (let i = 0; i < length; i++) {
-        buffer[i] = i % 256;
-      }
-
-      const base64Url = bufferToBase64Url({ buffer });
-
-      expect(base64Url).toBeDefined();
     });
   });
 

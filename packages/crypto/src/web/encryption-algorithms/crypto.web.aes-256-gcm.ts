@@ -1,9 +1,7 @@
 import { defineEncryptionMethods } from '../../encryption-algorithms/encryption-algorithms.models';
-import { base64UrlToBuffer, bufferToBase64Url } from '../crypto.web.models';
-import { createRandomBuffer } from '../crypto.web.usecases';
+import { base64UrlToBuffer, bufferToBase64Url, createRandomBuffer } from '../crypto.web.usecases';
 
 export const aes256GcmEncryptionAlgorithmDefinition = defineEncryptionMethods({
-  name: 'aes-256-gcm',
 
   encryptBuffer: async ({ buffer, encryptionKey }) => {
     const iv = createRandomBuffer({ length: 12 });
@@ -25,7 +23,7 @@ export const aes256GcmEncryptionAlgorithmDefinition = defineEncryptionMethods({
     const [ivString, encryptedContentString] = encryptedString.split(':').map(part => part.trim());
 
     if (!ivString || !encryptedContentString) {
-      throw new Error('Invalid data');
+      throw new Error('Invalid encrypted content');
     }
 
     const iv = base64UrlToBuffer({ base64Url: ivString });

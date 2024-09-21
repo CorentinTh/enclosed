@@ -11,56 +11,14 @@
     "url": "https://github.com/CorentinTh/enclosed"
   },
   "exports": {
-    "./package.json": "./package.json",
     ".": {
-      "browser": "./dist/index.web.mjs",
-      "bun": "./dist/index.web.mjs",
-      "deno": "./dist/index.web.mjs",
-      "edge-light": "./dist/index.web.mjs",
-      "edge-routine": "./dist/index.web.mjs",
-      "netlify": "./dist/index.web.mjs",
-      "react-native": "./dist/index.web.mjs",
-      "wintercg": "./dist/index.web.mjs",
-      "worker": "./dist/index.web.mjs",
-      "workerd": "./dist/index.web.mjs",
-      "node": {
-        "import": {
-          "types": "./dist/index.node.d.mts",
-          "default": "./dist/index.node.mjs"
-        },
-        "require": {
-          "types": "./dist/index.node.d.cts",
-          "default": "./dist/index.node.cjs"
-        }
-      },
-      "types": "./dist/index.web.d.mts",
-      "import": {
-        "types": "./dist/index.web.d.mts",
-        "default": "./dist/index.web.mjs"
-      },
-      "require": {
-        "types": "./dist/index.node.d.cts",
-        "default": "./dist/index.node.cjs"
-      },
-      "default": "./dist/index.web.mjs"
-    },
-    "./node": {
-      "import": {
-        "types": "./dist/index.node.d.mts",
-        "default": "./dist/index.node.mjs"
-      },
-      "require": {
-        "types": "./dist/index.node.d.cts",
-        "default": "./dist/index.node.cjs"
-      }
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     }
   },
-  "main": "./dist/index.node.cjs",
-  "module": "./dist/index.web.mjs",
-  "types": "./dist/index.web.d.ts",
-  "files": [
-    "dist"
-  ],
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
   "engines": {
     "node": ">=22.0.0"
   },
@@ -77,6 +35,7 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
+    "@enclosed/crypto": "workspace:*",
     "cbor-x": "^1.6.0",
     "lodash-es": "^4.17.21",
     "msgpackr": "^1.11.0",
