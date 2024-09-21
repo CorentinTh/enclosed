@@ -60,6 +60,10 @@ jobs:
 
       - name: Build the docs
         run: pnpm -F @enclosed/docs build
+        env:
+          VITE_IS_PLAUSIBLE_ENABLED: ${{ secrets.DOCS_IS_PLAUSIBLE_ENABLED }}
+          VITE_PLAUSIBLE_DOMAIN: ${{ secrets.DOCS_PLAUSIBLE_DOMAIN }}
+          VITE_PLAUSIBLE_SCRIPT_SRC: ${{ secrets.DOCS_PLAUSIBLE_SCRIPT_SRC }}
 
       - name: Publish to Cloudflare Pages
         uses: AdrianGonz97/refined-cf-pages-action@v1

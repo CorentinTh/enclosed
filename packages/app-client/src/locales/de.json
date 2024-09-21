@@ -1,0 +1,138 @@
+{
+  "app": {
+    "title": "Enclosed",
+    "description": "Sende private und sichere Notizen"
+  },
+  "insecureContextWarning": {
+    "description": "Deine Verbindung ist nicht sicher, die Anwendung muss über HTTPS verfügen um richtig zu funktionierne. Du kannst keine Notizen erstellen oder anzeigen.",
+    "learn-more": "Mehr erfahren"
+  },
+  "navbar": {
+    "new-note": "Neue Notiz",
+    "theme": {
+      "light-mode": "Light mode",
+      "dark-mode": "Dark mode",
+      "system-mode": "System"
+    },
+    "settings": {
+      "documentation": "Dokumentation",
+      "cli": "Enclosed CLI",
+      "support": "Unterstütze Enclosed",
+      "report-bug": "Einen Bug melden",
+      "logout": "Abmelden",
+      "contribute-to-i18n": "Trage zu i18n bei"
+    }
+  },
+  "footer": {
+    "crafted-by": "Erstellt von",
+    "source-code": "Quellcode verfügbar auf",
+    "github": "GitHub",
+    "version": "Version"
+  },
+  "login": {
+    "title": "Anmelden bei Enclosed",
+    "description": "Dies ist eine private Instanz von Enclosed. Melde dich an um Notizen erstellen zu können.",
+    "email": "Email",
+    "password": "Passwort",
+    "submit": "Anmelden",
+    "errors": {
+      "invalid-credentials": "Falsche E-Mail oder Passwort.",
+      "unknown": "Ein unbekannter Fehler ist aufgetreten. Bitte versuche es später erneut."
+    },
+    "footer": [
+      "Du hast noch keinen Account?",
+      "Kontaktiere den Inhaber der Instanz."
+    ]
+  },
+  "create": {
+    "errors": {
+      "empty-note": "Füge Inhalt zu deiner Notiz hinzu oder hänge eine Datei zum senden an.",
+      "rate-limit": "Du hast das Limit zum Erstellen von Notizen erreicht. Versuche es später noch einmal.",
+      "too-large": "Der Inhalt deiner Notiz oder Dateianhang ist zu groß. Reduziere den Inhalt/die Dateigröße oder versuche es später erneut.",
+      "unauthorized": "Du hast keine Berechtigung um Notizen zu erstellen. Melde dich an und versuche es erneut.",
+      "unknown": "Ein Fehler ist während dem Erstellen der Notiz aufgetreten. Bitte versuche es erneut."
+    },
+    "share": {
+      "button": "Notiz teilen",
+      "title": "Geteilte Notiz",
+      "description": "Hier ist eine Notiz, die mit dir geteilt wurde."
+    },
+    "settings": {
+      "placeholder": "Schreibe deine Notiz hier...",
+      "password": {
+        "label": "Notiz Passwort",
+        "placeholder": "Passwort..."
+      },
+      "expiration": "Ablauf-Verzögerung",
+      "delays": {
+        "1h": "1 Stunde",
+        "1d": "1 Tag",
+        "1w": "1 Woche",
+        "1m": "1 Monat"
+      },
+      "delete-after-reading": {
+        "label": "Löschen nach dem Lesen",
+        "description": "Lösche die Notiz nachdem sie gelesen wurde."
+      },
+      "attach-files": "Dateien anhängen",
+      "drop-files": {
+        "title": "Dateien hier ablegen",
+        "description": "Lege die Dateien hier ab um sie an die Notiz anzuhängen."
+      },
+      "create": "Notiz erstellen",
+      "creating": "Notiz wird erstellt..."
+    },
+    "success": {
+      "title": "Deine Notiz wurde erfolgreich erstellt",
+      "description": "Deine Notiz wurde erstellt. Du kannst sie mit dem folgenden Link teilen.",
+      "with-deletion": "Die Notiz wird direkt nach dem Lesen gelöscht.",
+      "copy-link": "Link kopieren",
+      "copy-success": "Link wurde kopiert"
+    }
+  },
+  "view": {
+    "note-content": "Inhalt",
+    "download": "Download",
+    "download-all": "Alle Dateien herunterladen",
+    "request-password": {
+      "description": "Die Notiz ist durch ein Passwort geschützt. Gebe ein Passwort ein um Zugriff zu erhalten.",
+      "form": {
+        "label": "Passwort",
+        "placeholder": "Passwort der Notiz...",
+        "unlock-button": "Notiz entperren",
+        "invalid": "Das eingebene Passwort ist falsch oder die Notizen-URL ist inkorrekt."
+      }
+    },
+    "error": {
+      "invalid-url": {
+        "title": "Falsche Notizen-URL",
+        "description": "Die Notizen-URL ist falsch. Stelle sicher, dass du die richtige URL eingegeben hast."
+      },
+      "rate-limit": {
+        "title": "Limit erreicht",
+        "description": "Du hast das Maximal-Limit zum aufrufen von Notizen erreicht. Bitte versuche es später noch einmal."
+      },
+      "unauthorized": {
+        "title": "Zugriff verweigert",
+        "description": "Diese Notiz ist privat. Du musst angemeldet sein um die Notiz anzeigen zu können.",
+        "button": "Anmelden"
+      },
+      "note-not-found": {
+        "title": "Notiz wurde nicht gefunden",
+        "description": "Die Notiz existiert nicht, ist abgelaufen oder wurde gelöscht."
+      },
+      "fetch-error": {
+        "title": "Ein Fehler ist aufgetreten",
+        "description": "Ein Fehler ist beim Aufruf der Notiz aufgetreten. Bitte versuche es erneut."
+      },
+      "decryption": {
+        "title": "Ein Fehler ist aufgetreten",
+        "description": "Ein Fehler ist beim Entschlüsseln der Notiz aufgetreten. Die URL könnte falsch sein."
+      }
+    }
+  },
+  "copy": {
+    "label": "In die Zwischenablage kopieren",
+    "success": "Kopiert!"
+  }
+}

@@ -41,10 +41,10 @@ const RequestPasswordForm: Component<{ onPasswordEntered: (args: { password: str
             <div>
               <TextFieldRoot>
                 <TextFieldLabel>{t('view.request-password.form.label')}</TextFieldLabel>
-                <TextField type="password" placeholder={t('view.request-password.form.placeholder')} value={getPassword()} onInput={e => updatePassword(e.currentTarget.value)} autofocus />
+                <TextField type="password" placeholder={t('view.request-password.form.placeholder')} value={getPassword()} onInput={e => updatePassword(e.currentTarget.value)} autofocus data-test-id="note-password-prompt" />
               </TextFieldRoot>
             </div>
-            <Button class="w-full mt-4" type="submit">
+            <Button class="w-full mt-4" type="submit" data-test-id="note-password-submit">
               <div class="i-tabler-lock-open mr-2 text-lg"></div>
               {t('view.request-password.form.unlock-button')}
             </Button>
@@ -270,7 +270,7 @@ export const ViewNotePage: Component = () => {
 
                 <Card class="w-full rounded-md shadow-sm mb-2">
                   <CardContent class="p-6">
-                    <div class="break-all">{getDecryptedNote()}</div>
+                    <div class="break-all" data-test-id="note-content-display">{getDecryptedNote()}</div>
                   </CardContent>
                 </Card>
 

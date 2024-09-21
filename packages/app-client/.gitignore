@@ -28,3 +28,8 @@ gitignore
 Thumbs.db
 
 cache
+
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

@@ -1,8 +1,8 @@
 {
   "name": "@enclosed/app-server",
   "type": "module",
-  "version": "1.6.2",
-  "packageManager": "pnpm@9.10.0",
+  "version": "1.6.3",
+  "packageManager": "pnpm@9.11.0",
   "description": "Enclosed backend server",
   "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
   "license": "Apache-2.0",
