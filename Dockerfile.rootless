@@ -18,7 +18,8 @@ RUN npm install -g pnpm --ignore-scripts && pnpm install --frozen-lockfile --ign
 COPY . .
 
 # Build the apps
-RUN pnpm --filter @enclosed/lib run build && \
+RUN pnpm --filter @enclosed/crypto run build && \
+    pnpm --filter @enclosed/lib run build && \
     pnpm --filter @enclosed/app-client run build && \
     pnpm --filter @enclosed/app-server run build:node
 
