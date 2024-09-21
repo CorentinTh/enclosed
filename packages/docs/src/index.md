@@ -22,6 +22,7 @@ The name **Enclosed** is inspired by the idea of keeping your notes safe and sec
 - **Open Source**: The source code is available under the Apache 2.0 License, allowing for community contributions and self-hosting.
 - **Self-Hostable**: Run your instance of Enclosed to maintain complete control over your note-sharing environment.
 - **CLI**: A command-line interface is available for creating and managing notes directly from your terminal.
+- **Very low environmental impact**: [enclosed.cc is rated A+ on websitecarbon.com](https://www.websitecarbon.com/website/enclosed-cc/).
 
 ## Why Enclosed?
 
