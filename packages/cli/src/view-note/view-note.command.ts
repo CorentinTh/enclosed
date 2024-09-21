@@ -27,20 +27,20 @@ export const viewNoteCommand = defineCommand({
     const { noteUrl, password } = args;
 
     try {
-      const { noteId, encryptionKey } = parseNoteUrl({ noteUrl });
+      const { noteId, encryptionKey, isPasswordProtected } = parseNoteUrl({ noteUrl });
 
-      const { content: encryptedContent, isPasswordProtected } = await fetchNote({
+      const { payload } = await fetchNote({
         noteId,
         apiBaseUrl: getInstanceUrl(),
       });
 
-      const { decryptedContent } = await decryptNote({
-        encryptedContent,
+      const { note } = await decryptNote({
+        encryptedPayload: payload,
         encryptionKey,
         password: isPasswordProtected ? password ?? await promptForPassword() : undefined,
       });
 
-      console.log(decryptedContent);
+      console.log(note.content);
     } catch (error) {
       if (isApiClientErrorWithStatusCode({ error, statusCode: 404 })) {
         console.error(picocolors.red('Note not found'));
