@@ -1,4 +1,4 @@
-import { useConfig } from '@/modules/config/config.provider';
+import { getConfig } from '@/modules/config/config.provider';
 import { useI18n } from '@/modules/i18n/i18n.provider';
 import { isHttpErrorWithStatusCode } from '@/modules/shared/http/http-errors';
 import { Alert, AlertDescription } from '@/modules/ui/components/alert';
@@ -45,7 +45,7 @@ export const LoginPage: Component = () => {
   const [getPassword, setPassword] = createSignal('');
   const { t } = useI18n();
 
-  const { config } = useConfig();
+  const config = getConfig();
   const navigate = useNavigate();
 
   onMount(() => {

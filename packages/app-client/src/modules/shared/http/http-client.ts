@@ -1,11 +1,12 @@
 import { authStore } from '@/modules/auth/auth.store';
-import { buildTimeConfig } from '@/modules/config/config.constants';
-import { getBody } from './http-client.models';
+import { getConfig } from '@/modules/config/config.provider';
+import { buildUrl, getBody } from './http-client.models';
 
 export { apiClient };
 
 async function apiClient<T>({ path, method, body }: { path: string; method: string; body?: unknown }): Promise<T> {
-  const url = new URL(path, buildTimeConfig.baseApiUrl).toString();
+  const config = getConfig();
+  const url = buildUrl({ path, baseUrl: config.baseApiUrl });
 
   const accessToken = authStore.getAccessToken();
 
