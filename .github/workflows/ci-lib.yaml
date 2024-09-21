@@ -8,6 +8,7 @@ on:
 
 jobs:
   ci-lib:
+    name: CI - Lib
     runs-on: ubuntu-latest
     defaults:
       run:
