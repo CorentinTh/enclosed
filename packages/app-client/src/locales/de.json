@@ -50,6 +50,7 @@
       "rate-limit": "Du hast das Limit zum Erstellen von Notizen erreicht. Versuche es später noch einmal.",
       "too-large": "Der Inhalt deiner Notiz oder Dateianhang ist zu groß. Reduziere den Inhalt/die Dateigröße oder versuche es später erneut.",
       "unauthorized": "Du hast keine Berechtigung um Notizen zu erstellen. Melde dich an und versuche es erneut.",
+      "api-not-found": "The API endpoint is not found. The server may not be configured correctly.",
       "unknown": "Ein Fehler ist während dem Erstellen der Notiz aufgetreten. Bitte versuche es erneut."
     },
     "share": {

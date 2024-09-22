@@ -105,7 +105,6 @@
       }
     },
     "error": {
-
       "invalid-url": {
         "title": "URL de note invalide",
         "description": "Cette URL de note est invalide. Veuillez vous assurer d'utiliser la bonne URL."

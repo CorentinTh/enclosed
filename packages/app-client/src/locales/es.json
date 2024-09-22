@@ -50,6 +50,7 @@
       "rate-limit": "Ha superado el límite de creación de notas. Por favor, inténtelo de nuevo más tarde.",
       "too-large": "El contenido de la nota y los archivos adjuntos son demasiado grandes. Reduzca el tamaño e inténtelo de nuevo.",
       "unauthorized": "No está autorizado para crear notas. Por favor, inicie sesión e inténtelo de nuevo.",
+      "api-not-found": "The API endpoint is not found. The server may not be configured correctly.",
       "unknown": "Ocurrió un error al crear la nota, por favor inténtelo de nuevo."
     },
     "share": {
