@@ -94,7 +94,7 @@ export const configDefinition = {
   },
   public: {
     baseApiUrl: {
-      doc: 'The base URL of the public api, can be an absolute URL (like https://example.com/enclosed) or a path (like /enclosed)',
+      doc: 'The base URL of the public api, can be an absolute URL (like `https://example.com/enclosed`) or a path (like `/enclosed`)',
       schema: z.string(),
       default: '/',
       env: 'PUBLIC_BASE_API_URL',

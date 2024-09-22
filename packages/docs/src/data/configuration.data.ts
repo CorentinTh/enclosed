@@ -40,12 +40,20 @@ const rows = configDetails
 
     return {
       env,
-      documentation: md.render(rawDocumentation),
+      documentation: rawDocumentation,
     };
   });
 
+const mdRows = rows.map(({ documentation, env }) => `| \`${env}\` | ${documentation} |`);
+
+const mdTable = [
+  '| Environment variable | Documentation |',
+  '| --- | --- |',
+  ...mdRows,
+].join('\n');
+
 export default {
   async load() {
-    return rows;
+    return md.render(mdTable);
   },
 };
