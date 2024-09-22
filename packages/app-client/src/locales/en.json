@@ -50,6 +50,7 @@
       "rate-limit": "You have exceeded the rate limit for creating notes. Please try again later.",
       "too-large": "The note content and attachments are too large. Please reduce the size and try again.",
       "unauthorized": "You are not authorized to create notes. Please login and try again.",
+      "api-not-found": "The API endpoint is not found. The server may not be configured correctly.",
       "unknown": "An error occurred while creating the note, please try again."
     },
     "share": {

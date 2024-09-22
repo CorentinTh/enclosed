@@ -1,11 +1,6 @@
-export type RuntimeConfig = {
-  isAuthenticationRequired: boolean;
-};
-
-export type BuildTimeConfig = {
+export type Config = {
   baseApiUrl: string;
   documentationBaseUrl: string;
+  isAuthenticationRequired: boolean;
   enclosedVersion: string;
 };
-
-export type Config = RuntimeConfig & BuildTimeConfig;

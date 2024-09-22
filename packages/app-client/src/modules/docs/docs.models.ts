@@ -1,10 +1,7 @@
 import { buildTimeConfig } from '../config/config.constants';
+import { joinUrlParts } from '../shared/http/http-client.models';
 
-export { buildDocUrl, joinUrlParts };
-
-function joinUrlParts(...parts: string[]): string {
-  return parts.map(part => part.replace(/(^\/|\/$)/g, '')).join('/');
-}
+export { buildDocUrl };
 
 function buildDocUrl({
   path,

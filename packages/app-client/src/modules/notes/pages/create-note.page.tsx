@@ -1,8 +1,8 @@
 import { authStore } from '@/modules/auth/auth.store';
-import { useConfig } from '@/modules/config/config.provider';
+import { getConfig } from '@/modules/config/config.provider';
 import { getFileIcon } from '@/modules/files/files.models';
 import { useI18n } from '@/modules/i18n/i18n.provider';
-import { isHttpErrorWithCode, isRateLimitError } from '@/modules/shared/http/http-errors';
+import { isHttpErrorWithCode, isHttpErrorWithStatusCode, isRateLimitError } from '@/modules/shared/http/http-errors';
 import { cn } from '@/modules/shared/style/cn';
 import { CopyButton } from '@/modules/shared/utils/copy';
 import { Alert, AlertDescription } from '@/modules/ui/components/alert';
@@ -33,7 +33,7 @@ export const CreateNotePage: Component = () => {
 
   const { t } = useI18n();
 
-  const { config } = useConfig();
+  const config = getConfig();
   const navigate = useNavigate();
 
   const { onResetNoteForm, removeResetNoteFormHandler } = useNoteContext();
@@ -106,7 +106,13 @@ export const CreateNotePage: Component = () => {
       return;
     }
 
+    if (isHttpErrorWithStatusCode({ error, statusCode: 404 })) {
+      setError({ message: t('create.errors.api-not-found') });
+      return;
+    }
+
     setError({ message: t('create.errors.unknown'), details: error.message });
+    console.error(error);
   };
 
   function updateContent(text: string) {
