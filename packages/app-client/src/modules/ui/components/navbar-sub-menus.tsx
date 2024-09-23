@@ -1,11 +1,6 @@
-import type { PolymorphicProps } from '@kobalte/core/polymorphic';
-import type { TextFieldTextAreaProps } from '@kobalte/core/text-field';
-import type { ValidComponent, VoidProps } from 'solid-js';
 import { useI18n } from '@/modules/i18n/i18n.provider';
 import { cn } from '@/modules/shared/style/cn';
 import { useThemeStore } from '@/modules/theme/theme.store';
-import { TextArea as TextFieldPrimitive } from '@kobalte/core/text-field';
-import { splitProps } from 'solid-js';
 import { DropdownMenuItem, DropdownMenuSeparator } from './dropdown-menu';
 
 export function ThemeSwitcher() {

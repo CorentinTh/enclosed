@@ -4,7 +4,6 @@ import { useConfig } from '@/modules/config/config.provider';
 import { buildDocUrl } from '@/modules/docs/docs.models';
 import { useI18n } from '@/modules/i18n/i18n.provider';
 import { useNoteContext } from '@/modules/notes/notes.context';
-import { cn } from '@/modules/shared/style/cn';
 import { useThemeStore } from '@/modules/theme/theme.store';
 import { Button } from '@/modules/ui/components/button';
 import { DropdownMenu } from '@kobalte/core/dropdown-menu';
@@ -64,19 +63,12 @@ export const Navbar: Component = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               <LanguageSwitcher />
-
-              <DropdownMenuSeparator />
-
-              <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" rel="noopener noreferrer" href="https://github.com/CorentinTh/enclosed/tree/main/packages/app-client/src/locales">
-                {t('navbar.settings.contribute-to-i18n')}
-              </DropdownMenuItem>
-
             </DropdownMenuContent>
           </DropdownMenu>
 
           <DropdownMenu>
 
-            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9" variant="ghost" aria-label="Change theme">
+            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9" variant="ghost" aria-label="Menu icon">
               <div class="i-tabler-dots-vertical hidden sm:block"></div>
               <div class="i-tabler-menu-2 block sm:hidden"></div>
             </DropdownMenuTrigger>
