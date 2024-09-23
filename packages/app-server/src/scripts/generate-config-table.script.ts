@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import type { ConfigDefinition, ConfigDefinitionElement } from 'figue';
 import { isArray, isEmpty, isNil } from 'lodash-es';
 import { fs } from 'zx';

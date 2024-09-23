@@ -8,6 +8,7 @@ on:
 
 jobs:
   ci-docs:
+    name: CI - Docs
     runs-on: ubuntu-latest
     defaults:
       run:

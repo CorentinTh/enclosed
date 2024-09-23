@@ -2,8 +2,7 @@ import { defineBuildConfig } from 'unbuild';
 
 export default defineBuildConfig({
   entries: [
-    'src/index.node',
-    'src/index.web',
+    'src/index',
   ],
   clean: true,
   declaration: true,

@@ -10,11 +10,7 @@ Configuring your self-hosted instance of Enclosed allows you to customize the ap
 
 Enclosed is configured primarily through environment variables. Below is a list of the available variables, along with their descriptions and default values.
 
-<div v-for="row in data">
-<hr />
-<div><strong>{{ row.env }}</strong></div>
-<div v-html="row.documentation"></div>
-</div>
+<div v-html="data" />
 
 ## Applying Configuration Changes
 

@@ -8,6 +8,7 @@ on:
 
 jobs:
   ci-deploy-cloudflare:
+    name: CI - Deploy Cloudflare
     runs-on: ubuntu-latest
     defaults:
       run:

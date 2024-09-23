@@ -1,7 +1,7 @@
 {
   "name": "@enclosed/app-server",
   "type": "module",
-  "version": "1.6.3",
+  "version": "1.6.8",
   "packageManager": "pnpm@9.11.0",
   "description": "Enclosed backend server",
   "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
@@ -51,7 +51,7 @@
     "@types/node-cron": "^3.0.11",
     "@vitest/coverage-v8": "^2.0.5",
     "dotenv": "^16.4.5",
-    "esbuild": "^0.23.1",
+    "esbuild": "^0.24.0",
     "eslint": "^9.10.0",
     "pino-pretty": "^11.2.2",
     "tsx": "^4.17.0",

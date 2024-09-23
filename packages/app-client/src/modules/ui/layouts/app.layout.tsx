@@ -1,6 +1,6 @@
 import { authStore } from '@/modules/auth/auth.store';
 import { buildTimeConfig } from '@/modules/config/config.constants';
-import { useConfig } from '@/modules/config/config.provider';
+import { getConfig } from '@/modules/config/config.provider';
 import { buildDocUrl } from '@/modules/docs/docs.models';
 import { useI18n } from '@/modules/i18n/i18n.provider';
 import { useNoteContext } from '@/modules/notes/notes.context';
@@ -18,7 +18,7 @@ export const Navbar: Component = () => {
   const navigate = useNavigate();
   const { t } = useI18n();
 
-  const { config } = useConfig();
+  const config = getConfig();
 
   const newNoteClicked = () => {
     triggerResetNoteForm();

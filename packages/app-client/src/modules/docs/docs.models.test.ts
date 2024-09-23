@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { buildDocUrl, joinUrlParts } from './docs.models';
+import { buildDocUrl } from './docs.models';
 
 describe('docs models', () => {
   describe('buildDocUrl', () => {
@@ -24,18 +24,6 @@ describe('docs models', () => {
           baseUrl: 'https://docs.enclosed.cc/',
         }),
       ).to.eql('https://docs.enclosed.cc/test');
-    });
-  });
-
-  describe('joinUrlParts', () => {
-    test('it merges url parts and trim slashes', () => {
-      expect(joinUrlParts('/part1/', '/part2/', 'part3', 'part4/')).to.eql('part1/part2/part3/part4');
-      expect(joinUrlParts('/part1/part2/', 'part3', 'part4/')).to.eql('part1/part2/part3/part4');
-      expect(joinUrlParts('')).to.eql('');
-    });
-
-    test('multiple slashes inside a part are preserved', () => {
-      expect(joinUrlParts('/part1//part2/', '/part3/')).to.eql('part1//part2/part3');
     });
   });
 });

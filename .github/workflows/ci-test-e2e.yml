@@ -8,6 +8,7 @@ on:
 
 jobs:
   run-e2es:
+    name: CI - App Client E2E
     runs-on: ubuntu-latest
     timeout-minutes: 60
     defaults:
@@ -25,7 +26,7 @@ jobs:
 
     - name: Get Playwright version
       id: playwright-version
-      run: echo "PLAYWRIGHT_VERSION=$(jq -r .devDependencies.\"@playwright/test\" package.json)" >> "$GITHUB_OUTPUT"
+      run: echo "PLAYWRIGHT_VERSION=$(pnpm list --json | jq -r .[0].devDependencies.\"@playwright/test\".version)" >> "$GITHUB_OUTPUT"
 
     - name: Install dependencies
       run: pnpm i
