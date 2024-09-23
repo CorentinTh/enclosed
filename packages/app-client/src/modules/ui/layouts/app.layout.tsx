@@ -10,13 +10,14 @@ import { Button } from '@/modules/ui/components/button';
 import { DropdownMenu } from '@kobalte/core/dropdown-menu';
 import { A, useNavigate } from '@solidjs/router';
 import { type Component, type ParentComponent, Show } from 'solid-js';
-import { DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '../components/dropdown-menu';
+import { DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from '../components/dropdown-menu';
+import { LanguageSwitcher, ThemeSwitcher } from '../components/navbar-sub-menus';
 
 export const Navbar: Component = () => {
   const themeStore = useThemeStore();
   const { triggerResetNoteForm } = useNoteContext();
   const navigate = useNavigate();
-  const { t, getLocale, setLocale, locales } = useI18n();
+  const { t } = useI18n();
 
   const { config } = useConfig();
 
@@ -44,40 +45,25 @@ export const Navbar: Component = () => {
             <span class="hidden ml-1 sm:inline-block">{t('navbar.new-note')}</span>
           </Button>
 
-          <Button variant="ghost" class="text-lg px-0 size-9" as={A} href="https://github.com/CorentinTh/enclosed" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">
+          <Button variant="ghost" class="text-lg px-0 size-9 hidden sm:inline-flex" as={A} href="https://github.com/CorentinTh/enclosed" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">
             <div class="i-tabler-brand-github"></div>
           </Button>
 
           <DropdownMenu>
-            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9" variant="ghost" aria-label="Change theme">
+            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9 hidden sm:inline-flex" variant="ghost" aria-label="Change theme">
               <div classList={{ 'i-tabler-moon': themeStore.getColorMode() === 'dark', 'i-tabler-sun': themeStore.getColorMode() === 'light' }}></div>
             </DropdownMenuTrigger>
             <DropdownMenuContent class="w-42">
-              <DropdownMenuItem onClick={() => themeStore.setColorMode({ mode: 'light' })} class="flex items-center gap-2 cursor-pointer">
-                <div class="i-tabler-sun text-lg"></div>
-                {t('navbar.theme.light-mode')}
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => themeStore.setColorMode({ mode: 'dark' })} class="flex items-center gap-2 cursor-pointer">
-                <div class="i-tabler-moon text-lg"></div>
-                {t('navbar.theme.dark-mode')}
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => themeStore.setColorMode({ mode: 'system' })} class="flex items-center gap-2 cursor-pointer">
-                <div class="i-tabler-device-laptop text-lg"></div>
-                {t('navbar.theme.system-mode')}
-              </DropdownMenuItem>
+              <ThemeSwitcher />
             </DropdownMenuContent>
           </DropdownMenu>
 
           <DropdownMenu>
-            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9" variant="ghost" aria-label="Language">
+            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9 hidden sm:inline-flex" variant="ghost" aria-label="Language">
               <div class="i-custom-language size-4"></div>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              {locales.map(locale => (
-                <DropdownMenuItem onClick={() => setLocale(locale.key)} class={cn('flex items-center gap-2 cursor-pointer', { 'font-semibold': getLocale() === locale.key })}>
-                  {locale.name}
-                </DropdownMenuItem>
-              ))}
+              <LanguageSwitcher />
 
               <DropdownMenuSeparator />
 
@@ -89,12 +75,43 @@ export const Navbar: Component = () => {
           </DropdownMenu>
 
           <DropdownMenu>
+
             <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9" variant="ghost" aria-label="Change theme">
               <div class="i-tabler-dots-vertical hidden sm:block"></div>
               <div class="i-tabler-menu-2 block sm:hidden"></div>
             </DropdownMenuTrigger>
 
             <DropdownMenuContent class="w-46">
+
+              {/* Mobile only items */}
+              <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer sm:hidden" target="_blank" href="https://github.com/CorentinTh/enclosed" rel="noopener noreferrer">
+                <div class="i-tabler-brand-github text-lg"></div>
+                {t('navbar.github')}
+              </DropdownMenuItem>
+
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger as={Button} class="flex items-center gap-2 sm:hidden" variant="ghost" aria-label="Change theme">
+                  <div class="text-lg" classList={{ 'i-tabler-moon': themeStore.getColorMode() === 'dark', 'i-tabler-sun': themeStore.getColorMode() === 'light' }}></div>
+                  {t('navbar.theme.theme')}
+                </DropdownMenuSubTrigger>
+
+                <DropdownMenuSubContent>
+                  <ThemeSwitcher />
+                </DropdownMenuSubContent>
+
+              </DropdownMenuSub>
+
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger as={Button} class="flex items-center text-medium gap-2 sm:hidden" variant="ghost" aria-label="Change language">
+                  <div class="i-custom-language size-4"></div>
+                  {t('navbar.language')}
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent>
+                  <LanguageSwitcher />
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
+
+              {/* Default items */}
               <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" href={buildDocUrl({ path: '/' })}>
                 <div class="i-tabler-file-text text-lg"></div>
                 {t('navbar.settings.documentation')}
