@@ -82,7 +82,7 @@ export const Navbar: Component = () => {
               </DropdownMenuItem>
 
               <DropdownMenuSub>
-                <DropdownMenuSubTrigger as={Button} class="flex items-center gap-2 sm:hidden" variant="ghost" aria-label="Change theme">
+                <DropdownMenuSubTrigger as="a" class="flex items-center gap-2 sm:hidden" aria-label="Change theme">
                   <div class="text-lg" classList={{ 'i-tabler-moon': themeStore.getColorMode() === 'dark', 'i-tabler-sun': themeStore.getColorMode() === 'light' }}></div>
                   {t('navbar.theme.theme')}
                 </DropdownMenuSubTrigger>
@@ -94,7 +94,7 @@ export const Navbar: Component = () => {
               </DropdownMenuSub>
 
               <DropdownMenuSub>
-                <DropdownMenuSubTrigger as={Button} class="flex items-center text-medium gap-2 sm:hidden" variant="ghost" aria-label="Change language">
+                <DropdownMenuSubTrigger as="a" class="flex items-center text-medium gap-2 sm:hidden" aria-label="Change language">
                   <div class="i-custom-language size-4"></div>
                   {t('navbar.language')}
                 </DropdownMenuSubTrigger>
