@@ -9,6 +9,7 @@
   },
   "navbar": {
     "new-note": "Neue Notiz",
+    "github": "GitHub",
     "theme": {
       "light-mode": "Light mode",
       "dark-mode": "Dark mode",
