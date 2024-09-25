@@ -10,9 +10,7 @@
   "navbar": {
     "new-note": "Nouvelle note",
     "github": "GitHub",
-    "language": "",
     "theme": {
-      "theme": "",
       "light-mode": "Mode clair",
       "dark-mode": "Mode sombre",
       "system-mode": "Mode système"
