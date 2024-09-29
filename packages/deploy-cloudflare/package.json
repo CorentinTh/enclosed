@@ -1,6 +1,6 @@
 {
   "name": "@enclosed/deploy-cloudflare",
-  "version": "1.6.8",
+  "version": "1.6.9",
   "description": "Deploy scripts for Cloudflare Pages",
   "packageManager": "pnpm@9.11.0",
   "license": "Apache-2.0",
