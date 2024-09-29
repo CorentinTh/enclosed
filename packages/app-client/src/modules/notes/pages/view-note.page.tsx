@@ -260,7 +260,7 @@ export const ViewNotePage: Component = () => {
 
           <div class="mx-auto max-w-1200px px-6 mt-6 flex gap-4 md:flex-row-reverse flex-col justify-center min-w-0">
             {getDecryptedNote() && (
-              <div class="flex-1 mb-4">
+              <div class="flex-1 mb-4 min-w-0">
                 <div class="flex items-center gap-2 mb-4 justify-between">
                   <div class="text-muted-foreground">
                     {t('view.note-content')}
@@ -269,8 +269,10 @@ export const ViewNotePage: Component = () => {
                 </div>
 
                 <Card class="w-full rounded-md shadow-sm mb-2">
-                  <CardContent class="p-6">
-                    <div class="break-all" data-test-id="note-content-display">{getDecryptedNote()}</div>
+                  <CardContent class="p-6 overflow-x-auto max-w-100%">
+                    <pre data-test-id="note-content-display">
+                      {getDecryptedNote()}
+                    </pre>
                   </CardContent>
                 </Card>
 
