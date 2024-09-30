@@ -1,0 +1,139 @@
+{
+  "app": {
+    "title": "Enclosed",
+    "description": "发送私密、安全的笔记"
+  },
+  "insecureContextWarning": {
+    "description": "您的连接不安全，应用必须通过 HTTPS 提供才能正常工作，否则将无法创建或查看笔记。",
+    "learn-more": "了解更多"
+  },
+  "navbar": {
+    "new-note": "新建笔记",
+    "github": "GitHub",
+    "language": "语言",
+    "theme": {
+      "theme": "主题",
+      "light-mode": "浅色模式",
+      "dark-mode": "深色模式",
+      "system-mode": "跟随系统"
+    },
+    "settings": {
+      "documentation": "文档",
+      "cli": "Enclosed CLI",
+      "support": "支持 Enclosed",
+      "report-bug": "报告错误",
+      "logout": "登出",
+      "contribute-to-i18n": "贡献翻译"
+    }
+  },
+  "footer": {
+    "crafted-by": "作者：",
+    "source-code": "源代码：",
+    "github": "GitHub",
+    "version": "版本"
+  },
+  "login": {
+    "title": "登录 Enclosed",
+    "description": "这是一个私有的 Enclosed 实例，输入您的凭据以创建笔记。",
+    "email": "电子邮箱",
+    "password": "密码",
+    "submit": "登录",
+    "errors": {
+      "invalid-credentials": "无效的电子邮箱或密码。",
+      "unknown": "发生未知错误，稍后再试。"
+    },
+    "footer": ["没有账户？", "联系实例的拥有者。"]
+  },
+  "create": {
+    "errors": {
+      "empty-note": "请输入笔记内容或附加文件。",
+      "rate-limit": "已超出创建笔记的速率限制，请稍后重试。",
+      "too-large": "笔记内容和附件过大，请减小大小后重试。",
+      "unauthorized": "您没有创建笔记的权限，请登录后重试。",
+      "api-not-found": "未找到 API 端点，服务器可能未正确配置。",
+      "unknown": "创建笔记时发生错误，请重试。"
+    },
+    "share": {
+      "button": "分享笔记",
+      "title": "共享笔记",
+      "description": "有一条分享给您的笔记。"
+    },
+    "settings": {
+      "placeholder": "在此输入您的笔记内容...",
+      "password": {
+        "label": "笔记密码",
+        "placeholder": "密码..."
+      },
+      "expiration": "过期时间",
+      "delays": {
+        "1h": "1 小时",
+        "1d": "1 天",
+        "1w": "1 周",
+        "1m": "1 个月"
+      },
+      "delete-after-reading": {
+        "label": "阅后即焚",
+        "description": "阅读后删除笔记"
+      },
+      "attach-files": "附加文件",
+      "drop-files": {
+        "title": "将文件拖到这里",
+        "description": "将文件拖放到这里以附加到笔记"
+      },
+      "create": "创建笔记",
+      "creating": "正在创建笔记..."
+    },
+    "success": {
+      "title": "笔记创建成功",
+      "description": "您的笔记已创建，您现在可以使用以下链接分享它。",
+      "with-deletion": "阅读后笔记将被删除。",
+      "copy-link": "复制链接",
+      "copy-success": "链接已复制"
+    }
+  },
+  "view": {
+    "note-content": "笔记内容",
+    "download": "下载",
+    "download-all": "下载所有文件",
+    "request-password": {
+      "description": "这条笔记受密码保护，请输入密码以解锁。",
+      "form": {
+        "label": "密码",
+        "placeholder": "笔记密码...",
+        "unlock-button": "解锁笔记",
+        "invalid": "您输入的密码无效或笔记 URL 不正确。"
+      }
+    },
+    "error": {
+      "invalid-url": {
+        "title": "无效的笔记 URL",
+        "description": "此笔记 URL 无效，请确保您使用的是正确的 URL。"
+      },
+      "rate-limit": {
+        "title": "超出速率限制",
+        "description": "已超出获取笔记的速率限制，请稍后再试。"
+      },
+      "unauthorized": {
+        "title": "未授权",
+        "description": "此笔记是私密的，需要登录才能查看。",
+        "button": "登录"
+      },
+      "note-not-found": {
+        "title": "未找到笔记",
+        "description": "此笔记不存在、已过期或已被删除。"
+      },
+      "fetch-error": {
+        "title": "发生错误",
+        "description": "获取笔记时发生错误，请稍后再试。"
+      },
+      "decryption": {
+        "title": "发生错误",
+        "description": "解密笔记时发生错误，URL 可能无效。"
+      }
+    }
+  },
+  "copy": {
+    "label": "复制到剪贴板",
+    "success": "已复制！"
+  }
+}
