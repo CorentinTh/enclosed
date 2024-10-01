@@ -6,6 +6,12 @@ settings:
 
 catalogs:
   default:
+    '@antfu/eslint-config':
+      specifier: ^3.6.2
+      version: 3.6.2
+    '@types/node':
+      specifier: ^22.5.4
+      version: 22.7.4
     eslint:
       specifier: ^9.10.0
       version: 9.11.0
@@ -73,7 +79,7 @@ importers:
         version: 1.1.0(@unocss/preset-wind@0.62.4)(unocss@0.62.4(postcss@8.4.47)(rollup@4.22.5)(vite@5.4.8(@types/node@22.7.4)(less@4.2.0)(terser@5.32.0)))
     devDependencies:
       '@antfu/eslint-config':
-        specifier: ^3.0.0
+        specifier: 'catalog:'
         version: 3.6.2(@typescript-eslint/utils@8.5.0(eslint@9.11.0(jiti@1.21.6))(typescript@5.6.2))(@vue/compiler-sfc@3.5.4)(eslint@9.11.0(jiti@1.21.6))(typescript@5.6.2)(vitest@2.1.1(@types/node@22.7.4)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))
       '@iconify-json/tabler':
         specifier: ^1.1.120
@@ -85,7 +91,7 @@ importers:
         specifier: ^4.17.12
         version: 4.17.12
       '@types/node':
-        specifier: ^22.5.0
+        specifier: 'catalog:'
         version: 22.7.4
       eslint:
         specifier: 'catalog:'
@@ -152,7 +158,7 @@ importers:
         version: 3.23.8
     devDependencies:
       '@antfu/eslint-config':
-        specifier: ^3.0.0
+        specifier: 'catalog:'
         version: 3.6.2(@typescript-eslint/utils@8.5.0(eslint@9.11.0(jiti@1.21.6))(typescript@5.6.2))(@vue/compiler-sfc@3.5.4)(eslint@9.11.0(jiti@1.21.6))(typescript@5.6.2)(vitest@2.1.1(@types/node@22.7.4)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))
       '@cloudflare/workers-types':
         specifier: ^4.20240821.1
@@ -228,7 +234,7 @@ importers:
         version: 3.23.8
     devDependencies:
       '@antfu/eslint-config':
-        specifier: ^3.0.0
+        specifier: 'catalog:'
         version: 3.6.2(@typescript-eslint/utils@8.5.0(eslint@9.11.0(jiti@1.21.6))(typescript@5.6.2))(@vue/compiler-sfc@3.5.4)(eslint@9.11.0(jiti@1.21.6))(typescript@5.6.2)(vitest@2.1.1(@types/node@22.7.4)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))
       '@types/lodash-es':
         specifier: ^4.17.12
@@ -262,13 +268,13 @@ importers:
         version: 4.17.21
     devDependencies:
       '@antfu/eslint-config':
-        specifier: ^3.0.0
+        specifier: 'catalog:'
         version: 3.6.2(@typescript-eslint/utils@8.5.0(eslint@9.11.0(jiti@1.21.6))(typescript@5.6.2))(@vue/compiler-sfc@3.5.4)(eslint@9.11.0(jiti@1.21.6))(typescript@5.6.2)(vitest@2.1.1(@types/node@22.7.4)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
       '@types/node':
-        specifier: ^22.5.4
+        specifier: 'catalog:'
         version: 22.7.4
       '@vitest/coverage-v8':
         specifier: ^2.0.5
@@ -298,7 +304,7 @@ importers:
         version: 2.4.3
     devDependencies:
       '@antfu/eslint-config':
-        specifier: ^3.0.0
+        specifier: 'catalog:'
         version: 3.6.2(@typescript-eslint/utils@8.5.0(eslint@9.11.0(jiti@1.21.6))(typescript@5.6.2))(@vue/compiler-sfc@3.5.4)(eslint@9.11.0(jiti@1.21.6))(typescript@5.6.2)(vitest@2.1.1(@types/node@22.7.4)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))
       '@types/bcryptjs':
         specifier: ^2.4.6
@@ -344,13 +350,13 @@ importers:
         version: 1.4.0
     devDependencies:
       '@antfu/eslint-config':
-        specifier: ^3.0.0
+        specifier: 'catalog:'
         version: 3.6.2(@typescript-eslint/utils@8.5.0(eslint@9.11.0(jiti@1.21.6))(typescript@5.6.2))(@vue/compiler-sfc@3.5.4)(eslint@9.11.0(jiti@1.21.6))(typescript@5.6.2)(vitest@2.1.1(@types/node@22.7.4)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
       '@types/node':
-        specifier: ^22.5.4
+        specifier: 'catalog:'
         version: 22.7.4
       '@vitest/coverage-v8':
         specifier: ^2.0.5

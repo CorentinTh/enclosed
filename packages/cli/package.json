@@ -43,7 +43,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.0.0",
+    "@antfu/eslint-config": "catalog:",
     "@types/lodash-es": "^4.17.12",
     "@vitest/coverage-v8": "^2.0.5",
     "dotenv": "^16.4.5",
