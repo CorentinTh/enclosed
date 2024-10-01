@@ -84,10 +84,10 @@
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^22.5.4",
     "@vitest/coverage-v8": "^2.0.5",
-    "eslint": "^9.10.0",
-    "tsx": "^4.17.0",
-    "typescript": "^5.5.4",
+    "eslint": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
     "unbuild": "^2.0.0",
-    "vitest": "^2.0.5"
+    "vitest": "catalog:"
   }
 }
