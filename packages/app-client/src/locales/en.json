@@ -107,6 +107,11 @@
         "invalid": "The password you entered is invalid or the note URL is incorrect."
       }
     },
+    "warn-for-note-deletion": {
+      "title": "This note will be deleted",
+      "description": "This note has been configured to be deleted after reading. After displaying the note, it will be permanently deleted and cannot be recovered.",
+      "confirm": "I understand, show me the note"
+    },
     "error": {
       "invalid-url": {
         "title": "Invalid note URL",

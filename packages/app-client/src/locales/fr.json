@@ -105,8 +105,12 @@
         "invalid": "Le mot de passe que vous avez entré est incorrect ou l'URL de la note est incorrecte."
       }
     },
+    "warn-for-note-deletion": {
+      "title": "Cette note sera supprimée après lecture",
+      "description": "Cette note sera supprimée après lecture. Une fois affichée, elle sera définitivement supprimée et ne pourra pas être récupérée.",
+      "confirm": "Je comprends, montrer la note"
+    },
     "error": {
-
       "invalid-url": {
         "title": "URL de note invalide",
         "description": "Cette URL de note est invalide. Veuillez vous assurer d'utiliser la bonne URL."

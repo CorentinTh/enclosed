@@ -2,7 +2,7 @@ import type { EncryptionAlgorithm } from '../crypto/crypto.types';
 import type { SerializationFormat } from '../crypto/serialization/serialization.types';
 import type { NoteAsset } from './notes.types';
 import { encryptNote } from '../crypto/crypto.usecases';
-import { createNoteUrl as createNoteUrlImpl } from './notes.models';
+import { createNoteUrl } from './notes.models';
 import { storeNote as storeNoteImpl } from './notes.services';
 
 export { createNote };
@@ -17,7 +17,6 @@ async function createNote({
   deleteAfterReading = false,
   clientBaseUrl = BASE_URL,
   apiBaseUrl = clientBaseUrl,
-  createNoteUrl = createNoteUrlImpl,
   storeNote = params => storeNoteImpl({ ...params, apiBaseUrl }),
   assets = [],
   encryptionAlgorithm = 'aes-256-gcm',
@@ -34,12 +33,6 @@ async function createNote({
   encryptionAlgorithm?: EncryptionAlgorithm;
   serializationFormat?: SerializationFormat;
   isPublic?: boolean;
-  createNoteUrl?: (args: {
-    noteId: string;
-    encryptionKey: string;
-    clientBaseUrl: string;
-    isPasswordProtected: boolean;
-  }) => { noteUrl: string };
   storeNote?: (params: {
     payload: string;
     ttlInSeconds: number;
@@ -66,6 +59,7 @@ async function createNote({
     encryptionKey,
     clientBaseUrl,
     isPasswordProtected,
+    isDeletedAfterReading: deleteAfterReading,
   });
 
   return {

@@ -1,6 +1,6 @@
 import { apiClient } from '../shared/http/http-client';
 
-export { fetchNoteById, storeNote };
+export { fetchNoteById, fetchNoteExists, storeNote };
 
 async function storeNote({
   payload,
@@ -46,4 +46,13 @@ async function fetchNoteById({ noteId }: { noteId: string }) {
   });
 
   return { note };
+}
+
+async function fetchNoteExists({ noteId }: { noteId: string }) {
+  const { noteExists } = await apiClient<{ noteExists: boolean }>({
+    method: 'GET',
+    path: `/api/notes/${noteId}/exists`,
+  });
+
+  return { noteExists };
 }

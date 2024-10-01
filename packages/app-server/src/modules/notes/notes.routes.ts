@@ -14,13 +14,13 @@ export { registerNotesRoutes };
 
 function registerNotesRoutes({ app }: { app: ServerInstance }) {
   setupGetNoteRoute({ app });
+  setupGetNoteExistsRoute({ app });
   setupCreateNoteRoute({ app });
 }
 
 function setupGetNoteRoute({ app }: { app: ServerInstance }) {
   app.get(
     '/api/notes/:noteId',
-
     async (context, next) => {
       const config = context.get('config');
 
@@ -62,6 +62,22 @@ function setupGetNoteRoute({ app }: { app: ServerInstance }) {
       const { apiNote } = formatNoteForApi({ note });
 
       return context.json({ note: apiNote });
+    },
+  );
+}
+
+function setupGetNoteExistsRoute({ app }: { app: ServerInstance }) {
+  app.get(
+    '/api/notes/:noteId/exists',
+    async (context) => {
+      const { noteId } = context.req.param();
+      const storage = context.get('storage');
+
+      const notesRepository = createNoteRepository({ storage });
+
+      const { noteExists } = await notesRepository.getNoteExists({ noteId });
+
+      return context.json({ noteExists });
     },
   );
 }
