@@ -21,6 +21,7 @@ test('Can create and view a note', async ({ page }) => {
 
   await page.goto(noteUrl);
 
+  await page.getByTestId('note-deletion-accept').click();
   await page.getByTestId('note-password-prompt').fill('my-cat-is-cute');
   await page.getByTestId('note-password-submit').click();
 

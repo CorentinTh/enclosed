@@ -14,6 +14,7 @@ function createNoteRepository({ storage }: { storage: Storage }) {
       getNoteById,
       getNotesIds,
       deleteNoteById,
+      getNoteExists,
     },
     {
       storage,
@@ -92,4 +93,10 @@ async function getNoteById({ noteId, storage }: { noteId: string; storage: Stora
 
 async function deleteNoteById({ noteId, storage }: { noteId: string; storage: Storage }) {
   await storage.removeItem(noteId, { removeMeta: true });
+}
+
+async function getNoteExists({ noteId, storage }: { noteId: string; storage: Storage }) {
+  const noteExists = await storage.hasItem(noteId);
+
+  return { noteExists };
 }

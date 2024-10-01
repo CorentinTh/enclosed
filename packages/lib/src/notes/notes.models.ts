@@ -2,9 +2,13 @@ import { isEmpty } from 'lodash-es';
 
 export { createNoteUrl, createNoteUrlHashFragment, parseNoteUrl, parseNoteUrlHashFragment };
 
-function createNoteUrlHashFragment({ encryptionKey, isPasswordProtected }: { encryptionKey: string; isPasswordProtected?: boolean }) {
+const PASSWORD_PROTECTED_HASH_FRAGMENT = 'pw';
+const DELETED_AFTER_READING_HASH_FRAGMENT = 'dar';
+
+function createNoteUrlHashFragment({ encryptionKey, isPasswordProtected, isDeletedAfterReading }: { encryptionKey: string; isPasswordProtected?: boolean; isDeletedAfterReading?: boolean }) {
   const hashFragment = [
-    isPasswordProtected && 'pw',
+    isPasswordProtected && PASSWORD_PROTECTED_HASH_FRAGMENT,
+    isDeletedAfterReading && DELETED_AFTER_READING_HASH_FRAGMENT,
     encryptionKey,
   ].filter(Boolean).join(':');
 
@@ -19,22 +23,19 @@ function parseNoteUrlHashFragment({ hashFragment }: { hashFragment: string }) {
   }
 
   const segments = cleanedHashFragment.split(':');
+  const encryptionKey = segments.pop();
 
-  if (segments.length === 1) {
-    return {
-      isPasswordProtected: false,
-      encryptionKey: segments[0],
-    };
+  const hasInvalidSegments = segments.some(segment => ![PASSWORD_PROTECTED_HASH_FRAGMENT, DELETED_AFTER_READING_HASH_FRAGMENT].includes(segment));
+
+  if (!encryptionKey || hasInvalidSegments) {
+    throw new Error('Invalid hash fragment');
   }
 
-  if (segments.length === 2 && segments[0] === 'pw') {
-    return {
-      isPasswordProtected: true,
-      encryptionKey: segments[1],
-    };
-  }
-
-  throw new Error('Invalid hash fragment');
+  return {
+    encryptionKey,
+    isPasswordProtected: segments.includes(PASSWORD_PROTECTED_HASH_FRAGMENT),
+    isDeletedAfterReading: segments.includes(DELETED_AFTER_READING_HASH_FRAGMENT),
+  };
 }
 
 function createNoteUrl({
@@ -42,13 +43,15 @@ function createNoteUrl({
   encryptionKey,
   clientBaseUrl,
   isPasswordProtected,
+  isDeletedAfterReading,
 }: {
   noteId: string;
   encryptionKey: string;
   clientBaseUrl: string;
   isPasswordProtected?: boolean;
+  isDeletedAfterReading?: boolean;
 }): { noteUrl: string } {
-  const hashFragment = createNoteUrlHashFragment({ encryptionKey, isPasswordProtected });
+  const hashFragment = createNoteUrlHashFragment({ encryptionKey, isPasswordProtected, isDeletedAfterReading });
 
   const url = new URL(`/${noteId}`, clientBaseUrl);
   url.hash = hashFragment;
@@ -58,7 +61,7 @@ function createNoteUrl({
   return { noteUrl };
 }
 
-function parseNoteUrl({ noteUrl }: { noteUrl: string }): { noteId: string; encryptionKey: string; isPasswordProtected: boolean } {
+function parseNoteUrl({ noteUrl }: { noteUrl: string }) {
   const url = new URL(noteUrl);
 
   const noteId = url.pathname.split('/').filter(Boolean).pop();
@@ -67,7 +70,7 @@ function parseNoteUrl({ noteUrl }: { noteUrl: string }): { noteId: string; encry
     throw new Error('Invalid note url');
   }
 
-  const { encryptionKey, isPasswordProtected } = parseNoteUrlHashFragment({ hashFragment: url.hash });
+  const { encryptionKey, isPasswordProtected, isDeletedAfterReading } = parseNoteUrlHashFragment({ hashFragment: url.hash });
 
-  return { noteId, encryptionKey, isPasswordProtected };
+  return { noteId, encryptionKey, isPasswordProtected, isDeletedAfterReading };
 }

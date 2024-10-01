@@ -36,6 +36,7 @@ describe('note models', () => {
         noteId: '123',
         encryptionKey: 'abc',
         isPasswordProtected: false,
+        isDeletedAfterReading: false,
       });
     });
 
@@ -46,6 +47,29 @@ describe('note models', () => {
         noteId: '123',
         encryptionKey: 'abc',
         isPasswordProtected: true,
+        isDeletedAfterReading: false,
+      });
+    });
+
+    test('a note that is deleted after reading is indicated in the hash fragment', () => {
+      expect(
+        parseNoteUrl({ noteUrl: 'https://example.com/123#dar:abc' }),
+      ).to.eql({
+        noteId: '123',
+        encryptionKey: 'abc',
+        isPasswordProtected: false,
+        isDeletedAfterReading: true,
+      });
+    });
+
+    test('a note that is both password protected and deleted after reading is indicated in the hash fragment', () => {
+      expect(
+        parseNoteUrl({ noteUrl: 'https://example.com/123#pw:dar:abc' }),
+      ).to.eql({
+        noteId: '123',
+        encryptionKey: 'abc',
+        isPasswordProtected: true,
+        isDeletedAfterReading: true,
       });
     });
 
@@ -56,7 +80,7 @@ describe('note models', () => {
         noteId: '123',
         encryptionKey: 'abc',
         isPasswordProtected: false,
-
+        isDeletedAfterReading: false,
       });
     });
 
@@ -67,6 +91,7 @@ describe('note models', () => {
         noteId: '456',
         encryptionKey: 'abc',
         isPasswordProtected: false,
+        isDeletedAfterReading: false,
       });
     });
 
@@ -112,6 +137,20 @@ describe('note models', () => {
         createNoteUrlHashFragment({ encryptionKey: 'abc', isPasswordProtected: true }),
       ).to.equal('pw:abc');
     });
+
+    test('when a note is deleted after reading, it is indicated in the hash fragment with a "dar" segment', () => {
+      expect(
+        createNoteUrlHashFragment({ encryptionKey: 'abc', isDeletedAfterReading: true }),
+      ).to.equal('dar:abc');
+
+      expect(
+        createNoteUrlHashFragment({
+          encryptionKey: 'abc',
+          isPasswordProtected: true,
+          isDeletedAfterReading: true,
+        }),
+      ).to.equal('pw:dar:abc');
+    });
   });
 
   describe('parseNoteUrlHashFragment', () => {
@@ -121,6 +160,8 @@ describe('note models', () => {
       ).to.eql({
         encryptionKey: 'abc',
         isPasswordProtected: false,
+        isDeletedAfterReading: false,
+
       });
     });
 
@@ -130,6 +171,23 @@ describe('note models', () => {
       ).to.eql({
         encryptionKey: 'abc',
         isPasswordProtected: true,
+        isDeletedAfterReading: false,
+      });
+
+      expect(
+        parseNoteUrlHashFragment({ hashFragment: 'pw:dar:abc' }),
+      ).to.eql({
+        encryptionKey: 'abc',
+        isPasswordProtected: true,
+        isDeletedAfterReading: true,
+      });
+
+      expect(
+        parseNoteUrlHashFragment({ hashFragment: 'dar:abc' }),
+      ).to.eql({
+        encryptionKey: 'abc',
+        isPasswordProtected: false,
+        isDeletedAfterReading: true,
       });
     });
 
@@ -139,6 +197,7 @@ describe('note models', () => {
       ).to.eql({
         encryptionKey: 'abc',
         isPasswordProtected: false,
+        isDeletedAfterReading: false,
       });
 
       expect(
@@ -146,6 +205,15 @@ describe('note models', () => {
       ).to.eql({
         encryptionKey: 'abc',
         isPasswordProtected: true,
+        isDeletedAfterReading: false,
+      });
+
+      expect(
+        parseNoteUrlHashFragment({ hashFragment: '#pw:dar:abc' }),
+      ).to.eql({
+        encryptionKey: 'abc',
+        isPasswordProtected: true,
+        isDeletedAfterReading: true,
       });
     });
 

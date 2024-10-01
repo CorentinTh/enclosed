@@ -6,14 +6,14 @@ import { cn } from '@/modules/shared/style/cn';
 import { CopyButton } from '@/modules/shared/utils/copy';
 import { Alert, AlertDescription } from '@/modules/ui/components/alert';
 import { Button } from '@/modules/ui/components/button';
-import { Card, CardContent, CardDescription, CardHeader } from '@/modules/ui/components/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/modules/ui/components/card';
 import { TextField, TextFieldLabel, TextFieldRoot } from '@/modules/ui/components/textfield';
 import { formatBytes, safely, safelySync } from '@corentinth/chisels';
 import { decryptNote, noteAssetsToFiles, parseNoteUrlHashFragment } from '@enclosed/lib';
 import { useLocation, useNavigate, useParams } from '@solidjs/router';
 import JSZip from 'jszip';
 import { type Component, createSignal, type JSX, Match, onMount, Show, Switch } from 'solid-js';
-import { fetchNoteById } from '../notes.services';
+import { fetchNoteById, fetchNoteExists } from '../notes.services';
 
 const RequestPasswordForm: Component<{ onPasswordEntered: (args: { password: string }) => void; getIsPasswordInvalid: () => boolean; setIsPasswordInvalid: (value: boolean) => void }> = (props) => {
   const [getPassword, setPassword] = createSignal('');
@@ -72,12 +72,59 @@ export const ViewNotePage: Component = () => {
   const [getIsPasswordInvalid, setIsPasswordInvalid] = createSignal(false);
   const [fileAssets, setFileAssets] = createSignal<File[]>([]);
   const [isDownloadingAllLoading, setIsDownloadingAllLoading] = createSignal(false);
+  const [getShowWarnForNoteDeletion, setShowWarnForNoteDeletion] = createSignal(false);
+  const [getResolveWarnForNoteDeletion, setResolveWarnForNoteDeletion] = createSignal<(() => void) | null>(null);
 
   const [getEncryptionKey, setEncryptionKey] = createSignal('');
   const [getIsPasswordProtected, setIsPasswordProtected] = createSignal(false);
 
   const { t } = useI18n();
   const navigate = useNavigate();
+
+  const warnForNoteDeletion = async () => {
+    setShowWarnForNoteDeletion(true);
+    return new Promise<void>((resolve) => {
+      setResolveWarnForNoteDeletion(() => resolve);
+    });
+  };
+
+  const acceptWarnForNoteDeletion = () => {
+    setShowWarnForNoteDeletion(false);
+    const resolve = getResolveWarnForNoteDeletion();
+    resolve?.();
+  };
+
+  const decrypt = async ({ password }: { password?: string } = {}) => {
+    const { payload, encryptionAlgorithm, serializationFormat } = getNote()!;
+
+    const [decryptionResult, decryptionError] = await safely(decryptNote({
+      encryptedPayload: payload,
+      encryptionKey: getEncryptionKey(),
+      password,
+      encryptionAlgorithm: encryptionAlgorithm as 'aes-256-gcm', // TODO: export type from lib
+      serializationFormat: serializationFormat as 'cbor-array', // TODO: export type from lib
+    }));
+
+    if (decryptionError && password) {
+      setIsPasswordInvalid(true);
+      return;
+    }
+
+    if (decryptionError) {
+      setError({
+        title: t('view.error.decryption.title'),
+        description: t('view.error.decryption.description'),
+      });
+      return;
+    }
+
+    const { note } = decryptionResult;
+
+    const files = await noteAssetsToFiles({ noteAssets: note.assets });
+    setFileAssets(files);
+    setDecryptedNote(note.content);
+    setIsPasswordEntered(true);
+  };
 
   onMount(async () => {
     const [parsedHashFragment, parsingError] = safelySync(() => parseNoteUrlHashFragment({ hashFragment: location.hash }));
@@ -90,7 +137,31 @@ export const ViewNotePage: Component = () => {
       return;
     }
 
-    const { encryptionKey, isPasswordProtected } = parsedHashFragment;
+    const { encryptionKey, isPasswordProtected, isDeletedAfterReading } = parsedHashFragment;
+
+    if (isDeletedAfterReading) {
+      const [noteExistsResult, noteExistsError] = await safely(fetchNoteExists({ noteId: params.noteId }));
+
+      if (noteExistsError) {
+        setError({
+          title: t('view.error.fetch-error.title'),
+          description: t('view.error.fetch-error.description'),
+        });
+        return;
+      }
+
+      const { noteExists } = noteExistsResult;
+
+      if (!noteExists) {
+        setError({
+          title: t('view.error.note-not-found.title'),
+          description: t('view.error.note-not-found.description'),
+        });
+        return;
+      }
+
+      await warnForNoteDeletion();
+    }
 
     setIsPasswordProtected(isPasswordProtected);
     setEncryptionKey(encryptionKey);
@@ -157,53 +228,8 @@ export const ViewNotePage: Component = () => {
       return;
     }
 
-    const { payload, encryptionAlgorithm, serializationFormat } = note;
-
-    const [decryptedNoteResult, decryptionError] = await safely(decryptNote({
-      encryptedPayload: payload,
-      encryptionKey,
-      encryptionAlgorithm: encryptionAlgorithm as 'aes-256-gcm', // TODO: export type from lib
-      serializationFormat: serializationFormat as 'cbor-array', // TODO: export type from lib
-    }));
-
-    if (decryptionError) {
-      setError({
-        title: t('view.error.decryption.title'),
-        description: t('view.error.decryption.description'),
-      });
-      return;
-    }
-
-    const { note: decryptedNote } = decryptedNoteResult;
-
-    const files = await noteAssetsToFiles({ noteAssets: decryptedNote.assets });
-    setFileAssets(files);
-    setDecryptedNote(decryptedNote.content);
+    await decrypt();
   });
-
-  const onPasswordEntered = async ({ password }: { password: string }) => {
-    const { payload, encryptionAlgorithm, serializationFormat } = getNote()!;
-
-    const [decryptionResult, decryptionError] = await safely(decryptNote({
-      encryptedPayload: payload,
-      encryptionKey: getEncryptionKey(),
-      password,
-      encryptionAlgorithm: encryptionAlgorithm as 'aes-256-gcm', // TODO: export type from lib
-      serializationFormat: serializationFormat as 'cbor-array', // TODO: export type from lib
-    }));
-
-    if (decryptionError) {
-      setIsPasswordInvalid(true);
-      return;
-    }
-
-    const { note } = decryptionResult;
-
-    const files = await noteAssetsToFiles({ noteAssets: note.assets });
-    setFileAssets(files);
-    setDecryptedNote(note.content);
-    setIsPasswordEntered(true);
-  };
 
   const downloadFile = async ({ file }: { file: File }) => {
     const url = URL.createObjectURL(file);
@@ -252,8 +278,31 @@ export const ViewNotePage: Component = () => {
           )}
         </Match>
 
+        <Match when={getShowWarnForNoteDeletion()}>
+          <div class="sm:mt-6 p-6">
+            <Card class="w-full max-w-sm mx-auto">
+              <CardHeader>
+                <CardTitle class="text-base font-semibold">
+                  {t('view.warn-for-note-deletion.title')}
+                </CardTitle>
+                <CardDescription>
+                  {t('view.warn-for-note-deletion.description')}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div class="flex gap-4">
+                  <Button onClick={acceptWarnForNoteDeletion} class="w-full" data-test-id="note-deletion-accept">
+                    {t('view.warn-for-note-deletion.confirm')}
+                    <div class="i-tabler-arrow-right ml-2 text-lg"></div>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </Match>
+
         <Match when={getIsPasswordProtected() && !isPasswordEntered()}>
-          <RequestPasswordForm onPasswordEntered={onPasswordEntered} getIsPasswordInvalid={getIsPasswordInvalid} setIsPasswordInvalid={setIsPasswordInvalid} />
+          <RequestPasswordForm onPasswordEntered={decrypt} getIsPasswordInvalid={getIsPasswordInvalid} setIsPasswordInvalid={setIsPasswordInvalid} />
         </Match>
 
         <Match when={getDecryptedNote() || fileAssets().length > 0}>
