@@ -52,11 +52,11 @@
     "@vitest/coverage-v8": "^2.0.5",
     "dotenv": "^16.4.5",
     "esbuild": "^0.24.0",
-    "eslint": "^9.10.0",
+    "eslint": "catalog:",
     "pino-pretty": "^11.2.2",
-    "tsx": "^4.17.0",
-    "typescript": "^5.5.4",
-    "vitest": "^2.0.5",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:",
     "wrangler": "^3.72.1",
     "zx": "^8.1.4"
   }

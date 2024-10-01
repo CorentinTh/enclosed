@@ -48,12 +48,12 @@
     "@playwright/test": "^1.46.1",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^22.5.0",
-    "eslint": "^9.10.0",
+    "eslint": "catalog:",
     "jsdom": "^25.0.0",
-    "typescript": "^5.3.3",
+    "typescript": "catalog:",
     "unocss": "^0.62.2",
     "vite": "^5.0.11",
     "vite-plugin-solid": "^2.8.2",
-    "vitest": "^2.0.5"
+    "vitest": "catalog:"
   }
 }
