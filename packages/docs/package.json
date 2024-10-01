@@ -23,7 +23,7 @@
     "bcryptjs": "^2.4.3"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.0.0",
+    "@antfu/eslint-config": "catalog:",
     "@types/bcryptjs": "^2.4.6",
     "@types/lodash-es": "^4.17.12",
     "eslint": "catalog:",
