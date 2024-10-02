@@ -110,6 +110,17 @@ export const configDefinition = {
       default: 'false',
       env: 'PUBLIC_IS_AUTHENTICATION_REQUIRED',
     },
+    defaultDeleteNoteAfterReading: {
+      doc: 'The default value for the `Delete note after reading` checkbox in the note creation form',
+      schema: z
+        .string()
+        .trim()
+        .toLowerCase()
+        .transform(x => x === 'true')
+        .pipe(z.boolean()),
+      default: 'false',
+      env: 'PUBLIC_DEFAULT_DELETE_NOTE_AFTER_READING',
+    },
   },
   authentication: {
     jwtSecret: {

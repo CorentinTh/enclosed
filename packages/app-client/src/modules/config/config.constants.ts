@@ -5,4 +5,5 @@ export const buildTimeConfig: Config = {
   documentationBaseUrl: import.meta.env.VITE_DOCUMENTATION_BASE_URL ?? 'https://docs.enclosed.cc',
   enclosedVersion: import.meta.env.VITE_ENCLOSED_VERSION ?? '0.0.0',
   isAuthenticationRequired: import.meta.env.VITE_IS_AUTHENTICATION_REQUIRED === 'true',
+  defaultDeleteNoteAfterReading: import.meta.env.VITE_DEFAULT_DELETE_NOTE_AFTER_READING === 'true',
 };
