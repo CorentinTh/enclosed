@@ -20,6 +20,11 @@ import { useNoteContext } from '../notes.context';
 import { encryptAndCreateNote } from '../notes.usecases';
 
 export const CreateNotePage: Component = () => {
+  const config = getConfig();
+  const { t } = useI18n();
+  const navigate = useNavigate();
+  const { onResetNoteForm, removeResetNoteFormHandler } = useNoteContext();
+
   const [getContent, setContent] = createSignal('');
   const [getPassword, setPassword] = createSignal('');
   const [getNoteUrl, setNoteUrl] = createSignal('');
@@ -27,16 +32,9 @@ export const CreateNotePage: Component = () => {
   const [getIsNoteCreated, setIsNoteCreated] = createSignal(false);
   const [getIsPublic, setIsPublic] = createSignal(true);
   const [getTtlInSeconds, setTtlInSeconds] = createSignal(3600);
-  const [getDeleteAfterReading, setDeleteAfterReading] = createSignal(false);
+  const [getDeleteAfterReading, setDeleteAfterReading] = createSignal(config.defaultDeleteNoteAfterReading);
   const [getUploadedFiles, setUploadedFiles] = createSignal<File[]>([]);
   const [getIsNoteCreating, setIsNoteCreating] = createSignal(false);
-
-  const { t } = useI18n();
-
-  const config = getConfig();
-  const navigate = useNavigate();
-
-  const { onResetNoteForm, removeResetNoteFormHandler } = useNoteContext();
 
   function resetNoteForm() {
     setContent('');

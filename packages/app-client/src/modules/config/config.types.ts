@@ -3,4 +3,5 @@ export type Config = {
   documentationBaseUrl: string;
   isAuthenticationRequired: boolean;
   enclosedVersion: string;
+  defaultDeleteNoteAfterReading: boolean;
 };
