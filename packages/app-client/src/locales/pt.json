@@ -1,0 +1,144 @@
+{
+  "app": {
+    "title": "Enclosed",
+    "description": "Envia notas de forma privada e segura"
+  },
+  "insecureContextWarning": {
+    "description": "A conexão não é segura, a aplicação deve ser servida através de HTTPS. Não será possível criar ou visualizar notas.",
+    "learn-more": "Ver mais"
+  },
+  "navbar": {
+    "new-note": "Nova nota",
+    "github": "GitHub",
+    "language": "Linguagem",
+    "theme": {
+      "theme": "Tema",
+      "light-mode": "Modo claro",
+      "dark-mode": "Modo escuro",
+      "system-mode": "Sistema"
+    },
+    "settings": {
+      "documentation": "Documentação",
+      "cli": "Enclosed CLI",
+      "support": "Ajudar Enclosed",
+      "report-bug": "Reportar erro",
+      "logout": "Terminar sessão",
+      "contribute-to-i18n": "Contribuir para i18n"
+    }
+  },
+  "footer": {
+    "crafted-by": "Criado por",
+    "source-code": "Código disponível no",
+    "github": "GitHub",
+    "version": "Versão"
+  },
+  "login": {
+    "title": "Iniciar sessão no Enclosed",
+    "description": "Esta é uma instância privada do Enclosed. Insere as tuas credenciais para poderes criar notas.",
+    "email": "Email",
+    "password": "Palavra-passe",
+    "submit": "Iniciar sessão",
+    "errors": {
+      "invalid-credentials": "Email ou palavra-passe inválidos.",
+      "unknown": "Ocorreu um erro. Tenta outra vez mais tarde."
+    },
+    "footer": ["Não tens conta?", "Contacta o criador da instância."]
+  },
+  "create": {
+    "errors": {
+      "empty-note": "Escreve uma nota ou anexa um ficheiro.",
+      "rate-limit": "Limite de criação de notas excedido. Tenta outra vez mais tarde.",
+      "too-large": "O conteúdo na nota e/ou os anexos são demasiado grandes. Reduz o tamanho e tenta outra vez.",
+      "unauthorized": "Não estás autorizado a criar notas. Inicia sessão e tenta outra vez.",
+      "api-not-found": "Link da API não encontrado. É possível que o servidor esteja configurado incorretamente.",
+      "unknown": "Ocorreu um erro ao criar a nota, tenta outra vez."
+    },
+    "share": {
+      "button": "Partilhar nota",
+      "title": "Nota partilhada",
+      "description": "Aqui está uma nota partilhada contigo."
+    },
+    "settings": {
+      "placeholder": "Escreve a tua nota aqui...",
+      "password": {
+        "label": "Palavra-passe da nota",
+        "placeholder": "Palavra-passe..."
+      },
+      "expiration": "Prazo de expiração",
+      "delays": {
+        "1h": "1 hora",
+        "1d": "1 dia",
+        "1w": "1 semana",
+        "1m": "1 mês"
+      },
+      "delete-after-reading": {
+        "label": "Apagar depois de ler",
+        "description": "Apagar a nota depois de leitura"
+      },
+      "attach-files": "Anexar ficheiros",
+      "drop-files": {
+        "title": "Soltar ficheiros aqui",
+        "description": "Arrasta e solta ficheiros aqui para anexá-los à nota"
+      },
+      "create": "Criar nota",
+      "creating": "A criar nota..."
+    },
+    "success": {
+      "title": "Nota criada com sucesso",
+      "description": "A tua nota foi criada. Consegues partilhá-la usando este link.",
+      "with-deletion": "A nota vai ser apagada depois de lida.",
+      "copy-link": "Copiar link",
+      "copy-success": "Link copiado"
+    }
+  },
+  "view": {
+    "note-content": "Conteúdo da nota",
+    "download": "Descarregar",
+    "download-all": "Descarregar todos os ficheiros",
+    "request-password": {
+      "description": "Esta nota está protegida por uma palavra-passe. Insere a palavra-passe para desbloqueá-la.",
+      "form": {
+        "label": "Palavra-passe",
+        "placeholder": "Palavra-passe da nota...",
+        "unlock-button": "Desbloquear nota",
+        "invalid": "Palavra-passe inserida ou URL da nota inválidos."
+      }
+    },
+    "warn-for-note-deletion": {
+      "title": "Esta nota vai ser apagada",
+      "description": "Esta nota foi configurada para ser apagada depois de leitura. Depois de mostrar a nota, vai ser permanentemente apagada e não será possível recuperá-la.",
+      "confirm": "Compreendi, mostrar nota"
+    },
+    "error": {
+      "invalid-url": {
+        "title": "URL da nota inválido",
+        "description": "O URL desta nota é inválido. Por favor, verifica se estás a usar o URL correto."
+      },
+      "rate-limit": {
+        "title": "Limite excedido",
+        "description": "O limite de obtenção de notas foi excedido. Tenta outra vez mais tarde."
+      },
+      "unauthorized": {
+        "title": "Não autorizado",
+        "description": "Esta nota é privada. É necessário iniciar sessão para visualizá-la.",
+        "button": "Iniciar sessão"
+      },
+      "note-not-found": {
+        "title": "Nota não encontrada",
+        "description": "Esta nota não existe, expirou ou foi apagada."
+      },
+      "fetch-error": {
+        "title": "Ocorreu um erro",
+        "description": "Ocorreu um erro ao obter a nota. Por favor, tenta outra vez mais tarde."
+      },
+      "decryption": {
+        "title": "Ocorreu um erro",
+        "description": "Ocorreu um erro ao descodificar a nota. É possível que o URL seja inválido."
+      }
+    }
+  },
+  "copy": {
+    "label": "Copiar para área de transferência",
+    "success": "Copiado!"
+  }
+}
