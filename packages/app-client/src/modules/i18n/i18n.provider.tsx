@@ -31,6 +31,11 @@ const locales = [
     name: 'Español',
   },
   {
+    key: 'pt',
+    file: 'pt',
+    name: 'Português',
+  },
+  {
     key: 'ru',
     file: 'ru',
     name: 'Русский',
