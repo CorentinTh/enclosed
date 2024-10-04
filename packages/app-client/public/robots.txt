@@ -2,4 +2,3 @@ User-agent: *
 Disallow: /
 Allow: /$
 Allow: /og-image.png
-Allow: /docs/
