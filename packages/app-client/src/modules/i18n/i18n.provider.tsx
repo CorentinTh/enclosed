@@ -4,48 +4,11 @@ import { makePersisted } from '@solid-primitives/storage';
 import { merge } from 'lodash-es';
 import { createContext, createResource, createSignal, Show, useContext } from 'solid-js';
 import defaultDict from '../../locales/en.json';
+import { locales } from './i18n.constants';
 
 export {
   useI18n,
 };
-
-const locales = [
-  {
-    key: 'en',
-    file: 'en',
-    name: 'English',
-  },
-  {
-    key: 'de',
-    file: 'de',
-    name: 'Deutsch',
-  },
-  {
-    key: 'fr',
-    file: 'fr',
-    name: 'Français',
-  },
-  {
-    key: 'es',
-    file: 'es',
-    name: 'Español',
-  },
-  {
-    key: 'pt',
-    file: 'pt',
-    name: 'Português',
-  },
-  {
-    key: 'ru',
-    file: 'ru',
-    name: 'Русский',
-  },
-  {
-    key: 'zh-CN',
-    file: 'zh-CN',
-    name: '简体中文',
-  },
-] as const;
 
 type Locale = typeof locales[number]['key'];
 type RawDictionary = typeof defaultDict;
@@ -97,7 +60,7 @@ export const I18nProvider: ParentComponent = (props) => {
       {dict => (
         <I18nContext.Provider
           value={{
-            t: i18n.translator(dict),
+            t: i18n.translator(dict, i18n.resolveTemplate),
             getLocale,
             setLocale,
             locales,

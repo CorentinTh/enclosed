@@ -24,7 +24,8 @@
     "test:unit": "vitest run",
     "test:unit:watch": "vitest watch",
     "test:e2e": "playwright test",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "script:get-missing-i18n-keys": "tsx src/scripts/get-missing-i18n-keys.script.ts"
   },
   "dependencies": {
     "@corentinth/chisels": "^1.0.2",
@@ -50,6 +51,7 @@
     "@types/node": "catalog:",
     "eslint": "catalog:",
     "jsdom": "^25.0.0",
+    "tsx": "^4.19.1",
     "typescript": "catalog:",
     "unocss": "^0.62.2",
     "vite": "^5.0.11",

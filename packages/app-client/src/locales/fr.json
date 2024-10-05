@@ -10,7 +10,9 @@
   "navbar": {
     "new-note": "Nouvelle note",
     "github": "GitHub",
+    "language": "Langue",
     "theme": {
+      "theme": "Thème",
       "light-mode": "Mode clair",
       "dark-mode": "Mode sombre",
       "system-mode": "Mode système"
@@ -94,8 +96,12 @@
   },
   "view": {
     "note-content": "Contenu de la note",
-    "download": "Télécharger",
-    "download-all": "Télécharger tous les fichiers",
+    "assets": {
+      "download": "Télécharger",
+      "download-all": "Tout télécharger",
+      "heading-multiple": "{{ count }} fichiers joints à cette note",
+      "heading-single": "1 fichier joint à cette note"
+    },
     "request-password": {
       "description": "Cette note est protégée par un mot de passe. Veuillez entrer le mot de passe pour la déverrouiller.",
       "form": {
@@ -110,6 +116,7 @@
       "description": "Cette note sera supprimée après lecture. Une fois affichée, elle sera définitivement supprimée et ne pourra pas être récupérée.",
       "confirm": "Je comprends, montrer la note"
     },
+
     "error": {
       "invalid-url": {
         "title": "URL de note invalide",
