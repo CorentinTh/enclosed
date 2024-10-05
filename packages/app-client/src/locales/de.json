@@ -1,70 +1,72 @@
 {
   "app": {
     "title": "Enclosed",
-    "description": "Sende private und sichere Notizen"
+    "description": "Private und sichere Notizen versenden"
   },
   "insecureContextWarning": {
-    "description": "Deine Verbindung ist nicht sicher, die Anwendung muss über HTTPS verfügen um richtig zu funktionierne. Du kannst keine Notizen erstellen oder anzeigen.",
-    "learn-more": "Mehr erfahren"
+    "description": "Ihre Verbindung ist nicht sicher. Die App muss über HTTPS bereitgestellt werden, damit sie ordnungsgemäß funktioniert. Sie können keine Notizen erstellen oder anzeigen.",
+    "learn-more": "Mehr dazu erfahren"
   },
   "navbar": {
     "new-note": "Neue Notiz",
     "github": "GitHub",
+    "language": "Sprache",
     "theme": {
-      "light-mode": "Light mode",
-      "dark-mode": "Dark mode",
-      "system-mode": "System"
+      "theme": "Theme",
+      "light-mode": "Heller Modus",
+      "dark-mode": "Dunkler Modus",
+      "system-mode": "Systemeinstellungen"
     },
     "settings": {
       "documentation": "Dokumentation",
       "cli": "Enclosed CLI",
-      "support": "Unterstütze Enclosed",
-      "report-bug": "Einen Bug melden",
+      "support": "Enclosed unterstützen",
+      "report-bug": "Einen Fehler melden",
       "logout": "Abmelden",
-      "contribute-to-i18n": "Trage zu i18n bei"
+      "contribute-to-i18n": "Zu i18n beitragen"
     }
   },
   "footer": {
-    "crafted-by": "Erstellt von",
+    "crafted-by": "Geschaffen von",
     "source-code": "Quellcode verfügbar auf",
     "github": "GitHub",
     "version": "Version"
   },
   "login": {
-    "title": "Anmelden bei Enclosed",
-    "description": "Dies ist eine private Instanz von Enclosed. Melde dich an um Notizen erstellen zu können.",
-    "email": "Email",
+    "title": "An Enclosed anmelden",
+    "description": "Dies ist eine private Instanz von Enclosed. Geben Sie Ihre Anmeldedaten ein, um Notizen erstellen zu können.",
+    "email": "E-Mail",
     "password": "Passwort",
-    "submit": "Anmelden",
+    "submit": "Login",
     "errors": {
-      "invalid-credentials": "Falsche E-Mail oder Passwort.",
-      "unknown": "Ein unbekannter Fehler ist aufgetreten. Bitte versuche es später erneut."
+      "invalid-credentials": "Ungültige E-Mail oder ungültiges Passwort.",
+      "unknown": "Ein unbekannter Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal."
     },
     "footer": [
-      "Du hast noch keinen Account?",
-      "Kontaktiere den Inhaber der Instanz."
+      "Sie haben keinen Account?",
+      "Kontaktieren Sie den Besitzer der Instanz."
     ]
   },
   "create": {
     "errors": {
-      "empty-note": "Füge Inhalt zu deiner Notiz hinzu oder hänge eine Datei zum senden an.",
-      "rate-limit": "Du hast das Limit zum Erstellen von Notizen erreicht. Versuche es später noch einmal.",
-      "too-large": "Der Inhalt deiner Notiz oder Dateianhang ist zu groß. Reduziere den Inhalt/die Dateigröße oder versuche es später erneut.",
-      "unauthorized": "Du hast keine Berechtigung um Notizen zu erstellen. Melde dich an und versuche es erneut.",
-      "unknown": "Ein Fehler ist während dem Erstellen der Notiz aufgetreten. Bitte versuche es erneut."
+      "empty-note": "Bitte geben Sie eine Notiz ein oder hängen Sie eine Datei an.",
+      "rate-limit": "Sie haben das Limit für die Erstellung von Notizen überschritten. Bitte versuchen Sie es später erneut.",
+      "too-large": "Der Inhalt der Notiz und die Anhänge sind zu groß. Bitte verkleinern Sie die Größe und versuchen Sie es erneut.",
+      "unauthorized": "Sie sind nicht berechtigt, Notizen zu erstellen. Bitte melden Sie sich an und versuchen Sie es erneut.",
+      "unknown": "Beim Erstellen der Notiz ist ein Fehler aufgetreten, bitte versuchen Sie es erneut."
     },
     "share": {
       "button": "Notiz teilen",
       "title": "Geteilte Notiz",
-      "description": "Hier ist eine Notiz, die mit dir geteilt wurde."
+      "description": "Hier ist eine Notiz, die mit Ihnen geteilt wurde."
     },
     "settings": {
-      "placeholder": "Schreibe deine Notiz hier...",
+      "placeholder": "Schreiben Sie Ihre Notiz hier...",
       "password": {
         "label": "Notiz Passwort",
         "placeholder": "Passwort..."
       },
-      "expiration": "Ablauf-Verzögerung",
+      "expiration": "Verfallszeit",
       "delays": {
         "1h": "1 Stunde",
         "1d": "1 Tag",
@@ -72,63 +74,68 @@
         "1m": "1 Monat"
       },
       "delete-after-reading": {
-        "label": "Löschen nach dem Lesen",
-        "description": "Lösche die Notiz nachdem sie gelesen wurde."
+        "label": "Nach dem Lesen löschen",
+        "description": "Die Notiz wird nach dem Lesen automatishc gelöscht."
       },
       "attach-files": "Dateien anhängen",
       "drop-files": {
         "title": "Dateien hier ablegen",
-        "description": "Lege die Dateien hier ab um sie an die Notiz anzuhängen."
+        "description": "Ziehen Sie Dateien hierher, um sie an die Notiz anzuhängen"
       },
       "create": "Notiz erstellen",
       "creating": "Notiz wird erstellt..."
     },
     "success": {
-      "title": "Deine Notiz wurde erfolgreich erstellt",
-      "description": "Deine Notiz wurde erstellt. Du kannst sie mit dem folgenden Link teilen.",
-      "with-deletion": "Die Notiz wird direkt nach dem Lesen gelöscht.",
+      "title": "Notiz erfolgreich erstellt",
+      "description": "Ihre Notiz wurde erstellt. Sie können sie nun über den folgenden Link teilen.",
+      "with-deletion": "Die Notiz wird nach dem Lesen automatisch gelöscht.",
       "copy-link": "Link kopieren",
-      "copy-success": "Link wurde kopiert"
+      "copy-success": "Der Link wurde kopiert"
     }
   },
   "view": {
-    "note-content": "Inhalt",
-    "download": "Download",
+    "note-content": "Inhalt der Notiz",
+    "download": "Herunterladen",
     "download-all": "Alle Dateien herunterladen",
     "request-password": {
-      "description": "Die Notiz ist durch ein Passwort geschützt. Gebe ein Passwort ein um Zugriff zu erhalten.",
+      "description": "Diese Notiz ist passwortgeschützt. Bitte geben Sie das Passwort ein, um sie zu entsperren.",
       "form": {
         "label": "Passwort",
-        "placeholder": "Passwort der Notiz...",
-        "unlock-button": "Notiz entperren",
-        "invalid": "Das eingebene Passwort ist falsch oder die Notizen-URL ist inkorrekt."
+        "placeholder": "Notiz Passwort...",
+        "unlock-button": "Notiz entsperren",
+        "invalid": "Das eingegebene Passwort ist ungültig oder die URL der Notiz ist falsch."
       }
+    },
+    "warn-for-note-deletion": {
+      "title": "Diese Notiz wird gelöscht",
+      "description": "Diese Notiz wurde so konfiguriert, dass sie nach dem Lesen automatisch gelöscht wird. Nach der Anzeige der Notiz wird sie endgültig gelöscht und kann nicht wiederhergestellt werden.",
+      "confirm": "Verstanden, zeig mir die Notiz"
     },
     "error": {
       "invalid-url": {
-        "title": "Falsche Notizen-URL",
-        "description": "Die Notizen-URL ist falsch. Stelle sicher, dass du die richtige URL eingegeben hast."
+        "title": "Ungültige Notiz-URL",
+        "description": "Diese Notiz-URL ist ungültig. Bitte stellen Sie sicher, dass Sie die richtige URL verwenden."
       },
       "rate-limit": {
-        "title": "Limit erreicht",
-        "description": "Du hast das Maximal-Limit zum aufrufen von Notizen erreicht. Bitte versuche es später noch einmal."
+        "title": "Tarifgrenze überschritten",
+        "description": "Sie haben das Limit für den Abruf von Notizen überschritten. Bitte versuchen Sie es später erneut."
       },
       "unauthorized": {
-        "title": "Zugriff verweigert",
-        "description": "Diese Notiz ist privat. Du musst angemeldet sein um die Notiz anzeigen zu können.",
+        "title": "Unberechtigt",
+        "description": "Diese Notiz ist privat. Sie müssen eingeloggt sein, um sie zu sehen.",
         "button": "Anmelden"
       },
       "note-not-found": {
-        "title": "Notiz wurde nicht gefunden",
-        "description": "Die Notiz existiert nicht, ist abgelaufen oder wurde gelöscht."
+        "title": "Notiz nicht gefunden",
+        "description": "Diese Notiz existiert nicht, ist abgelaufen oder wurde gelöscht."
       },
       "fetch-error": {
-        "title": "Ein Fehler ist aufgetreten",
-        "description": "Ein Fehler ist beim Aufruf der Notiz aufgetreten. Bitte versuche es erneut."
+        "title": "Es ist ein Fehler aufgetreten",
+        "description": "Beim Abrufen der Notiz ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal."
       },
       "decryption": {
-        "title": "Ein Fehler ist aufgetreten",
-        "description": "Ein Fehler ist beim Entschlüsseln der Notiz aufgetreten. Die URL könnte falsch sein."
+        "title": "Es ist ein Fehler aufgetreten",
+        "description": "Beim Entschlüsseln der Notiz ist ein Fehler aufgetreten. Die URL ist möglicherweise ungültig."
       }
     }
   },
