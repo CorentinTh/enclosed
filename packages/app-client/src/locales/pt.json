@@ -93,8 +93,10 @@
   },
   "view": {
     "note-content": "Conteúdo da nota",
-    "download": "Descarregar",
-    "download-all": "Descarregar todos os ficheiros",
+    "assets": {
+      "download": "Descarregar",
+      "download-all": "Descarregar todos os ficheiros"
+    },
     "request-password": {
       "description": "Esta nota está protegida por uma palavra-passe. Insere a palavra-passe para desbloqueá-la.",
       "form": {

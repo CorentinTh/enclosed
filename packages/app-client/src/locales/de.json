@@ -95,8 +95,10 @@
   },
   "view": {
     "note-content": "Inhalt der Notiz",
-    "download": "Herunterladen",
-    "download-all": "Alle Dateien herunterladen",
+    "assets": {
+      "download": "Herunterladen",
+      "download-all": "Alle Dateien herunterladen"
+    },
     "request-password": {
       "description": "Diese Notiz ist passwortgeschützt. Bitte geben Sie das Passwort ein, um sie zu entsperren.",
       "form": {

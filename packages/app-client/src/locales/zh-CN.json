@@ -93,8 +93,10 @@
   },
   "view": {
     "note-content": "笔记内容",
-    "download": "下载",
-    "download-all": "下载所有文件",
+    "assets": {
+      "download": "下载",
+      "download-all": "下载所有文件"
+    },
     "request-password": {
       "description": "这条笔记受密码保护，请输入密码以解锁。",
       "form": {

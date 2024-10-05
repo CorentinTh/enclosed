@@ -39,7 +39,15 @@ We use **[Conventional Commits](https://www.conventionalcommits.org/)** to keep 
 
 ### Adding a New Language
 
-To contribute to the translation of the app, you can add a new language file in the [`packages/app-client/src/locales`](./packages/app-client/src/locales) directory. The file should be named according to the language code (e.g., `fr.json` for French). You can then add the new language to the `locales` array in the [`packages/app-client/src/modules/i18n/i18n.provider.tsx`](./packages/app-client/src/modules/i18n/i18n.provider.tsx) file.
+To contribute to the translation of the app, you can add a new language file in the [`packages/app-client/src/locales`](./packages/app-client/src/locales) directory. The file should be named according to the language code (e.g., `fr.json` for French). You can then add the new language to the `locales` array in the [`packages/app-client/src/modules/i18n/i18n.constants.ts`](./packages/app-client/src/modules/i18n/i18n.constants.ts) file.
+
+The reference language file is [`en.json`](./packages/app-client/src/locales/en.json) it contains all the keys used in the app. You can use this file as a reference to create the new language file.
+
+You can list the missing keys for each language by running the following command in the `app-client` package:
+
+```bash
+pnpm script:get-missing-i18n-keys
+```
 
 ### Updating an Existing Language
 

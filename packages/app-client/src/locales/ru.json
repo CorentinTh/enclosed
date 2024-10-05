@@ -93,8 +93,10 @@
   },
   "view": {
     "note-content": "Содержание заметки",
-    "download": "Скачать",
-    "download-all": "Загрузить все файлы",
+    "assets": {
+      "download": "Скачать",
+      "download-all": "Загрузить все файлы"
+    },
     "request-password": {
       "description": "Заметка защищена паролем. Введите пароль, чтобы открыть ее.",
       "form": {

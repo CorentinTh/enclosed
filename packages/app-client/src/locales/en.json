@@ -96,8 +96,12 @@
   },
   "view": {
     "note-content": "Note content",
-    "download": "Download",
-    "download-all": "Download all files",
+    "assets": {
+      "download": "Download",
+      "download-all": "Download all files",
+      "heading-multiple": "{{ count }} files attached to this note",
+      "heading-single": "1 file attached to this note"
+    },
     "request-password": {
       "description": "This note is password protected. Please enter the password to unlock it.",
       "form": {

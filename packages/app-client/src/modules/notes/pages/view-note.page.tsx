@@ -332,7 +332,11 @@ export const ViewNotePage: Component = () => {
               <div class="flex flex-col gap-4">
                 <div class="flex md:min-w-500px items-center h-9">
                   <div class="text-muted-foreground">
-                    {`${fileAssets().length} file${fileAssets().length > 1 ? 's' : ''} attached to this note`}
+                    {
+                      fileAssets().length > 1
+                        ? t('view.assets.heading-multiple', { count: fileAssets().length })
+                        : t('view.assets.heading-single')
+                    }
                   </div>
 
                   {fileAssets().length > 1 && (
@@ -346,7 +350,7 @@ export const ViewNotePage: Component = () => {
                         ? <div class="i-tabler-loader-2 mr-2 text-lg animate-spin"></div>
                         : <div class="i-tabler-file-zip mr-2 text-lg"></div>}
 
-                      {t('view.download-all')}
+                      {t('view.assets.download-all')}
                     </Button>
                   )}
                 </div>
@@ -368,7 +372,7 @@ export const ViewNotePage: Component = () => {
                           <div class="ml-auto">
                             <Button variant="secondary" onClick={() => downloadFile({ file })}>
                               <div class="i-tabler-download mr-2 text-lg"></div>
-                              {t('view.download')}
+                              {t('view.assets.download')}
                             </Button>
                           </div>
                         </CardContent>
