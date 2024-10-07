@@ -2,7 +2,7 @@
   "name": "@enclosed/root",
   "version": "1.7.1",
   "description": "Send private and secure note",
-  "packageManager": "pnpm@9.11.0",
+  "packageManager": "pnpm@9.12.1",
   "license": "Apache-2.0",
   "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
   "repository": {

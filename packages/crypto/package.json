@@ -2,7 +2,7 @@
   "name": "@enclosed/crypto",
   "type": "module",
   "version": "1.7.1",
-  "packageManager": "pnpm@9.11.0",
+  "packageManager": "pnpm@9.12.1",
   "description": "Enclosed cross-env crypto primitives",
   "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
   "license": "Apache-2.0",
