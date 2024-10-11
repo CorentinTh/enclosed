@@ -1,5 +1,10 @@
 export const locales = [
   {
+    key: 'ar',
+    file: 'ar',
+    name: 'العربية',
+  },
+  {
     key: 'en',
     file: 'en',
     name: 'English',
