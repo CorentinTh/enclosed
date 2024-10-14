@@ -95,7 +95,9 @@
     "note-content": "笔记内容",
     "assets": {
       "download": "下载",
-      "download-all": "下载所有文件"
+      "download-all": "下载所有文件",
+      "heading-multiple": "{{ count }} 个文件已被附加到此笔记",
+      "heading-single": "1 个文件已被附加到此笔记"
     },
     "request-password": {
       "description": "这条笔记受密码保护，请输入密码以解锁。",
@@ -105,6 +107,11 @@
         "unlock-button": "解锁笔记",
         "invalid": "您输入的密码无效或笔记 URL 不正确。"
       }
+    },
+    "warn-for-note-deletion": {
+      "title": "此笔记将被删除",
+      "description": "此笔记已配置为阅后即焚。显示笔记后，它将被永久删除且无法恢复。",
+      "confirm": "已知晓，显示笔记"
     },
     "error": {
       "invalid-url": {
