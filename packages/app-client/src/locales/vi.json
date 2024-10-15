@@ -1,0 +1,151 @@
+{
+  "app": {
+    "title": "Đính kèm",
+    "description": "Gửi ghi chú riêng tư và an toàn"
+  },
+  "insecureContextWarning": {
+    "description": "Kết nối của bạn không an toàn, ứng dụng phải được phục vụ qua HTTPS để hoạt động đúng. Bạn sẽ không thể tạo hoặc xem ghi chú.",
+    "learn-more": "Tìm hiểu thêm"
+  },
+  "navbar": {
+    "new-note": "Ghi chú mới",
+    "github": "GitHub",
+    "language": "Ngôn ngữ",
+    "theme": {
+      "theme": "Chủ đề",
+      "light-mode": "Chế độ sáng",
+      "dark-mode": "Chế độ tối",
+      "system-mode": "Hệ thống"
+    },
+    "settings": {
+      "documentation": "Tài liệu",
+      "cli": "Đính kèm CLI",
+      "support": "Hỗ trợ Đính kèm",
+      "report-bug": "Báo cáo lỗi",
+      "logout": "Đăng xuất",
+      "contribute-to-i18n": "Đóng góp vào i18n"
+    }
+  },
+  "footer": {
+    "crafted-by": "Được tạo bởi",
+    "source-code": "Mã nguồn có sẵn trên",
+    "github": "GitHub",
+    "version": "Phiên bản"
+  },
+  "login": {
+    "title": "Đăng nhập vào Đính kèm",
+    "description": "Đây là một phiên bản riêng tư của Đính kèm. Nhập thông tin đăng nhập của bạn để có thể tạo ghi chú.",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "submit": "Đăng nhập",
+    "errors": {
+      "invalid-credentials": "Email hoặc mật khẩu không hợp lệ.",
+      "unknown": "Đã xảy ra lỗi không xác định. Vui lòng thử lại sau."
+    },
+    "footer": [
+      "Bạn chưa có tài khoản?",
+      "Liên hệ với chủ sở hữu của phiên bản."
+    ]
+  },
+  "create": {
+    "errors": {
+      "empty-note": "Vui lòng nhập nội dung ghi chú hoặc đính kèm tệp.",
+      "rate-limit": "Bạn đã vượt quá giới hạn tốc độ cho việc tạo ghi chú. Vui lòng thử lại sau.",
+      "too-large": "Nội dung ghi chú và tệp đính kèm quá lớn. Vui lòng giảm kích thước và thử lại.",
+      "unauthorized": "Bạn không được phép tạo ghi chú. Vui lòng đăng nhập và thử lại.",
+      "api-not-found": "Không tìm thấy điểm cuối API. Máy chủ có thể chưa được cấu hình đúng.",
+      "unknown": "Đã xảy ra lỗi khi tạo ghi chú, vui lòng thử lại."
+    },
+    "share": {
+      "button": "Chia sẻ ghi chú",
+      "title": "Ghi chú được chia sẻ",
+      "description": "Đây là một ghi chú được chia sẻ với bạn."
+    },
+    "settings": {
+      "placeholder": "Nhập ghi chú của bạn ở đây...",
+      "password": {
+        "label": "Mật khẩu ghi chú",
+        "placeholder": "Mật khẩu..."
+      },
+      "expiration": "Thời hạn hết hạn",
+      "delays": {
+        "1h": "1 giờ",
+        "1d": "1 ngày",
+        "1w": "1 tuần",
+        "1m": "1 tháng"
+      },
+      "delete-after-reading": {
+        "label": "Xóa sau khi đọc",
+        "description": "Xóa ghi chú sau khi đọc"
+      },
+      "attach-files": "Đính kèm tệp",
+      "drop-files": {
+        "title": "Thả tệp vào đây",
+        "description": "Kéo thả tệp vào đây để đính kèm chúng vào ghi chú"
+      },
+      "create": "Tạo ghi chú",
+      "creating": "Đang tạo ghi chú..."
+    },
+    "success": {
+      "title": "Ghi chú đã được tạo thành công",
+      "description": "Ghi chú của bạn đã được tạo. Bây giờ bạn có thể chia sẻ nó bằng liên kết sau.",
+      "with-deletion": "Ghi chú sẽ bị xóa sau khi đọc.",
+      "copy-link": "Sao chép liên kết",
+      "copy-success": "Đã sao chép liên kết"
+    }
+  },
+  "view": {
+    "note-content": "Nội dung ghi chú",
+    "assets": {
+      "download": "Tải xuống",
+      "download-all": "Tải xuống tất cả tệp",
+      "heading-multiple": "{{ count }} tệp đính kèm với ghi chú này",
+      "heading-single": "1 tệp đính kèm với ghi chú này"
+    },
+    "request-password": {
+      "description": "Ghi chú này được bảo vệ bằng mật khẩu. Vui lòng nhập mật khẩu để mở khóa nó.",
+      "form": {
+        "label": "Mật khẩu",
+        "placeholder": "Mật khẩu ghi chú...",
+        "unlock-button": "Mở khóa ghi chú",
+        "invalid": "Mật khẩu bạn nhập không hợp lệ hoặc URL ghi chú không chính xác."
+      }
+    },
+    "warn-for-note-deletion": {
+      "title": "Ghi chú này sẽ bị xóa",
+      "description": "Ghi chú này đã được cấu hình để xóa sau khi đọc. Sau khi hiển thị ghi chú, nó sẽ bị xóa vĩnh viễn và không thể khôi phục.",
+      "confirm": "Tôi hiểu, hiển thị ghi chú cho tôi"
+    },
+    "error": {
+      "invalid-url": {
+        "title": "URL ghi chú không hợp lệ",
+        "description": "URL ghi chú này không hợp lệ. Vui lòng đảm bảo bạn đang sử dụng URL đúng."
+      },
+      "rate-limit": {
+        "title": "Vượt quá giới hạn tốc độ",
+        "description": "Bạn đã vượt quá giới hạn tốc độ cho việc lấy ghi chú. Vui lòng thử lại sau."
+      },
+      "unauthorized": {
+        "title": "Không được phép",
+        "description": "Ghi chú này là riêng tư. Bạn cần đăng nhập để xem nó.",
+        "button": "Đăng nhập"
+      },
+      "note-not-found": {
+        "title": "Không tìm thấy ghi chú",
+        "description": "Ghi chú này không tồn tại, đã hết hạn hoặc đã bị xóa."
+      },
+      "fetch-error": {
+        "title": "Đã xảy ra lỗi",
+        "description": "Đã xảy ra lỗi khi lấy ghi chú. Vui lòng thử lại sau."
+      },
+      "decryption": {
+        "title": "Đã xảy ra lỗi",
+        "description": "Đã xảy ra lỗi khi giải mã ghi chú. URL có thể không hợp lệ."
+      }
+    }
+  },
+  "copy": {
+    "label": "Sao chép vào clipboard",
+    "success": "Đã sao chép!"
+  }
+}
