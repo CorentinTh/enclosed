@@ -118,6 +118,11 @@ export const CreateNotePage: Component = () => {
     setError(null);
   }
 
+  function updateUploadedFiles(files: File[]) {
+    setUploadedFiles(prevFiles => [...prevFiles, ...files]);
+    setError(null);
+  }
+
   const getIsShareApiSupported = () => navigator.share !== undefined;
 
   const shareNote = async () => {
@@ -209,7 +214,7 @@ export const CreateNotePage: Component = () => {
             </TextFieldRoot>
 
             <div>
-              <FileUploaderButton variant="secondary" class="mt-2 w-full" multiple onFilesUpload={({ files }) => setUploadedFiles(prevFiles => [...prevFiles, ...files])}>
+              <FileUploaderButton variant="secondary" class="mt-2 w-full" multiple onFilesUpload={({ files }) => updateUploadedFiles(files)}>
                 <div class="i-tabler-upload mr-2 text-lg text-muted-foreground"></div>
                 {t('create.settings.attach-files')}
               </FileUploaderButton>
