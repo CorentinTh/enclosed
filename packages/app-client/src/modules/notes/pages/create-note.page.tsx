@@ -119,8 +119,8 @@ export const CreateNotePage: Component = () => {
   }
 
   function updateUploadedFiles(files: File[]) {
-    setUploadedFiles(prevFiles => [...prevFiles, ...files])
-    setError(null)
+    setUploadedFiles(prevFiles => [...prevFiles, ...files]);
+    setError(null);
   }
 
   const getIsShareApiSupported = () => navigator.share !== undefined;
