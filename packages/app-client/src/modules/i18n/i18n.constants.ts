@@ -35,6 +35,11 @@ export const locales = [
     name: 'Русский',
   },
   {
+    key: 'vi',
+    file: 'vi',
+    name: 'Tiếng Việt',
+  },
+  {
     key: 'zh-CN',
     file: 'zh-CN',
     name: '简体中文',
