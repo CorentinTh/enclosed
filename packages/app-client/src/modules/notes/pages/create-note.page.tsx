@@ -2,11 +2,16 @@ import { authStore } from '@/modules/auth/auth.store';
 import { getConfig } from '@/modules/config/config.provider';
 import { getFileIcon } from '@/modules/files/files.models';
 import { useI18n } from '@/modules/i18n/i18n.provider';
+import { svgToBase64Png } from '@/modules/shared/files/convert';
+import { downloadBase64File, downloadSvgFile } from '@/modules/shared/files/download';
 import { isHttpErrorWithCode, isHttpErrorWithStatusCode, isRateLimitError } from '@/modules/shared/http/http-errors';
 import { cn } from '@/modules/shared/style/cn';
-import { CopyButton } from '@/modules/shared/utils/copy';
+import { CopyButton, useCopy } from '@/modules/shared/utils/copy';
 import { Alert, AlertDescription } from '@/modules/ui/components/alert';
 import { Button } from '@/modules/ui/components/button';
+import { Card, CardHeader } from '@/modules/ui/components/card';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/modules/ui/components/dropdown-menu';
+import { toast } from '@/modules/ui/components/sonner';
 import { SwitchControl, SwitchLabel, SwitchThumb, Switch as SwitchUiComponent } from '@/modules/ui/components/switch';
 import { Tabs, TabsIndicator, TabsList, TabsTrigger } from '@/modules/ui/components/tabs';
 import { TextArea } from '@/modules/ui/components/textarea';
@@ -14,10 +19,92 @@ import { TextField, TextFieldLabel, TextFieldRoot } from '@/modules/ui/component
 import { safely } from '@corentinth/chisels';
 import { useNavigate } from '@solidjs/router';
 import { type Component, createSignal, Match, onCleanup, onMount, Show, Switch } from 'solid-js';
+import { renderSVG as renderQrCodeSvg } from 'uqr';
 import { FileUploaderButton } from '../components/file-uploader';
 import { NotePasswordField } from '../components/note-password-field';
 import { useNoteContext } from '../notes.context';
 import { encryptAndCreateNote } from '../notes.usecases';
+
+const QrCodeCard: Component<{ noteUrl: string }> = (props) => {
+  const getNoteUrl = () => props.noteUrl;
+  const { t } = useI18n();
+  const { copy } = useCopy();
+
+  const downloadSvgQrCode = () => {
+    downloadSvgFile({ svg: renderQrCodeSvg(getNoteUrl()), fileName: 'note-qr-code.svg' });
+    toast.success(t('create.qr-code.download-success'));
+  };
+
+  const downloadPngQrCode = async () => {
+    const base64 = await svgToBase64Png({ svg: renderQrCodeSvg(getNoteUrl()), width: 512, height: 512 });
+    downloadBase64File({ base64, fileName: 'note-qr-code.png' });
+    toast.success(t('create.qr-code.download-success'));
+  };
+
+  const copyQrCodeSvg = () => {
+    copy({ text: renderQrCodeSvg(getNoteUrl()) });
+    toast.success(t('create.qr-code.copy-success'));
+  };
+
+  return (
+    <Card class="max-w-500px mx-auto mt-6">
+      <CardHeader>
+        <div class="flex items-center gap-4 flex-col-reverse sm:flex-row sm:items-stretch">
+          <div class="w-full max-w-200px">
+            <div innerHTML={renderQrCodeSvg(getNoteUrl(), { blackColor: 'white', whiteColor: 'transparent' })} class="dark:block light:hidden" />
+            <div innerHTML={renderQrCodeSvg(getNoteUrl(), { blackColor: 'black', whiteColor: 'transparent' })} class="light:block dark:hidden" />
+          </div>
+
+          <div class="flex flex-col gap-2 justify-between">
+            <div>
+              <div class="text-sm font-semibold">
+                {t('create.qr-code.title')}
+              </div>
+
+              <div class="text-muted-foreground">
+                {t('create.qr-code.description')}
+              </div>
+            </div>
+
+            <div>
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <Button variant="secondary">
+                    {t('create.qr-code.export')}
+                    <div class="i-tabler-chevron-down ml-2 text-lg"></div>
+                  </Button>
+                </DropdownMenuTrigger>
+
+                <DropdownMenuContent>
+                  <DropdownMenuItem
+                    onClick={downloadPngQrCode}
+                    class="cursor-pointer"
+                  >
+                    <div class="i-tabler-photo mr-2 text-lg"></div>
+                    {t('create.qr-code.download-png')}
+                  </DropdownMenuItem>
+
+                  <DropdownMenuItem
+                    onClick={downloadSvgQrCode}
+                    class="cursor-pointer"
+                  >
+                    <div class="i-tabler-file-type-svg mr-2 text-lg"></div>
+                    {t('create.qr-code.download-svg')}
+                  </DropdownMenuItem>
+
+                  <DropdownMenuItem onClick={copyQrCodeSvg} class="cursor-pointer">
+                    <div class="i-tabler-copy mr-2 text-lg"></div>
+                    {t('create.qr-code.copy-svg')}
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          </div>
+        </div>
+      </CardHeader>
+    </Card>
+  );
+};
 
 export const CreateNotePage: Component = () => {
   const config = getConfig();
@@ -293,6 +380,8 @@ export const CreateNotePage: Component = () => {
                 </Button>
               </Show>
             </div>
+
+            <QrCodeCard noteUrl={getNoteUrl()} />
           </div>
         </Match>
       </Switch>

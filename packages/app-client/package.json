@@ -40,8 +40,10 @@
     "jszip": "^3.10.1",
     "lodash-es": "^4.17.21",
     "solid-js": "^1.8.11",
+    "solid-sonner": "^0.2.8",
     "tailwind-merge": "^2.5.2",
-    "unocss-preset-animations": "^1.1.0"
+    "unocss-preset-animations": "^1.1.0",
+    "uqr": "^0.1.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",
