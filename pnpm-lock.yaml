@@ -52,7 +52,7 @@ importers:
         version: 4.2.1(solid-js@1.9.2)
       '@solidjs/router':
         specifier: ^0.14.3
-        version: 0.14.8(solid-js@1.9.2)
+        version: 0.14.9(solid-js@1.9.2)
       '@unocss/reset':
         specifier: ^0.63.0
         version: 0.63.4
@@ -2019,8 +2019,8 @@ packages:
     peerDependencies:
       solid-js: ^1.6.12
 
-  '@solidjs/router@0.14.8':
-    resolution: {integrity: sha512-S+rD5Twp0820cM03wEIYtb7/4KN7Cfr3BP+qPIqb7IXO/SZ72tWqHEMQsmcjDbr4yVfpA+5Sq0Y+xcq09y1gQA==}
+  '@solidjs/router@0.14.9':
+    resolution: {integrity: sha512-CnCi+oSGhTMAhk3Dtg6E29uRf9FoMIu9/awvrx6czbHcyXvGLxkyHsKm6CWErKUmKJBRSwdn8siRuV3qDrZOEg==}
     peerDependencies:
       solid-js: ^1.8.6
 
@@ -2446,6 +2446,11 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
+  acorn@8.13.0:
+    resolution: {integrity: sha512-8zSiw54Oxrdym50NlZ9sUusyO1Z1ZchgRLWRaK6c86XJFClyCgFKetdowBg5bKxyp/u+CDBJG4Mpp0m3HLZl9w==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+
   agent-base@7.1.1:
     resolution: {integrity: sha512-H0TSyFNDMomMNJQBn8wFV5YC/2eJ+VXECwOadZJT554xP6cODZHPX3H9QMQECxvrgiSOP1pHjy1sMWQVYJOUOA==}
     engines: {node: '>= 14'}
@@ -2746,7 +2751,7 @@ packages:
     resolution: {integrity: sha512-W9pAhw0ja1Edb5GVdIF1mjZw/ASI0AlShXM83UUGe2DVr5TdAPEA1OA8m/g8zWp9x6On7gqufY+FatDbC3MDQg==}
 
   concat-map@0.0.1:
-    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
+    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
 
   conf@13.0.1:
     resolution: {integrity: sha512-l9Uwc9eOnz39oADzGO2cSBDi7siv8lwO+31ocQ2nOJijnDiW3pxqm9VV10DPYUO28wW83DjABoUqY1nfHRR2hQ==}
@@ -6855,7 +6860,7 @@ snapshots:
     dependencies:
       solid-js: 1.9.2
 
-  '@solidjs/router@0.14.8(solid-js@1.9.2)':
+  '@solidjs/router@0.14.9(solid-js@1.9.2)':
     dependencies:
       solid-js: 1.9.2
 
@@ -7455,6 +7460,9 @@ snapshots:
       acorn: 8.12.1
 
   acorn@8.12.1: {}
+
+  acorn@8.13.0:
+    optional: true
 
   agent-base@7.1.1:
     dependencies:
@@ -10356,7 +10364,7 @@ snapshots:
   terser@5.32.0:
     dependencies:
       '@jridgewell/source-map': 0.3.6
-      acorn: 8.12.1
+      acorn: 8.13.0
       commander: 2.20.3
       source-map-support: 0.5.21
     optional: true
