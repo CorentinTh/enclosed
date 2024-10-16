@@ -92,6 +92,16 @@
       "with-deletion": "La note sera supprimée après lecture.",
       "copy-link": "Copier le lien",
       "copy-success": "Lien copié"
+    },
+    "qr-code": {
+      "title": "Partager cette note sur mobile",
+      "description": "Scannez ce QR code pour ouvrir la note sur votre appareil mobile. Vous pouvez également exporter le QR code pour le partager.",
+      "export": "Exporter le QR code",
+      "download-svg": "Télécharger au format SVG",
+      "download-png": "Télécharger au format PNG",
+      "download-success": "Téléchargement réussi",
+      "copy-svg": "Copier le code du SVG",
+      "copy-success": "SVG copié dans le presse-papiers"
     }
   },
   "view": {

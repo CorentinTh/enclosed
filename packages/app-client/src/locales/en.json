@@ -92,6 +92,16 @@
       "with-deletion": "The note will be deleted after reading.",
       "copy-link": "Copy link",
       "copy-success": "Link copied"
+    },
+    "qr-code": {
+      "title": "Share this note on mobile",
+      "description": "You can scan this QR code to view the note on your mobile device. You can also export the QR code image to share it with others.",
+      "export": "Export QR code",
+      "download-svg": "Download as SVG",
+      "download-png": "Download as PNG",
+      "download-success": "QR code downloaded",
+      "copy-svg": "Copy SVG code",
+      "copy-success": "SVG copied to clipboard"
     }
   },
   "view": {
