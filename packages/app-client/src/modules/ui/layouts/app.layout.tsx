@@ -50,6 +50,7 @@ const LanguageSwitcher: Component = () => {
 
       <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" rel="noopener noreferrer" href="https://github.com/CorentinTh/enclosed/tree/main/packages/app-client/src/locales">
         {t('navbar.settings.contribute-to-i18n')}
+        <div class="i-tabler-external-link text-lg text-muted-foreground"></div>
       </DropdownMenuItem>
     </>
   );
