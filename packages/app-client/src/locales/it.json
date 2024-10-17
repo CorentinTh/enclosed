@@ -1,0 +1,162 @@
+{
+  "app": {
+    "title": "Enclosed",
+    "description": "Invia note private e sicure"
+  },
+  "insecureContextWarning": {
+    "description": "La connessione non è sicura, l'applicazione deve essere in HTTPS per funzionare correttamente. Non puoi creare o consultare delle note.",
+    "learn-more": "Per saperne di più"
+  },
+  "navbar": {
+    "new-note": "Nuova nota",
+    "github": "GitHub",
+    "language": "Lingua",
+    "theme": {
+      "theme": "Tema",
+      "light-mode": "Modo chiaro",
+      "dark-mode": "Modo scuro",
+      "system-mode": "Modo di sistema"
+    },
+    "settings": {
+      "documentation": "Documentazione",
+      "cli": "Enclosed CLI",
+      "support": "Sostenere Enclosed",
+      "report-bug": "Segnalare un bug",
+      "logout": "Disconnettersi",
+      "contribute-to-i18n": "Contribuire a l'i18n"
+    }
+  },
+  "footer": {
+    "crafted-by": "Creato da",
+    "source-code": "Codice sorgente disponibile su",
+    "github": "GitHub",
+    "version": "Version"
+  },
+  "login": {
+    "title": "Connessione a Enclosed",
+    "description": "Questa è un'istanza privata di Enclosed. Identificarsi per creare delle note.",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Connettersi",
+    "errors": {
+      "invalid-credentials": "Email o password non valida.",
+      "unknown": "Un errore sconosciuto è stato sollevato. Riprovare più tardi."
+    },
+    "footer": [
+      "Non hai un account?",
+      "Contatta il proprietario dell'istanza."
+    ]
+  },
+  "create": {
+    "errors": {
+      "empty-note": "Puoi inserire il contenuto di una nota o allegare un file.",
+      "rate-limit": "Hai passato il limite di creazione delle note. Riprovare più tardi.",
+      "too-large": "Il contenuto della nota o degli allegati è troppo voluminoso. Ridurre la dimensione e riprovare.",
+      "unauthorized": "Non sei autorizzato a creare delle note. Connettersi e riprovare.",
+      "api-not-found": "L'endpoint API non è stato trovato. Il server potrebbe non essere configurato correttamente.",
+      "unknown": "Un errore è stato prodotto durante la creazione della nota. Riprovare più tardi."
+    },
+    "share": {
+      "button": "Condividere la nota",
+      "title": "Nota condivisa",
+      "description": "Visualizzare una nota condivisa."
+    },
+    "settings": {
+      "placeholder": "Inserire la nota qui...",
+      "password": {
+        "label": "Password della nota",
+        "placeholder": "Password..."
+      },
+      "expiration": "Durata",
+      "delays": {
+        "1h": "1 ora",
+        "1d": "1 giorno",
+        "1w": "1 settimana",
+        "1m": "1 mese"
+      },
+      "delete-after-reading": {
+        "label": "Cancellare dopo la lettura",
+        "description": "Cancellare la nota dopo la lettura"
+      },
+      "attach-files": "Allegare dei file",
+      "drop-files": {
+        "title": "Caricare i file qui",
+        "description": "Usare il drag and drop per allegare i file alla nota"
+      },
+      "create": "Creare una nota",
+      "creating": "Creazione in corso..."
+    },
+    "success": {
+      "title": "Nota creata con successo",
+      "description": "La nota è stata creata con successo. Ora puoi condividerla usando il link prodotto.",
+      "with-deletion": "La nota sarà cancellata dopo la lettura.",
+      "copy-link": "Copiare il link",
+      "copy-success": "Link copiato"
+    },
+    "qr-code": {
+      "title": "Condividere questa nota su smartphone",
+      "description": "Scansionare questo QR code per aprire la nota sullo smartphone. È possibile esportare il QR code per condividerlo.",
+      "export": "Esportare il QR code",
+      "download-svg": "Scaricare in formato SVG",
+      "download-png": "Scaricare in formato PNG",
+      "download-success": "Scaricamento riuscito",
+      "copy-svg": "Copiare il codice del file SVG",
+      "copy-success": "SVG copiato"
+    }
+  },
+  "view": {
+    "note-content": "Contenuto della nota",
+    "assets": {
+      "download": "Scaricare",
+      "download-all": "Scaricare tutto",
+      "heading-multiple": "{{ count }} file allegati alla nota",
+      "heading-single": "1 file allegato alla nota"
+    },
+    "request-password": {
+      "description": "Questa nota è protetta da una password. Inserire la password per sbloccarla.",
+      "form": {
+        "label": "Password",
+        "placeholder": "Password della nota...",
+        "unlock-button": "Sbloccare la nota",
+        "invalid": "La password immessa è incorretta o l'URL della nota è sbagliato."
+      }
+    },
+    "warn-for-note-deletion": {
+      "title": "Questa nota sarà cancellata dopo la lettura",
+      "description": "Questa nota sarà cancellata dopo la lettura. Una volta visualizzata sarà definitivamente cancellata e non potrà essere recuperata.",
+      "confirm": "Capisco, visualizza la nota"
+    },
+
+    "error": {
+      "invalid-url": {
+        "title": "URL della nota non valido",
+        "description": "Questo URL della nota non è valido. Assicurarsi di aver usato l'URL corretto."
+      },
+      "rate-limit": {
+        "title": "Oltrepassato il limite di recuperi",
+        "description": "È stato oltrepassato il limite di recuperi per le note. Riprovare più tardi."
+      },
+      "unauthorized": {
+        "title": "Non autorizzato",
+        "description": "Questa nota è privata. Bisogna connettersi per vederla.",
+        "button": "Connettersi"
+      },
+      "note-not-found": {
+        "title": "Nota introvabile",
+        "description": "Questa nota non esiste, è scaduta o è stata cancellata."
+      },
+      "fetch-error": {
+        "title": "Un errore è stato prodotto",
+        "description": "Un errore è stato prodotto durante il recupero della nota. Riprovare più tardi."
+      },
+      "decryption": {
+        "title": "Un errore è stato prodotto",
+        "description": "Un errore è stato prodotto durante la decifratura della nota. L'URL potrebbe non essere valido."
+      }
+    }
+  },
+  "copy": {
+    "label": "Copiare",
+    "success": "Copiato!"
+  }
+}
