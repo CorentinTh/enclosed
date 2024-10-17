@@ -31,7 +31,6 @@ To deploy Enclosed on Railway, you can use the following button to create a new 
 > [!INFO]
 > Not yet available. Please refer to the [GitHub issue](https://github.com/CorentinTh/enclosed/issues/261) for updates about CasaOS support.
 
-
 ## Another platform?
 
 If you would like to see Enclosed available on another platform, please open an issue on the [GitHub repository](https://github.com/CorentinTh/enclosed/issues/new/choose) with the details of the platform you would like to see supported.
