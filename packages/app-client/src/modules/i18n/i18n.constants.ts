@@ -20,6 +20,11 @@ export const locales = [
     name: 'Français',
   },
   {
+    key: 'it',
+    file: 'it',
+    name: 'Italiano',
+  },
+  {
     key: 'es',
     file: 'es',
     name: 'Español',
