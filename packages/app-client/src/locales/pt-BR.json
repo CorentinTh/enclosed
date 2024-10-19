@@ -1,0 +1,161 @@
+{
+  "app": {
+    "title": "Enclosed",
+    "description": "Envie notas de forma privada e segura"
+  },
+  "insecureContextWarning": {
+    "description": "Sua conexão não é segura, a aplicação deve ser disponibilizada usando HTTPS. Não será possível criar ou visualizar notas.",
+    "learn-more": "Ver mais"
+  },
+  "navbar": {
+    "new-note": "Nova nota",
+    "github": "GitHub",
+    "language": "Idioma",
+    "theme": {
+      "theme": "Aparência",
+      "light-mode": "Claro",
+      "dark-mode": "Escuro",
+      "system-mode": "Sistema"
+    },
+    "settings": {
+      "documentation": "Documentação",
+      "cli": "Enclosed CLI",
+      "support": "Ajudar Enclosed",
+      "report-bug": "Reportar erro",
+      "logout": "Sair",
+      "contribute-to-i18n": "Contribuir para i18n"
+    }
+  },
+  "footer": {
+    "crafted-by": "Criado por",
+    "source-code": "Código disponível no",
+    "github": "GitHub",
+    "version": "Versão"
+  },
+  "login": {
+    "title": "Entrar no Enclosed",
+    "description": "Esta é uma instância privada do Enclosed. Insira os dados da sua conta para poder criar notas.",
+    "email": "E-mail",
+    "password": "Senha",
+    "submit": "Entrar",
+    "errors": {
+      "invalid-credentials": "E-mail ou senha inválidos.",
+      "unknown": "Ocorreu um erro. Tente novamente mais tarde."
+    },
+    "footer": [
+      "Não tem uma conta?",
+      "Entre em contato com o dono da instância."
+    ]
+  },
+  "create": {
+    "errors": {
+      "empty-note": "Escreva uma nota ou anexe um arquivo.",
+      "rate-limit": "Limite de criação de notas excedido. Tente novamente mais tarde.",
+      "too-large": "O conteúdo e/ou anexos da nota são muito grandes. Reduza o tamanho e tente novamente.",
+      "unauthorized": "Você não está autorizado a criar notas. Entre na sua conta e tente novamente.",
+      "api-not-found": "Servidor da API não encontrado. Verifique se o servidor está configurado corretamente.",
+      "unknown": "Ocorreu um erro ao criar a nota, tente outra vez."
+    },
+    "share": {
+      "button": "Compartilhar nota",
+      "title": "Nota compartilhada",
+      "description": "Aqui está uma nota compartilhada com você."
+    },
+    "settings": {
+      "placeholder": "Escreva sua nota aqui...",
+      "password": {
+        "label": "Senha da nota",
+        "placeholder": "Senha..."
+      },
+      "expiration": "Tempo de expiração",
+      "delays": {
+        "1h": "1 hora",
+        "1d": "1 dia",
+        "1w": "1 semana",
+        "1m": "1 mês"
+      },
+      "delete-after-reading": {
+        "label": "Apagar após leitura",
+        "description": "Apagar a nota depois de ser lida"
+      },
+      "attach-files": "Anexar arquivos",
+      "drop-files": {
+        "title": "Solte arquivos aqui",
+        "description": "Arraste e solte arquivos aqui para anexá-los à nota"
+      },
+      "create": "Criar nota",
+      "creating": "Criando nota..."
+    },
+    "success": {
+      "title": "Nota criada com sucesso",
+      "description": "Sua nota foi criada. Agora você pode compartilhá-la com o endereço abaixo.",
+      "with-deletion": "A nota será apagada depois de lida.",
+      "copy-link": "Copiar endereço",
+      "copy-success": "Endereço copiado"
+    },
+    "qr-code": {
+      "title": "Compartilhar com dispositivos móveis",
+      "description": "Você pode escanear este QR code para ver a nota em seu dispositivo móvel. Você também pode exportar a imagem do QR code para compartilhá-lo com outras pessoas.",
+      "export": "Exportar QR code",
+      "download-svg": "Baixar como SVG",
+      "download-png": "Baixar como PNG",
+      "download-success": "QR code baixado",
+      "copy-svg": "Copiar código SVG",
+      "copy-success": "SVG copiado"
+    }
+  },
+  "view": {
+    "note-content": "Conteúdo da nota",
+    "assets": {
+      "download": "Baixar",
+      "download-all": "Baixar todos arquivos",
+      "heading-multiple": "{{ count }} arquivos anexados à nota",
+      "heading-single": "1 arquivo anexado à nota"
+    },
+    "request-password": {
+      "description": "Esta nota está protegida por senha. Insira a senha para desbloqueá-la.",
+      "form": {
+        "label": "Senha",
+        "placeholder": "Senha da nota...",
+        "unlock-button": "Desbloquear nota",
+        "invalid": "A senha informada está incorreta ou o endereço da nota está inválido."
+      }
+    },
+    "warn-for-note-deletion": {
+      "title": "Esta nota será apagada",
+      "description": "Esta nota foi configurada para ser apagada depois de lida. Após mostrar a nota, ela será permanentemente apagada e não poderá ser recuperada.",
+      "confirm": "Entendi, mostre a nota"
+    },
+    "error": {
+      "invalid-url": {
+        "title": "Endereço de nota inválido",
+        "description": "Este endereço de nota é inválido. Verifique se está usando o endereço correto."
+      },
+      "rate-limit": {
+        "title": "Limite excedido",
+        "description": "Você excedeu o limite de visualização de notas. Tente novamente mais tarde."
+      },
+      "unauthorized": {
+        "title": "Não autorizado",
+        "description": "Esta nota é privada. Você precisa entrar na sua conta para visualizá-la.",
+        "button": "Entrar"
+      },
+      "note-not-found": {
+        "title": "Nota não encontrada",
+        "description": "Esta nota não existe, expirou ou foi apagada."
+      },
+      "fetch-error": {
+        "title": "Ocorreu um erro",
+        "description": "Ocorreu um erro ao carregar a nota. Tente novamente mais tarde."
+      },
+      "decryption": {
+        "title": "Ocorreu um erro",
+        "description": "Ocorreu um erro ao descriptografar a nota. O endereço da nota pode estar inválido."
+      }
+    }
+  },
+  "copy": {
+    "label": "Copiar",
+    "success": "Copiada!"
+  }
+}
