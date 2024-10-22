@@ -134,7 +134,7 @@ importers:
         version: link:../lib
       '@hono/node-server':
         specifier: ^1.12.1
-        version: 1.13.2(hono@4.6.5)
+        version: 1.13.2(hono@4.6.6)
       bcryptjs:
         specifier: ^2.4.3
         version: 2.4.3
@@ -146,7 +146,7 @@ importers:
         version: 2.1.0(zod@3.23.8)
       hono:
         specifier: ^4.5.8
-        version: 4.6.5
+        version: 4.6.6
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -3472,8 +3472,8 @@ packages:
   help-me@5.0.0:
     resolution: {integrity: sha512-7xgomUX6ADmcYzFik0HzAxh/73YlKR9bmFzf51CZwR+b6YtzU2m0u49hQCqV6SvlqIqsaxovfwdvbnsw3b/zpg==}
 
-  hono@4.6.5:
-    resolution: {integrity: sha512-qsmN3V5fgtwdKARGLgwwHvcdLKursMd+YOt69eGpl1dUCJb8mCd7hZfyZnBYjxCegBG7qkJRQRUy2oO25yHcyQ==}
+  hono@4.6.6:
+    resolution: {integrity: sha512-euUj5qwvtkG+p38GFs0LYacwaoS2hYRAGn9ysAggiwT2QBcPnT1XYUCW3hatW4C1KzAXTYuQ08BlVDJtAGuhlg==}
     engines: {node: '>=16.9.0'}
 
   hookable@5.5.3:
@@ -6432,9 +6432,9 @@ snapshots:
 
   '@floating-ui/utils@0.2.8': {}
 
-  '@hono/node-server@1.13.2(hono@4.6.5)':
+  '@hono/node-server@1.13.2(hono@4.6.6)':
     dependencies:
-      hono: 4.6.5
+      hono: 4.6.6
 
   '@humanwhocodes/module-importer@1.0.1': {}
 
@@ -8767,7 +8767,7 @@ snapshots:
 
   help-me@5.0.0: {}
 
-  hono@4.6.5: {}
+  hono@4.6.6: {}
 
   hookable@5.5.3: {}
 
