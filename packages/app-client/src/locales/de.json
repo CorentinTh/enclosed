@@ -75,7 +75,7 @@
       },
       "delete-after-reading": {
         "label": "Nach dem Lesen löschen",
-        "description": "Die Notiz wird nach dem Lesen automatishc gelöscht."
+        "description": "Die Notiz wird nach dem Lesen automatisch gelöscht."
       },
       "attach-files": "Dateien anhängen",
       "drop-files": {
