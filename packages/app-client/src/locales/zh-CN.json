@@ -89,6 +89,16 @@
       "with-deletion": "阅读后笔记将被删除。",
       "copy-link": "复制链接",
       "copy-success": "链接已复制"
+    },
+    "qr-code": {
+      "title": "在手机上分享此笔记",
+      "description": "您可以扫描此二维码以查看笔记，或导出二维码图像以与他人分享。",
+      "export": "导出二维码",
+      "download-svg": "下载为 SVG 格式",
+      "download-png": "下载为 PNG 格式",
+      "download-success": "二维码已下载",
+      "copy-svg": "复制 SVG 代码",
+      "copy-success": "SVG 代码已复制到剪贴板"
     }
   },
   "view": {
