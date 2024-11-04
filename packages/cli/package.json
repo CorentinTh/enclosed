@@ -1,7 +1,7 @@
 {
   "name": "@enclosed/cli",
   "type": "module",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "packageManager": "pnpm@9.12.2",
   "description": "Enclosed cli to create secure notes.",
   "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
