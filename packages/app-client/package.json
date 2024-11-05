@@ -1,7 +1,7 @@
 {
   "name": "@enclosed/app-client",
   "type": "module",
-  "version": "1.9.1",
+  "version": "1.9.2-beta.1",
   "packageManager": "pnpm@9.12.2",
   "description": "Enclosed frontend client",
   "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
