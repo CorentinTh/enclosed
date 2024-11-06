@@ -15,9 +15,6 @@ catalogs:
     eslint:
       specifier: ^9.10.0
       version: 9.11.0
-    tsx:
-      specifier: ^4.17.0
-      version: 4.19.1
     typescript:
       specifier: ^5.6.2
       version: 5.6.2
@@ -107,7 +104,7 @@ importers:
         version: 25.0.1
       tsx:
         specifier: ^4.19.1
-        version: 4.19.1
+        version: 4.19.2
       typescript:
         specifier: 'catalog:'
         version: 5.6.2
@@ -201,7 +198,7 @@ importers:
         version: 11.3.0
       tsx:
         specifier: 'catalog:'
-        version: 4.19.1
+        version: 4.19.2
       typescript:
         specifier: 'catalog:'
         version: 5.6.2
@@ -259,7 +256,7 @@ importers:
         version: 9.11.0(jiti@1.21.6)
       tsx:
         specifier: 'catalog:'
-        version: 4.19.1
+        version: 4.19.2
       typescript:
         specifier: 'catalog:'
         version: 5.6.2
@@ -293,7 +290,7 @@ importers:
         version: 9.11.0(jiti@1.21.6)
       tsx:
         specifier: 'catalog:'
-        version: 4.19.1
+        version: 4.19.2
       typescript:
         specifier: 'catalog:'
         version: 5.6.2
@@ -378,7 +375,7 @@ importers:
         version: 9.11.0(jiti@1.21.6)
       tsx:
         specifier: 'catalog:'
-        version: 4.19.1
+        version: 4.19.2
       typescript:
         specifier: 'catalog:'
         version: 5.6.2
@@ -2445,6 +2442,11 @@ packages:
 
   acorn@8.13.0:
     resolution: {integrity: sha512-8zSiw54Oxrdym50NlZ9sUusyO1Z1ZchgRLWRaK6c86XJFClyCgFKetdowBg5bKxyp/u+CDBJG4Mpp0m3HLZl9w==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+
+  acorn@8.14.0:
+    resolution: {integrity: sha512-cl669nCJTZBsL97OF4kUQm5g5hC2uihk0NxY3WENAC0TYdILVkAyHymAntgxGkl7K+t0cXIrH5siy5S4XkFycA==}
     engines: {node: '>=0.4.0'}
     hasBin: true
 
@@ -5093,8 +5095,8 @@ packages:
   tslib@2.8.0:
     resolution: {integrity: sha512-jWVzBLplnCmoaTr13V9dYbiQ99wvZRd0vNWaDRg+aVYRcjDF3nDksxFDE/+fkXnKhpnUUkmx5pK/v8mCtLVqZA==}
 
-  tsx@4.19.1:
-    resolution: {integrity: sha512-0flMz1lh74BR4wOvBjuh9olbnwqCPc35OOlfyzHba0Dc+QNUeWX/Gq2YTbnwcWPO3BMd8fkzRVrHcsR+a7z7rA==}
+  tsx@4.19.2:
+    resolution: {integrity: sha512-pOUl6Vo2LUq/bSa8S5q7b91cgNSjctn9ugq/+Mvow99qW6x/UZYwzxy/3NmqoT66eHYfCVvFvACC58UBPFf28g==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -7519,6 +7521,9 @@ snapshots:
 
   acorn@8.13.0: {}
 
+  acorn@8.14.0:
+    optional: true
+
   agent-base@7.1.1:
     dependencies:
       debug: 4.3.7
@@ -8841,7 +8846,7 @@ snapshots:
       jiti: 2.0.0-beta.3
       jiti-v1: jiti@1.21.6
       pathe: 1.1.2
-      tsx: 4.19.1
+      tsx: 4.19.2
     transitivePeerDependencies:
       - supports-color
 
@@ -10496,7 +10501,7 @@ snapshots:
   terser@5.32.0:
     dependencies:
       '@jridgewell/source-map': 0.3.6
-      acorn: 8.13.0
+      acorn: 8.14.0
       commander: 2.20.3
       source-map-support: 0.5.21
     optional: true
@@ -10568,7 +10573,7 @@ snapshots:
 
   tslib@2.8.0: {}
 
-  tsx@4.19.1:
+  tsx@4.19.2:
     dependencies:
       esbuild: 0.23.1
       get-tsconfig: 4.8.1
