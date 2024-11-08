@@ -1,5 +1,7 @@
-# Base image using Node.js Alpine version 22
-FROM node:22-alpine AS builder
+# Base image is node:22-slim, we cannot use node:22-alpine because of
+# a known issue for arm/v7 architecture (hangs on dependency installation)
+# see https://github.com/nodejs/docker-node/issues/2077
+FROM node:22-slim AS builder
 
 # Set the working directory for the app
 WORKDIR /app
