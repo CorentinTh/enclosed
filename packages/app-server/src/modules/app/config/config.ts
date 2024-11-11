@@ -121,6 +121,20 @@ export const configDefinition = {
       default: 'false',
       env: 'PUBLIC_DEFAULT_DELETE_NOTE_AFTER_READING',
     },
+    defaultNoteTtlSeconds: {
+      doc: 'The default value for the expiration time of a note in seconds, the value must be one of: `3600` (1 hour), `86400` (1 day), `604800` (1 week), `2592000` (1 month)',
+      schema: z
+        .coerce
+        .number()
+        .refine(
+          value => [3600, 86400, 604800, 2592000].includes(value),
+          {
+            message: 'PUBLIC_DEFAULT_NOTE_TTL_SECONDS: Invalid value. Must be one of: 3600, 86400, 604800, 2592000',
+          },
+        ),
+      default: 3600,
+      env: 'PUBLIC_DEFAULT_NOTE_TTL_SECONDS',
+    },
   },
   authentication: {
     jwtSecret: {
