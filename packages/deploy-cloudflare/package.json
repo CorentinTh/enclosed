@@ -2,7 +2,7 @@
   "name": "@enclosed/deploy-cloudflare",
   "version": "1.10.0",
   "description": "Deploy scripts for Cloudflare Pages",
-  "packageManager": "pnpm@9.12.2",
+  "packageManager": "pnpm@9.12.3",
   "license": "Apache-2.0",
   "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
   "repository": {
