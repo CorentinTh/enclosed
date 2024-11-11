@@ -1,0 +1,161 @@
+{
+  "app": {
+    "title": "Enclosed",
+    "description": "Küldj privát és biztonságos jegyzeteket"
+  },
+  "insecureContextWarning": {
+    "description": "A kapcsolat nem biztonságos, az alkalmazásnak a HTTPS protokolon keresztül kell futnia a megfelelő működés érdekében. Nem fogsz tudni jegyzeteket megtekinteni vagy létrehozni.",
+    "learn-more": "További információ"
+  },
+  "navbar": {
+    "new-note": "Új jegyzet",
+    "github": "GitHub",
+    "language": "Nyelv",
+    "theme": {
+      "theme": "Megjelenés",
+      "light-mode": "Világos mód",
+      "dark-mode": "Sötét mód",
+      "system-mode": "Rendszer"
+    },
+    "settings": {
+      "documentation": "Dokumentáció",
+      "cli": "Enclosed CLI",
+      "support": "Támogasd az Enclosed-ot",
+      "report-bug": "Hiba bejelentése",
+      "logout": "Kijelentkezés",
+      "contribute-to-i18n": "Közreműködés az i18n-ben"
+    }
+  },
+  "footer": {
+    "crafted-by": "Készítette",
+    "source-code": "Forráskód elérhető a",
+    "github": "GitHubon",
+    "version": "Verzió"
+  },
+  "login": {
+    "title": "Bejelentkezés az Enclosedba",
+    "description": "Ez az Enclosed egy privát példánya. Add meg hitelesítő adataidat a jegyzetek létrehozásához.",
+    "email": "Email",
+    "password": "Jelszó",
+    "submit": "Bejelentkezés",
+    "errors": {
+      "invalid-credentials": "Érvénytelen e-mail vagy jelszó.",
+      "unknown": "Ismeretlen hiba történt. Kérjük, próbálkozz később újra."
+    },
+    "footer": [
+      "Nincs fiókod?",
+      "Vedd fel a kapcsolatot az Enclosed privát példányának tulajdonosával."
+    ]
+  },
+  "create": {
+    "errors": {
+      "empty-note": "Kérjük, adj meg jegyzettartalmat vagy csatolj egy fájlt.",
+      "rate-limit": "Túllépted a jegyzetek létrehozásának korlátját. Kérjük, próbálkozz később.",
+      "too-large": "A jegyzet tartalma és a mellékletek túl nagyok. Kérjük, csökkentsd a méretet, és próbálja újra.",
+      "unauthorized": "Nincs jogosultságod jegyzetek létrehozására. Kérjük, jelentkezz be, és próbálkozz újra.",
+      "api-not-found": "Az API végpont nem található. A szerver nincs megfelelően konfigurálva.",
+      "unknown": "Hiba történt a jegyzet létrehozása közben, kérjük, próbálkozz újra."
+    },
+    "share": {
+      "button": "Jegyzet megosztása",
+      "title": "Megosztott jegyzet",
+      "description": "Íme egy veled megosztott jegyzet."
+    },
+    "settings": {
+      "placeholder": "Írd ide a jegyzeted...",
+      "password": {
+        "label": "Jegyzet jelszava",
+        "placeholder": "Jelszó..."
+      },
+      "expiration": "Lejárati idő",
+      "delays": {
+        "1h": "1 óra",
+        "1d": "1 nap",
+        "1w": "1 hét",
+        "1m": "1 hónap"
+      },
+      "delete-after-reading": {
+        "label": "Törlés olvasás után",
+        "description": "A jegyzet törlése olvasás után"
+      },
+      "attach-files": "Fájlok csatolása",
+      "drop-files": {
+        "title": "Dobd ide a fájlokat",
+        "description": "Húzd ide a fájlokat a jegyzethez csatoláshoz"
+      },
+      "create": "Jegyzet létrehozása",
+      "creating": "Jegyzet létrehozása folyamatban..."
+    },
+    "success": {
+      "title": "A jegyzet sikeresen létrejött",
+      "description": "A jegyzet létrejött. Most már megoszthatod a következő link segítségével.",
+      "with-deletion": "A jegyzet törlődik olvasás után.",
+      "copy-link": "Link másolása",
+      "copy-success": "Link másolva"
+    },
+    "qr-code": {
+      "title": "Jegyzet megosztása mobilon",
+      "description": "Mobil eszközön történő megtekintéshez olvasd be az alábbi QR-kódot. A QR-kódot képként is exportálható, hogy megoszd másokkal.",
+      "export": "QR-kód exportálása",
+      "download-svg": "Letöltés SVG formátumban",
+      "download-png": "Letöltés PNG formátumban",
+      "download-success": "QR-kód letöltve",
+      "copy-svg": "SVG kód másolása",
+      "copy-success": "SVG másolva a vágólapra"
+    }
+  },
+  "view": {
+    "note-content": "Jegyzet tartalma",
+    "assets": {
+      "download": "Letöltés",
+      "download-all": "Összes fájl letöltése",
+      "heading-multiple": "{{ count }} fájl csatolva ehhez a jegyzethez",
+      "heading-single": "1 fájl csatolva ehhez a jegyzethez"
+    },
+    "request-password": {
+      "description": "Ez a jegyzet jelszóval védett. Kérjük, add meg a jelszót a feloldáshoz.",
+      "form": {
+        "label": "Jelszó",
+        "placeholder": "Jegyzet jelszava...",
+        "unlock-button": "Jegyzet feloldása",
+        "invalid": "A megadott jelszó érvénytelen, vagy a jegyzet URL helytelen."
+      }
+    },
+    "warn-for-note-deletion": {
+      "title": "Ez a jegyzet törlődni fog",
+      "description": "Ez a jegyzet úgy lett beállítva, hogy olvasás után automatikusan törlődjön. A jegyzet megjelenítése után véglegesen törlődik és nem lesz visszaállítható.",
+      "confirm": "Megértettem, tovább a jegyzethez"
+    },
+    "error": {
+      "invalid-url": {
+        "title": "Érvénytelen jegyzet URL",
+        "description": "Ez a jegyzet URL érvénytelen. Kérjük, ellenőrizd, hogy a helyes URL-t használod e."
+      },
+      "rate-limit": {
+        "title": "Sebességkorlát túllépve",
+        "description": "Túllépted a jegyzetek lekérésére vonatkozó sebességkorlátot. Kérjük, próbálkozz később."
+      },
+      "unauthorized": {
+        "title": "Nem engedélyezett",
+        "description": "Ez a jegyzet privát. A megtekintéshez be kell jelentkezned.",
+        "button": "Bejelentkezés"
+      },
+      "note-not-found": {
+        "title": "Jegyzet nem található",
+        "description": "Ez a jegyzet nem létezik, lejárt vagy törölték."
+      },
+      "fetch-error": {
+        "title": "Hiba történt",
+        "description": "Hiba történt a jegyzet lekérése közben. Kérjük, próbálkozz később."
+      },
+      "decryption": {
+        "title": "Hiba történt",
+        "description": "Hiba történt a jegyzet dekódolása közben. Az URL lehet, hogy érvénytelen."
+      }
+    }
+  },
+  "copy": {
+    "label": "Másolás a vágólapra",
+    "success": "Másolva!"
+  }
+}
