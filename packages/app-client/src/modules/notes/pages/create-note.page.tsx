@@ -118,7 +118,7 @@ export const CreateNotePage: Component = () => {
   const [getError, setError] = createSignal<{ message: string; details?: string } | null>(null);
   const [getIsNoteCreated, setIsNoteCreated] = createSignal(false);
   const [getIsPublic, setIsPublic] = createSignal(true);
-  const [getTtlInSeconds, setTtlInSeconds] = createSignal(3600);
+  const [getTtlInSeconds, setTtlInSeconds] = createSignal(config.defaultNoteTtlSeconds);
   const [getDeleteAfterReading, setDeleteAfterReading] = createSignal(config.defaultDeleteNoteAfterReading);
   const [getUploadedFiles, setUploadedFiles] = createSignal<File[]>([]);
   const [getIsNoteCreating, setIsNoteCreating] = createSignal(false);
