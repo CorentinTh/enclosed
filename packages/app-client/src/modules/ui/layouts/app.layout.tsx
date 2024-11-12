@@ -46,13 +46,13 @@ const LanguageSwitcher: Component = () => {
     <>
       {locales.map(locale => (
         <DropdownMenuItem onClick={() => setLocale(locale.key)} class={cn('cursor-pointer', { 'font-bold': getLocale() === locale.key })}>
-          {languageName.of(locale.key)}
+          <span translate="no" lang={getLocale() === locale.key ? undefined : locale.key}>
+            {locale.name}
+          </span>
           <Show when={getLocale() !== locale.key}>
             <span class="text-muted-foreground pl-1">
               (
-              <span translate="no" lang={locale.key}>
-                {locale.name}
-              </span>
+              {languageName.of(locale.key)}
               )
             </span>
           </Show>
