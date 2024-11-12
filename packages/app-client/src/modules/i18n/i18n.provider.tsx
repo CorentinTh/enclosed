@@ -5,10 +5,12 @@ import { makePersisted } from '@solid-primitives/storage';
 import { merge } from 'lodash-es';
 import { createContext, createEffect, createResource, createSignal, Show, useContext } from 'solid-js';
 import defaultDict from '../../locales/en.json';
+import { findMatchingLocale } from './i18n.models';
 
 export {
   useI18n,
 };
+export type { Locale };
 
 type Locale = typeof locales[number]['key'];
 type RawDictionary = typeof defaultDict;
@@ -39,32 +41,11 @@ async function fetchDictionary(locale: Locale): Promise<Dictionary> {
   return flattened;
 }
 
-// This tries to get the user's most preferred language compatible with the site's supported languages
-// It tries to find a supported language by comparing both region and language, if not, then just language
-// For example:
-// en-GB -> en
-// pt-BR -> pt-BR
-function getBrowserLocale(): Locale {
-  const preferredLocales = navigator.languages.map(x => new Intl.Locale(x));
-  const supportedLocales = locales.map(x => new Intl.Locale(x.key));
-
-  for (const locale of preferredLocales) {
-    const localeMatchRegion = supportedLocales.find(x => x.baseName === locale.baseName);
-
-    if (localeMatchRegion) {
-      return localeMatchRegion.baseName as Locale;
-    }
-
-    const localeMatchLanguage = supportedLocales.find(x => x.language === locale.language);
-    if (localeMatchLanguage) {
-      return localeMatchLanguage.baseName as Locale;
-    }
-  }
-  return 'en';
-}
-
 export const I18nProvider: ParentComponent = (props) => {
-  const browserLocale = getBrowserLocale();
+  const browserLocale = findMatchingLocale({
+    preferredLocales: navigator.languages.map(x => new Intl.Locale(x)),
+    supportedLocales: locales.map(x => new Intl.Locale(x.key)),
+  });
   const [getLocale, setLocale] = makePersisted(createSignal<Locale>(browserLocale), { name: 'enclosed_locale', storage: localStorage });
 
   const [dict] = createResource(getLocale, fetchDictionary);
