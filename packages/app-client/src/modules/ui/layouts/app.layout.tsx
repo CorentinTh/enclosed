@@ -39,20 +39,22 @@ const LanguageSwitcher: Component = () => {
   const { t, getLocale, setLocale, locales } = useI18n();
   const languageName = new Intl.DisplayNames(getLocale(), {
     type: 'language',
-    languageDisplay: 'dialect',
+    languageDisplay: 'standard',
   });
 
   return (
     <>
       {locales.map(locale => (
-        <DropdownMenuItem onClick={() => setLocale(locale.key)} class={cn('cursor-pointer', { 'font-semibold': getLocale() === locale.key })}>
+        <DropdownMenuItem onClick={() => setLocale(locale.key)} class={cn('cursor-pointer', { 'font-bold': getLocale() === locale.key })}>
           {languageName.of(locale.key)}
           <Show when={getLocale() !== locale.key}>
-            {' ('}
-            <span translate="no" lang={locale.key}>
-              {locale.name}
+            <span class={cn('text-muted-foreground pl-1')}>
+              (
+              <span translate="no" lang={locale.key}>
+                {locale.name}
+              </span>
+              )
             </span>
-            )
           </Show>
         </DropdownMenuItem>
       ))}
