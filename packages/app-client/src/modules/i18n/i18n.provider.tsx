@@ -3,7 +3,7 @@ import { locales } from '@/locales/locales';
 import * as i18n from '@solid-primitives/i18n';
 import { makePersisted } from '@solid-primitives/storage';
 import { merge } from 'lodash-es';
-import { createContext, createResource, createSignal, Show, useContext } from 'solid-js';
+import { createContext, createEffect, createResource, createSignal, Show, useContext } from 'solid-js';
 import defaultDict from '../../locales/en.json';
 
 export {
@@ -39,14 +39,28 @@ async function fetchDictionary(locale: Locale): Promise<Dictionary> {
   return flattened;
 }
 
+// This tries to get the user's most preferred language compatible with the site's supported languages
+// It tries to find a supported language by comparing both region and language, if not, then just language
+// For example:
+// en-GB -> en
+// pt-BR -> pt-BR
 function getBrowserLocale(): Locale {
-  const browserLocale = navigator.language?.split('-')[0];
+  const preferredLocales = navigator.languages.map(x => new Intl.Locale(x));
+  const supportedLocales = locales.map(x => new Intl.Locale(x.key));
 
-  if (!browserLocale) {
-    return 'en';
+  for (const locale of preferredLocales) {
+    const localeMatchRegion = supportedLocales.find(x => x.baseName === locale.baseName);
+
+    if (localeMatchRegion) {
+      return localeMatchRegion.baseName as Locale;
+    }
+
+    const localeMatchLanguage = supportedLocales.find(x => x.language === locale.language);
+    if (localeMatchLanguage) {
+      return localeMatchLanguage.baseName as Locale;
+    }
   }
-
-  return locales.find(locale => locale.key === browserLocale)?.key ?? 'en';
+  return 'en';
 }
 
 export const I18nProvider: ParentComponent = (props) => {
@@ -55,12 +69,16 @@ export const I18nProvider: ParentComponent = (props) => {
 
   const [dict] = createResource(getLocale, fetchDictionary);
 
+  createEffect(() => {
+    document.documentElement.lang = getLocale();
+  });
+
   return (
-    <Show when={dict()}>
-      {dict => (
+    <Show when={dict.latest}>
+      {dictLatest => (
         <I18nContext.Provider
           value={{
-            t: i18n.translator(dict, i18n.resolveTemplate),
+            t: i18n.translator(dictLatest, i18n.resolveTemplate),
             getLocale,
             setLocale,
             locales,
