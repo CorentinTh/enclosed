@@ -37,4 +37,9 @@ describe('locales', () => {
       expect(await fileExists(`./${key}.json`)).to.eql(true, `Missing file for locale ${key}`);
     }
   });
+
+  test('make sure locales are sorted by the native language name', () => {
+    const sortedLocales = [...locales].sort((a, b) => a.name.localeCompare(b.name));
+    expect(locales).to.eql(sortedLocales);
+  });
 });
