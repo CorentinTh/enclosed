@@ -1,8 +1,10 @@
 import type { Storage } from '../storage/storage.types';
 import type { DatabaseNote, Note } from './notes.types';
 import { injectArguments } from '@corentinth/chisels';
+import { isCustomError } from '../shared/errors/errors';
 import { generateId } from '../shared/utils/random';
-import { createNoteNotFoundError } from './notes.errors';
+import { KV_VALUE_LENGTH_EXCEEDED_ERROR_CODE } from '../storage/factories/cloudflare-kv.storage';
+import { createNoteNotFoundError, createNotePayloadTooLargeError } from './notes.errors';
 import { getNoteExpirationDate } from './notes.models';
 
 export { createNoteRepository };
@@ -52,38 +54,46 @@ async function saveNote(
     isPublic: boolean;
   },
 ): Promise<{ noteId: string }> {
-  const noteId = generateNoteId();
-  const baseNote = {
-    payload,
-    deleteAfterReading,
-    encryptionAlgorithm,
-    serializationFormat,
-    isPublic,
-  };
+  try {
+    const noteId = generateNoteId();
+    const baseNote = {
+      payload,
+      deleteAfterReading,
+      encryptionAlgorithm,
+      serializationFormat,
+      isPublic,
+    };
 
-  if (!ttlInSeconds) {
-    await storage.setItem(noteId, baseNote);
+    if (!ttlInSeconds) {
+      await storage.setItem(noteId, baseNote);
+
+      return { noteId };
+    }
+
+    const { expirationDate } = getNoteExpirationDate({ ttlInSeconds, now });
+
+    await storage.setItem(
+      noteId,
+      {
+        ...baseNote,
+        expirationDate: expirationDate.toISOString(),
+      },
+      {
+      // Some storage drivers have a different API for setting TTLs
+        ttl: ttlInSeconds,
+        // Cloudflare KV Binding - https://developers.cloudflare.com/kv/api/write-key-value-pairs/#create-expiring-keys
+        expirationTtl: ttlInSeconds,
+      },
+    );
 
     return { noteId };
+  } catch (error) {
+    if (isCustomError(error) && error.code === KV_VALUE_LENGTH_EXCEEDED_ERROR_CODE) {
+      throw createNotePayloadTooLargeError();
+    }
+
+    throw error;
   }
-
-  const { expirationDate } = getNoteExpirationDate({ ttlInSeconds, now });
-
-  await storage.setItem(
-    noteId,
-    {
-      ...baseNote,
-      expirationDate: expirationDate.toISOString(),
-    },
-    {
-      // Some storage drivers have a different API for setting TTLs
-      ttl: ttlInSeconds,
-      // Cloudflare KV Binding - https://developers.cloudflare.com/kv/api/write-key-value-pairs/#create-expiring-keys
-      expirationTtl: ttlInSeconds,
-    },
-  );
-
-  return { noteId };
 }
 
 async function getNoteById({ noteId, storage }: { noteId: string; storage: Storage<DatabaseNote> }): Promise<{ note: Note }> {
