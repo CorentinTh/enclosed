@@ -1,5 +1,5 @@
 import type { Storage } from '../storage/storage.types';
-import type { StoredNote } from './notes.types';
+import type { DatabaseNote, Note } from './notes.types';
 import { injectArguments } from '@corentinth/chisels';
 import { generateId } from '../shared/utils/random';
 import { createNoteNotFoundError } from './notes.errors';
@@ -42,28 +42,38 @@ async function saveNote(
   }:
   {
     payload: string;
-    ttlInSeconds: number;
+    ttlInSeconds?: number;
     deleteAfterReading: boolean;
-    storage: Storage;
+    storage: Storage<DatabaseNote>;
     generateNoteId?: () => string;
     now?: Date;
     encryptionAlgorithm: string;
     serializationFormat: string;
     isPublic: boolean;
   },
-) {
+): Promise<{ noteId: string }> {
   const noteId = generateNoteId();
+  const baseNote = {
+    payload,
+    deleteAfterReading,
+    encryptionAlgorithm,
+    serializationFormat,
+    isPublic,
+  };
+
+  if (!ttlInSeconds) {
+    await storage.setItem(noteId, baseNote);
+
+    return { noteId };
+  }
+
   const { expirationDate } = getNoteExpirationDate({ ttlInSeconds, now });
 
   await storage.setItem(
     noteId,
     {
-      payload,
+      ...baseNote,
       expirationDate: expirationDate.toISOString(),
-      deleteAfterReading,
-      encryptionAlgorithm,
-      serializationFormat,
-      isPublic,
     },
     {
       // Some storage drivers have a different API for setting TTLs
@@ -76,8 +86,8 @@ async function saveNote(
   return { noteId };
 }
 
-async function getNoteById({ noteId, storage }: { noteId: string; storage: Storage }) {
-  const note = await storage.getItem<StoredNote>(noteId);
+async function getNoteById({ noteId, storage }: { noteId: string; storage: Storage<DatabaseNote> }): Promise<{ note: Note }> {
+  const note = await storage.getItem(noteId);
 
   if (!note) {
     throw createNoteNotFoundError();
@@ -86,7 +96,7 @@ async function getNoteById({ noteId, storage }: { noteId: string; storage: Stora
   return {
     note: {
       ...note,
-      expirationDate: new Date(note.expirationDate),
+      expirationDate: note.expirationDate ? new Date(note.expirationDate) : undefined,
     },
   };
 }

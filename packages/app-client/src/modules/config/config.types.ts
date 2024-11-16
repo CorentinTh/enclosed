@@ -5,4 +5,6 @@ export type Config = {
   enclosedVersion: string;
   defaultDeleteNoteAfterReading: boolean;
   defaultNoteTtlSeconds: number;
+  isSettingNoExpirationAllowed: boolean;
+  defaultNoteNoExpiration: boolean;
 };

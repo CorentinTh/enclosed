@@ -53,6 +53,7 @@ const mdTable = [
 ].join('\n');
 
 export default {
+  watch: ['../../../app-server/src/modules/app/config/config.ts'],
   async load() {
     return md.render(mdTable);
   },

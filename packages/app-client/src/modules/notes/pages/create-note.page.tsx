@@ -122,6 +122,7 @@ export const CreateNotePage: Component = () => {
   const [getDeleteAfterReading, setDeleteAfterReading] = createSignal(config.defaultDeleteNoteAfterReading);
   const [getUploadedFiles, setUploadedFiles] = createSignal<File[]>([]);
   const [getIsNoteCreating, setIsNoteCreating] = createSignal(false);
+  const [getHasNoExpiration, setHasNoExpiration] = createSignal(config.defaultNoteNoExpiration);
 
   function resetNoteForm() {
     setContent('');
@@ -160,7 +161,7 @@ export const CreateNotePage: Component = () => {
     const [createdNote, error] = await safely(encryptAndCreateNote({
       content: getContent(),
       password: getPassword(),
-      ttlInSeconds: getTtlInSeconds(),
+      ttlInSeconds: getHasNoExpiration() ? undefined : getTtlInSeconds(),
       deleteAfterReading: getDeleteAfterReading(),
       fileAssets: getUploadedFiles(),
       isPublic: getIsPublic(),
@@ -254,9 +255,22 @@ export const CreateNotePage: Component = () => {
               <TextFieldLabel>
                 {t('create.settings.expiration')}
               </TextFieldLabel>
+
+              {config.isSettingNoExpirationAllowed && (
+                <SwitchUiComponent class="flex items-center space-x-2 pb-1" checked={getHasNoExpiration()} onChange={setHasNoExpiration}>
+                  <SwitchControl data-test-id="no-expiration">
+                    <SwitchThumb />
+                  </SwitchControl>
+                  <SwitchLabel class="text-sm text-muted-foreground">
+                    {t('create.settings.no-expiration')}
+                  </SwitchLabel>
+                </SwitchUiComponent>
+              )}
+
               <Tabs
                 value={getTtlInSeconds().toString()}
                 onChange={(value: string) => setTtlInSeconds(Number(value))}
+                disabled={getHasNoExpiration()}
               >
                 <TabsList>
                   <TabsIndicator />
