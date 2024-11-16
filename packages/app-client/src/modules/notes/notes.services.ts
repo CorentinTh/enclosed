@@ -11,7 +11,7 @@ async function storeNote({
   isPublic,
 }: {
   payload: string;
-  ttlInSeconds: number;
+  ttlInSeconds?: number;
   deleteAfterReading: boolean;
   encryptionAlgorithm: string;
   serializationFormat: string;

@@ -27,6 +27,11 @@ describe('notes models', () => {
         }),
       ).to.eql(true);
     });
+
+    test('notes without an expiration date are not considered expired', () => {
+      expect(isNoteExpired({ note: {}, now: new Date('2024-01-02T00:00:00Z') })).to.eql(false);
+      expect(isNoteExpired({ note: { expirationDate: undefined }, now: new Date('2024-01-02T00:00:00Z') })).to.eql(false);
+    });
   });
 
   describe('formatNoteForApi', () => {

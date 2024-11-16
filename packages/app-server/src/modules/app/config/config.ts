@@ -135,6 +135,28 @@ export const configDefinition = {
       default: 3600,
       env: 'PUBLIC_DEFAULT_NOTE_TTL_SECONDS',
     },
+    isSettingNoExpirationAllowed: {
+      doc: 'Whether to allow the user to set the note to never expire',
+      schema: z
+        .string()
+        .trim()
+        .toLowerCase()
+        .transform(x => x === 'true')
+        .pipe(z.boolean()),
+      default: 'true',
+      env: 'PUBLIC_IS_SETTING_NO_EXPIRATION_ALLOWED',
+    },
+    defaultNoteNoExpiration: {
+      doc: 'The default value for the `No expiration` checkbox in the note creation form (only used if setting no expiration is allowed)',
+      schema: z
+        .string()
+        .trim()
+        .toLowerCase()
+        .transform(x => x === 'true')
+        .pipe(z.boolean()),
+      default: 'false',
+      env: 'PUBLIC_DEFAULT_NOTE_NO_EXPIRATION',
+    },
   },
   authentication: {
     jwtSecret: {

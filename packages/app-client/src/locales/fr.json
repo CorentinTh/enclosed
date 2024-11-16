@@ -68,6 +68,7 @@
         "placeholder": "Mot de passe..."
       },
       "expiration": "Délai d'expiration",
+      "no-expiration": "La note n'expirera jamais",
       "delays": {
         "1h": "1 heure",
         "1d": "1 jour",
