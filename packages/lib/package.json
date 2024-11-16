@@ -1,7 +1,7 @@
 {
   "name": "@enclosed/lib",
   "type": "module",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "packageManager": "pnpm@9.12.3",
   "description": "Enclosed lib to create secure notes.",
   "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
