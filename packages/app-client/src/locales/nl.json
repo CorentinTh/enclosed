@@ -67,7 +67,8 @@
         "label": "Notitie wachtwoord",
         "placeholder": "Wachtwoord..."
       },
-      "expiration": "Verloopmoment vertraging",
+      "expiration": "Verloopmoment",
+      "no-expiration": "Notitie verloopt nooit",
       "delays": {
         "1h": "1 uur",
         "1d": "1 dag",
@@ -75,7 +76,7 @@
         "1m": "1 maand"
       },
       "delete-after-reading": {
-        "label": "Verwijderen na lezen",
+        "label": "Verwijder na lezen",
         "description": "Verwijder de notitie na het lezen"
       },
       "attach-files": "Bestanden toevoegen",
