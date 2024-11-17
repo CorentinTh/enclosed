@@ -114,6 +114,7 @@
     }
   },
   "view": {
+    "loading": "Chargement de la note...",
     "note-content": "Contenu de la note",
     "assets": {
       "download": "Télécharger",

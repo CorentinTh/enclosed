@@ -114,6 +114,7 @@
     }
   },
   "view": {
+    "loading": "Loading note...",
     "note-content": "Note content",
     "assets": {
       "download": "Download",
