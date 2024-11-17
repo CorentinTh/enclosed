@@ -11,6 +11,11 @@
     "new-note": "Nouvelle note",
     "github": "GitHub",
     "language": "Langue",
+    "github-repository": "Dépôt GitHub",
+    "documentation": "Documentation",
+    "change-theme": "Changer de thème",
+    "menu-icon": "Icône du menu",
+    "change-language": "Changer de langue",
     "theme": {
       "theme": "Thème",
       "light-mode": "Mode clair",
@@ -65,7 +70,10 @@
       "placeholder": "Saisissez votre note ici...",
       "password": {
         "label": "Mot de passe de la note",
-        "placeholder": "Mot de passe..."
+        "placeholder": "Mot de passe...",
+        "hide-password": "Masquer le mot de passe",
+        "show-password": "Afficher le mot de passe",
+        "generate-random-password": "Générer un mot de passe aléatoire"
       },
       "expiration": "Délai d'expiration",
       "no-expiration": "La note n'expirera jamais",
