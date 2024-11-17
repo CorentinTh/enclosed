@@ -7,6 +7,5 @@ binding = "notes"
 id = "b1329cb8560e49d392bed877c9ac48a2"
 
 [vars]
-# Cloudfare KV value max size is 25Mib
 # https://developers.cloudflare.com/kv/platform/limits/
 NOTES_MAX_ENCRYPTED_PAYLOAD_LENGTH = 26214400
