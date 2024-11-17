@@ -1,5 +1,5 @@
 import type { SiteConfig } from 'vitepress';
-import { sortBy } from 'lodash-es';
+import { orderBy } from 'lodash-es';
 import { createMarkdownRenderer } from 'vitepress';
 import { locales } from '../../../app-client/src/locales/locales';
 
@@ -22,21 +22,27 @@ function countKeysDeep(obj: Record<string, unknown>): number {
 
 const defaultLocaleKeyCount = countKeysDeep(await import(`../../../app-client/src/locales/en.json`).then(({ default: fileContent }) => fileContent));
 
-const localeConfigs = sortBy(await Promise.all(locales.map(async ({ key, name }) => {
-  const { default: fileContent } = await import(`../../../app-client/src/locales/${key}.json`);
-  const keyCount = countKeysDeep(fileContent);
-  const ratio = keyCount / defaultLocaleKeyCount;
-  const isComplete = keyCount === defaultLocaleKeyCount;
+const localeConfigs = orderBy(
+  await Promise.all(locales.map(async ({ key, name }) => {
+    const { default: fileContent } = await import(`../../../app-client/src/locales/${key}.json`);
+    const keyCount = countKeysDeep(fileContent);
+    const ratio = keyCount / defaultLocaleKeyCount;
+    const isComplete = keyCount === defaultLocaleKeyCount;
 
-  return {
-    key,
-    name,
-    content: fileContent,
-    keyCount,
-    ratio,
-    isComplete,
-  };
-})), 'ratio').reverse();
+    return {
+      key,
+      name,
+      content: fileContent,
+      keyCount,
+      ratio,
+      isComplete,
+    };
+  })),
+
+  // 'en' first, then by ratio, then by key
+  [({ key }) => key === 'en', 'ratio', 'key'],
+  ['desc', 'desc', 'asc'],
+);
 
 const mdTable = [
   '| Locale | Key | Translation completion | Actions |',
