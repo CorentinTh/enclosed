@@ -10,6 +10,7 @@ export const locales = [
   { key: 'pt', name: 'Português' },
   { key: 'pt-BR', name: 'Português (Brasil)' },
   { key: 'vi', name: 'Tiếng Việt' },
+  { key: 'tr', name: 'Türkçe' },
   { key: 'ru', name: 'Русский' },
   { key: 'ar', name: 'العربية' },
   { key: 'zh-CN', name: '简体中文' },
