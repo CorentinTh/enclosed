@@ -29,7 +29,7 @@ describe('note models', () => {
   });
 
   describe('parseNoteUrl', () => {
-    test('retreives the note id and encryption key from a sharable note url', () => {
+    test('retrieves the note id and encryption key from a sharable note url', () => {
       expect(
         parseNoteUrl({ noteUrl: 'https://example.com/123#abc' }),
       ).to.eql({
