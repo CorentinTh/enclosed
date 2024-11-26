@@ -1,0 +1,168 @@
+{
+  "app": {
+    "title": "Enclosed",
+    "description": "Gizli ve güvenli notlar gönderin"
+  },
+  "insecureContextWarning": {
+    "description": "Bağlantınız güvenli değil, uygulamanın düzgün çalışabilmesi için HTTPS üzerinden sunulması gerekir. Not oluşturamaz veya görüntüleyemezsiniz.",
+    "learn-more": "Daha fazla bilgi edin"
+  },
+  "navbar": {
+    "new-note": "Yeni not",
+    "github": "GitHub",
+    "language": "Dil",
+    "github-repository": "GitHub deposu",
+    "documentation": "Dokümantasyon",
+    "change-theme": "Temayı değiştir",
+    "menu-icon": "Menü simgesi",
+    "change-language": "Dili değiştir",
+    "theme": {
+      "theme": "Tema",
+      "light-mode": "Aydınlık mod",
+      "dark-mode": "Karanlık mod",
+      "system-mode": "Sistem"
+    },
+    "settings": {
+      "documentation": "Dokümantasyon",
+      "cli": "Enclosed CLI",
+      "support": "Enclosed’a destek olun",
+      "report-bug": "Hata bildir",
+      "logout": "Çıkış yap",
+      "contribute-to-i18n": "i18n’ye katkıda bulunun"
+    }
+  },
+  "footer": {
+    "crafted-by": "Hazırlayan",
+    "source-code": "Kaynak kodu",
+    "github": "GitHub",
+    "version": "Sürüm"
+  },
+  "login": {
+    "title": "Enclosed’a giriş yapın",
+    "description": "Bu, Enclosed’un özel bir sürümüdür. Not oluşturabilmek için kimlik bilgilerinizi girin.",
+    "email": "E-posta",
+    "password": "Şifre",
+    "submit": "Giriş yap",
+    "errors": {
+      "invalid-credentials": "Geçersiz e-posta veya şifre.",
+      "unknown": "Bilinmeyen bir hata oluştu. Lütfen daha sonra tekrar deneyin."
+    },
+    "footer": ["Hesabınız yok mu?", "Bu sistemin sahibine ulaşın."]
+  },
+  "create": {
+    "errors": {
+      "empty-note": "Lütfen bir not içeriği girin veya bir dosya ekleyin.",
+      "rate-limit": "Not oluşturma hız sınırını aştınız. Lütfen daha sonra tekrar deneyin.",
+      "too-large": "Not içeriği ve ekler çok büyük. Lütfen boyutu küçültüp tekrar deneyin.",
+      "unauthorized": "Not oluşturma yetkiniz yok. Lütfen giriş yapın ve tekrar deneyin.",
+      "api-not-found": "API uç noktası bulunamadı. Sunucu yanlış yapılandırılmış olabilir.",
+      "unknown": "Not oluşturulurken bir hata oluştu, lütfen tekrar deneyin."
+    },
+    "share": {
+      "button": "Notu paylaş",
+      "title": "Paylaşılan not",
+      "description": "Sizinle paylaşılan bir not."
+    },
+    "settings": {
+      "placeholder": "Notunuzu buraya yazın...",
+      "password": {
+        "label": "Not şifresi",
+        "placeholder": "Şifre...",
+        "hide-password": "Şifreyi gizle",
+        "show-password": "Şifreyi göster",
+        "generate-random-password": "Rastgele şifre oluştur"
+      },
+      "expiration": "Son kullanma süresi",
+      "no-expiration": "Süresiz",
+      "delays": {
+        "1h": "1 saat",
+        "1d": "1 gün",
+        "1w": "1 hafta",
+        "1m": "1 ay"
+      },
+      "delete-after-reading": {
+        "label": "Okunduktan sonra sil",
+        "description": "Not okunduktan sonra sil"
+      },
+      "attach-files": "Dosya ekle",
+      "drop-files": {
+        "title": "Dosyaları buraya bırakın",
+        "description": "Notunuza eklemek için dosyaları buraya sürükleyin"
+      },
+      "create": "Not oluştur",
+      "creating": "Not oluşturuluyor..."
+    },
+    "success": {
+      "title": "Not başarıyla oluşturuldu",
+      "description": "Notunuz oluşturuldu. Aşağıdaki bağlantıyı kullanarak paylaşabilirsiniz.",
+      "with-deletion": "Not okunduktan sonra silinecek.",
+      "copy-link": "Bağlantıyı kopyala",
+      "copy-success": "Bağlantı kopyalandı"
+    },
+    "qr-code": {
+      "title": "Bu notu mobilde paylaş",
+      "description": "Bu QR kodunu tarayarak notu mobil cihazınızda görüntüleyebilirsiniz. QR kodunu başkalarıyla paylaşmak için dışa aktarabilirsiniz.",
+      "export": "QR kodunu dışa aktar",
+      "download-svg": "SVG olarak indir",
+      "download-png": "PNG olarak indir",
+      "download-success": "QR kod indirildi",
+      "copy-svg": "SVG kodunu kopyala",
+      "copy-success": "SVG panoya kopyalandı"
+    }
+  },
+  "view": {
+    "loading": "Not yükleniyor...",
+    "note-content": "Not içeriği",
+    "assets": {
+      "download": "İndir",
+      "download-all": "Tüm dosyaları indir",
+      "heading-multiple": "Bu nota eklenmiş {{ count }} dosya var",
+      "heading-single": "Bu nota eklenmiş 1 dosya var"
+    },
+    "request-password": {
+      "description": "Bu not şifre korumalıdır. Lütfen kilidini açmak için şifreyi girin.",
+      "form": {
+        "label": "Şifre",
+        "placeholder": "Not şifresi...",
+        "unlock-button": "Notun kilidini aç",
+        "invalid": "Girdiğiniz şifre geçersiz veya not URL’si hatalı."
+      }
+    },
+    "warn-for-note-deletion": {
+      "title": "Bu not silinecek",
+      "description": "Bu not okunduktan sonra silinecek şekilde yapılandırılmıştır. Not görüntülendikten sonra kalıcı olarak silinecek ve geri alınamayacaktır.",
+      "confirm": "Anladım, notu göster"
+    },
+    "error": {
+      "invalid-url": {
+        "title": "Geçersiz not URL’si",
+        "description": "Bu not URL’si geçersiz. Doğru URL’yi kullandığınızdan emin olun."
+      },
+      "rate-limit": {
+        "title": "Hız sınırı aşıldı",
+        "description": "Notları almak için hız sınırını aştınız. Lütfen daha sonra tekrar deneyin."
+      },
+      "unauthorized": {
+        "title": "Yetkisiz Erişim",
+        "description": "Bu not özeldir. Görüntülemek için giriş yapmanız gerekiyor.",
+        "button": "Giriş yap"
+      },
+      "note-not-found": {
+        "title": "Not bulunamadı",
+        "description": "Bu not mevcut değil, süresi dolmuş veya silinmiş."
+      },
+      "fetch-error": {
+        "title": "Bir hata oluştu",
+        "description": "Not alınırken bir hata oluştu. Lütfen daha sonra tekrar deneyin."
+      },
+      "decryption": {
+        "title": "Bir hata oluştu",
+        "description": "Notun şifresi çözülürken bir hata oluştu. URL geçersiz olabilir."
+      }
+    }
+  },
+  "copy": {
+    "label": "Panoya kopyala",
+    "success": "Kopyalandı!"
+  }
+}
