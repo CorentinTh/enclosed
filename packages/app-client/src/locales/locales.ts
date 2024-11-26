@@ -13,4 +13,5 @@ export const locales = [
   { key: 'ru', name: 'Русский' },
   { key: 'ar', name: 'العربية' },
   { key: 'zh-CN', name: '简体中文' },
+  { key: 'tr', name: 'Türkçe' },
 ] as const;
