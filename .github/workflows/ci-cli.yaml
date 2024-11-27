@@ -1,4 +1,4 @@
-name: CI - Lib
+name: CI - Cli
 
 on:
   pull_request:
