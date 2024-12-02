@@ -65,6 +65,7 @@
         "placeholder": "密码..."
       },
       "expiration": "过期时间",
+      "no-expiration": "永不过期",
       "delays": {
         "1h": "1 小时",
         "1d": "1 天",
