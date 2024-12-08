@@ -1,0 +1,171 @@
+{
+  "app": {
+    "title": "Enclosed",
+    "description": "Wysyłaj prywatne i bezpieczne notatki"
+  },
+  "insecureContextWarning": {
+    "description": "Twoje połączenie nie jest bezpieczne. Aplikacja musi być obsługiwana przez HTTPS, aby działać poprawnie. Nie będziesz mógł tworzyć ani przeglądać notatek.",
+    "learn-more": "Dowiedz się więcej"
+  },
+  "navbar": {
+    "new-note": "Nowa notatka",
+    "github": "GitHub",
+    "language": "Język",
+    "github-repository": "Repozytorium GitHub",
+    "documentation": "Dokumentacja",
+    "change-theme": "Zmień motyw",
+    "menu-icon": "Ikona menu",
+    "change-language": "Zmień język",
+    "theme": {
+      "theme": "Motyw",
+      "light-mode": "Tryb jasny",
+      "dark-mode": "Tryb ciemny",
+      "system-mode": "Systemowy"
+    },
+    "settings": {
+      "documentation": "Dokumentacja",
+      "cli": "Enclosed CLI",
+      "support": "Wspieraj Enclosed",
+      "report-bug": "Zgłoś błąd",
+      "logout": "Wyloguj",
+      "contribute-to-i18n": "Współtwórz tłumaczenie"
+    }
+  },
+  "footer": {
+    "crafted-by": "Stworzone przez",
+    "source-code": "Kod źródłowy dostępny na",
+    "github": "GitHub",
+    "version": "Wersja"
+  },
+  "login": {
+    "title": "Zaloguj się do Enclosed",
+    "description": "To jest prywatna instancja Enclosed. Wprowadź swoje dane, aby móc tworzyć notatki.",
+    "email": "E-mail",
+    "password": "Hasło",
+    "submit": "Zaloguj się",
+    "errors": {
+      "invalid-credentials": "Nieprawidłowy e-mail lub hasło.",
+      "unknown": "Wystąpił nieznany błąd. Spróbuj ponownie później."
+    },
+    "footer": [
+      "Nie masz konta?",
+      "Skontaktuj się z właścicielem instancji."
+    ]
+  },
+  "create": {
+    "errors": {
+      "empty-note": "Wprowadź treść notatki lub dołącz plik.",
+      "rate-limit": "Przekroczyłeś limit tworzenia notatek. Spróbuj ponownie później.",
+      "too-large": "Treść notatki i załączniki są zbyt duże. Zmniejsz rozmiar i spróbuj ponownie.",
+      "unauthorized": "Nie masz uprawnień do tworzenia notatek. Zaloguj się i spróbuj ponownie.",
+      "api-not-found": "Nie znaleziono punktu końcowego API. Serwer może być nieprawidłowo skonfigurowany.",
+      "unknown": "Wystąpił błąd podczas tworzenia notatki. Spróbuj ponownie."
+    },
+    "share": {
+      "button": "Udostępnij notatkę",
+      "title": "Udostępniona notatka",
+      "description": "Oto notatka udostępniona dla Ciebie."
+    },
+    "settings": {
+      "placeholder": "Wpisz swoją notatkę tutaj...",
+      "password": {
+        "label": "Hasło notatki",
+        "placeholder": "Hasło...",
+        "hide-password": "Ukryj hasło",
+        "show-password": "Pokaż hasło",
+        "generate-random-password": "Wygeneruj losowe hasło"
+      },
+      "expiration": "Czas ważności",
+      "no-expiration": "Notatka nigdy nie wygasa",
+      "delays": {
+        "1h": "1 godzina",
+        "1d": "1 dzień",
+        "1w": "1 tydzień",
+        "1m": "1 miesiąc"
+      },
+      "delete-after-reading": {
+        "label": "Usuń po przeczytaniu",
+        "description": "Usuń notatkę po przeczytaniu"
+      },
+      "attach-files": "Dołącz pliki",
+      "drop-files": {
+        "title": "Upuść pliki tutaj",
+        "description": "Przeciągnij i upuść pliki tutaj, aby dołączyć je do notatki"
+      },
+      "create": "Utwórz notatkę",
+      "creating": "Tworzenie notatki..."
+    },
+    "success": {
+      "title": "Notatka utworzona pomyślnie",
+      "description": "Twoja notatka została utworzona. Możesz ją teraz udostępnić, używając poniższego linku.",
+      "with-deletion": "Notatka zostanie usunięta po przeczytaniu.",
+      "copy-link": "Kopiuj link",
+      "copy-success": "Link skopiowany"
+    },
+    "qr-code": {
+      "title": "Udostępnij notatkę na urządzeniu mobilnym",
+      "description": "Możesz zeskanować ten kod QR, aby wyświetlić notatkę na urządzeniu mobilnym. Możesz także wyeksportować obraz kodu QR, aby udostępnić go innym.",
+      "export": "Eksportuj kod QR",
+      "download-svg": "Pobierz jako SVG",
+      "download-png": "Pobierz jako PNG",
+      "download-success": "Kod QR pobrany",
+      "copy-svg": "Kopiuj kod SVG",
+      "copy-success": "Kod SVG skopiowany do schowka"
+    }
+  },
+  "view": {
+    "loading": "Ładowanie notatki...",
+    "note-content": "Treść notatki",
+    "assets": {
+      "download": "Pobierz",
+      "download-all": "Pobierz wszystkie pliki",
+      "heading-multiple": "{{ count }} plików załączone do tej notatki",
+      "heading-single": "1 plik załączony do tej notatki"
+    },
+    "request-password": {
+      "description": "Ta notatka jest chroniona hasłem. Wprowadź hasło, aby ją odblokować.",
+      "form": {
+        "label": "Hasło",
+        "placeholder": "Hasło notatki...",
+        "unlock-button": "Odblokuj notatkę",
+        "invalid": "Podane hasło jest nieprawidłowe lub adres URL notatki jest błędny."
+      }
+    },
+    "warn-for-note-deletion": {
+      "title": "Ta notatka zostanie usunięta",
+      "description": "Ta notatka została skonfigurowana do usunięcia po przeczytaniu. Po wyświetleniu notatki zostanie trwale usunięta i nie będzie można jej odzyskać.",
+      "confirm": "Rozumiem, pokaż mi notatkę"
+    },
+    "error": {
+      "invalid-url": {
+        "title": "Nieprawidłowy adres URL notatki",
+        "description": "Ten adres URL notatki jest nieprawidłowy. Upewnij się, że korzystasz z poprawnego adresu."
+      },
+      "rate-limit": {
+        "title": "Przekroczono limit",
+        "description": "Przekroczyłeś limit wyświetlania notatek. Spróbuj ponownie później."
+      },
+      "unauthorized": {
+        "title": "Brak uprawnień",
+        "description": "Ta notatka jest prywatna. Musisz się zalogować, aby ją wyświetlić.",
+        "button": "Zaloguj się"
+      },
+      "note-not-found": {
+        "title": "Nie znaleziono notatki",
+        "description": "Ta notatka nie istnieje, wygasła lub została usunięta."
+      },
+      "fetch-error": {
+        "title": "Wystąpił błąd",
+        "description": "Wystąpił błąd podczas pobierania notatki. Spróbuj ponownie później."
+      },
+      "decryption": {
+        "title": "Wystąpił błąd",
+        "description": "Wystąpił błąd podczas odszyfrowywania notatki. Adres URL może być nieprawidłowy."
+      }
+    }
+  },
+  "copy": {
+    "label": "Kopiuj do schowka",
+    "success": "Skopiowano!"
+  }
+}
