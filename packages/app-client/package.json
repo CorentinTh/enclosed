@@ -2,7 +2,7 @@
   "name": "@enclosed/app-client",
   "type": "module",
   "version": "1.12.0",
-  "packageManager": "pnpm@9.12.3",
+  "packageManager": "pnpm@9.15.0",
   "description": "Enclosed frontend client",
   "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
   "license": "Apache-2.0",
