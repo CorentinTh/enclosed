@@ -82,6 +82,9 @@ export const Navbar: Component = () => {
     navigate('/');
   };
 
+  // Only show the "New Note" button if the user is authenticated or if authentication is not required
+  const getShouldShowNewNoteButton = () => config.isAuthenticationRequired ? authStore.getIsAuthenticated() : true;
+
   return (
     <div class="border-b border-border bg-surface">
       <div class="flex items-center justify-between px-6 py-3 mx-auto max-w-1200px">
@@ -96,10 +99,13 @@ export const Navbar: Component = () => {
         </div>
 
         <div class="flex gap-2 items-center">
-          <Button variant="secondary" onClick={newNoteClicked}>
-            <div class="i-tabler-plus mr-1 text-muted-foreground"></div>
-            {t('navbar.new-note')}
-          </Button>
+
+          {getShouldShowNewNoteButton() && (
+            <Button variant="secondary" onClick={newNoteClicked}>
+              <div class="i-tabler-plus mr-1 text-muted-foreground"></div>
+              {t('navbar.new-note')}
+            </Button>
+          )}
 
           <Button variant="ghost" class="text-lg px-0 size-9 hidden md:inline-flex" as={A} href="https://github.com/CorentinTh/enclosed" target="_blank" rel="noopener noreferrer" aria-label={t('navbar.github-repository')}>
             <div class="i-tabler-brand-github"></div>
