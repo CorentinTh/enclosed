@@ -1,10 +1,12 @@
 import { A, type RouteDefinition } from '@solidjs/router';
 import { LoginPage } from './modules/auth/pages/login.page';
+import { RegisterPage } from './modules/auth/pages/register.page';
 import { NOTE_ID_REGEX } from './modules/notes/notes.constants';
 import { CreateNotePage } from './modules/notes/pages/create-note.page';
 import { ViewNotePage } from './modules/notes/pages/view-note.page';
 import { Button } from './modules/ui/components/button';
 import { AppLayout } from './modules/ui/layouts/app.layout';
+import { AuthLayout } from './modules/ui/layouts/auth.layout';
 
 export const routes: RouteDefinition[] = [
   {
@@ -41,7 +43,18 @@ export const routes: RouteDefinition[] = [
     ],
   },
   {
-    path: '/login',
-    component: LoginPage,
+    path: '/',
+    component: AuthLayout,
+    children: [
+      {
+        path: '/login',
+        component: LoginPage,
+      },
+      {
+        path: '/register',
+        component: RegisterPage,
+      },
+    ],
+
   },
 ];

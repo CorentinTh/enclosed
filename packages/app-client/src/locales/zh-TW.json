@@ -47,10 +47,10 @@
       "invalid-credentials": "無效的電子郵件或密碼。",
       "unknown": "發生未知錯誤。請稍後再試。"
     },
-    "footer": [
-      "沒有帳戶嗎？",
-      "聯繫網站擁有者。"
-    ]
+    "footer": {
+      "no-account": "沒有帳戶嗎？",
+      "register": "註冊"
+    }
   },
   "create": {
     "errors": {

@@ -47,10 +47,28 @@
       "invalid-credentials": "Email ou mot de passe invalide.",
       "unknown": "Une erreur inconnue est survenue. Veuillez réessayer plus tard."
     },
-    "footer": [
-      "Vous n'avez pas de compte ?",
-      "Contactez le propriétaire de l'instance."
-    ]
+    "footer": {
+      "no-account": "Vous n'avez pas de compte?",
+      "register": "S'inscrire"
+    }
+  },
+  "register": {
+    "title": "Inscription à Enclosed",
+    "description": "Ceci est une instance privée de Enclosed. Créez un compte pour pouvoir créer des notes.",
+    "registration-disabled": "La création de compte est désactivée sur cette instance. Veuillez contacter l'administrateur pour plus d'informations.",
+    "email": "Email",
+    "password": "Mot de passe",
+    "submit": "S'inscrire",
+    "errors": {
+      "password-too-short": "Le mot de passe est trop court. Il doit comporter au moins 8 caractères.",
+      "email-taken": "L'adresse email est déjà utilisée.",
+      "invalid-request": "Format de l'adresse email ou du mot de passe invalide. Veuillez vérifier vos identifiants.",
+      "unknown": "Une erreur inconnue est survenue. Veuillez réessayer plus tard."
+    },
+    "footer": {
+      "have-account": "Vous avez déjà un compte?",
+      "login": "Se connecter"
+    }
   },
   "create": {
     "errors": {

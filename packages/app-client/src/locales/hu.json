@@ -42,10 +42,10 @@
       "invalid-credentials": "Érvénytelen e-mail vagy jelszó.",
       "unknown": "Ismeretlen hiba történt. Kérjük, próbálkozz később újra."
     },
-    "footer": [
-      "Nincs fiókod?",
-      "Vedd fel a kapcsolatot az Enclosed privát példányának tulajdonosával."
-    ]
+    "footer": {
+      "no-account": "Nincs fiókod?",
+      "register": "Regisztráció"
+    }
   },
   "create": {
     "errors": {

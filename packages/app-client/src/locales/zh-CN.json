@@ -42,7 +42,10 @@
       "invalid-credentials": "无效的电子邮箱或密码。",
       "unknown": "发生未知错误，稍后再试。"
     },
-    "footer": ["没有账户？", "联系实例的拥有者。"]
+    "footer": {
+      "no-account": "没有账户？",
+      "register": "注册"
+    }
   },
   "create": {
     "errors": {

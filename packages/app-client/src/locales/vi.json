@@ -42,10 +42,10 @@
       "invalid-credentials": "Email hoặc mật khẩu không hợp lệ.",
       "unknown": "Đã xảy ra lỗi không xác định. Vui lòng thử lại sau."
     },
-    "footer": [
-      "Bạn chưa có tài khoản?",
-      "Liên hệ với chủ sở hữu của phiên bản."
-    ]
+    "footer": {
+      "no-account": "Bạn chưa có tài khoản?",
+      "register": "Đăng ký"
+    }
   },
   "create": {
     "errors": {

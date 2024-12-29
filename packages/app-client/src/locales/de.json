@@ -42,10 +42,10 @@
       "invalid-credentials": "Ungültige E-Mail oder ungültiges Passwort.",
       "unknown": "Ein unbekannter Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal."
     },
-    "footer": [
-      "Sie haben keinen Account?",
-      "Kontaktieren Sie den Besitzer der Instanz."
-    ]
+    "footer": {
+      "no-account": "Sie haben keinen Account?",
+      "register": "Registrieren"
+    }
   },
   "create": {
     "errors": {

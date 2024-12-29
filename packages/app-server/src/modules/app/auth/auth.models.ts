@@ -1,4 +1,6 @@
-export { extractAccessToken };
+import type { Config } from '../config/config.types';
+
+export { extractAccessToken, getIsRegistrationAllowed };
 
 function extractAccessToken({ autorisationHeader }: { autorisationHeader: string | undefined }) {
   if (!autorisationHeader) {
@@ -12,4 +14,8 @@ function extractAccessToken({ autorisationHeader }: { autorisationHeader: string
   }
 
   return { accessToken };
+}
+
+function getIsRegistrationAllowed({ config }: { config: Config }) {
+  return config.public.isUserRegistrationAllowed && config.public.isAuthenticationRequired;
 }

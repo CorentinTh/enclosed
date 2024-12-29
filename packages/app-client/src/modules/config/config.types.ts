@@ -6,5 +6,6 @@ export type Config = {
   defaultDeleteNoteAfterReading: boolean;
   defaultNoteTtlSeconds: number;
   isSettingNoExpirationAllowed: boolean;
+  isUserRegistrationAllowed: boolean;
   defaultNoteNoExpiration: boolean;
 };

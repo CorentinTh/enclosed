@@ -1,5 +1,6 @@
+import type { Config } from '../config/config.types';
 import { describe, expect, test } from 'vitest';
-import { extractAccessToken } from './auth.models';
+import { extractAccessToken, getIsRegistrationAllowed } from './auth.models';
 
 describe('auth models', () => {
   describe('extractAccessToken', () => {
@@ -33,6 +34,47 @@ describe('auth models', () => {
       })).to.eql({
         accessToken: undefined,
       });
+    });
+  });
+
+  describe('getIsRegistrationAllowed', () => {
+    test('user registration is allowed if the app requires authentication and user registration is allowed in the config', () => {
+      expect(getIsRegistrationAllowed({
+        config: {
+          public: {
+            isUserRegistrationAllowed: true,
+            isAuthenticationRequired: true,
+          },
+        } as Config,
+      })).to.eql(true);
+
+      expect(getIsRegistrationAllowed({
+        config: {
+          public: {
+            isUserRegistrationAllowed: false,
+            isAuthenticationRequired: true,
+          },
+        } as Config,
+      })).to.eql(false);
+
+      // Make no sense, but it's a valid configuration
+      expect(getIsRegistrationAllowed({
+        config: {
+          public: {
+            isUserRegistrationAllowed: true,
+            isAuthenticationRequired: false,
+          },
+        } as Config,
+      })).to.eql(false);
+
+      expect(getIsRegistrationAllowed({
+        config: {
+          public: {
+            isUserRegistrationAllowed: false,
+            isAuthenticationRequired: false,
+          },
+        } as Config,
+      })).to.eql(false);
     });
   });
 });

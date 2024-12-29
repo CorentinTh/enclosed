@@ -42,7 +42,10 @@
       "invalid-credentials": "Email ou palavra-passe inválidos.",
       "unknown": "Ocorreu um erro. Tenta outra vez mais tarde."
     },
-    "footer": ["Não tens conta?", "Contacta o criador da instância."]
+    "footer": {
+      "no-account": "Não tens conta?",
+      "register": "Registar"
+    }
   },
   "create": {
     "errors": {
