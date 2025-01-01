@@ -42,10 +42,10 @@
       "invalid-credentials": "Ongeldig e-mailadres of wachtwoord.",
       "unknown": "Er is een onbekende fout opgetreden. Probeer het later nog eens."
     },
-    "footer": [
-      "Heb je geen account?",
-      "Neem contact op met de eigenaar van de instantie."
-    ]
+    "footer": {
+      "no-account": "Heb je geen account?",
+      "register": "Registreren"
+    }
   },
   "create": {
     "errors": {

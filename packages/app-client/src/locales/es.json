@@ -40,10 +40,10 @@
       "invalid-credentials": "Correo electrónico o contraseña incorrectos.",
       "unknown": "Ocurrió un error desconocido. Por favor, inténtelo de nuevo más tarde."
     },
-    "footer": [
-      "¿No tienes una cuenta?",
-      "Contacta al propietario de la instancia."
-    ]
+    "footer": {
+      "no-account": "¿No tienes una cuenta?",
+      "register": "Registrarse"
+    }
   },
   "create": {
     "errors": {

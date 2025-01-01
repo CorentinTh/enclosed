@@ -47,7 +47,10 @@
       "invalid-credentials": "Geçersiz e-posta veya şifre.",
       "unknown": "Bilinmeyen bir hata oluştu. Lütfen daha sonra tekrar deneyin."
     },
-    "footer": ["Hesabınız yok mu?", "Bu sistemin sahibine ulaşın."]
+    "footer": {
+      "no-account": "Hesabınız yok mu?",
+      "register": "Kayıt ol"
+    }
   },
   "create": {
     "errors": {

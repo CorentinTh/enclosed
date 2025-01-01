@@ -34,12 +34,12 @@
     "bcryptjs": "^2.4.3",
     "date-fns": "^4.0.0",
     "figue": "^2.1.0",
-    "hono": "^4.5.8",
+    "hono": "^4.6.15",
     "lodash-es": "^4.17.21",
     "node-cron": "^3.0.3",
     "pino": "^9.3.2",
     "ulid-workers": "^2.1.0",
-    "unstorage": "^1.10.2",
+    "unstorage": "^1.14.4",
     "zod": "^3.23.8"
   },
   "devDependencies": {

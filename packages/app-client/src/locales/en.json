@@ -45,12 +45,31 @@
     "submit": "Login",
     "errors": {
       "invalid-credentials": "Invalid email or password.",
+      "invalid-request": "Invalid credentials format. Please check your email and password.",
       "unknown": "An unknown error occurred. Please try again later."
     },
-    "footer": [
-      "Don't have an account?",
-      "Contact the owner of the instance."
-    ]
+    "footer": {
+      "no-account": "Don't have an account?",
+      "register": "Register"
+    }
+  },
+  "register": {
+    "title": "Register to Enclosed",
+    "description": "This is a private instance of Enclosed. Create an account to be able to create notes.",
+    "registration-disabled": "Registration is disabled on this instance. Please contact the administrator for more information.",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Register",
+    "errors": {
+      "password-too-short": "The password is too short. It must be at least 8 characters long.",
+      "email-taken": "The email address is already in use.",
+      "invalid-request": "Invalid credentials format. Please check your email and password.",
+      "unknown": "An unknown error occurred. Please try again later."
+    },
+    "footer": {
+      "have-account": "Already have an account?",
+      "login": "Login"
+    }
   },
   "create": {
     "errors": {

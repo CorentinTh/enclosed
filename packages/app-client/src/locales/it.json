@@ -47,10 +47,10 @@
       "invalid-credentials": "Email o password non validi.",
       "unknown": "Errore sconosciuto. Riprova più tardi."
     },
-    "footer": [
-      "Non hai un account?",
-      "Contatta il proprietario dell'istanza."
-    ]
+    "footer": {
+      "no-account": "Non hai un account?",
+      "register": "Registrati"
+    }
   },
   "create": {
     "errors": {

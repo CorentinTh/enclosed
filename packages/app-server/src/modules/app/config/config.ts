@@ -142,17 +142,7 @@ export const configDefinition = {
       default: '/',
       env: 'PUBLIC_BASE_API_URL',
     },
-    isAuthenticationRequired: {
-      doc: 'Whether to require authentication to access the public api',
-      schema: z
-        .string()
-        .trim()
-        .toLowerCase()
-        .transform(x => x === 'true')
-        .pipe(z.boolean()),
-      default: 'false',
-      env: 'PUBLIC_IS_AUTHENTICATION_REQUIRED',
-    },
+
     defaultDeleteNoteAfterReading: {
       doc: 'The default value for the `Delete note after reading` checkbox in the note creation form',
       schema: z
@@ -199,6 +189,28 @@ export const configDefinition = {
         .pipe(z.boolean()),
       default: 'false',
       env: 'PUBLIC_DEFAULT_NOTE_NO_EXPIRATION',
+    },
+    isAuthenticationRequired: {
+      doc: 'Whether to require authentication to access the public api',
+      schema: z
+        .string()
+        .trim()
+        .toLowerCase()
+        .transform(x => x === 'true')
+        .pipe(z.boolean()),
+      default: 'false',
+      env: 'PUBLIC_IS_AUTHENTICATION_REQUIRED',
+    },
+    isUserRegistrationAllowed: {
+      doc: 'Whether to allow users to register. Effective only if authentication is required.',
+      schema: z
+        .string()
+        .trim()
+        .toLowerCase()
+        .transform(x => x === 'true')
+        .pipe(z.boolean()),
+      default: 'true',
+      env: 'PUBLIC_AUTHENTICATION_IS_USER_REGISTRATION_ALLOWED',
     },
   },
   authentication: {

@@ -47,10 +47,10 @@
       "invalid-credentials": "Nieprawidłowy e-mail lub hasło.",
       "unknown": "Wystąpił nieznany błąd. Spróbuj ponownie później."
     },
-    "footer": [
-      "Nie masz konta?",
-      "Skontaktuj się z właścicielem instancji."
-    ]
+    "footer": {
+      "no-account": "Nie masz konta?",
+      "register": "Zarejestruj się"
+    }
   },
   "create": {
     "errors": {

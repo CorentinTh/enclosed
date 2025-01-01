@@ -1,21 +1,61 @@
 import type { Config } from '../config/config.types';
+import type { UsersStorage } from './users.storage';
+import type { StoredUser } from './users.types';
 import { injectArguments } from '@corentinth/chisels';
 
 export { createUserRepository };
 
-function createUserRepository({ config }: { config: Config }) {
+export type UserRepository = ReturnType<typeof createUserRepository>;
+
+function createUserRepository({ config, usersStorage }: { config: Config; usersStorage: UsersStorage }) {
   return injectArguments(
     {
       getUserByEmail,
+      saveUser,
     },
     {
-      authUsers: config.authentication.authUsers,
+      configUsers: config.authentication.authUsers,
+      usersStorage,
     },
   );
 }
 
-function getUserByEmail({ email, authUsers }: { email: string; authUsers: { email: string; passwordHash: string }[] }): { user: { email: string; passwordHash: string } | undefined } {
-  const user = authUsers.find(user => user.email === email);
+async function getUserByEmail({
+  email,
+  configUsers,
+  usersStorage,
+}: {
+  email: string;
+  configUsers: { email: string; passwordHash: string }[];
+  usersStorage: UsersStorage;
+}): Promise<{ user: StoredUser | undefined }> {
+  const userFromConfig = configUsers.find(user => user.email === email);
 
-  return { user };
+  if (userFromConfig) {
+    return { user: userFromConfig };
+  }
+
+  const userFromStorage = await usersStorage.getItem<StoredUser>(email);
+
+  return {
+    user: userFromStorage ?? undefined,
+  };
+}
+
+async function saveUser({
+  email,
+  passwordHash,
+  usersStorage,
+  now = new Date(),
+}: {
+  email: string;
+  passwordHash: string;
+  usersStorage: UsersStorage;
+  now?: Date;
+}): Promise<void> {
+  await usersStorage.setItem(email, {
+    email,
+    passwordHash,
+    createdAt: now,
+  });
 }
