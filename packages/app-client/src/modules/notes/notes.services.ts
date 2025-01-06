@@ -5,6 +5,7 @@ export { fetchNoteById, fetchNoteExists, storeNote };
 async function storeNote({
   payload,
   ttlInSeconds,
+  resultFormat,
   deleteAfterReading,
   encryptionAlgorithm,
   serializationFormat,
@@ -12,6 +13,7 @@ async function storeNote({
 }: {
   payload: string;
   ttlInSeconds?: number;
+  resultFormat: 'raw' | 'code' | 'markdown';
   deleteAfterReading: boolean;
   encryptionAlgorithm: string;
   serializationFormat: string;
@@ -23,6 +25,7 @@ async function storeNote({
     body: {
       payload,
       ttlInSeconds,
+      resultFormat,
       deleteAfterReading,
       serializationFormat,
       encryptionAlgorithm,

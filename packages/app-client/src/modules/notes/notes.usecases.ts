@@ -7,6 +7,7 @@ async function encryptAndCreateNote(args: {
   content: string;
   password?: string;
   ttlInSeconds?: number;
+  resultFormat: 'raw' | 'code' | 'markdown';
   deleteAfterReading: boolean;
   fileAssets: File[];
   isPublic?: boolean;
