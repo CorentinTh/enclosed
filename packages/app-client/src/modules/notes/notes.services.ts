@@ -43,6 +43,7 @@ async function fetchNoteById({ noteId }: { noteId: string }) {
     assets: string[];
     serializationFormat: string;
     encryptionAlgorithm: string;
+    resultFormat: 'raw' | 'code' | 'markdown';
   }; }>({
     path: `/api/notes/${noteId}`,
     method: 'GET',
