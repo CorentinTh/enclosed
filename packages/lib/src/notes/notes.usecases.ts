@@ -13,6 +13,7 @@ async function createNote({
   content,
   password,
   ttlInSeconds,
+  resultFormat,
   deleteAfterReading = false,
   clientBaseUrl = BASE_URL,
   apiBaseUrl = clientBaseUrl,
@@ -25,6 +26,7 @@ async function createNote({
   content: string;
   password?: string;
   ttlInSeconds?: number;
+  resultFormat: 'raw' | 'code' | 'markdown';
   deleteAfterReading?: boolean;
   clientBaseUrl?: string;
   apiBaseUrl?: string;
@@ -35,6 +37,7 @@ async function createNote({
   storeNote?: (params: {
     payload: string;
     ttlInSeconds?: number;
+    resultFormat: 'raw' | 'code' | 'markdown';
     deleteAfterReading: boolean;
     encryptionAlgorithm: EncryptionAlgorithm;
     serializationFormat: SerializationFormat;
@@ -47,6 +50,7 @@ async function createNote({
   const { noteId } = await storeNote({
     payload: encryptedPayload,
     ttlInSeconds,
+    resultFormat,
     deleteAfterReading,
     encryptionAlgorithm,
     serializationFormat,
