@@ -23,3 +23,9 @@ export const createExpirationDelayRequiredError = createErrorFactory({
   code: 'note.expiration_delay_required',
   statusCode: 400,
 });
+
+export const createResultFormatRequiredError = createErrorFactory({
+  message: 'Result Format is required',
+  code: 'note.result_format_required',
+  statusCode: 400,
+});
