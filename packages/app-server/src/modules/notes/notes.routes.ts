@@ -95,6 +95,7 @@ function setupCreateNoteRoute({ app }: { app: ServerInstance }) {
           .min(TEN_MINUTES_IN_SECONDS)
           .max(ONE_MONTH_IN_SECONDS)
           .optional(),
+        resultFormat: z.enum(['raw', 'code', 'markdown']),
 
         // @ts-expect-error zod wants strict non empty array
         encryptionAlgorithm: z.enum(encryptionAlgorithms),
@@ -107,7 +108,7 @@ function setupCreateNoteRoute({ app }: { app: ServerInstance }) {
 
     async (context, next) => {
       const config = context.get('config');
-      const { payload, isPublic, ttlInSeconds } = context.req.valid('json');
+      const { payload, isPublic, ttlInSeconds, resultFormat } = context.req.valid('json');
 
       if (payload.length > config.notes.maxEncryptedPayloadLength) {
         throw createNotePayloadTooLargeError();
@@ -121,16 +122,20 @@ function setupCreateNoteRoute({ app }: { app: ServerInstance }) {
         throw createExpirationDelayRequiredError();
       }
 
+      if (!resultFormat) {
+        throw createExpirationDelayRequiredError();
+      }
+
       await next();
     },
 
     async (context) => {
-      const { payload, ttlInSeconds, deleteAfterReading, encryptionAlgorithm, serializationFormat, isPublic } = context.req.valid('json');
+      const { payload, ttlInSeconds, resultFormat, deleteAfterReading, encryptionAlgorithm, serializationFormat, isPublic } = context.req.valid('json');
       const storage = context.get('storage');
 
       const notesRepository = createNoteRepository({ storage });
 
-      const { noteId } = await notesRepository.saveNote({ payload, ttlInSeconds, deleteAfterReading, encryptionAlgorithm, serializationFormat, isPublic });
+      const { noteId } = await notesRepository.saveNote({ payload, ttlInSeconds, resultFormat, deleteAfterReading, encryptionAlgorithm, serializationFormat, isPublic });
 
       return context.json({ noteId });
     },
