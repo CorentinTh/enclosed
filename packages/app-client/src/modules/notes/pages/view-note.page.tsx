@@ -7,6 +7,7 @@ import { CopyButton } from '@/modules/shared/utils/copy';
 import { Alert, AlertDescription } from '@/modules/ui/components/alert';
 import { Button } from '@/modules/ui/components/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/modules/ui/components/card';
+import { Tabs, TabsIndicator, TabsList, TabsTrigger } from '@/modules/ui/components/tabs';
 import { TextField, TextFieldLabel, TextFieldRoot } from '@/modules/ui/components/textfield';
 import { formatBytes, safely, safelySync } from '@corentinth/chisels';
 import { decryptNote, noteAssetsToFiles, parseNoteUrlHashFragment } from '@enclosed/lib';
@@ -67,8 +68,9 @@ export const ViewNotePage: Component = () => {
   const location = useLocation();
   const [isPasswordEntered, setIsPasswordEntered] = createSignal(false);
   const [getError, setError] = createSignal<{ title: string; description: string; action?: JSX.Element } | null>(null);
-  const [getNote, setNote] = createSignal<{ payload: string; isPasswordProtected: boolean; encryptionAlgorithm: string; serializationFormat: string } | null>(null);
+  const [getNote, setNote] = createSignal<{ payload: string; isPasswordProtected: boolean; encryptionAlgorithm: string; serializationFormat: string; resultFormat: 'raw' | 'code' | 'markdown' } | null>(null);
   const [getDecryptedNote, setDecryptedNote] = createSignal<string | null>(null);
+  const [getResultFormat, setResultFormat] = createSignal<'raw' | 'code' | 'markdown' | null>(null);
   const [getIsPasswordInvalid, setIsPasswordInvalid] = createSignal(false);
   const [fileAssets, setFileAssets] = createSignal<File[]>([]);
   const [isDownloadingAllLoading, setIsDownloadingAllLoading] = createSignal(false);
@@ -95,7 +97,7 @@ export const ViewNotePage: Component = () => {
   };
 
   const decrypt = async ({ password }: { password?: string } = {}) => {
-    const { payload, encryptionAlgorithm, serializationFormat } = getNote()!;
+    const { payload, encryptionAlgorithm, serializationFormat, resultFormat } = getNote()!;
 
     const [decryptionResult, decryptionError] = await safely(decryptNote({
       encryptedPayload: payload,
@@ -123,6 +125,7 @@ export const ViewNotePage: Component = () => {
     const files = await noteAssetsToFiles({ noteAssets: note.assets });
     setFileAssets(files);
     setDecryptedNote(note.content);
+    setResultFormat(resultFormat);
     setIsPasswordEntered(true);
   };
 
@@ -318,8 +321,21 @@ export const ViewNotePage: Component = () => {
             {getDecryptedNote() && (
               <div class="flex-1 mb-4 min-w-0">
                 <div class="flex items-center gap-2 mb-4 justify-between">
-                  <div class="text-muted-foreground">
-                    {t('view.note-content')}
+                  <div>
+                    <div class="text-muted-foreground">
+                      {t('view.note-content')}
+                    </div>
+                    <Tabs
+                      value={getResultFormat() as string}
+                      onChange={(value: string) => setResultFormat(value as 'raw' | 'code' | 'markdown')}
+                    >
+                      <TabsList>
+                        <TabsIndicator />
+                        <TabsTrigger value="raw">{t('create.settings.result-formats.raw')}</TabsTrigger>
+                        <TabsTrigger value="code">{t('create.settings.result-formats.code')}</TabsTrigger>
+                        <TabsTrigger value="markdown">{t('create.settings.result-formats.markdown')}</TabsTrigger>
+                      </TabsList>
+                    </Tabs>
                   </div>
                   <CopyButton text={getDecryptedNote()!} variant="secondary" />
                 </div>
