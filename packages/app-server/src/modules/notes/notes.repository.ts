@@ -34,6 +34,7 @@ async function saveNote(
   {
     payload,
     ttlInSeconds,
+    resultFormat,
     deleteAfterReading,
     storage,
     generateNoteId = generateId,
@@ -45,6 +46,7 @@ async function saveNote(
   {
     payload: string;
     ttlInSeconds?: number;
+    resultFormat: 'raw' | 'code' | 'markdown';
     deleteAfterReading: boolean;
     storage: Storage<DatabaseNote>;
     generateNoteId?: () => string;
@@ -62,6 +64,7 @@ async function saveNote(
       encryptionAlgorithm,
       serializationFormat,
       isPublic,
+      resultFormat,
     };
 
     if (!ttlInSeconds) {
