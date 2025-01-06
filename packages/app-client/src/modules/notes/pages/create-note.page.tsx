@@ -1,3 +1,4 @@
+import type { Config } from '@/modules/config/config.types';
 import { authStore } from '@/modules/auth/auth.store';
 import { getConfig } from '@/modules/config/config.provider';
 import { getFileIcon } from '@/modules/files/files.models';
@@ -119,6 +120,7 @@ export const CreateNotePage: Component = () => {
   const [getIsNoteCreated, setIsNoteCreated] = createSignal(false);
   const [getIsPublic, setIsPublic] = createSignal(true);
   const [getTtlInSeconds, setTtlInSeconds] = createSignal(config.defaultNoteTtlSeconds);
+  const [getResultFormat, setResultFormat] = createSignal(config.defaultNoteResultFormat);
   const [getDeleteAfterReading, setDeleteAfterReading] = createSignal(config.defaultDeleteNoteAfterReading);
   const [getUploadedFiles, setUploadedFiles] = createSignal<File[]>([]);
   const [getIsNoteCreating, setIsNoteCreating] = createSignal(false);
@@ -162,6 +164,7 @@ export const CreateNotePage: Component = () => {
       content: getContent(),
       password: getPassword(),
       ttlInSeconds: getHasNoExpiration() ? undefined : getTtlInSeconds(),
+      resultFormat: getResultFormat(),
       deleteAfterReading: getDeleteAfterReading(),
       fileAssets: getUploadedFiles(),
       isPublic: getIsPublic(),
@@ -278,6 +281,24 @@ export const CreateNotePage: Component = () => {
                   <TabsTrigger value="86400">{t('create.settings.delays.1d')}</TabsTrigger>
                   <TabsTrigger value="604800">{t('create.settings.delays.1w')}</TabsTrigger>
                   <TabsTrigger value="2592000">{t('create.settings.delays.1m')}</TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </TextFieldRoot>
+
+            <TextFieldRoot class="w-full">
+              <TextFieldLabel>
+                {t('create.settings.result-format')}
+              </TextFieldLabel>
+
+              <Tabs
+                value={getResultFormat()}
+                onChange={(value: string) => setResultFormat(value as Config['defaultNoteResultFormat'])}
+              >
+                <TabsList>
+                  <TabsIndicator />
+                  <TabsTrigger value="raw">{t('create.settings.result-formats.raw')}</TabsTrigger>
+                  <TabsTrigger value="code">{t('create.settings.result-formats.code')}</TabsTrigger>
+                  <TabsTrigger value="markdown">{t('create.settings.result-formats.markdown')}</TabsTrigger>
                 </TabsList>
               </Tabs>
             </TextFieldRoot>

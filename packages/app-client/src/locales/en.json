@@ -83,6 +83,12 @@
         "1w": "1 week",
         "1m": "1 month"
       },
+      "result-format": "Result Format",
+      "result-formats": {
+        "raw": "raw",
+        "code": "code",
+        "markdown": "markdown"
+      },
       "delete-after-reading": {
         "label": "Delete after reading",
         "description": "Delete the note after reading"
