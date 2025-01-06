@@ -21,6 +21,7 @@ describe('e2e', () => {
         deleteAfterReading: false,
         ttlInSeconds: 600,
         payload: 'a'.repeat(1024 * 1024 + 1),
+        resultFormat: 'raw',
         encryptionAlgorithm: 'aes-256-gcm',
         serializationFormat: 'cbor-array',
       };
