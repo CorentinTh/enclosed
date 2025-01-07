@@ -67,6 +67,7 @@
       "description": "Here is a note shared with you."
     },
     "settings": {
+      "preview": "preview",
       "placeholder": "Type your note here...",
       "password": {
         "label": "Note password",
