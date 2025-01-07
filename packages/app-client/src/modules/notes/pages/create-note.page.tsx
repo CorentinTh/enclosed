@@ -8,6 +8,7 @@ import { downloadBase64File, downloadSvgFile } from '@/modules/shared/files/down
 import { isHttpErrorWithCode, isHttpErrorWithStatusCode, isRateLimitError } from '@/modules/shared/http/http-errors';
 import { cn } from '@/modules/shared/style/cn';
 import { CopyButton, useCopy } from '@/modules/shared/utils/copy';
+import { useThemeStore } from '@/modules/theme/theme.store';
 import { Alert, AlertDescription } from '@/modules/ui/components/alert';
 import { Button } from '@/modules/ui/components/button';
 import { Card, CardContent, CardHeader } from '@/modules/ui/components/card';
@@ -112,6 +113,7 @@ const QrCodeCard: Component<{ noteUrl: string }> = (props) => {
 };
 
 export const CreateNotePage: Component = () => {
+  const themeStore = useThemeStore();
   const config = getConfig();
   const { t } = useI18n();
   const navigate = useNavigate();
@@ -283,14 +285,14 @@ ${text.replaceAll('```', '"""')}
 
             <Card class="w-full relative rounded-md shadow-sm">
               <CardContent class="p-6 pt-10 overflow-auto max-w-100% max-h-400px">
-                <div class="absolute top-0 left-0 bg-gray-2 rounded-br-md py-1 px-4 text-xs text-gray-6">{t('create.settings.preview')}</div>
+                <div class="absolute top-0 left-0 bg-muted rounded-br-md pt-1 pb-2 px-4 text-xs text-muted-foreground">{t('create.settings.preview')}</div>
                 {getResultFormat() === 'raw'
                   ? (
                       <pre data-test-id="note-content-display">
                         {getContent()}
                       </pre>
                     )
-                  : <div class="markdown-body" innerHTML={getFormattedContent() || ''} />}
+                  : <div class="markdown-body" data-theme={themeStore.getColorMode()} innerHTML={getFormattedContent() || ''} />}
               </CardContent>
             </Card>
           </div>
