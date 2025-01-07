@@ -282,7 +282,7 @@ ${text.replaceAll('```', '"""')}
             </TextFieldRoot>
 
             <Card class="w-full relative rounded-md shadow-sm">
-              <CardContent class="p-6 pt-10 overflow-x-auto max-w-100%">
+              <CardContent class="p-6 pt-10 overflow-auto max-w-100% max-h-400px">
                 <div class="absolute top-0 left-0 bg-gray-2 rounded-br-md py-1 px-4 text-xs text-gray-6">preview</div>
                 {getResultFormat() === 'raw'
                   ? (
