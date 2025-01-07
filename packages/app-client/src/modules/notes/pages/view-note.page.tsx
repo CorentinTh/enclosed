@@ -155,7 +155,7 @@ export const ViewNotePage: Component = () => {
       .parse(resultFormat === 'markdown'
         ? note.content
         : `\`\`\`
-${note.content}
+${note.content.replaceAll('```', '"""')}
 \`\`\`
         `));
 
