@@ -360,16 +360,18 @@ ${note.content}
                     <div class="text-muted-foreground">
                       {t('view.note-content')}
                     </div>
-                    <Tabs
-                      value={getResultFormat() as string}
-                      onChange={(value: string) => setResultFormat(value as 'raw' | 'code' | 'markdown')}
-                    >
-                      <TabsList>
-                        <TabsIndicator />
-                        <TabsTrigger value="raw">{t('create.settings.result-formats.raw')}</TabsTrigger>
-                        <TabsTrigger value={getDefaultResultFormat() as string}>{getDefaultResultFormat()}</TabsTrigger>
-                      </TabsList>
-                    </Tabs>
+                    {getDefaultResultFormat() !== 'raw' && (
+                      <Tabs
+                        value={getResultFormat() as string}
+                        onChange={(value: string) => setResultFormat(value as 'raw' | 'code' | 'markdown')}
+                      >
+                        <TabsList>
+                          <TabsIndicator />
+                          <TabsTrigger value="raw">{t('create.settings.result-formats.raw')}</TabsTrigger>
+                          <TabsTrigger value={getDefaultResultFormat() as string}>{getDefaultResultFormat()}</TabsTrigger>
+                        </TabsList>
+                      </Tabs>
+                    )}
                   </div>
                   <CopyButton text={getDecryptedNote()!} variant="secondary" />
                 </div>
