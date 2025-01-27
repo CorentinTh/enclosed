@@ -21,6 +21,7 @@ describe('e2e', () => {
         deleteAfterReading: false,
         ttlInSeconds: undefined,
         payload: 'aaaaaaaa',
+        resultFormat: 'raw',
         encryptionAlgorithm: 'aes-256-gcm',
         serializationFormat: 'cbor-array',
       };
@@ -56,6 +57,7 @@ describe('e2e', () => {
         deleteAfterReading: false,
         ttlInSeconds: undefined,
         payload: 'aaaaaaaa',
+        resultFormat: 'raw',
         encryptionAlgorithm: 'aes-256-gcm',
         serializationFormat: 'cbor-array',
       };

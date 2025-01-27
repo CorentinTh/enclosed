@@ -1,0 +1,11 @@
+.markdown-body ol {
+    list-style: revert;
+}
+
+.markdown-body ul {
+    list-style: revert;
+}
+
+.markdown-body menu {
+    list-style: revert;
+}

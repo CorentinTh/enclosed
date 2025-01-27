@@ -5,6 +5,7 @@ export type Config = {
   enclosedVersion: string;
   defaultDeleteNoteAfterReading: boolean;
   defaultNoteTtlSeconds: number;
+  defaultNoteResultFormat: 'raw' | 'code' | 'markdown';
   isSettingNoExpirationAllowed: boolean;
   defaultNoteNoExpiration: boolean;
 };
