@@ -186,7 +186,7 @@ importers:
         version: 3.0.11
       '@vitest/coverage-v8':
         specifier: ^2.0.5
-        version: 2.1.4(vitest@2.1.1(@types/node@22.9.0)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))
+        version: 2.1.8(vitest@2.1.1(@types/node@22.9.0)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -250,7 +250,7 @@ importers:
         version: 4.17.12
       '@vitest/coverage-v8':
         specifier: ^2.0.5
-        version: 2.1.4(vitest@2.1.1(@types/node@22.9.0)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))
+        version: 2.1.8(vitest@2.1.1(@types/node@22.9.0)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -287,7 +287,7 @@ importers:
         version: 22.7.4
       '@vitest/coverage-v8':
         specifier: ^2.0.5
-        version: 2.1.4(vitest@2.1.1(@types/node@22.7.4)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))
+        version: 2.1.8(vitest@2.1.1(@types/node@22.7.4)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))
       eslint:
         specifier: 'catalog:'
         version: 9.11.0(jiti@2.4.2)
@@ -369,7 +369,7 @@ importers:
         version: 22.7.4
       '@vitest/coverage-v8':
         specifier: ^2.0.5
-        version: 2.1.4(vitest@2.1.1(@types/node@22.7.4)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))
+        version: 2.1.8(vitest@2.1.1(@types/node@22.7.4)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -591,11 +591,6 @@ packages:
 
   '@babel/parser@7.25.4':
     resolution: {integrity: sha512-nq+eWrOgdtu3jG5Os4TQP3x3cLA8hR8TvJNjD8vnPa20WGycimcparWnLK4jJhElTK6SDyuJo1weMKO/5LpmLA==}
-    engines: {node: '>=6.0.0'}
-    hasBin: true
-
-  '@babel/parser@7.26.2':
-    resolution: {integrity: sha512-DWMCZH9WA4Maitz2q21SRKHo9QXZxkDsbNZoVD62gusNtNBBqDg9i7uOhASfTfIGNzW+O+r7+jAlM8dwphcJKQ==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
@@ -2303,11 +2298,11 @@ packages:
       vite: ^5.0.0 || ^6.0.0
       vue: ^3.2.25
 
-  '@vitest/coverage-v8@2.1.4':
-    resolution: {integrity: sha512-FPKQuJfR6VTfcNMcGpqInmtJuVXFSCd9HQltYncfR01AzXhLucMEtQ5SinPdZxsT5x/5BK7I5qFJ5/ApGCmyTQ==}
+  '@vitest/coverage-v8@2.1.8':
+    resolution: {integrity: sha512-2Y7BPlKH18mAZYAW1tYByudlCYrQyl5RGvnnDYJKW5tCiO5qg3KSAy3XAxcxKz900a0ZXxWtKrMuZLe3lKBpJw==}
     peerDependencies:
-      '@vitest/browser': 2.1.4
-      vitest: 2.1.4
+      '@vitest/browser': 2.1.8
+      vitest: 2.1.8
     peerDependenciesMeta:
       '@vitest/browser':
         optional: true
@@ -2826,6 +2821,10 @@ packages:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
 
+  cross-spawn@7.0.6:
+    resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
+    engines: {node: '>= 8'}
+
   crossws@0.2.4:
     resolution: {integrity: sha512-DAxroI2uSOgUKLz00NX6A8U/8EE3SZHmIND+10jkVSaypvyt57J5JEOxAQOL6lQxyzi/wZbTIwssU1uy69h5Vg==}
     peerDependencies:
@@ -2920,6 +2919,15 @@ packages:
 
   debug@4.3.7:
     resolution: {integrity: sha512-Er2nc/H7RrMXZBFCEim6TCmMk02Z8vLC2Rbi1KEBggpo0fS6l0S1nnapwmIi3yW/+GOJap1Krg4w0Hg80oCqgQ==}
+    engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+
+  debug@4.4.0:
+    resolution: {integrity: sha512-6WTZ/IxCY/T6BALoZHaE4ctp9xm+Z5kY/pzYaCHRFeyVhojxlrm+46y68HA6hr0TcwEssoxNiDEUJQjfPZ/RYA==}
     engines: {node: '>=6.0'}
     peerDependencies:
       supports-color: '*'
@@ -4977,6 +4985,9 @@ packages:
   std-env@3.7.0:
     resolution: {integrity: sha512-JPbdCEQLj1w5GilpiHAx3qJvFndqybBysA3qUOnznweH4QbNYUsW/ea8QzSrnh0vNsezMMw5bcVool8lM0gwzg==}
 
+  std-env@3.8.0:
+    resolution: {integrity: sha512-Bc3YwwCB+OzldMxOXJIIvC6cPRWr/LxOp48CdQTOkPyk/t4JWWJbrilwBd7RJzKV8QW7tJkcgAmeuLLJugl5/w==}
+
   stdin-discarder@0.2.2:
     resolution: {integrity: sha512-UhDfHmA92YAlNnCfhmq0VeNL5bDbiZGg7sZ2IvPsXubGkiNa9EC+tUTsjBRsYUAz87btI6/1wf4XoVvQ3uRnmQ==}
     engines: {node: '>=18'}
@@ -5758,7 +5769,7 @@ snapshots:
 
   '@ampproject/remapping@2.3.0':
     dependencies:
-      '@jridgewell/gen-mapping': 0.3.5
+      '@jridgewell/gen-mapping': 0.3.8
       '@jridgewell/trace-mapping': 0.3.25
 
   '@antfu/eslint-config@3.6.2(@typescript-eslint/utils@8.5.0(eslint@9.11.0(jiti@2.4.2))(typescript@5.6.2))(@vue/compiler-sfc@3.5.13)(eslint@9.11.0(jiti@2.4.2))(typescript@5.6.2)(vitest@2.1.1(@types/node@22.7.4)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))':
@@ -5957,10 +5968,6 @@ snapshots:
   '@babel/parser@7.25.4':
     dependencies:
       '@babel/types': 7.25.4
-
-  '@babel/parser@7.26.2':
-    dependencies:
-      '@babel/types': 7.26.0
 
   '@babel/parser@7.26.7':
     dependencies:
@@ -6555,7 +6562,7 @@ snapshots:
       '@antfu/install-pkg': 0.4.1
       '@antfu/utils': 0.7.10
       '@iconify/types': 2.0.0
-      debug: 4.3.7
+      debug: 4.4.0
       kolorist: 1.8.0
       local-pkg: 0.5.0
       mlly: 1.7.2
@@ -6688,7 +6695,6 @@ snapshots:
       '@jridgewell/set-array': 1.2.1
       '@jridgewell/sourcemap-codec': 1.5.0
       '@jridgewell/trace-mapping': 0.3.25
-    optional: true
 
   '@jridgewell/resolve-uri@3.1.2': {}
 
@@ -7223,7 +7229,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/typescript-estree': 8.5.0(typescript@5.6.2)
       '@typescript-eslint/utils': 8.5.0(eslint@9.11.0(jiti@2.4.2))(typescript@5.6.2)
-      debug: 4.3.7
+      debug: 4.4.0
       ts-api-utils: 1.3.0(typescript@5.6.2)
     optionalDependencies:
       typescript: 5.6.2
@@ -7381,7 +7387,7 @@ snapshots:
   '@unocss/rule-utils@0.64.0':
     dependencies:
       '@unocss/core': 0.64.0
-      magic-string: 0.30.12
+      magic-string: 0.30.17
 
   '@unocss/transformer-attributify-jsx@0.64.0':
     dependencies:
@@ -7422,36 +7428,36 @@ snapshots:
       vite: 5.4.14(@types/node@22.9.0)(less@4.2.0)(terser@5.32.0)
       vue: 3.5.13(typescript@5.6.2)
 
-  '@vitest/coverage-v8@2.1.4(vitest@2.1.1(@types/node@22.7.4)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))':
+  '@vitest/coverage-v8@2.1.8(vitest@2.1.1(@types/node@22.7.4)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@bcoe/v8-coverage': 0.2.3
-      debug: 4.3.7
+      debug: 4.4.0
       istanbul-lib-coverage: 3.2.2
       istanbul-lib-report: 3.0.1
       istanbul-lib-source-maps: 5.0.6
       istanbul-reports: 3.1.7
-      magic-string: 0.30.12
+      magic-string: 0.30.17
       magicast: 0.3.5
-      std-env: 3.7.0
+      std-env: 3.8.0
       test-exclude: 7.0.1
       tinyrainbow: 1.2.0
       vitest: 2.1.1(@types/node@22.7.4)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0)
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/coverage-v8@2.1.4(vitest@2.1.1(@types/node@22.9.0)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))':
+  '@vitest/coverage-v8@2.1.8(vitest@2.1.1(@types/node@22.9.0)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@bcoe/v8-coverage': 0.2.3
-      debug: 4.3.7
+      debug: 4.4.0
       istanbul-lib-coverage: 3.2.2
       istanbul-lib-report: 3.0.1
       istanbul-lib-source-maps: 5.0.6
       istanbul-reports: 3.1.7
-      magic-string: 0.30.12
+      magic-string: 0.30.17
       magicast: 0.3.5
-      std-env: 3.7.0
+      std-env: 3.8.0
       test-exclude: 7.0.1
       tinyrainbow: 1.2.0
       vitest: 2.1.1(@types/node@22.9.0)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0)
@@ -7840,7 +7846,7 @@ snapshots:
 
   capnp-ts@0.7.0:
     dependencies:
-      debug: 4.3.7
+      debug: 4.4.0
       tslib: 2.8.1
     transitivePeerDependencies:
       - supports-color
@@ -8029,6 +8035,12 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
+  cross-spawn@7.0.6:
+    dependencies:
+      path-key: 3.1.1
+      shebang-command: 2.0.0
+      which: 2.0.2
+
   crossws@0.2.4: {}
 
   css-declaration-sorter@7.2.0(postcss@8.5.1):
@@ -8136,6 +8148,10 @@ snapshots:
       ms: 2.1.3
 
   debug@4.3.7:
+    dependencies:
+      ms: 2.1.3
+
+  debug@4.4.0:
     dependencies:
       ms: 2.1.3
 
@@ -8750,7 +8766,7 @@ snapshots:
 
   foreground-child@3.3.0:
     dependencies:
-      cross-spawn: 7.0.3
+      cross-spawn: 7.0.6
       signal-exit: 4.1.0
 
   form-data@4.0.0:
@@ -8962,7 +8978,7 @@ snapshots:
   importx@0.4.4:
     dependencies:
       bundle-require: 5.0.0(esbuild@0.23.1)
-      debug: 4.3.7
+      debug: 4.4.0
       esbuild: 0.23.1
       jiti: 2.0.0-beta.3
       jiti-v1: jiti@1.21.7
@@ -9059,7 +9075,7 @@ snapshots:
   istanbul-lib-source-maps@5.0.6:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
-      debug: 4.3.7
+      debug: 4.4.0
       istanbul-lib-coverage: 3.2.2
     transitivePeerDependencies:
       - supports-color
@@ -9277,8 +9293,8 @@ snapshots:
 
   magicast@0.3.5:
     dependencies:
-      '@babel/parser': 7.26.2
-      '@babel/types': 7.26.0
+      '@babel/parser': 7.26.7
+      '@babel/types': 7.26.7
       source-map-js: 1.2.1
 
   make-dir@2.1.0:
@@ -9611,7 +9627,7 @@ snapshots:
   micromark@4.0.0:
     dependencies:
       '@types/debug': 4.1.12
-      debug: 4.3.7
+      debug: 4.4.0
       decode-named-character-reference: 1.0.2
       devlop: 1.1.0
       micromark-core-commonmark: 2.0.1
@@ -10556,6 +10572,8 @@ snapshots:
       get-source: 2.0.12
 
   std-env@3.7.0: {}
+
+  std-env@3.8.0: {}
 
   stdin-discarder@0.2.2: {}
 
