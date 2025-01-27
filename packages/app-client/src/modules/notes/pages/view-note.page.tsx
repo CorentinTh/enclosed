@@ -41,7 +41,7 @@ const RequestPasswordForm: Component<{ onPasswordEntered: (args: { password: str
             <div>
               <TextFieldRoot>
                 <TextFieldLabel>{t('view.request-password.form.label')}</TextFieldLabel>
-                <TextField type="password" placeholder={t('view.request-password.form.placeholder')} value={getPassword()} onInput={e => updatePassword(e.currentTarget.value)} autofocus data-test-id="note-password-prompt" />
+                <TextField type="password" autocomplete="new-password" placeholder={t('view.request-password.form.placeholder')} value={getPassword()} onInput={e => updatePassword(e.currentTarget.value)} autofocus data-test-id="note-password-prompt" />
               </TextFieldRoot>
             </div>
             <Button class="w-full mt-4" type="submit" data-test-id="note-password-submit">
