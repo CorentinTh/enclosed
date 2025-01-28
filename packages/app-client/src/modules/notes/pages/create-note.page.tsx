@@ -124,6 +124,10 @@ export const CreateNotePage: Component = () => {
   const [getIsNoteCreating, setIsNoteCreating] = createSignal(false);
   const [getHasNoExpiration, setHasNoExpiration] = createSignal(config.defaultNoteNoExpiration);
 
+  function replaceBaseUrl(url: string, newBaseUrl: string): string {
+    return url.replace(/^(https?:\/\/)?([^\/:]+)(:\d+)?/, newBaseUrl);
+}
+
   function resetNoteForm() {
     setContent('');
     setPassword('');
@@ -172,7 +176,9 @@ export const CreateNotePage: Component = () => {
     if (!error) {
       const { noteUrl } = createdNote;
 
-      setNoteUrl(noteUrl);
+      const newNoteUrl = replaceBaseUrl(noteUrl, config.noteBaseUrl);
+
+      setNoteUrl(newNoteUrl);
       setIsNoteCreated(true);
       return;
     }

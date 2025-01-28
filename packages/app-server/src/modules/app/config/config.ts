@@ -200,6 +200,12 @@ export const configDefinition = {
       default: 'false',
       env: 'PUBLIC_DEFAULT_NOTE_NO_EXPIRATION',
     },
+    noteBaseUrl: {
+      doc: 'The base URL to access the note link',
+      schema: z.string(),
+      default: '',
+      env: 'PUBLIC_NOTE_BASE_URL',
+    }
   },
   authentication: {
     jwtSecret: {
