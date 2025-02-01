@@ -12,6 +12,7 @@ describe('notes repository', () => {
         payload: '<encrypted-content>',
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: false,
+        resultFormat: 'raw',
         encryptionAlgorithm: 'aes-256-gcm',
         serializationFormat: 'cbor-array',
       });
@@ -24,6 +25,7 @@ describe('notes repository', () => {
         payload: '<encrypted-content>',
         expirationDate: new Date('2024-01-01T00:01:00.000Z'),
         deleteAfterReading: false,
+        resultFormat: 'raw',
         encryptionAlgorithm: 'aes-256-gcm',
         serializationFormat: 'cbor-array',
       });
@@ -36,6 +38,7 @@ describe('notes repository', () => {
         payload: '<encrypted-content>',
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: false,
+        resultFormat: 'raw',
         encryptionAlgorithm: 'aes-256-gcm',
         serializationFormat: 'cbor-array',
       });
@@ -54,6 +57,7 @@ describe('notes repository', () => {
         payload: '<encrypted-content>',
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: false,
+        resultFormat: 'raw',
         encryptionAlgorithm: 'aes-256-gcm',
         serializationFormat: 'cbor-array',
       });
@@ -62,6 +66,7 @@ describe('notes repository', () => {
         payload: '<encrypted-content>',
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: false,
+        resultFormat: 'raw',
         encryptionAlgorithm: 'aes-256-gcm',
         serializationFormat: 'cbor-array',
       });
@@ -90,6 +95,7 @@ describe('notes repository', () => {
         payload: '<encrypted-content>',
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: true,
+        resultFormat: 'raw',
         encryptionAlgorithm: 'aes-256-gcm',
         serializationFormat: 'cbor-array',
       });
@@ -112,6 +118,7 @@ describe('notes repository', () => {
         payload: '<encrypted-content>',
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: false,
+        resultFormat: 'raw',
         encryptionAlgorithm: 'aes-256-gcm',
         serializationFormat: 'cbor-array',
       });
@@ -120,6 +127,7 @@ describe('notes repository', () => {
         payload: '<encrypted-content>',
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: false,
+        resultFormat: 'raw',
         encryptionAlgorithm: 'aes-256-gcm',
         serializationFormat: 'cbor-array',
       });
@@ -157,6 +165,7 @@ describe('notes repository', () => {
         payload: '<encrypted-content>',
         ttlInSeconds: 60,
         deleteAfterReading: false,
+        resultFormat: 'raw',
         generateNoteId: () => `note-${noteIdIndex++}`,
         now: new Date('2024-01-01T00:00:00.000Z'),
         encryptionAlgorithm: 'aes-256-gcm',
@@ -171,6 +180,7 @@ describe('notes repository', () => {
         payload: '<encrypted-content>',
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: false,
+        resultFormat: 'raw',
         encryptionAlgorithm: 'aes-256-gcm',
         serializationFormat: 'cbor-array',
         isPublic: true,
@@ -186,6 +196,7 @@ describe('notes repository', () => {
         payload: '<encrypted-content>',
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: false,
+        resultFormat: 'raw',
         encryptionAlgorithm: 'aes-256-gcm',
         serializationFormat: 'cbor-array',
       });
@@ -203,6 +214,7 @@ describe('notes repository', () => {
         payload: '<encrypted-content>',
         expirationDate: '2024-01-01T00:01:00.000Z',
         deleteAfterReading: true,
+        resultFormat: 'raw',
         encryptionAlgorithm: 'aes-256-gcm',
         serializationFormat: 'cbor-array',
       });

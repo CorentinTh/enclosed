@@ -40,6 +40,7 @@ describe('notes models', () => {
         payload: '<encrypted-content>',
         expirationDate: new Date('2024-01-01T00:00:00Z'),
         deleteAfterReading: false,
+        resultFormat: 'raw',
         serializationFormat: 'cbor-array',
         encryptionAlgorithm: 'aes-256-gcm',
         isPublic: false,
@@ -48,6 +49,7 @@ describe('notes models', () => {
       expect(formatNoteForApi({ note: storedNote })).to.eql({
         apiNote: {
           payload: '<encrypted-content>',
+          resultFormat: 'raw',
           encryptionAlgorithm: 'aes-256-gcm',
           serializationFormat: 'cbor-array',
         },

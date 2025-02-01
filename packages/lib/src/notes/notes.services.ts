@@ -5,6 +5,7 @@ export { fetchNote, storeNote };
 async function storeNote({
   payload,
   ttlInSeconds,
+  resultFormat,
   deleteAfterReading,
   apiBaseUrl,
   serializationFormat,
@@ -13,6 +14,7 @@ async function storeNote({
 }: {
   payload: string;
   ttlInSeconds?: number;
+  resultFormat: 'raw' | 'code' | 'markdown';
   deleteAfterReading: boolean;
   apiBaseUrl?: string;
   serializationFormat: string;
@@ -26,6 +28,7 @@ async function storeNote({
     body: {
       payload,
       ttlInSeconds,
+      resultFormat,
       deleteAfterReading,
       serializationFormat,
       encryptionAlgorithm,
