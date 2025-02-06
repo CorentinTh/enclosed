@@ -186,7 +186,7 @@ importers:
         version: 2.1.8(vitest@2.1.9(@types/node@22.9.0)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))
       dotenv:
         specifier: ^16.4.5
-        version: 16.4.5
+        version: 16.4.7
       esbuild:
         specifier: ^0.24.0
         version: 0.24.0
@@ -250,7 +250,7 @@ importers:
         version: 2.1.8(vitest@2.1.9(@types/node@22.9.0)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))
       dotenv:
         specifier: ^16.4.5
-        version: 16.4.5
+        version: 16.4.7
       eslint:
         specifier: 'catalog:'
         version: 9.11.0(jiti@2.4.2)
@@ -369,7 +369,7 @@ importers:
         version: 2.1.8(vitest@2.1.9(@types/node@22.7.4)(jsdom@25.0.1)(less@4.2.0)(terser@5.32.0))
       dotenv:
         specifier: ^16.4.5
-        version: 16.4.5
+        version: 16.4.7
       eslint:
         specifier: 'catalog:'
         version: 9.11.0(jiti@2.4.2)
@@ -3002,10 +3002,6 @@ packages:
   dot-prop@9.0.0:
     resolution: {integrity: sha512-1gxPBJpI/pcjQhKgIU91II6Wkay+dLcN3M6rf2uwP8hRur3HtQXjVrdAK3sjC0piaEuxzMwjXChcETiJl47lAQ==}
     engines: {node: '>=18'}
-
-  dotenv@16.4.5:
-    resolution: {integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==}
-    engines: {node: '>=12'}
 
   dotenv@16.4.7:
     resolution: {integrity: sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==}
@@ -8207,8 +8203,6 @@ snapshots:
   dot-prop@9.0.0:
     dependencies:
       type-fest: 4.26.0
-
-  dotenv@16.4.5: {}
 
   dotenv@16.4.7: {}
 
