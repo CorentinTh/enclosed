@@ -11,6 +11,11 @@
     "new-note": "新建笔记",
     "github": "GitHub",
     "language": "语言",
+    "github-repository": "GitHub 仓库",
+    "documentation": "文档",
+    "change-theme": "更改主题",
+    "menu-icon": "菜单图标",
+    "change-language": "更改语言",
     "theme": {
       "theme": "主题",
       "light-mode": "浅色模式",
@@ -62,7 +67,10 @@
       "placeholder": "在此输入您的笔记内容...",
       "password": {
         "label": "笔记密码",
-        "placeholder": "密码..."
+        "placeholder": "密码...",
+        "hide-password": "隐藏密码",
+        "show-password": "显示密码",
+        "generate-random-password": "生成随机密码"
       },
       "expiration": "过期时间",
       "no-expiration": "永不过期",
@@ -103,6 +111,7 @@
     }
   },
   "view": {
+    "loading": "加载笔记中...",
     "note-content": "笔记内容",
     "assets": {
       "download": "下载",
