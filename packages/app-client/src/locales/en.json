@@ -67,6 +67,7 @@
       "description": "Here is a note shared with you."
     },
     "settings": {
+      "preview": "preview",
       "placeholder": "Type your note here...",
       "password": {
         "label": "Note password",
@@ -82,6 +83,12 @@
         "1d": "1 day",
         "1w": "1 week",
         "1m": "1 month"
+      },
+      "result-format": "Result Format",
+      "result-formats": {
+        "raw": "raw",
+        "code": "code",
+        "markdown": "markdown"
       },
       "delete-after-reading": {
         "label": "Delete after reading",

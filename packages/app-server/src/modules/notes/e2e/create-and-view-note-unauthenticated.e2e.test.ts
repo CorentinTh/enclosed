@@ -16,6 +16,7 @@ describe('e2e', () => {
         payload: '<encrypted-content>',
         deleteAfterReading: false,
         ttlInSeconds: 600,
+        resultFormat: 'raw',
         encryptionAlgorithm: 'aes-256-gcm',
         serializationFormat: 'cbor-array',
       };
@@ -44,6 +45,7 @@ describe('e2e', () => {
 
       expect(omit(retrievedNote, 'expirationDate')).to.eql({
         payload: '<encrypted-content>',
+        resultFormat: 'raw',
         encryptionAlgorithm: 'aes-256-gcm',
         serializationFormat: 'cbor-array',
       });
@@ -64,6 +66,7 @@ describe('e2e', () => {
             payload: '<encrypted-content>',
             deleteAfterReading: false,
             ttlInSeconds: 600,
+            resultFormat: 'raw',
             encryptionAlgorithm: 'aes-256-gcm',
             serializationFormat: 'foo', // <- invalid serialization format
           }),
@@ -101,6 +104,7 @@ describe('e2e', () => {
             payload: '<encrypted-content>',
             deleteAfterReading: false,
             ttlInSeconds: 600,
+            resultFormat: 'raw',
             encryptionAlgorithm: 'foo', // <- invalid encryption algorithm
             serializationFormat: 'cbor-array',
           }),
@@ -138,6 +142,7 @@ describe('e2e', () => {
             payload: '<encrypted-content>',
             deleteAfterReading: false,
             ttlInSeconds: 600,
+            resultFormat: 'raw',
             encryptionAlgorithm: 'aes-256-gcm',
             serializationFormat: 'cbor-array',
             isPublic: false, // <- non-public note

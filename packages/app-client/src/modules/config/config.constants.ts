@@ -7,6 +7,7 @@ export const buildTimeConfig: Config = {
   isAuthenticationRequired: import.meta.env.VITE_IS_AUTHENTICATION_REQUIRED === 'true',
   defaultDeleteNoteAfterReading: import.meta.env.VITE_DEFAULT_DELETE_NOTE_AFTER_READING === 'true',
   defaultNoteTtlSeconds: Number(import.meta.env.VITE_DEFAULT_NOTE_TTL_SECONDS ?? 3600),
+  defaultNoteResultFormat: import.meta.env.VITE_DEFAULT_NOTE_RESULT_FORMAT ?? 'raw',
   defaultNoteNoExpiration: import.meta.env.VITE_DEFAULT_NOTE_NO_EXPIRATION === 'true',
   isSettingNoExpirationAllowed: import.meta.env.VITE_IS_SETTING_NO_EXPIRATION_ALLOWED === 'true',
 };

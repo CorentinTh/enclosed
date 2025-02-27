@@ -7,13 +7,31 @@ import { CopyButton } from '@/modules/shared/utils/copy';
 import { Alert, AlertDescription } from '@/modules/ui/components/alert';
 import { Button } from '@/modules/ui/components/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/modules/ui/components/card';
+import { Tabs, TabsIndicator, TabsList, TabsTrigger } from '@/modules/ui/components/tabs';
 import { TextField, TextFieldLabel, TextFieldRoot } from '@/modules/ui/components/textfield';
 import { formatBytes, safely, safelySync } from '@corentinth/chisels';
 import { decryptNote, noteAssetsToFiles, parseNoteUrlHashFragment } from '@enclosed/lib';
 import { useLocation, useNavigate, useParams } from '@solidjs/router';
+import hljs from 'highlight.js';
+import hljsbash from 'highlight.js/lib/languages/bash';
+import hljsjavascript from 'highlight.js/lib/languages/javascript';
+import hljsplaintext from 'highlight.js/lib/languages/plaintext';
+import hljspython from 'highlight.js/lib/languages/python';
+import hljsstata from 'highlight.js/lib/languages/stata';
+import hljsstylus from 'highlight.js/lib/languages/stylus';
 import JSZip from 'jszip';
+import { Marked } from 'marked';
+import { markedHighlight } from 'marked-highlight';
 import { type Component, createSignal, type JSX, Match, onMount, Show, Switch } from 'solid-js';
 import { fetchNoteById, fetchNoteExists } from '../notes.services';
+import './reset-markdown.css';
+
+hljs.registerLanguage('javascript', hljsjavascript);
+hljs.registerLanguage('javascript', hljsplaintext);
+hljs.registerLanguage('javascript', hljspython);
+hljs.registerLanguage('javascript', hljsbash);
+hljs.registerLanguage('javascript', hljsstata);
+hljs.registerLanguage('javascript', hljsstylus);
 
 const RequestPasswordForm: Component<{ onPasswordEntered: (args: { password: string }) => void; getIsPasswordInvalid: () => boolean; setIsPasswordInvalid: (value: boolean) => void }> = (props) => {
   const [getPassword, setPassword] = createSignal('');
@@ -67,8 +85,11 @@ export const ViewNotePage: Component = () => {
   const location = useLocation();
   const [isPasswordEntered, setIsPasswordEntered] = createSignal(false);
   const [getError, setError] = createSignal<{ title: string; description: string; action?: JSX.Element } | null>(null);
-  const [getNote, setNote] = createSignal<{ payload: string; isPasswordProtected: boolean; encryptionAlgorithm: string; serializationFormat: string } | null>(null);
+  const [getNote, setNote] = createSignal<{ payload: string; isPasswordProtected: boolean; encryptionAlgorithm: string; serializationFormat: string; resultFormat: 'raw' | 'code' | 'markdown' } | null>(null);
   const [getDecryptedNote, setDecryptedNote] = createSignal<string | null>(null);
+  const [getFormattedNote, setFormattedNote] = createSignal<string | null>(null);
+  const [getDefaultResultFormat, setDefaultResultFormat] = createSignal<'raw' | 'code' | 'markdown' | null>(null);
+  const [getResultFormat, setResultFormat] = createSignal<'raw' | 'code' | 'markdown' | null>(null);
   const [getIsPasswordInvalid, setIsPasswordInvalid] = createSignal(false);
   const [fileAssets, setFileAssets] = createSignal<File[]>([]);
   const [isDownloadingAllLoading, setIsDownloadingAllLoading] = createSignal(false);
@@ -95,7 +116,7 @@ export const ViewNotePage: Component = () => {
   };
 
   const decrypt = async ({ password }: { password?: string } = {}) => {
-    const { payload, encryptionAlgorithm, serializationFormat } = getNote()!;
+    const { payload, encryptionAlgorithm, serializationFormat, resultFormat } = getNote()!;
 
     const [decryptionResult, decryptionError] = await safely(decryptNote({
       encryptedPayload: payload,
@@ -123,6 +144,23 @@ export const ViewNotePage: Component = () => {
     const files = await noteAssetsToFiles({ noteAssets: note.assets });
     setFileAssets(files);
     setDecryptedNote(note.content);
+    setFormattedNote(await new Marked()
+      .use(markedHighlight({
+        emptyLangClass: 'hljs',
+        langPrefix: 'hljs language-',
+        highlight(code) {
+          return hljs.highlightAuto(code).value;
+        },
+      }))
+      .parse(resultFormat === 'markdown'
+        ? note.content
+        : `\`\`\`
+${note.content.replaceAll('```', '"""')}
+\`\`\`
+        `));
+
+    setDefaultResultFormat(resultFormat);
+    setResultFormat(resultFormat);
     setIsPasswordEntered(true);
   };
 
@@ -315,22 +353,44 @@ export const ViewNotePage: Component = () => {
         <Match when={getDecryptedNote() || fileAssets().length > 0}>
 
           <div class="mx-auto max-w-1200px px-6 mt-6 flex gap-4 md:flex-row-reverse flex-col justify-center min-w-0">
-            {getDecryptedNote() && (
+            {getDecryptedNote() && getResultFormat() && (
               <div class="flex-1 mb-4 min-w-0">
                 <div class="flex items-center gap-2 mb-4 justify-between">
-                  <div class="text-muted-foreground">
-                    {t('view.note-content')}
+                  <div>
+                    <div class="text-muted-foreground">
+                      {t('view.note-content')}
+                    </div>
+                    {getDefaultResultFormat() !== 'raw' && (
+                      <Tabs
+                        value={getResultFormat() as string}
+                        onChange={(value: string) => setResultFormat(value as 'raw' | 'code' | 'markdown')}
+                      >
+                        <TabsList>
+                          <TabsIndicator />
+                          <TabsTrigger value="raw">{t('create.settings.result-formats.raw')}</TabsTrigger>
+                          <TabsTrigger value={getDefaultResultFormat() as string}>{getDefaultResultFormat()}</TabsTrigger>
+                        </TabsList>
+                      </Tabs>
+                    )}
                   </div>
                   <CopyButton text={getDecryptedNote()!} variant="secondary" />
                 </div>
 
-                <Card class="w-full rounded-md shadow-sm mb-2">
-                  <CardContent class="p-6 overflow-x-auto max-w-100%">
-                    <pre data-test-id="note-content-display">
-                      {getDecryptedNote()}
-                    </pre>
-                  </CardContent>
-                </Card>
+                {getDefaultResultFormat() === 'markdown' || getResultFormat() === 'raw'
+                  ? (
+                      <Card class="w-full rounded-md shadow-sm mb-2">
+                        <CardContent class="p-6 overflow-x-auto max-w-100%">
+                          {getResultFormat() === 'raw'
+                            ? (
+                                <pre data-test-id="note-content-display">
+                                  {getDecryptedNote()}
+                                </pre>
+                              )
+                            : <div class="markdown-body" innerHTML={getFormattedNote() || ''} />}
+                        </CardContent>
+                      </Card>
+                    )
+                  : <div class="markdown-body" innerHTML={getFormattedNote() || ''} />}
 
               </div>
             )}

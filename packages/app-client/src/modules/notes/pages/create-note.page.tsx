@@ -1,3 +1,4 @@
+import type { Config } from '@/modules/config/config.types';
 import { authStore } from '@/modules/auth/auth.store';
 import { getConfig } from '@/modules/config/config.provider';
 import { getFileIcon } from '@/modules/files/files.models';
@@ -7,9 +8,10 @@ import { downloadBase64File, downloadSvgFile } from '@/modules/shared/files/down
 import { isHttpErrorWithCode, isHttpErrorWithStatusCode, isRateLimitError } from '@/modules/shared/http/http-errors';
 import { cn } from '@/modules/shared/style/cn';
 import { CopyButton, useCopy } from '@/modules/shared/utils/copy';
+import { useThemeStore } from '@/modules/theme/theme.store';
 import { Alert, AlertDescription } from '@/modules/ui/components/alert';
 import { Button } from '@/modules/ui/components/button';
-import { Card, CardHeader } from '@/modules/ui/components/card';
+import { Card, CardContent, CardHeader } from '@/modules/ui/components/card';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/modules/ui/components/dropdown-menu';
 import { toast } from '@/modules/ui/components/sonner';
 import { SwitchControl, SwitchLabel, SwitchThumb, Switch as SwitchUiComponent } from '@/modules/ui/components/switch';
@@ -18,12 +20,16 @@ import { TextArea } from '@/modules/ui/components/textarea';
 import { TextField, TextFieldLabel, TextFieldRoot } from '@/modules/ui/components/textfield';
 import { safely } from '@corentinth/chisels';
 import { useNavigate } from '@solidjs/router';
+import hljs from 'highlight.js';
+import { Marked } from 'marked';
+import { markedHighlight } from 'marked-highlight';
 import { type Component, createSignal, Match, onCleanup, onMount, Show, Switch } from 'solid-js';
 import { renderSVG as renderQrCodeSvg } from 'uqr';
 import { FileUploaderButton } from '../components/file-uploader';
 import { NotePasswordField } from '../components/note-password-field';
 import { useNoteContext } from '../notes.context';
 import { encryptAndCreateNote } from '../notes.usecases';
+import './reset-markdown.css';
 
 const QrCodeCard: Component<{ noteUrl: string }> = (props) => {
   const getNoteUrl = () => props.noteUrl;
@@ -107,18 +113,21 @@ const QrCodeCard: Component<{ noteUrl: string }> = (props) => {
 };
 
 export const CreateNotePage: Component = () => {
+  const themeStore = useThemeStore();
   const config = getConfig();
   const { t } = useI18n();
   const navigate = useNavigate();
   const { onResetNoteForm, removeResetNoteFormHandler } = useNoteContext();
 
   const [getContent, setContent] = createSignal('');
+  const [getFormattedContent, setFormattedContent] = createSignal('');
   const [getPassword, setPassword] = createSignal('');
   const [getNoteUrl, setNoteUrl] = createSignal('');
   const [getError, setError] = createSignal<{ message: string; details?: string } | null>(null);
   const [getIsNoteCreated, setIsNoteCreated] = createSignal(false);
   const [getIsPublic, setIsPublic] = createSignal(true);
   const [getTtlInSeconds, setTtlInSeconds] = createSignal(config.defaultNoteTtlSeconds);
+  const [getResultFormat, setResultFormat] = createSignal(config.defaultNoteResultFormat);
   const [getDeleteAfterReading, setDeleteAfterReading] = createSignal(config.defaultDeleteNoteAfterReading);
   const [getUploadedFiles, setUploadedFiles] = createSignal<File[]>([]);
   const [getIsNoteCreating, setIsNoteCreating] = createSignal(false);
@@ -162,6 +171,7 @@ export const CreateNotePage: Component = () => {
       content: getContent(),
       password: getPassword(),
       ttlInSeconds: getHasNoExpiration() ? undefined : getTtlInSeconds(),
+      resultFormat: getResultFormat(),
       deleteAfterReading: getDeleteAfterReading(),
       fileAssets: getUploadedFiles(),
       isPublic: getIsPublic(),
@@ -201,9 +211,38 @@ export const CreateNotePage: Component = () => {
     console.error(error);
   };
 
-  function updateContent(text: string) {
+  async function handleFormattedContent(text: string, format: 'raw' | 'code' | 'markdown') {
+    if (format === 'raw') {
+      return setFormattedContent(text);
+    }
+    const formattedContent = await new Marked()
+      .use(markedHighlight({
+        emptyLangClass: 'hljs',
+        langPrefix: 'hljs language-',
+        highlight(code) {
+          return hljs.highlightAuto(code).value;
+        },
+      }))
+      .parse(format === 'markdown'
+        ? text
+        : `\`\`\`
+${text.replaceAll('```', '"""')}
+\`\`\`
+        `);
+
+    setFormattedContent(formattedContent);
+  }
+
+  async function updateContent(text: string) {
+    handleFormattedContent(text, getResultFormat());
     setContent(text);
     setError(null);
+  }
+
+  async function handleResultFormatChange(value: string) {
+    const format = value as Config['defaultNoteResultFormat'];
+    handleFormattedContent(getContent(), format);
+    setResultFormat(format);
   }
 
   function updateUploadedFiles(files: File[]) {
@@ -233,15 +272,30 @@ export const CreateNotePage: Component = () => {
     <div class="mx-auto max-w-1200px px-6 mt-6 flex gap-4 flex-col sm:flex-row">
       <Switch>
         <Match when={!getIsNoteCreated()}>
-          <TextFieldRoot class="w-full ">
-            <TextArea
-              placeholder={t('create.settings.placeholder')}
-              class="flex-1 p-4 min-h-300px sm:min-h-700px"
-              value={getContent()}
-              onInput={e => updateContent(e.currentTarget.value)}
-              data-test-id="note-content"
-            />
-          </TextFieldRoot>
+          <div class="w-full max-w-800px flex flex-col gap-5">
+            <TextFieldRoot class="w-full">
+              <TextArea
+                placeholder={t('create.settings.placeholder')}
+                class="flex-1 p-4 min-h-300px"
+                value={getContent()}
+                onInput={e => updateContent(e.currentTarget.value)}
+                data-test-id="note-content"
+              />
+            </TextFieldRoot>
+
+            <Card class="w-full relative rounded-md shadow-sm">
+              <CardContent class="p-6 pt-10 overflow-auto max-w-100% max-h-400px">
+                <div class="absolute top-0 left-0 bg-muted rounded-br-md pt-1 pb-2 px-4 text-xs text-muted-foreground">{t('create.settings.preview')}</div>
+                {getResultFormat() === 'raw'
+                  ? (
+                      <pre data-test-id="note-content-display">
+                        {getContent()}
+                      </pre>
+                    )
+                  : <div class="markdown-body" data-theme={themeStore.getColorMode()} innerHTML={getFormattedContent() || ''} />}
+              </CardContent>
+            </Card>
+          </div>
 
           <div class="w-full sm:w-320px flex flex-col gap-4 flex-shrink-0">
             <TextFieldRoot class="w-full">
@@ -278,6 +332,24 @@ export const CreateNotePage: Component = () => {
                   <TabsTrigger value="86400">{t('create.settings.delays.1d')}</TabsTrigger>
                   <TabsTrigger value="604800">{t('create.settings.delays.1w')}</TabsTrigger>
                   <TabsTrigger value="2592000">{t('create.settings.delays.1m')}</TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </TextFieldRoot>
+
+            <TextFieldRoot class="w-full">
+              <TextFieldLabel>
+                {t('create.settings.result-format')}
+              </TextFieldLabel>
+
+              <Tabs
+                value={getResultFormat()}
+                onChange={handleResultFormatChange}
+              >
+                <TabsList>
+                  <TabsIndicator />
+                  <TabsTrigger value="raw">{t('create.settings.result-formats.raw')}</TabsTrigger>
+                  <TabsTrigger value="code">{t('create.settings.result-formats.code')}</TabsTrigger>
+                  <TabsTrigger value="markdown">{t('create.settings.result-formats.markdown')}</TabsTrigger>
                 </TabsList>
               </Tabs>
             </TextFieldRoot>
