@@ -194,8 +194,8 @@ importers:
         specifier: ^16.4.7
         version: 16.4.7
       esbuild:
-        specifier: ^0.24.0
-        version: 0.24.2
+        specifier: ^0.25.0
+        version: 0.25.1
       eslint:
         specifier: 'catalog:'
         version: 9.11.0(jiti@2.4.2)
