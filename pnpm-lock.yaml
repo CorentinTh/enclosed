@@ -18,9 +18,6 @@ catalogs:
     eslint:
       specifier: ^9.10.0
       version: 9.11.0
-    tsx:
-      specifier: ^4.17.0
-      version: 4.19.2
     typescript:
       specifier: ^5.6.2
       version: 5.6.2
@@ -204,7 +201,7 @@ importers:
         version: 11.3.0
       tsx:
         specifier: 'catalog:'
-        version: 4.19.2
+        version: 4.19.3
       typescript:
         specifier: 'catalog:'
         version: 5.6.2
@@ -262,7 +259,7 @@ importers:
         version: 9.11.0(jiti@2.4.2)
       tsx:
         specifier: 'catalog:'
-        version: 4.19.2
+        version: 4.19.3
       typescript:
         specifier: 'catalog:'
         version: 5.6.2
@@ -296,7 +293,7 @@ importers:
         version: 9.11.0(jiti@2.4.2)
       tsx:
         specifier: 'catalog:'
-        version: 4.19.2
+        version: 4.19.3
       typescript:
         specifier: 'catalog:'
         version: 5.6.2
@@ -381,7 +378,7 @@ importers:
         version: 9.11.0(jiti@2.4.2)
       tsx:
         specifier: 'catalog:'
-        version: 4.19.2
+        version: 4.19.3
       typescript:
         specifier: 'catalog:'
         version: 5.6.2
@@ -3653,9 +3650,6 @@ packages:
   get-tsconfig@4.10.0:
     resolution: {integrity: sha512-kGzZ3LWWQcGIAmg6iWvXn0ei6WDtV26wzHRMwDSzmAbcXrTEXxHy6IehI6/4eT6VRKyMP1eF1VqwrVUmE/LR7A==}
 
-  get-tsconfig@4.8.1:
-    resolution: {integrity: sha512-k9PN+cFBmaLWtVz29SkUoqU5O0slLuHJXt/2P+tMVFT+phsSGXGkp9t3rQIqdz0e+06EHNGs3oM6ZX1s2zHxRg==}
-
   giget@1.2.5:
     resolution: {integrity: sha512-r1ekGw/Bgpi3HLV3h1MRBIlSAdHoIMklpaQ3OQLFcRw9PwAj2rqigvIbg+dBUI51OxVI2jsEtDywDBjSiuf7Ug==}
     hasBin: true
@@ -5360,11 +5354,6 @@ packages:
 
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
-
-  tsx@4.19.2:
-    resolution: {integrity: sha512-pOUl6Vo2LUq/bSa8S5q7b91cgNSjctn9ugq/+Mvow99qW6x/UZYwzxy/3NmqoT66eHYfCVvFvACC58UBPFf28g==}
-    engines: {node: '>=18.0.0'}
-    hasBin: true
 
   tsx@4.19.3:
     resolution: {integrity: sha512-4H8vUNGNjQ4V2EOoGw005+c+dGuPSnhpPBPHBtsZdGZBk/iJb4kguGlPWaZTZ3q5nMtFOEsY0nRDlh9PJyd6SQ==}
@@ -9196,10 +9185,6 @@ snapshots:
     dependencies:
       resolve-pkg-maps: 1.0.0
 
-  get-tsconfig@4.8.1:
-    dependencies:
-      resolve-pkg-maps: 1.0.0
-
   giget@1.2.5:
     dependencies:
       citty: 0.1.6
@@ -11147,13 +11132,6 @@ snapshots:
 
   tslib@2.8.1:
     optional: true
-
-  tsx@4.19.2:
-    dependencies:
-      esbuild: 0.23.1
-      get-tsconfig: 4.8.1
-    optionalDependencies:
-      fsevents: 2.3.3
 
   tsx@4.19.3:
     dependencies:
