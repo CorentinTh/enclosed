@@ -18,7 +18,9 @@
   },
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "engines": {
     "node": ">=22.0.0"
   },
@@ -35,6 +37,7 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
+    "@corentinth/chisels": "catalog:",
     "@enclosed/crypto": "workspace:*",
     "cbor-x": "^1.6.0",
     "lodash-es": "^4.17.21",

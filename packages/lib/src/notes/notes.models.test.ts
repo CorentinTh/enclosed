@@ -26,6 +26,26 @@ describe('note models', () => {
         noteUrl: 'https://example.com/123#abc',
       });
     });
+
+    test('a note url can be prefixed with a path', () => {
+      expect(
+        createNoteUrl({ noteId: '123', encryptionKey: 'abc', clientBaseUrl: 'https://example.com/', pathPrefix: 'notes' }),
+      ).to.eql({
+        noteUrl: 'https://example.com/notes/123#abc',
+      });
+
+      expect(
+        createNoteUrl({ noteId: '123', encryptionKey: 'abc', clientBaseUrl: 'https://example.com/', pathPrefix: 'notes/view' }),
+      ).to.eql({
+        noteUrl: 'https://example.com/notes/view/123#abc',
+      });
+
+      expect(
+        createNoteUrl({ noteId: '123', encryptionKey: 'abc', clientBaseUrl: 'https://example.com/discarded', pathPrefix: 'notes/view' }),
+      ).to.eql({
+        noteUrl: 'https://example.com/notes/view/123#abc',
+      });
+    });
   });
 
   describe('parseNoteUrl', () => {

@@ -165,6 +165,7 @@ export const CreateNotePage: Component = () => {
       deleteAfterReading: getDeleteAfterReading(),
       fileAssets: getUploadedFiles(),
       isPublic: getIsPublic(),
+      pathPrefix: config.viewNotePathPrefix,
     }));
 
     setIsNoteCreating(false);

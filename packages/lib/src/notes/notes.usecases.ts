@@ -21,6 +21,7 @@ async function createNote({
   encryptionAlgorithm = 'aes-256-gcm',
   serializationFormat = 'cbor-array',
   isPublic = true,
+  pathPrefix,
 }: {
   content: string;
   password?: string;
@@ -32,6 +33,7 @@ async function createNote({
   encryptionAlgorithm?: EncryptionAlgorithm;
   serializationFormat?: SerializationFormat;
   isPublic?: boolean;
+  pathPrefix?: string;
   storeNote?: (params: {
     payload: string;
     ttlInSeconds?: number;
@@ -59,6 +61,7 @@ async function createNote({
     clientBaseUrl,
     isPasswordProtected,
     isDeletedAfterReading: deleteAfterReading,
+    pathPrefix,
   });
 
   return {

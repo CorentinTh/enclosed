@@ -6,7 +6,7 @@ import { render, Suspense } from 'solid-js/web';
 import { I18nProvider } from './modules/i18n/i18n.provider';
 import { NoteContextProvider } from './modules/notes/notes.context';
 import { Toaster } from './modules/ui/components/sonner';
-import { routes } from './routes';
+import { getRoutes } from './routes';
 import '@unocss/reset/tailwind.css';
 import 'virtual:uno.css';
 import './app.css';
@@ -19,7 +19,7 @@ render(
 
     return (
       <Router
-        children={routes}
+        children={getRoutes()}
         root={props => (
           <Suspense>
             <I18nProvider>

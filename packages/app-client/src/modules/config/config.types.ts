@@ -7,4 +7,5 @@ export type Config = {
   defaultNoteTtlSeconds: number;
   isSettingNoExpirationAllowed: boolean;
   defaultNoteNoExpiration: boolean;
+  viewNotePathPrefix: string;
 };
