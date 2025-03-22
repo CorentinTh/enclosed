@@ -40,7 +40,7 @@ importers:
     dependencies:
       '@corentinth/chisels':
         specifier: ^1.1.0
-        version: 1.1.0
+        version: 1.2.1
       '@enclosed/lib':
         specifier: workspace:*
         version: link:../lib
@@ -131,7 +131,7 @@ importers:
     dependencies:
       '@corentinth/chisels':
         specifier: ^1.1.0
-        version: 1.1.0
+        version: 1.2.1
       '@enclosed/lib':
         specifier: workspace:*
         version: link:../lib
@@ -704,8 +704,8 @@ packages:
   '@cloudflare/workers-types@4.20250320.0':
     resolution: {integrity: sha512-0qYPnnF36eEzes/uLBrIE7pbyOucnyNVTlcPY4zgakZT0BBdrHYoTDGH+9VqwfcMW7mLu2PY2daYGIFsgycX2A==}
 
-  '@corentinth/chisels@1.1.0':
-    resolution: {integrity: sha512-l4qG6uXLKFWilt1Mnt5btCoCaIGVLiPOk95V6W3BPPJ9LE558tlet2EnU3z1gfSO7kqRTgkqLdcwwlzI9mMRNQ==}
+  '@corentinth/chisels@1.2.1':
+    resolution: {integrity: sha512-Q8apTDyfJEHo+6lvqij5N5XmF5+/L2n2ZY89nDVaHcabHKB7Uee/vEus3Q8Os0iM12N0EqXmO+02oRqpC6T1sA==}
 
   '@corvu/utils@0.4.2':
     resolution: {integrity: sha512-Ox2kYyxy7NoXdKWdHeDEjZxClwzO4SKM8plAaVwmAJPxHMqA0rLOoAsa+hBDwRLpctf+ZRnAd/ykguuJidnaTA==}
@@ -6278,7 +6278,7 @@ snapshots:
 
   '@cloudflare/workers-types@4.20250320.0': {}
 
-  '@corentinth/chisels@1.1.0':
+  '@corentinth/chisels@1.2.1':
     dependencies:
       lodash-es: 4.17.21
 
