@@ -24,6 +24,9 @@ catalogs:
     tsx:
       specifier: ^4.17.0
       version: 4.19.3
+    typescript:
+      specifier: ^5.6.2
+      version: 5.8.2
     vitest:
       specifier: ^3.0.9
       version: 3.0.9
@@ -54,8 +57,8 @@ importers:
         specifier: ^4.2.1
         version: 4.3.1(solid-js@1.9.5)
       '@solidjs/router':
-        specifier: ^0.14.3
-        version: 0.14.10(solid-js@1.9.5)
+        specifier: ^0.15.0
+        version: 0.15.3(solid-js@1.9.5)
       '@unocss/reset':
         specifier: ^0.64.0
         version: 0.64.1
@@ -2241,8 +2244,8 @@ packages:
     peerDependencies:
       solid-js: ^1.6.12
 
-  '@solidjs/router@0.14.10':
-    resolution: {integrity: sha512-5B8LVgvvXijfXyXWPVLUm7RQ05BhjIpAyRkYVDZtrR3OaSvftXobWc6qSEwk4ICLoGi/IE9CUp2LUdCBIs9AXg==}
+  '@solidjs/router@0.15.3':
+    resolution: {integrity: sha512-iEbW8UKok2Oio7o6Y4VTzLj+KFCmQPGEpm1fS3xixwFBdclFVBvaQVeibl1jys4cujfAK5Kn6+uG2uBm3lxOMw==}
     peerDependencies:
       solid-js: ^1.8.6
 
@@ -7380,7 +7383,7 @@ snapshots:
     dependencies:
       solid-js: 1.9.5
 
-  '@solidjs/router@0.14.10(solid-js@1.9.5)':
+  '@solidjs/router@0.15.3(solid-js@1.9.5)':
     dependencies:
       solid-js: 1.9.5
 
