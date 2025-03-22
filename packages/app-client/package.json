@@ -33,7 +33,7 @@
     "@kobalte/core": "^0.13.4",
     "@solid-primitives/i18n": "^2.1.1",
     "@solid-primitives/storage": "^4.2.1",
-    "@solidjs/router": "^0.14.3",
+    "@solidjs/router": "^0.15.0",
     "@unocss/reset": "^0.64.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
