@@ -200,6 +200,12 @@ export const configDefinition = {
       default: 'false',
       env: 'PUBLIC_DEFAULT_NOTE_NO_EXPIRATION',
     },
+    viewNotePathPrefix: {
+      doc: 'The prefix for the path to view a note',
+      schema: z.string(),
+      default: '/',
+      env: 'PUBLIC_VIEW_NOTE_PATH_PREFIX',
+    },
   },
   authentication: {
     jwtSecret: {

@@ -1,3 +1,4 @@
+import { buildUrl } from '@corentinth/chisels';
 import { isEmpty } from 'lodash-es';
 
 export { createNoteUrl, createNoteUrlHashFragment, parseNoteUrl, parseNoteUrlHashFragment };
@@ -44,19 +45,22 @@ function createNoteUrl({
   clientBaseUrl,
   isPasswordProtected,
   isDeletedAfterReading,
+  pathPrefix,
 }: {
   noteId: string;
   encryptionKey: string;
   clientBaseUrl: string;
   isPasswordProtected?: boolean;
   isDeletedAfterReading?: boolean;
+  pathPrefix?: string;
 }): { noteUrl: string } {
   const hashFragment = createNoteUrlHashFragment({ encryptionKey, isPasswordProtected, isDeletedAfterReading });
 
-  const url = new URL(`/${noteId}`, clientBaseUrl);
-  url.hash = hashFragment;
-
-  const noteUrl = url.toString();
+  const noteUrl = buildUrl({
+    path: [pathPrefix, noteId],
+    hash: hashFragment,
+    baseUrl: clientBaseUrl,
+  });
 
   return { noteUrl };
 }

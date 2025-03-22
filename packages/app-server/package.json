@@ -28,7 +28,7 @@
     "script:generate-config-table": "tsx -r dotenv/config src/scripts/generate-config-table.script.ts"
   },
   "dependencies": {
-    "@corentinth/chisels": "^1.1.0",
+    "@corentinth/chisels": "catalog:",
     "@enclosed/lib": "workspace:*",
     "@hono/node-server": "^1.12.1",
     "bcryptjs": "^2.4.3",

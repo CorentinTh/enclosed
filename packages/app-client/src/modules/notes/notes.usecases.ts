@@ -10,6 +10,7 @@ async function encryptAndCreateNote(args: {
   deleteAfterReading: boolean;
   fileAssets: File[];
   isPublic?: boolean;
+  pathPrefix?: string;
 }) {
   return createNote({
     ...args,
