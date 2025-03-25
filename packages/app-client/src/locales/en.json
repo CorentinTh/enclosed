@@ -1,7 +1,7 @@
 {
   "app": {
-    "title": "Enclosed",
-    "description": "Send private and secure notes"
+    "title": "OA Secure Share",
+    "description": "Send private and secure notes and attachments"
   },
   "insecureContextWarning": {
     "description": "Your connection is not secure, the app must be served over HTTPS to work properly. You won't be able to create or view notes.",
@@ -32,10 +32,8 @@
     }
   },
   "footer": {
-    "crafted-by": "Crafted by",
-    "source-code": "Source code available on",
-    "github": "GitHub",
-    "version": "Version"
+    "source-code": "Modified by Open Architects. 'Enclosed' was forked from",
+    "github": "GitHub"
   },
   "login": {
     "title": "Login to Enclosed",
