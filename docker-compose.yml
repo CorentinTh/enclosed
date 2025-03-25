@@ -1,11 +1,13 @@
 services:
   enclosed:
-    image: corentinth/enclosed
+    image: enclosed-oa
     ports:
       - 8787:8787
     volumes:
       - enclosed-data:/app/.data
     restart: unless-stopped
+    environment:
+      - NOTES_MAX_ENCRYPTED_PAYLOAD_LENGTH=250000000
 
 volumes:
   enclosed-data:
