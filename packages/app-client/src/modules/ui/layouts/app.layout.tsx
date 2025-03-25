@@ -106,100 +106,7 @@ export const Navbar: Component = () => {
               {t('navbar.new-note')}
             </Button>
           )}
-
-          <Button variant="ghost" class="text-lg px-0 size-9 hidden md:inline-flex" as={A} href="https://github.com/CorentinTh/enclosed" target="_blank" rel="noopener noreferrer" aria-label={t('navbar.github-repository')}>
-            <div class="i-tabler-brand-github"></div>
-          </Button>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9 hidden md:inline-flex" variant="ghost" aria-label={t('navbar.change-theme')}>
-              <div classList={{ 'i-tabler-moon': themeStore.getColorMode() === 'dark', 'i-tabler-sun': themeStore.getColorMode() === 'light' }}></div>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent class="w-42">
-              <ThemeSwitcher />
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9 hidden md:inline-flex" variant="ghost" aria-label={t('navbar.language')}>
-              <div class="i-custom-language size-4"></div>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <LanguageSwitcher />
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <DropdownMenu>
-
-            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9" variant="ghost" aria-label={t('navbar.menu-icon')}>
-              <div class="i-tabler-dots-vertical hidden md:block"></div>
-              <div class="i-tabler-menu-2 block md:hidden"></div>
-            </DropdownMenuTrigger>
-
-            <DropdownMenuContent class="w-46">
-
-              {/* Mobile only items */}
-              <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer md:hidden" target="_blank" href="https://github.com/CorentinTh/enclosed" rel="noopener noreferrer">
-                <div class="i-tabler-brand-github text-lg"></div>
-                {t('navbar.github')}
-              </DropdownMenuItem>
-
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger as="a" class="flex items-center gap-2 md:hidden" aria-label={t('navbar.change-theme')}>
-                  <div class="text-lg" classList={{ 'i-tabler-moon': themeStore.getColorMode() === 'dark', 'i-tabler-sun': themeStore.getColorMode() === 'light' }}></div>
-                  {t('navbar.theme.theme')}
-                </DropdownMenuSubTrigger>
-
-                <DropdownMenuSubContent>
-                  <ThemeSwitcher />
-                </DropdownMenuSubContent>
-
-              </DropdownMenuSub>
-
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger as="a" class="flex items-center text-medium gap-2 md:hidden" aria-label={t('navbar.change-language')}>
-                  <div class="i-custom-language size-4"></div>
-                  {t('navbar.language')}
-                </DropdownMenuSubTrigger>
-                <DropdownMenuSubContent>
-                  <LanguageSwitcher />
-                </DropdownMenuSubContent>
-              </DropdownMenuSub>
-
-              {/* Default items */}
-              <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" href={buildDocUrl({ path: '/' })}>
-                <div class="i-tabler-file-text text-lg"></div>
-                {t('navbar.settings.documentation')}
-              </DropdownMenuItem>
-
-              <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" href={buildDocUrl({ path: '/integrations/cli' })}>
-                <div class="i-tabler-terminal text-lg"></div>
-                {t('navbar.settings.cli')}
-              </DropdownMenuItem>
-
-              <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" href="https://github.com/CorentinTh/enclosed/issues/new/choose" rel="noopener noreferrer">
-                <div class="i-tabler-bug text-lg"></div>
-                {t('navbar.settings.report-bug')}
-              </DropdownMenuItem>
-
-              <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" href="https://buymeacoffee.com/cthmsst" rel="noopener noreferrer">
-                <div class="i-tabler-pig-money text-lg"></div>
-                {t('navbar.settings.support')}
-              </DropdownMenuItem>
-
-              {config.isAuthenticationRequired && authStore.getIsAuthenticated() && (
-                <>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem class="flex items-center gap-2 cursor-pointer" onClick={() => authStore.logout()}>
-                    <div class="i-tabler-logout text-lg"></div>
-                    {t('navbar.settings.logout')}
-                  </DropdownMenuItem>
-                </>
-              )}
-
-            </DropdownMenuContent>
-
-          </DropdownMenu>
+                    
         </div>
       </div>
     </div>
@@ -212,27 +119,11 @@ export const Footer: Component = () => {
   return (
     <div class="bg-surface border-t border-border py-6 px-6 text-center text-muted-foreground flex flex-col sm:flex-row items-center justify-center gap-1">
       <div>
-        {t('footer.crafted-by')}
-        {' '}
-        <Button variant="link" as="a" href="https://corentin.tech" target="_blank" class="p-0 text-muted-foreground underline hover:text-primary transition font-normal h-auto">Corentin Thomasset</Button>
-        .
-      </div>
-      <div>
         {t('footer.source-code')}
         {' '}
         <Button variant="link" as="a" href="https://github.com/CorentinTh/enclosed" target="_blank" class="p-0 text-muted-foreground underline hover:text-primary transition font-normal h-auto">{t('footer.github')}</Button>
         .
-      </div>
-
-      <div>
-        {t('footer.version')}
-        {' '}
-        <Button variant="link" as="a" href={`https://github.com/CorentinTh/enclosed/tree/v${buildTimeConfig.enclosedVersion}`} target="_blank" class="p-0 text-muted-foreground underline hover:text-primary transition font-normal h-auto">
-          v
-          {buildTimeConfig.enclosedVersion}
-        </Button>
-
-      </div>
+      </div>    
     </div>
   );
 };
