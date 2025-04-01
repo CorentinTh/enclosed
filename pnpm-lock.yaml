@@ -24,6 +24,9 @@ catalogs:
     tsx:
       specifier: ^4.17.0
       version: 4.19.3
+    typescript:
+      specifier: ^5.6.2
+      version: 5.8.2
     vitest:
       specifier: ^3.0.9
       version: 3.0.9
@@ -4452,6 +4455,9 @@ packages:
 
   nwsapi@2.2.19:
     resolution: {integrity: sha512-94bcyI3RsqiZufXjkr3ltkI86iEl+I7uiHVDtcq9wJUTwYQJ5odHDeSzkkrRzi80jJ8MaeZgqKjH1bAWAFw9bA==}
+
+  nwsapi@2.2.20:
+    resolution: {integrity: sha512-/ieB+mDe4MrrKMT8z+mQL8klXydZWGR5Dowt4RAGKbJ3kIGEx3X4ljUo+6V73IXtUPWgfOlU5B9MlGxFO5T+cA==}
 
   nypm@0.5.4:
     resolution: {integrity: sha512-X0SNNrZiGU8/e/zAB7sCTtdxWTMSIO73q+xuKgglm2Yvzwlo8UoC5FNySQFCvl84uPaeADkqHUZUkWy4aH4xOA==}
@@ -9515,7 +9521,7 @@ snapshots:
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
       is-potential-custom-element-name: 1.0.1
-      nwsapi: 2.2.19
+      nwsapi: 2.2.20
       parse5: 7.2.1
       rrweb-cssom: 0.8.0
       saxes: 6.0.0
@@ -10194,6 +10200,9 @@ snapshots:
       boolbase: 1.0.0
 
   nwsapi@2.2.19: {}
+
+  nwsapi@2.2.20:
+    optional: true
 
   nypm@0.5.4:
     dependencies:
