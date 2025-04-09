@@ -64,7 +64,13 @@
     "share": {
       "button": "Share note",
       "title": "Shared note",
-      "description": "Here is a note shared with you."
+      "description": "Here is a note shared with you.",
+      "variants": {
+        "default": "Check out this note: {{url}}",
+        "with-password": "Check out this note: {{url}}, password to unlock: {{password}}",
+        "with-deletion": "Check out this note: {{url}}, will be deleted after reading",
+        "with-password-and-deletion": "Check out this note: {{url}}, password to unlock: {{password}}, will be deleted after reading"
+      }
     },
     "settings": {
       "placeholder": "Type your note here...",

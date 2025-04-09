@@ -22,6 +22,7 @@ import { type Component, createSignal, Match, onCleanup, onMount, Show, Switch }
 import { renderSVG as renderQrCodeSvg } from 'uqr';
 import { FileUploaderButton } from '../components/file-uploader';
 import { NotePasswordField } from '../components/note-password-field';
+import { ShareNote } from '../components/share-note';
 import { useNoteContext } from '../notes.context';
 import { encryptAndCreateNote } from '../notes.usecases';
 
@@ -326,6 +327,8 @@ export const CreateNotePage: Component = () => {
                 {getIsNoteCreating() ? t('create.settings.creating') : t('create.settings.create')}
               </Button>
             </div>
+
+            <ShareNote noteUrl={getNoteUrl()} deleteAfterReading={getDeleteAfterReading()} ttlInSeconds={getTtlInSeconds()} />
 
             <div class="flex flex-col gap-1">
               {getUploadedFiles().map(file => (
