@@ -31,7 +31,7 @@ docker run -d --name enclosed --restart unless-stopped -p 8787:8787 corentinth/e
 ```
 
 ```bash [From GHCR]
-docker run -d --name enclosed --restart unless-stopped -p 8787:8787 ghcr.io/corentin-th/enclosed
+docker run -d --name enclosed --restart unless-stopped -p 8787:8787 ghcr.io/corentinth/enclosed
 ```
 :::
 
@@ -43,7 +43,7 @@ This command will download the Enclosed image and start the application, making 
 - `--name enclosed`: Names the container "enclosed" for easy identification.
 - `--restart unless-stopped`: Configures the container to always restart unless it is explicitly stopped.
 - `-p 8787:8787`: Maps port 8787 on your host to port 8787 in the container, making the application accessible on your local machine.
-- `corentinth/enclosed` or `ghcr.io/corentin-th/enclosed`: Specifies the Docker image to use.
+- `corentinth/enclosed` or `ghcr.io/corentinth/enclosed`: Specifies the Docker image to use.
 
 ## Docker with Volume Persistence
 
@@ -55,7 +55,7 @@ docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/
 ```
 
 ```bash [From GHCR]
-docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data ghcr.io/corentin-th/enclosed
+docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data ghcr.io/corentinth/enclosed
 ```
 :::
 
@@ -67,7 +67,7 @@ docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/
 ```
 
 ```bash [From GHCR]
-docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data --user $(id -u):$(id -g) ghcr.io/corentin-th/enclosed:latest-rootless
+docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data --user $(id -u):$(id -g) ghcr.io/corentinth/enclosed:latest-rootless
 ```
 :::
 
@@ -117,7 +117,7 @@ docker rm enclosed
 docker pull corentinth/enclosed
 
 # Or from GitHub Container Registry
-docker pull ghcr.io/corentin-th/enclosed
+docker pull ghcr.io/corentinth/enclosed
 
 # Run the container again
 docker run -d --name enclosed --restart unless-stopped -p 8787:8787 -v /path/to/local/data:/app/.data --user $(id -u):$(id -g) corentinth/enclosed

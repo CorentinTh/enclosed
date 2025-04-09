@@ -43,7 +43,7 @@ docker run \
     -p 8787:8787 \
     -v /path/to/local/data:/app/.data \
     -e SERVER_CORS_ORIGINS="https://example.com" \
-    ghcr.io/corentin-th/enclosed
+    ghcr.io/corentinth/enclosed
 ```
 
 ## Next Steps
