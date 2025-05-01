@@ -1,6 +1,5 @@
-import { createContext, createEffect, useContext } from 'solid-js';
+import { createContext, createEffect, useContext, createSignal, ParentComponent, createMemo } from 'solid-js';
 import { makePersisted } from '@solid-primitives/storage';
-import { createSignal, ParentComponent } from 'solid-js';
 
 // Define encryption algorithm constants
 export const AES_256_GCM = 'aes-256-gcm';
@@ -30,6 +29,7 @@ export function getConfig(): Config {
     }
   } catch (error) {
     // If we're not in a component context, continue with the fallback
+    console.debug('Not in a component context, using fallback config');
   }
   
   // Fallback: Try to get the preferred encryption algorithm from localStorage
@@ -41,7 +41,12 @@ export function getConfig(): Config {
       preferredEncryptionAlgorithm = storedAlgorithm as EncryptionAlgorithm;
     }
   } catch (error) {
+    // This can happen in environments where localStorage is not available or restricted
+    // (e.g., incognito mode, some browser settings, or server-side rendering)
     console.error('Failed to read encryption algorithm from localStorage:', error);
+    
+    // Fall back to default encryption algorithm
+    preferredEncryptionAlgorithm = AES_256_GCM;
   }
   
   return {
@@ -111,16 +116,16 @@ export const ConfigProvider: ParentComponent = (props) => {
     }));
   });
   
-  // Create the context value
-  const contextValue: ConfigContextType = {
+  // Create the context value with createMemo to prevent it from changing on every render
+  const contextValue = createMemo<ConfigContextType>(() => ({
     getEncryptionAlgorithm,
     setEncryptionAlgorithm,
     supportedEncryptionAlgorithms,
     config: config()
-  };
+  }));
   
   return (
-    <ConfigContext.Provider value={contextValue}>
+    <ConfigContext.Provider value={contextValue()}>
       {props.children}
     </ConfigContext.Provider>
   );

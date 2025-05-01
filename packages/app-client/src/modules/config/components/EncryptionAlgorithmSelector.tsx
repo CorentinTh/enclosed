@@ -1,9 +1,9 @@
-import { createEffect, Show } from 'solid-js';
+import { Show } from 'solid-js';
 import { useI18n } from '@/modules/i18n/i18n.provider';
 import { useConfig, AES_256_GCM, CHACHA20_POLY1305, EncryptionAlgorithm } from '../config.provider';
 
 interface EncryptionAlgorithmSelectorProps {
-  class?: string;
+  readonly class?: string;
 }
 
 /**
@@ -21,7 +21,7 @@ export function EncryptionAlgorithmSelector(props: EncryptionAlgorithmSelectorPr
   };
 
   return (
-    <div class={`encryption-algorithm-selector ${props.class || ''}`}>
+    <div class={`encryption-algorithm-selector ${props.class ?? ''}`}>
       <label for="encryption-algorithm" class="block text-sm font-medium mb-1">
         {t('navbar.config.encryptionAlgorithm')}
       </label>
