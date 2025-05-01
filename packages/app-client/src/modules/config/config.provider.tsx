@@ -21,15 +21,11 @@ const defaultConfig: Config = {
 
 // Get the application configuration
 export function getConfig(): Config {
-  try {
-    // Try to get the config from the context if we're in a component
-    const context = useContext(ConfigContext);
-    if (context) {
-      return context.config;
-    }
-  } catch (error) {
-    // If we're not in a component context, continue with the fallback
-    console.debug('Not in a component context, using fallback config');
+  // We don't need to catch exceptions here since useContext doesn't throw
+  // and we're just checking if we're in a component context
+  const context = useContext(ConfigContext);
+  if (context) {
+    return context.config;
   }
   
   // Fallback: Try to get the preferred encryption algorithm from localStorage
