@@ -5,6 +5,7 @@ import { Router } from '@solidjs/router';
 import { render, Suspense } from 'solid-js/web';
 import { I18nProvider } from './modules/i18n/i18n.provider';
 import { NoteContextProvider } from './modules/notes/notes.context';
+import { ConfigProvider } from './modules/config/config.provider';
 import { Toaster } from './modules/ui/components/sonner';
 import { getRoutes } from './routes';
 import '@unocss/reset/tailwind.css';
@@ -23,17 +24,18 @@ render(
         root={props => (
           <Suspense>
             <I18nProvider>
-              <NoteContextProvider>
-                <ColorModeScript storageType={localStorageManager.type} storageKey={colorModeStorageKey} initialColorMode={initialColorMode} />
-                <ColorModeProvider
-                  initialColorMode={initialColorMode}
-                  storageManager={localStorageManager}
-                >
-                  <div class="min-h-screen font-sans text-sm font-400">{props.children}</div>
-                  <Toaster />
-
-                </ColorModeProvider>
-              </NoteContextProvider>
+              <ConfigProvider>
+                <NoteContextProvider>
+                  <ColorModeScript storageType={localStorageManager.type} storageKey={colorModeStorageKey} initialColorMode={initialColorMode} />
+                  <ColorModeProvider
+                    initialColorMode={initialColorMode}
+                    storageManager={localStorageManager}
+                  >
+                    <div class="min-h-screen font-sans text-sm font-400">{props.children}</div>
+                    <Toaster />
+                  </ColorModeProvider>
+                </NoteContextProvider>
+              </ConfigProvider>
             </I18nProvider>
           </Suspense>
         )}

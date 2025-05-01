@@ -167,6 +167,11 @@ export const Navbar: Component = () => {
               </DropdownMenuSub>
 
               {/* Default items */}
+              <DropdownMenuItem as={A} class="flex items-center gap-2 cursor-pointer" href="/settings">
+                <div class="i-tabler-settings text-lg"></div>
+                {t('navbar.settings.title')}
+              </DropdownMenuItem>
+
               <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" href={buildDocUrl({ path: '/' })}>
                 <div class="i-tabler-file-text text-lg"></div>
                 {t('navbar.settings.documentation')}
