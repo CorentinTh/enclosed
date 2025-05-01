@@ -28,7 +28,18 @@
       "support": "Support Enclosed",
       "report-bug": "Report a bug",
       "logout": "Logout",
-      "contribute-to-i18n": "Contribute to i18n"
+      "contribute-to-i18n": "Contribute to i18n",
+      "title": "Settings",
+      "security": "Security Settings"
+    },
+    "config": {
+      "encryptionAlgorithm": "Encryption Algorithm",
+      "aes256gcm": "AES-256-GCM",
+      "chacha20poly1305": "ChaCha20-Poly1305",
+      "default": "Default",
+      "httpCompatible": "HTTP Compatible",
+      "aes256gcmDescription": "Standard encryption algorithm with broad browser support.",
+      "chacha20poly1305Description": "High-performance encryption that works on HTTP pages and devices without AES hardware acceleration."
     }
   },
   "footer": {

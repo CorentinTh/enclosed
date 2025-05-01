@@ -1,6 +1,7 @@
 import { A, type RouteDefinition } from '@solidjs/router';
 import { LoginPage } from './modules/auth/pages/login.page';
 import { getConfig } from './modules/config/config.provider';
+import { SettingsPage } from './modules/config/pages/SettingsPage';
 import { NOTE_ID_REGEX } from './modules/notes/notes.constants';
 import { buildViewNotePagePath } from './modules/notes/notes.models';
 import { CreateNotePage } from './modules/notes/pages/create-note.page';
@@ -28,6 +29,10 @@ export function getRoutes(): RouteDefinition[] {
           matchFilters: {
             noteId: NOTE_ID_REGEX,
           },
+        },
+        {
+          path: '/settings',
+          component: SettingsPage,
         },
         {
           path: '*404',
