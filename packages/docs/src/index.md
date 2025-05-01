@@ -33,3 +33,11 @@ By leveraging client-side encryption and a zero-knowledge server, Enclosed guara
 ## Get Started
 
 Ready to start using Enclosed? You can [try it out online](https://enclosed.cc) or [self-host](./self-hosting/docker) your instance for maximum control. Dive into our documentation to learn more about how Enclosed works and how you can take full advantage of its features.
+
+## Disclaimer
+
+**Enclosed is provided "as is", without warranty of any kind, express or implied.** The creators and contributors of Enclosed are not responsible for the content of any notes created or shared using the service, or for any actions taken by users based on such content. Users are solely responsible for their use of the service and any content they create, share, or access.
+
+If you choose to self-host an instance of Enclosed, you do so at your own risk. The creators and contributors are not responsible for any issues, security breaches, or other problems that may arise from self-hosting.
+
+For more detailed information, please review our [Privacy Policy](./legal/privacy-policy.md) and [Terms of Use](./legal/terms-of-use.md).
