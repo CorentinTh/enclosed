@@ -1,0 +1,171 @@
+{
+    "app": {
+        "title": "Enclosed",
+        "description": "Kirim catatan pribadi dan aman"
+    },
+    "insecureContextWarning": {
+        "description": "Koneksi Anda tidak aman, aplikasi harus disajikan melalui HTTPS agar berfungsi dengan baik. Anda tidak akan dapat membuat atau melihat catatan.",
+        "learn-more": "Pelajari lebih lanjut"
+    },
+    "navbar": {
+        "new-note": "Catatan baru",
+        "github": "GitHub",
+        "language": "Bahasa",
+        "github-repository": "Repositori GitHub",
+        "documentation": "Dokumentasi",
+        "change-theme": "Ubah tema",
+        "menu-icon": "Ikon menu",
+        "change-language": "Ubah bahasa",
+        "theme": {
+            "theme": "Tema",
+            "light-mode": "Mode terang",
+            "dark-mode": "Mode gelap",
+            "system-mode": "Sistem"
+        },
+        "settings": {
+            "documentation": "Dokumentasi",
+            "cli": "Enclosed CLI",
+            "support": "Dukung Enclosed",
+            "report-bug": "Laporkan bug",
+            "logout": "Keluar",
+            "contribute-to-i18n": "Berkontribusi pada i18n"
+        }
+    },
+    "footer": {
+        "crafted-by": "Dibuat oleh",
+        "source-code": "Kode sumber tersedia di",
+        "github": "GitHub",
+        "version": "Versi"
+    },
+    "login": {
+        "title": "Masuk ke Enclosed",
+        "description": "Ini adalah instance pribadi Enclosed. Masukkan kredensial Anda untuk dapat membuat catatan.",
+        "email": "Email",
+        "password": "Kata Sandi",
+        "submit": "Masuk",
+        "errors": {
+            "invalid-credentials": "Email atau kata sandi tidak valid.",
+            "unknown": "Terjadi kesalahan yang tidak diketahui. Silakan coba lagi nanti."
+        },
+        "footer": [
+            "Tidak punya akun?",
+            "Hubungi pemilik instance."
+        ]
+    },
+    "create": {
+        "errors": {
+            "empty-note": "Silakan masukkan konten catatan atau lampirkan file.",
+            "rate-limit": "Anda telah melampaui batas laju untuk membuat catatan. Silakan coba lagi nanti.",
+            "too-large": "Konten catatan dan lampiran terlalu besar. Harap kurangi ukurannya dan coba lagi.",
+            "unauthorized": "Anda tidak berwenang untuk membuat catatan. Silakan masuk dan coba lagi.",
+            "api-not-found": "Endpoint API tidak ditemukan. Server mungkin tidak dikonfigurasi dengan benar.",
+            "unknown": "Terjadi kesalahan saat membuat catatan, silakan coba lagi."
+        },
+        "share": {
+            "button": "Bagikan catatan",
+            "title": "Catatan yang dibagikan",
+            "description": "Berikut adalah catatan yang dibagikan dengan Anda."
+        },
+        "settings": {
+            "placeholder": "Ketik catatan Anda di sini...",
+            "password": {
+                "label": "Kata sandi catatan",
+                "placeholder": "Kata sandi...",
+                "hide-password": "Sembunyikan kata sandi",
+                "show-password": "Tampilkan kata sandi",
+                "generate-random-password": "Buat kata sandi acak"
+            },
+            "expiration": "Penundaan kedaluwarsa",
+            "no-expiration": "Catatan tidak pernah kedaluwarsa",
+            "delays": {
+                "1h": "1 jam",
+                "1d": "1 hari",
+                "1w": "1 minggu",
+                "1m": "1 bulan"
+            },
+            "delete-after-reading": {
+                "label": "Hapus setelah dibaca",
+                "description": "Hapus catatan setelah dibaca"
+            },
+            "attach-files": "Lampirkan file",
+            "drop-files": {
+                "title": "Letakkan file di sini",
+                "description": "Seret dan lepas file di sini untuk melampirkannya ke catatan"
+            },
+            "create": "Buat catatan",
+            "creating": "Membuat catatan..."
+        },
+        "success": {
+            "title": "Catatan berhasil dibuat",
+            "description": "Catatan Anda telah dibuat. Anda sekarang dapat membagikannya menggunakan tautan berikut.",
+            "with-deletion": "Catatan akan dihapus setelah dibaca.",
+            "copy-link": "Salin tautan",
+            "copy-success": "Tautan disalin"
+        },
+        "qr-code": {
+            "title": "Bagikan catatan ini di ponsel",
+            "description": "Anda dapat memindai kode QR ini untuk melihat catatan di perangkat seluler Anda. Anda juga dapat mengekspor gambar kode QR untuk membagikannya dengan orang lain.",
+            "export": "Ekspor kode QR",
+            "download-svg": "Unduh sebagai SVG",
+            "download-png": "Unduh sebagai PNG",
+            "download-success": "Kode QR diunduh",
+            "copy-svg": "Salin kode SVG",
+            "copy-success": "SVG disalin ke papan klip"
+        }
+    },
+    "view": {
+        "loading": "Memuat catatan...",
+        "note-content": "Konten catatan",
+        "assets": {
+            "download": "Unduh",
+            "download-all": "Unduh semua file",
+            "heading-multiple": "{{ count }} file terlampir pada catatan ini",
+            "heading-single": "1 file terlampir pada catatan ini"
+        },
+        "request-password": {
+            "description": "Catatan ini dilindungi kata sandi. Silakan masukkan kata sandi untuk membukanya.",
+            "form": {
+                "label": "Kata Sandi",
+                "placeholder": "Kata sandi catatan...",
+                "unlock-button": "Buka kunci catatan",
+                "invalid": "Kata sandi yang Anda masukkan tidak valid atau URL catatan salah."
+            }
+        },
+        "warn-for-note-deletion": {
+            "title": "Catatan ini akan dihapus",
+            "description": "Catatan ini telah dikonfigurasi untuk dihapus setelah dibaca. Setelah menampilkan catatan, catatan akan dihapus secara permanen dan tidak dapat dipulihkan.",
+            "confirm": "Saya mengerti, tunjukkan catatannya"
+        },
+        "error": {
+            "invalid-url": {
+                "title": "URL catatan tidak valid",
+                "description": "URL catatan ini tidak valid. Pastikan Anda menggunakan URL yang benar."
+            },
+            "rate-limit": {
+                "title": "Batas laju terlampaui",
+                "description": "Anda telah melampaui batas laju untuk mengambil catatan. Silakan coba lagi nanti."
+            },
+            "unauthorized": {
+                "title": "Tidak sah",
+                "description": "Catatan ini bersifat pribadi. Anda harus masuk untuk melihatnya.",
+                "button": "Masuk"
+            },
+            "note-not-found": {
+                "title": "Catatan tidak ditemukan",
+                "description": "Catatan ini tidak ada, telah kedaluwarsa, atau telah dihapus."
+            },
+            "fetch-error": {
+                "title": "Terjadi kesalahan",
+                "description": "Terjadi kesalahan saat mengambil catatan. Silakan coba lagi nanti."
+            },
+            "decryption": {
+                "title": "Terjadi kesalahan",
+                "description": "Terjadi kesalahan saat mendekripsi catatan. URL mungkin tidak valid."
+            }
+        }
+    },
+    "copy": {
+        "label": "Salin ke papan klip",
+        "success": "Tersalin!"
+    }
+}
