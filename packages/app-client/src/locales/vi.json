@@ -1,29 +1,34 @@
 {
   "app": {
     "title": "Enclosed",
-    "description": "Gửi ghi chú riêng tư và an toàn"
+    "description": "Gửi ghi chú riêng tư và bảo mật"
   },
   "insecureContextWarning": {
-    "description": "Kết nối của bạn không an toàn, ứng dụng phải được phục vụ qua HTTPS để hoạt động đúng. Bạn sẽ không thể tạo hoặc xem ghi chú.",
+    "description": "Kết nối của bạn không an toàn, ứng dụng phải được phục vụ qua HTTPS để hoạt động đúng cách. Bạn sẽ không thể tạo hoặc xem ghi chú.",
     "learn-more": "Tìm hiểu thêm"
   },
   "navbar": {
     "new-note": "Ghi chú mới",
     "github": "GitHub",
     "language": "Ngôn ngữ",
+    "github-repository": "Kho lưu trữ GitHub",
+    "documentation": "Tài liệu",
+    "change-theme": "Thay đổi giao diện",
+    "menu-icon": "Biểu tượng menu",
+    "change-language": "Thay đổi ngôn ngữ",
     "theme": {
-      "theme": "Chủ đề",
+      "theme": "Giao diện",
       "light-mode": "Chế độ sáng",
       "dark-mode": "Chế độ tối",
       "system-mode": "Hệ thống"
     },
     "settings": {
       "documentation": "Tài liệu",
-      "cli": "Đính kèm CLI",
-      "support": "Hỗ trợ Đính kèm",
+      "cli": "Enclosed CLI",
+      "support": "Hỗ trợ Enclosed",
       "report-bug": "Báo cáo lỗi",
       "logout": "Đăng xuất",
-      "contribute-to-i18n": "Đóng góp vào i18n"
+      "contribute-to-i18n": "Đóng góp dịch thuật"
     }
   },
   "footer": {
@@ -33,8 +38,8 @@
     "version": "Phiên bản"
   },
   "login": {
-    "title": "Đăng nhập vào Đính kèm",
-    "description": "Đây là một phiên bản riêng tư của Đính kèm. Nhập thông tin đăng nhập của bạn để có thể tạo ghi chú.",
+    "title": "Đăng nhập Enclosed",
+    "description": "Đây là một phiên bản riêng tư của Enclosed. Nhập thông tin đăng nhập của bạn để có thể tạo ghi chú.",
     "email": "Email",
     "password": "Mật khẩu",
     "submit": "Đăng nhập",
@@ -44,30 +49,34 @@
     },
     "footer": [
       "Bạn chưa có tài khoản?",
-      "Liên hệ với chủ sở hữu của phiên bản."
+      "Liên hệ với chủ sở hữu phiên bản."
     ]
   },
   "create": {
     "errors": {
       "empty-note": "Vui lòng nhập nội dung ghi chú hoặc đính kèm tệp.",
-      "rate-limit": "Bạn đã vượt quá giới hạn tốc độ cho việc tạo ghi chú. Vui lòng thử lại sau.",
+      "rate-limit": "Bạn đã vượt quá giới hạn tạo ghi chú. Vui lòng thử lại sau.",
       "too-large": "Nội dung ghi chú và tệp đính kèm quá lớn. Vui lòng giảm kích thước và thử lại.",
       "unauthorized": "Bạn không được phép tạo ghi chú. Vui lòng đăng nhập và thử lại.",
-      "api-not-found": "Không tìm thấy điểm cuối API. Máy chủ có thể chưa được cấu hình đúng.",
+      "api-not-found": "Không tìm thấy điểm cuối API. Máy chủ có thể chưa được cấu hình đúng cách.",
       "unknown": "Đã xảy ra lỗi khi tạo ghi chú, vui lòng thử lại."
     },
     "share": {
       "button": "Chia sẻ ghi chú",
-      "title": "Ghi chú được chia sẻ",
-      "description": "Đây là một ghi chú được chia sẻ với bạn."
+      "title": "Ghi chú đã chia sẻ",
+      "description": "Đây là ghi chú được chia sẻ với bạn."
     },
     "settings": {
-      "placeholder": "Nhập ghi chú của bạn ở đây...",
+      "placeholder": "Nhập ghi chú của bạn tại đây...",
       "password": {
         "label": "Mật khẩu ghi chú",
-        "placeholder": "Mật khẩu..."
+        "placeholder": "Mật khẩu...",
+        "hide-password": "Ẩn mật khẩu",
+        "show-password": "Hiện mật khẩu",
+        "generate-random-password": "Tạo mật khẩu ngẫu nhiên"
       },
-      "expiration": "Thời hạn hết hạn",
+      "expiration": "Thời gian hết hạn",
+      "no-expiration": "Ghi chú không bao giờ hết hạn",
       "delays": {
         "1h": "1 giờ",
         "1d": "1 ngày",
@@ -80,50 +89,61 @@
       },
       "attach-files": "Đính kèm tệp",
       "drop-files": {
-        "title": "Thả tệp vào đây",
-        "description": "Kéo thả tệp vào đây để đính kèm chúng vào ghi chú"
+        "title": "Kéo thả tệp vào đây",
+        "description": "Kéo và thả tệp vào đây để đính kèm chúng vào ghi chú"
       },
       "create": "Tạo ghi chú",
       "creating": "Đang tạo ghi chú..."
     },
     "success": {
-      "title": "Ghi chú đã được tạo thành công",
+      "title": "Đã tạo ghi chú thành công",
       "description": "Ghi chú của bạn đã được tạo. Bây giờ bạn có thể chia sẻ nó bằng liên kết sau.",
       "with-deletion": "Ghi chú sẽ bị xóa sau khi đọc.",
       "copy-link": "Sao chép liên kết",
       "copy-success": "Đã sao chép liên kết"
+    },
+    "qr-code": {
+      "title": "Chia sẻ ghi chú này trên điện thoại di động",
+      "description": "Bạn có thể quét mã QR này để xem ghi chú trên thiết bị di động của mình. Bạn cũng có thể xuất hình ảnh mã QR để chia sẻ với người khác.",
+      "export": "Xuất mã QR",
+      "download-svg": "Tải xuống dưới dạng SVG",
+      "download-png": "Tải xuống dưới dạng PNG",
+      "download-success": "Đã tải xuống mã QR",
+      "copy-svg": "Sao chép mã SVG",
+      "copy-success": "Đã sao chép SVG vào khay nhớ tạm"
     }
   },
   "view": {
+    "loading": "Đang tải ghi chú...",
     "note-content": "Nội dung ghi chú",
     "assets": {
       "download": "Tải xuống",
       "download-all": "Tải xuống tất cả tệp",
-      "heading-multiple": "{{ count }} tệp đính kèm với ghi chú này",
-      "heading-single": "1 tệp đính kèm với ghi chú này"
+      "heading-multiple": "{{ count }} tệp đính kèm vào ghi chú này",
+      "heading-single": "1 tệp đính kèm vào ghi chú này"
     },
     "request-password": {
-      "description": "Ghi chú này được bảo vệ bằng mật khẩu. Vui lòng nhập mật khẩu để mở khóa nó.",
+      "description": "Ghi chú này được bảo vệ bằng mật khẩu. Vui lòng nhập mật khẩu để mở khóa.",
       "form": {
         "label": "Mật khẩu",
         "placeholder": "Mật khẩu ghi chú...",
         "unlock-button": "Mở khóa ghi chú",
-        "invalid": "Mật khẩu bạn nhập không hợp lệ hoặc URL ghi chú không chính xác."
+        "invalid": "Mật khẩu bạn đã nhập không hợp lệ hoặc URL ghi chú không chính xác."
       }
     },
     "warn-for-note-deletion": {
       "title": "Ghi chú này sẽ bị xóa",
-      "description": "Ghi chú này đã được cấu hình để xóa sau khi đọc. Sau khi hiển thị ghi chú, nó sẽ bị xóa vĩnh viễn và không thể khôi phục.",
+      "description": "Ghi chú này đã được cấu hình để bị xóa sau khi đọc. Sau khi hiển thị ghi chú, nó sẽ bị xóa vĩnh viễn và không thể khôi phục.",
       "confirm": "Tôi hiểu, hiển thị ghi chú cho tôi"
     },
     "error": {
       "invalid-url": {
         "title": "URL ghi chú không hợp lệ",
-        "description": "URL ghi chú này không hợp lệ. Vui lòng đảm bảo bạn đang sử dụng URL đúng."
+        "description": "URL ghi chú này không hợp lệ. Vui lòng đảm bảo bạn đang sử dụng đúng URL."
       },
       "rate-limit": {
-        "title": "Vượt quá giới hạn tốc độ",
-        "description": "Bạn đã vượt quá giới hạn tốc độ cho việc lấy ghi chú. Vui lòng thử lại sau."
+        "title": "Vượt quá giới hạn truy cập",
+        "description": "Bạn đã vượt quá giới hạn truy cập ghi chú. Vui lòng thử lại sau."
       },
       "unauthorized": {
         "title": "Không được phép",
@@ -136,7 +156,7 @@
       },
       "fetch-error": {
         "title": "Đã xảy ra lỗi",
-        "description": "Đã xảy ra lỗi khi lấy ghi chú. Vui lòng thử lại sau."
+        "description": "Đã xảy ra lỗi khi tìm nạp ghi chú. Vui lòng thử lại sau."
       },
       "decryption": {
         "title": "Đã xảy ra lỗi",
@@ -145,7 +165,7 @@
     }
   },
   "copy": {
-    "label": "Sao chép vào clipboard",
+    "label": "Sao chép vào khay nhớ tạm",
     "success": "Đã sao chép!"
   }
 }
