@@ -1,11 +1,12 @@
 import type { ServerInstance } from '../app/server.types';
 import { encryptionAlgorithms, serializationFormats } from '@enclosed/lib';
+import { isNil } from 'lodash-es';
 import { z } from 'zod';
 import { createUnauthorizedError } from '../app/auth/auth.errors';
 import { protectedRouteMiddleware } from '../app/auth/auth.middleware';
 import { validateJsonBody } from '../shared/validation/validation';
 import { ONE_MONTH_IN_SECONDS, TEN_MINUTES_IN_SECONDS } from './notes.constants';
-import { createCannotCreatePrivateNoteOnPublicInstanceError, createNotePayloadTooLargeError } from './notes.errors';
+import { createCannotCreatePrivateNoteOnPublicInstanceError, createExpirationDelayRequiredError, createNotePayloadTooLargeError } from './notes.errors';
 import { formatNoteForApi } from './notes.models';
 import { createNoteRepository } from './notes.repository';
 import { getRefreshedNote } from './notes.usecases';
@@ -92,7 +93,8 @@ function setupCreateNoteRoute({ app }: { app: ServerInstance }) {
         deleteAfterReading: z.boolean(),
         ttlInSeconds: z.number()
           .min(TEN_MINUTES_IN_SECONDS)
-          .max(ONE_MONTH_IN_SECONDS),
+          .max(ONE_MONTH_IN_SECONDS)
+          .optional(),
 
         // @ts-expect-error zod wants strict non empty array
         encryptionAlgorithm: z.enum(encryptionAlgorithms),
@@ -105,7 +107,7 @@ function setupCreateNoteRoute({ app }: { app: ServerInstance }) {
 
     async (context, next) => {
       const config = context.get('config');
-      const { payload, isPublic } = context.req.valid('json');
+      const { payload, isPublic, ttlInSeconds } = context.req.valid('json');
 
       if (payload.length > config.notes.maxEncryptedPayloadLength) {
         throw createNotePayloadTooLargeError();
@@ -113,6 +115,10 @@ function setupCreateNoteRoute({ app }: { app: ServerInstance }) {
 
       if (isPublic === false && !config.public.isAuthenticationRequired) {
         throw createCannotCreatePrivateNoteOnPublicInstanceError();
+      }
+
+      if (isNil(ttlInSeconds) && !config.public.isSettingNoExpirationAllowed) {
+        throw createExpirationDelayRequiredError();
       }
 
       await next();

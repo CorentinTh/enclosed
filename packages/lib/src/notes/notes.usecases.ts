@@ -7,13 +7,12 @@ import { storeNote as storeNoteImpl } from './notes.services';
 
 export { createNote };
 
-const ONE_HOUR_IN_SECONDS = 60 * 60;
 const BASE_URL = 'https://enclosed.cc';
 
 async function createNote({
   content,
   password,
-  ttlInSeconds = ONE_HOUR_IN_SECONDS,
+  ttlInSeconds,
   deleteAfterReading = false,
   clientBaseUrl = BASE_URL,
   apiBaseUrl = clientBaseUrl,
@@ -22,6 +21,7 @@ async function createNote({
   encryptionAlgorithm = 'aes-256-gcm',
   serializationFormat = 'cbor-array',
   isPublic = true,
+  pathPrefix,
 }: {
   content: string;
   password?: string;
@@ -33,9 +33,10 @@ async function createNote({
   encryptionAlgorithm?: EncryptionAlgorithm;
   serializationFormat?: SerializationFormat;
   isPublic?: boolean;
+  pathPrefix?: string;
   storeNote?: (params: {
     payload: string;
-    ttlInSeconds: number;
+    ttlInSeconds?: number;
     deleteAfterReading: boolean;
     encryptionAlgorithm: EncryptionAlgorithm;
     serializationFormat: SerializationFormat;
@@ -60,6 +61,7 @@ async function createNote({
     clientBaseUrl,
     isPasswordProtected,
     isDeletedAfterReading: deleteAfterReading,
+    pathPrefix,
   });
 
   return {

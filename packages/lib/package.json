@@ -1,8 +1,8 @@
 {
   "name": "@enclosed/lib",
   "type": "module",
-  "version": "1.8.0",
-  "packageManager": "pnpm@9.12.1",
+  "version": "1.15.0",
+  "packageManager": "pnpm@9.15.0",
   "description": "Enclosed lib to create secure notes.",
   "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
   "license": "Apache-2.0",
@@ -18,7 +18,9 @@
   },
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "engines": {
     "node": ">=22.0.0"
   },
@@ -35,6 +37,7 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
+    "@corentinth/chisels": "catalog:",
     "@enclosed/crypto": "workspace:*",
     "cbor-x": "^1.6.0",
     "lodash-es": "^4.17.21",
@@ -45,7 +48,7 @@
     "@antfu/eslint-config": "catalog:",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "catalog:",
-    "@vitest/coverage-v8": "^2.0.5",
+    "@vitest/coverage-v8": "catalog:",
     "dotenv": "^16.4.5",
     "eslint": "catalog:",
     "tsx": "catalog:",

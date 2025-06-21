@@ -6,10 +6,11 @@ export { encryptAndCreateNote };
 async function encryptAndCreateNote(args: {
   content: string;
   password?: string;
-  ttlInSeconds: number;
+  ttlInSeconds?: number;
   deleteAfterReading: boolean;
   fileAssets: File[];
   isPublic?: boolean;
+  pathPrefix?: string;
 }) {
   return createNote({
     ...args,

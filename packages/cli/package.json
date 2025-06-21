@@ -1,8 +1,8 @@
 {
   "name": "@enclosed/cli",
   "type": "module",
-  "version": "1.8.0",
-  "packageManager": "pnpm@9.12.1",
+  "version": "1.15.0",
+  "packageManager": "pnpm@9.15.0",
   "description": "Enclosed cli to create secure notes.",
   "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
   "license": "Apache-2.0",
@@ -45,7 +45,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",
     "@types/lodash-es": "^4.17.12",
-    "@vitest/coverage-v8": "^2.0.5",
+    "@vitest/coverage-v8": "catalog:",
     "dotenv": "^16.4.5",
     "eslint": "catalog:",
     "tsx": "catalog:",

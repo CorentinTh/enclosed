@@ -11,6 +11,11 @@
     "new-note": "New note",
     "github": "GitHub",
     "language": "Language",
+    "github-repository": "GitHub repository",
+    "documentation": "Documentation",
+    "change-theme": "Change theme",
+    "menu-icon": "Menu icon",
+    "change-language": "Change language",
     "theme": {
       "theme": "Theme",
       "light-mode": "Light mode",
@@ -65,9 +70,13 @@
       "placeholder": "Type your note here...",
       "password": {
         "label": "Note password",
-        "placeholder": "Password..."
+        "placeholder": "Password...",
+        "hide-password": "Hide password",
+        "show-password": "Show password",
+        "generate-random-password": "Generate random password"
       },
       "expiration": "Expiration delay",
+      "no-expiration": "The note never expires",
       "delays": {
         "1h": "1 hour",
         "1d": "1 day",
@@ -105,6 +114,7 @@
     }
   },
   "view": {
+    "loading": "Loading note...",
     "note-content": "Note content",
     "assets": {
       "download": "Download",

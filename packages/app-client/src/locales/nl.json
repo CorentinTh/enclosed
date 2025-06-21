@@ -1,0 +1,162 @@
+{
+  "app": {
+    "title": "Enclosed",
+    "description": "Privé en beveiligde notities versturen"
+  },
+  "insecureContextWarning": {
+    "description": "Je verbinding is niet beveiligd, de app moet over HTTPS worden geserveerd om goed te werken. Je kunt geen notities maken of bekijken.",
+    "learn-more": "Meer informatie"
+  },
+  "navbar": {
+    "new-note": "Nieuwe notitie",
+    "github": "GitHub",
+    "language": "Taal",
+    "theme": {
+      "theme": "Thema",
+      "light-mode": "Lichte modus",
+      "dark-mode": "Donkere modus",
+      "system-mode": "Systeem"
+    },
+    "settings": {
+      "documentation": "Documentatie",
+      "cli": "Bijgesloten CLI",
+      "support": "Ondersteun Enclosed",
+      "report-bug": "Meld een bug",
+      "logout": "Uitloggen",
+      "contribute-to-i18n": "Bijdragen aan i18n"
+    }
+  },
+  "footer": {
+    "crafted-by": "Gemaakt door",
+    "source-code": "Broncode beschikbaar op",
+    "github": "GitHub",
+    "version": "Versie"
+  },
+  "login": {
+    "title": "Inloggen op Enclosed",
+    "description": "Dit is een privé-instantie van Enclosed. Voer je gegevens in om notities te kunnen maken.",
+    "email": "Email",
+    "password": "Wachtwoord",
+    "submit": "Inloggen",
+    "errors": {
+      "invalid-credentials": "Ongeldig e-mailadres of wachtwoord.",
+      "unknown": "Er is een onbekende fout opgetreden. Probeer het later nog eens."
+    },
+    "footer": [
+      "Heb je geen account?",
+      "Neem contact op met de eigenaar van de instantie."
+    ]
+  },
+  "create": {
+    "errors": {
+      "empty-note": "Voer de inhoud van de notitie in of voeg een bestand bij.",
+      "rate-limit": "Je hebt de limiet voor het maken van notities overschreden. Probeer het later nog eens.",
+      "too-large": "De inhoud van de notitie en de bijlagen zijn te groot. Verklein het bestand en probeer het opnieuw.",
+      "unauthorized": "Je bent niet gemachtigd om notities te maken. Log in en probeer het opnieuw.",
+      "api-not-found": "Het API-eindpunt is niet gevonden. De server is mogelijk niet correct geconfigureerd.",
+      "unknown": "Er is een fout opgetreden bij het maken van de notitie, probeer het opnieuw."
+    },
+    "share": {
+      "button": "Notitie delen",
+      "title": "Gedeelde notitie",
+      "description": "Hier is een notitie die met jou is gedeeld."
+    },
+    "settings": {
+      "placeholder": "Schrijf je notitie hier...",
+      "password": {
+        "label": "Notitie wachtwoord",
+        "placeholder": "Wachtwoord..."
+      },
+      "expiration": "Verloopmoment",
+      "no-expiration": "Notitie verloopt nooit",
+      "delays": {
+        "1h": "1 uur",
+        "1d": "1 dag",
+        "1w": "1 week",
+        "1m": "1 maand"
+      },
+      "delete-after-reading": {
+        "label": "Verwijder na lezen",
+        "description": "Verwijder de notitie na het lezen"
+      },
+      "attach-files": "Bestanden toevoegen",
+      "drop-files": {
+        "title": "Drop bestanden hier",
+        "description": "Sleep bestanden hierheen om ze bij de notitie te voegen"
+      },
+      "create": "Notitie aanmaken",
+      "creating": "Notitie maken..."
+    },
+    "success": {
+      "title": "Notitie succesvol aangemaakt",
+      "description": "Je notitie is aangemaakt. Je kunt het nu delen via de volgende link.",
+      "with-deletion": "De notitie wordt na het lezen verwijderd.",
+      "copy-link": "Link kopiëren",
+      "copy-success": "Link gekopieerd"
+    },
+    "qr-code": {
+      "title": "Deel deze notitie via een mobiel",
+      "description": "Je kunt deze QR-code scannen om de notitie op je mobiele apparaat te bekijken. Je kunt de QR code ook exporteren om deze met anderen te delen.",
+      "export": "QR code exporteren",
+      "download-svg": "Downloaden als SVG",
+      "download-png": "Downloaden als PNG",
+      "download-success": "QR-code gedownload",
+      "copy-svg": "SVG-code kopiëren",
+      "copy-success": "SVG gekopieerd naar klembord"
+    }
+  },
+  "view": {
+    "note-content": "Notitie inhoud",
+    "assets": {
+      "download": "Downloaden",
+      "download-all": "Alle bestanden downloaden",
+      "heading-multiple": "{{ count }} bestanden als bijlagen bij deze notitie",
+      "heading-single": "1 bestand als bijlage bij deze notitie"
+    },
+    "request-password": {
+      "description": "Deze notitie is beveiligd met een wachtwoord. Voer het wachtwoord in om het te ontgrendelen.",
+      "form": {
+        "label": "Wachtwoord",
+        "placeholder": "Notitie wachtwoord...",
+        "unlock-button": "Ontgrendel notitie",
+        "invalid": "Het ingevoerde wachtwoord is ongeldig of de URL van de notitie is onjuist."
+      }
+    },
+    "warn-for-note-deletion": {
+      "title": "Deze notitie wordt verwijderd",
+      "description": "Deze notitie is geconfigureerd om verwijderd te worden na het lezen. Na het weergeven van de notitie wordt ze permanent verwijderd en kan ze niet meer hersteld worden.",
+      "confirm": "Ik begrijp het, laat me de notitie zien"
+    },
+    "error": {
+      "invalid-url": {
+        "title": "Ongeldige notitie URL",
+        "description": "De URL van deze notitie is ongeldig. Controleer of je de juiste URL gebruikt."
+      },
+      "rate-limit": {
+        "title": "Gebruikslimiet overschreden",
+        "description": "Je hebt de limiet voor het ophalen van notities overschreden. Probeer het later nog eens."
+      },
+      "unauthorized": {
+        "title": "Ongeautoriseerd",
+        "description": "Deze notitie is privé. Je moet ingelogd zijn om het te bekijken.",
+        "button": "Inloggen"
+      },
+      "note-not-found": {
+        "title": "Notitie niet gevonden",
+        "description": "Deze notitie bestaat niet, is verlopen of is verwijderd."
+      },
+      "fetch-error": {
+        "title": "Er is een fout opgetreden",
+        "description": "Er is een fout opgetreden tijdens het ophalen van de notitie. Probeer het later nog eens."
+      },
+      "decryption": {
+        "title": "Er is een fout opgetreden",
+        "description": "Er is een fout opgetreden tijdens het decoderen van de notitie. De url is mogelijk ongeldig."
+      }
+    }
+  },
+  "copy": {
+    "label": "Kopiëren naar klembord",
+    "success": "Gekopieerd!"
+  }
+}

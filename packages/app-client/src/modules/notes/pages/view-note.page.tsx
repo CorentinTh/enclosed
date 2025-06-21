@@ -41,7 +41,7 @@ const RequestPasswordForm: Component<{ onPasswordEntered: (args: { password: str
             <div>
               <TextFieldRoot>
                 <TextFieldLabel>{t('view.request-password.form.label')}</TextFieldLabel>
-                <TextField type="password" placeholder={t('view.request-password.form.placeholder')} value={getPassword()} onInput={e => updatePassword(e.currentTarget.value)} autofocus data-test-id="note-password-prompt" />
+                <TextField type="password" autocomplete="new-password" placeholder={t('view.request-password.form.placeholder')} value={getPassword()} onInput={e => updatePassword(e.currentTarget.value)} autofocus data-test-id="note-password-prompt" />
               </TextFieldRoot>
             </div>
             <Button class="w-full mt-4" type="submit" data-test-id="note-password-submit">
@@ -260,7 +260,14 @@ export const ViewNotePage: Component = () => {
   return (
     <div>
 
-      <Switch>
+      <Switch
+        fallback={(
+          <div class="mx-auto max-w-400px text-center mt-6 flex flex-col justify-center items-center p-6 gap-2">
+            <div class="i-tabler-loader-2 text-3xl animate-spin text-muted-foreground op-60"></div>
+            <div class="text-muted-foreground">{t('view.loading')}</div>
+          </div>
+        )}
+      >
 
         <Match when={getError()}>
           {error => (

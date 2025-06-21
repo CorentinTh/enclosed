@@ -11,6 +11,11 @@
     "new-note": "新建笔记",
     "github": "GitHub",
     "language": "语言",
+    "github-repository": "GitHub 仓库",
+    "documentation": "文档",
+    "change-theme": "更改主题",
+    "menu-icon": "菜单图标",
+    "change-language": "更改语言",
     "theme": {
       "theme": "主题",
       "light-mode": "浅色模式",
@@ -62,9 +67,13 @@
       "placeholder": "在此输入您的笔记内容...",
       "password": {
         "label": "笔记密码",
-        "placeholder": "密码..."
+        "placeholder": "密码...",
+        "hide-password": "隐藏密码",
+        "show-password": "显示密码",
+        "generate-random-password": "生成随机密码"
       },
       "expiration": "过期时间",
+      "no-expiration": "永不过期",
       "delays": {
         "1h": "1 小时",
         "1d": "1 天",
@@ -89,9 +98,20 @@
       "with-deletion": "阅读后笔记将被删除。",
       "copy-link": "复制链接",
       "copy-success": "链接已复制"
+    },
+    "qr-code": {
+      "title": "在手机上分享此笔记",
+      "description": "您可以扫描此二维码以查看笔记，或导出二维码图像以与他人分享。",
+      "export": "导出二维码",
+      "download-svg": "下载为 SVG 格式",
+      "download-png": "下载为 PNG 格式",
+      "download-success": "二维码已下载",
+      "copy-svg": "复制 SVG 代码",
+      "copy-success": "SVG 代码已复制到剪贴板"
     }
   },
   "view": {
+    "loading": "加载笔记中...",
     "note-content": "笔记内容",
     "assets": {
       "download": "下载",

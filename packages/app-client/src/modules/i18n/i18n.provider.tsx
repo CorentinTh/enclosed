@@ -1,14 +1,16 @@
 import type { ParentComponent } from 'solid-js';
+import { locales } from '@/locales/locales';
 import * as i18n from '@solid-primitives/i18n';
 import { makePersisted } from '@solid-primitives/storage';
 import { merge } from 'lodash-es';
-import { createContext, createResource, createSignal, Show, useContext } from 'solid-js';
+import { createContext, createEffect, createResource, createSignal, Show, useContext } from 'solid-js';
 import defaultDict from '../../locales/en.json';
-import { locales } from './i18n.constants';
+import { findMatchingLocale } from './i18n.models';
 
 export {
   useI18n,
 };
+export type { Locale };
 
 type Locale = typeof locales[number]['key'];
 type RawDictionary = typeof defaultDict;
@@ -39,28 +41,25 @@ async function fetchDictionary(locale: Locale): Promise<Dictionary> {
   return flattened;
 }
 
-function getBrowserLocale(): Locale {
-  const browserLocale = navigator.language?.split('-')[0];
-
-  if (!browserLocale) {
-    return 'en';
-  }
-
-  return locales.find(locale => locale.key === browserLocale)?.key ?? 'en';
-}
-
 export const I18nProvider: ParentComponent = (props) => {
-  const browserLocale = getBrowserLocale();
+  const browserLocale = findMatchingLocale({
+    preferredLocales: navigator.languages.map(x => new Intl.Locale(x)),
+    supportedLocales: locales.map(x => new Intl.Locale(x.key)),
+  });
   const [getLocale, setLocale] = makePersisted(createSignal<Locale>(browserLocale), { name: 'enclosed_locale', storage: localStorage });
 
   const [dict] = createResource(getLocale, fetchDictionary);
 
+  createEffect(() => {
+    document.documentElement.lang = getLocale();
+  });
+
   return (
-    <Show when={dict()}>
-      {dict => (
+    <Show when={dict.latest}>
+      {dictLatest => (
         <I18nContext.Provider
           value={{
-            t: i18n.translator(dict, i18n.resolveTemplate),
+            t: i18n.translator(dictLatest, i18n.resolveTemplate),
             getLocale,
             setLocale,
             locales,

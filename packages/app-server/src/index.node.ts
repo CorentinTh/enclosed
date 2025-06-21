@@ -1,4 +1,5 @@
 import { readFile } from 'node:fs/promises';
+import { createServer as createHttpsServer } from 'node:https';
 import process, { env } from 'node:process';
 import { safelySync } from '@corentinth/chisels';
 import { serve } from '@hono/node-server';
@@ -69,10 +70,14 @@ const server = serve(
   {
     fetch: app.fetch,
     port: config.server.port,
+    ...(config.server.useHttps
+      ? {
+          createServer: createHttpsServer,
+          serverOptions: config.server.https,
+        }
+      : {}),
   },
-  ({ port }) => {
-    logger.info({ port }, 'Server started');
-  },
+  ({ port }) => logger.info({ port }, 'Server started'),
 );
 
 process.on('SIGINT', async () => {

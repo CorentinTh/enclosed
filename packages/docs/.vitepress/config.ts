@@ -94,6 +94,13 @@ export default defineConfig({
           { text: 'Versioning', link: '/integrations/versioning' },
         ],
       },
+      {
+        text: 'Resources',
+        items: [
+          { text: 'Languages and i18n', link: '/resources/i18n' },
+          { text: 'Brand kit', link: '/resources/brand-kit' },
+        ],
+      },
     ],
 
     footer: {

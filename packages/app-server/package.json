@@ -1,8 +1,8 @@
 {
   "name": "@enclosed/app-server",
   "type": "module",
-  "version": "1.8.0",
-  "packageManager": "pnpm@9.12.1",
+  "version": "1.15.0",
+  "packageManager": "pnpm@9.15.0",
   "description": "Enclosed backend server",
   "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
   "license": "Apache-2.0",
@@ -28,7 +28,7 @@
     "script:generate-config-table": "tsx -r dotenv/config src/scripts/generate-config-table.script.ts"
   },
   "dependencies": {
-    "@corentinth/chisels": "^1.0.4",
+    "@corentinth/chisels": "catalog:",
     "@enclosed/lib": "workspace:*",
     "@hono/node-server": "^1.12.1",
     "bcryptjs": "^2.4.3",
@@ -45,19 +45,19 @@
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",
     "@cloudflare/workers-types": "^4.20240821.1",
-    "@total-typescript/ts-reset": "^0.6.0",
+    "@total-typescript/ts-reset": "^0.6.1",
     "@types/bcryptjs": "^2.4.6",
     "@types/lodash-es": "^4.17.12",
     "@types/node-cron": "^3.0.11",
-    "@vitest/coverage-v8": "^2.0.5",
-    "dotenv": "^16.4.5",
-    "esbuild": "^0.24.0",
+    "@vitest/coverage-v8": "catalog:",
+    "dotenv": "^16.4.7",
+    "esbuild": "^0.25.0",
     "eslint": "catalog:",
     "pino-pretty": "^11.2.2",
     "tsx": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:",
     "wrangler": "^3.72.1",
-    "zx": "^8.1.4"
+    "zx": "^8.4.1"
   }
 }

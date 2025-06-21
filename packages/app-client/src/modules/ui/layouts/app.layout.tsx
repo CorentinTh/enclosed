@@ -37,12 +37,25 @@ const ThemeSwitcher: Component = () => {
 
 const LanguageSwitcher: Component = () => {
   const { t, getLocale, setLocale, locales } = useI18n();
+  const languageName = new Intl.DisplayNames(getLocale(), {
+    type: 'language',
+    languageDisplay: 'standard',
+  });
 
   return (
     <>
       {locales.map(locale => (
-        <DropdownMenuItem onClick={() => setLocale(locale.key)} class={cn('flex items-center gap-2 cursor-pointer', { 'font-semibold': getLocale() === locale.key })}>
-          {locale.name}
+        <DropdownMenuItem onClick={() => setLocale(locale.key)} class={cn('cursor-pointer', { 'font-bold': getLocale() === locale.key })}>
+          <span translate="no" lang={getLocale() === locale.key ? undefined : locale.key}>
+            {locale.name}
+          </span>
+          <Show when={getLocale() !== locale.key}>
+            <span class="text-muted-foreground pl-1">
+              (
+              {languageName.of(locale.key)}
+              )
+            </span>
+          </Show>
         </DropdownMenuItem>
       ))}
 
@@ -50,6 +63,7 @@ const LanguageSwitcher: Component = () => {
 
       <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" rel="noopener noreferrer" href="https://github.com/CorentinTh/enclosed/tree/main/packages/app-client/src/locales">
         {t('navbar.settings.contribute-to-i18n')}
+        <div class="i-tabler-external-link text-lg text-muted-foreground"></div>
       </DropdownMenuItem>
     </>
   );
@@ -68,6 +82,9 @@ export const Navbar: Component = () => {
     navigate('/');
   };
 
+  // Only show the "New Note" button if the user is authenticated or if authentication is not required
+  const getShouldShowNewNoteButton = () => config.isAuthenticationRequired ? authStore.getIsAuthenticated() : true;
+
   return (
     <div class="border-b border-border bg-surface">
       <div class="flex items-center justify-between px-6 py-3 mx-auto max-w-1200px">
@@ -82,17 +99,20 @@ export const Navbar: Component = () => {
         </div>
 
         <div class="flex gap-2 items-center">
-          <Button variant="secondary" onClick={newNoteClicked}>
-            <div class="i-tabler-plus mr-1 text-muted-foreground"></div>
-            {t('navbar.new-note')}
-          </Button>
 
-          <Button variant="ghost" class="text-lg px-0 size-9 hidden md:inline-flex" as={A} href="https://github.com/CorentinTh/enclosed" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">
+          {getShouldShowNewNoteButton() && (
+            <Button variant="secondary" onClick={newNoteClicked}>
+              <div class="i-tabler-plus mr-1 text-muted-foreground"></div>
+              {t('navbar.new-note')}
+            </Button>
+          )}
+
+          <Button variant="ghost" class="text-lg px-0 size-9 hidden md:inline-flex" as={A} href="https://github.com/CorentinTh/enclosed" target="_blank" rel="noopener noreferrer" aria-label={t('navbar.github-repository')}>
             <div class="i-tabler-brand-github"></div>
           </Button>
 
           <DropdownMenu>
-            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9 hidden md:inline-flex" variant="ghost" aria-label="Change theme">
+            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9 hidden md:inline-flex" variant="ghost" aria-label={t('navbar.change-theme')}>
               <div classList={{ 'i-tabler-moon': themeStore.getColorMode() === 'dark', 'i-tabler-sun': themeStore.getColorMode() === 'light' }}></div>
             </DropdownMenuTrigger>
             <DropdownMenuContent class="w-42">
@@ -101,7 +121,7 @@ export const Navbar: Component = () => {
           </DropdownMenu>
 
           <DropdownMenu>
-            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9 hidden md:inline-flex" variant="ghost" aria-label="Language">
+            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9 hidden md:inline-flex" variant="ghost" aria-label={t('navbar.language')}>
               <div class="i-custom-language size-4"></div>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -111,7 +131,7 @@ export const Navbar: Component = () => {
 
           <DropdownMenu>
 
-            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9" variant="ghost" aria-label="Menu icon">
+            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9" variant="ghost" aria-label={t('navbar.menu-icon')}>
               <div class="i-tabler-dots-vertical hidden md:block"></div>
               <div class="i-tabler-menu-2 block md:hidden"></div>
             </DropdownMenuTrigger>
@@ -125,7 +145,7 @@ export const Navbar: Component = () => {
               </DropdownMenuItem>
 
               <DropdownMenuSub>
-                <DropdownMenuSubTrigger as="a" class="flex items-center gap-2 md:hidden" aria-label="Change theme">
+                <DropdownMenuSubTrigger as="a" class="flex items-center gap-2 md:hidden" aria-label={t('navbar.change-theme')}>
                   <div class="text-lg" classList={{ 'i-tabler-moon': themeStore.getColorMode() === 'dark', 'i-tabler-sun': themeStore.getColorMode() === 'light' }}></div>
                   {t('navbar.theme.theme')}
                 </DropdownMenuSubTrigger>
@@ -137,7 +157,7 @@ export const Navbar: Component = () => {
               </DropdownMenuSub>
 
               <DropdownMenuSub>
-                <DropdownMenuSubTrigger as="a" class="flex items-center text-medium gap-2 md:hidden" aria-label="Change language">
+                <DropdownMenuSubTrigger as="a" class="flex items-center text-medium gap-2 md:hidden" aria-label={t('navbar.change-language')}>
                   <div class="i-custom-language size-4"></div>
                   {t('navbar.language')}
                 </DropdownMenuSubTrigger>

@@ -4,4 +4,8 @@ export type Config = {
   isAuthenticationRequired: boolean;
   enclosedVersion: string;
   defaultDeleteNoteAfterReading: boolean;
+  defaultNoteTtlSeconds: number;
+  isSettingNoExpirationAllowed: boolean;
+  defaultNoteNoExpiration: boolean;
+  viewNotePathPrefix: string;
 };

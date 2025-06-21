@@ -2,10 +2,10 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { flatten } from '@solid-primitives/i18n';
 import { difference, keys, omitBy } from 'lodash-es';
-import { locales } from '../modules/i18n/i18n.constants';
+import { locales } from '../locales/locales';
 
 const localesContent = await Promise.all(locales.map(async (locale) => {
-  const filePath = join('src', 'locales', `${locale.file}.json`);
+  const filePath = join('src', 'locales', `${locale.key}.json`);
   const fileContent = await readFile(filePath, 'utf-8');
 
   return {

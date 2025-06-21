@@ -31,6 +31,49 @@ export const configDefinition = {
       default: [],
       env: 'SERVER_CORS_ORIGINS',
     },
+    useHttps: {
+      doc: 'Whether to enable HTTPS for the server (only in node env)',
+      schema: z
+        .string()
+        .trim()
+        .toLowerCase()
+        .transform(x => x === 'true')
+        .pipe(z.boolean()),
+      default: 'false',
+      env: 'SERVER_USE_HTTPS',
+    },
+    https: {
+      key: {
+        doc: 'The key for HTTPS (only in node env)',
+        schema: z.string().optional(),
+        default: undefined,
+        env: 'SERVER_HTTPS_KEY',
+      },
+      cert: {
+        doc: 'The cert for HTTPS (only in node env)',
+        schema: z.string().optional(),
+        default: undefined,
+        env: 'SERVER_HTTPS_CERT',
+      },
+      ca: {
+        doc: 'The CA for HTTPS (only in node env)',
+        schema: z.string().optional(),
+        default: undefined,
+        env: 'SERVER_HTTPS_CA',
+      },
+      pfx: {
+        doc: 'The pfx for HTTPS (only in node env)',
+        schema: z.string().optional(),
+        default: undefined,
+        env: 'SERVER_HTTPS_PFX',
+      },
+      passphrase: {
+        doc: 'The passphrase of the PFX cert (only in node env)',
+        schema: z.string().optional(),
+        default: undefined,
+        env: 'SERVER_HTTPS_PASSPHRASE',
+      },
+    },
   },
   notes: {
     maxEncryptedPayloadLength: {
@@ -120,6 +163,48 @@ export const configDefinition = {
         .pipe(z.boolean()),
       default: 'false',
       env: 'PUBLIC_DEFAULT_DELETE_NOTE_AFTER_READING',
+    },
+    defaultNoteTtlSeconds: {
+      doc: 'The default value for the expiration time of a note in seconds, the value must be one of: `3600` (1 hour), `86400` (1 day), `604800` (1 week), `2592000` (1 month)',
+      schema: z
+        .coerce
+        .number()
+        .refine(
+          value => [3600, 86400, 604800, 2592000].includes(value),
+          {
+            message: 'PUBLIC_DEFAULT_NOTE_TTL_SECONDS: Invalid value. Must be one of: 3600, 86400, 604800, 2592000',
+          },
+        ),
+      default: 3600,
+      env: 'PUBLIC_DEFAULT_NOTE_TTL_SECONDS',
+    },
+    isSettingNoExpirationAllowed: {
+      doc: 'Whether to allow the user to set the note to never expire',
+      schema: z
+        .string()
+        .trim()
+        .toLowerCase()
+        .transform(x => x === 'true')
+        .pipe(z.boolean()),
+      default: 'true',
+      env: 'PUBLIC_IS_SETTING_NO_EXPIRATION_ALLOWED',
+    },
+    defaultNoteNoExpiration: {
+      doc: 'The default value for the `No expiration` checkbox in the note creation form (only used if setting no expiration is allowed)',
+      schema: z
+        .string()
+        .trim()
+        .toLowerCase()
+        .transform(x => x === 'true')
+        .pipe(z.boolean()),
+      default: 'false',
+      env: 'PUBLIC_DEFAULT_NOTE_NO_EXPIRATION',
+    },
+    viewNotePathPrefix: {
+      doc: 'The prefix for the path to view a note',
+      schema: z.string(),
+      default: '/',
+      env: 'PUBLIC_VIEW_NOTE_PATH_PREFIX',
     },
   },
   authentication: {

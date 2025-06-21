@@ -17,3 +17,9 @@ export const createCannotCreatePrivateNoteOnPublicInstanceError = createErrorFac
   code: 'note.cannot_create_private_note_on_public_instance',
   statusCode: 403,
 });
+
+export const createExpirationDelayRequiredError = createErrorFactory({
+  message: 'Expiration delay is required',
+  code: 'note.expiration_delay_required',
+  statusCode: 400,
+});

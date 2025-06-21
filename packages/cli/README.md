@@ -39,10 +39,20 @@ enclosed <command> [options]
 enclosed create "Hello, World!"
 
 # Using stdin
-cat file.txt | enclosed create
+cat file.txt | enclosed create --stdin
+# or
+cat file.txt | enclosed create -s
+
+# To add files as attachments
+enclosed create --file file1.txt --file file2.txt "Hello, World!"
 
 # With full options
-enclosed create --deleteAfterReading --password "password" --ttl 3600 "Hello, World!"
+enclosed create --file file1.txt --deleteAfterReading --password "password" --ttl 3600 "Hello, World!"
+
+# Get more information about the command
+enclosed create --help
+# or
+enclosed create -h
 ```
 
 ### View a note

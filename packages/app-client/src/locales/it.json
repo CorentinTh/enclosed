@@ -1,0 +1,172 @@
+{
+  "app": {
+    "title": "Enclosed",
+    "description": "Invia note private e sicure"
+  },
+  "insecureContextWarning": {
+    "description": "La connessione non è sicura, l'applicativo deve viaggiare sotto protocollo HTTPS per funzionare correttamente. Non puoi creare o leggere le note.",
+    "learn-more": "Per saperne di più"
+  },
+  "navbar": {
+    "new-note": "Nuova nota",
+    "github": "GitHub",
+    "language": "Lingua",
+    "github-repository": "Repository GitHub",
+    "documentation": "Documentazione",
+    "change-theme": "Cambia tema",
+    "menu-icon": "Icona menu",
+    "change-language": "Cambia lingua",
+    "theme": {
+      "theme": "Tema",
+      "light-mode": "Tema chiaro",
+      "dark-mode": "Tema scuro",
+      "system-mode": "Come il sistema"
+    },
+    "settings": {
+      "documentation": "Documentazione",
+      "cli": "Enclosed CLI",
+      "support": "Sostieni Enclosed",
+      "report-bug": "Segnala un bug",
+      "logout": "Disconnetti",
+      "contribute-to-i18n": "Contribuisci alla traduzione"
+    }
+  },
+  "footer": {
+    "crafted-by": "Creato da",
+    "source-code": "Codice sorgente disponibile su",
+    "github": "GitHub",
+    "version": "Versione"
+  },
+  "login": {
+    "title": "Accedi a Enclosed",
+    "description": "Questa è un'istanza privata di Enclosed. Accedi per creare delle note.",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Accedi",
+    "errors": {
+      "invalid-credentials": "Email o password non validi.",
+      "unknown": "Errore sconosciuto. Riprova più tardi."
+    },
+    "footer": [
+      "Non hai un account?",
+      "Contatta il proprietario dell'istanza."
+    ]
+  },
+  "create": {
+    "errors": {
+      "empty-note": "Puoi scrivere il contenuto di una nota o allegare un file.",
+      "rate-limit": "Hai superato il limite di creazione delle note. Riprova più tardi.",
+      "too-large": "Il contenuto della nota o degli allegati è troppo grande. Riduci la dimensione e riprova.",
+      "unauthorized": "Non sei autorizzato a creare delle note. Accedi e riprova.",
+      "api-not-found": "L'endpoint API non è stato trovato. Il server potrebbe non essere configurato correttamente.",
+      "unknown": "C'è stato un errore nel creare la nota. Riprova più tardi."
+    },
+    "share": {
+      "button": "Condividi",
+      "title": "Nota condivisa",
+      "description": "Visualizza una nota condivisa."
+    },
+    "settings": {
+      "placeholder": "Scrivi qui la nota...",
+      "password": {
+        "label": "Password della nota",
+        "placeholder": "Password...",
+        "hide-password": "Nascondi password",
+        "show-password": "Mostra password",
+        "generate-random-password": "Genera una password casuale"
+      },
+      "expiration": "Durata",
+      "no-expiration": "La nota non scade",
+      "delays": {
+        "1h": "1 ora",
+        "1d": "1 giorno",
+        "1w": "1 settimana",
+        "1m": "1 mese"
+      },
+      "delete-after-reading": {
+        "label": "Cancella dopo la lettura",
+        "description": "Cancella la nota dopo la lettura"
+      },
+      "attach-files": "Allega dei file",
+      "drop-files": {
+        "title": "Rilascia qui i file",
+        "description": "Usa il drag and drop per allegare i file alla nota"
+      },
+      "create": "Crea una nota",
+      "creating": "Creazione in corso..."
+    },
+    "success": {
+      "title": "Nota creata con successo",
+      "description": "La nota è stata creata con successo. Ora puoi condividerla usando il seguente link.",
+      "with-deletion": "La nota sarà cancellata dopo la lettura.",
+      "copy-link": "Copia link",
+      "copy-success": "Link copiato"
+    },
+    "qr-code": {
+      "title": "Condividi questa nota su smartphone",
+      "description": "Scansiona questo QR code per aprire la nota sullo smartphone. È possibile condividere il QR code con altri.",
+      "export": "Esporta il QR code",
+      "download-svg": "Download SVG",
+      "download-png": "Download PNG",
+      "download-success": "Download riuscito",
+      "copy-svg": "Copia il codice del file SVG",
+      "copy-success": "SVG copiato"
+    }
+  },
+  "view": {
+    "loading": "Carico la nota...",
+    "note-content": "Contenuto della nota",
+    "assets": {
+      "download": "Download",
+      "download-all": "Scarica tutti i file",
+      "heading-multiple": "{{ count }} file allegati alla nota",
+      "heading-single": "1 file allegato alla nota"
+    },
+    "request-password": {
+      "description": "Questa nota è protetta da una password. Inserisci la password per sbloccarla.",
+      "form": {
+        "label": "Password",
+        "placeholder": "Password della nota...",
+        "unlock-button": "Sblocca la nota",
+        "invalid": "La password inserita non è corretta o l'URL della nota è sbagliata."
+      }
+    },
+    "warn-for-note-deletion": {
+      "title": "Questa nota sarà cancellata",
+      "description": "Questa nota sarà cancellata dopo la lettura. Una volta visualizzata sarà definitivamente cancellata e non potrà essere recuperata.",
+      "confirm": "Capisco, visualizza la nota"
+    },
+
+    "error": {
+      "invalid-url": {
+        "title": "URL della nota non valida",
+        "description": "L'URL della nota non è valida. Assicurarsi di aver usato l'URL corretta."
+      },
+      "rate-limit": {
+        "title": "Superato il limite di aggiornamenti",
+        "description": "È stato superato il limite di aggiornamenti per le note. Riprova più tardi."
+      },
+      "unauthorized": {
+        "title": "Non autorizzato",
+        "description": "Questa nota è privata. Bisogna accedere per vederla.",
+        "button": "Accedi"
+      },
+      "note-not-found": {
+        "title": "Nota non trovata",
+        "description": "Questa nota non esiste, è scaduta o è stata cancellata."
+      },
+      "fetch-error": {
+        "title": "C'è stato un errore",
+        "description": "C'è stato un errore durante il recupero della nota. Riprovare più tardi."
+      },
+      "decryption": {
+        "title": "C'è stato un errore",
+        "description": "C'è stato un errore durante la decifratura della nota. L'URL potrebbe non essere valida."
+      }
+    }
+  },
+  "copy": {
+    "label": "Copia",
+    "success": "Copiato!"
+  }
+}

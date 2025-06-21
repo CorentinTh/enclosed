@@ -1,4 +1,4 @@
-import type { StatusCode } from 'hono/utils/http-status';
+import type { ContentfulStatusCode } from 'hono/utils/http-status';
 import { get, isError, toString } from 'lodash-es';
 
 export { createError, createErrorFactory, isCustomError };
@@ -7,14 +7,14 @@ type ErrorOptions = {
   message: string;
   code: string;
   cause?: unknown;
-  statusCode: StatusCode;
+  statusCode: ContentfulStatusCode;
   isInternal?: boolean;
 };
 
 class CustomError extends Error {
   code: string;
   cause?: Error | null;
-  statusCode: StatusCode;
+  statusCode: ContentfulStatusCode;
   isCustomError = true;
   isInternal?: boolean;
 
