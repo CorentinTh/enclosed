@@ -1,5 +1,6 @@
 // Order of locales matters, keep it sorted by the native language name
 export const locales = [
+  { key: 'id', name: 'Bahasa Indonesia' },
   { key: 'de', name: 'Deutsch' },
   { key: 'en', name: 'English' },
   { key: 'es', name: 'Español' },
