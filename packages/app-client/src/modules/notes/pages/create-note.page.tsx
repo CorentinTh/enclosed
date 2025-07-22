@@ -131,10 +131,11 @@ export const CreateNotePage: Component = () => {
     setError(null);
     setIsPublic(true);
     setIsNoteCreated(false);
-    setTtlInSeconds(3600);
-    setDeleteAfterReading(false);
+    setTtlInSeconds(config.defaultNoteTtlSeconds);
+    setDeleteAfterReading(config.defaultDeleteNoteAfterReading);
     setUploadedFiles([]);
     setIsNoteCreating(false);
+    setHasNoExpiration(config.defaultNoteNoExpiration);
   }
 
   onMount(() => {
