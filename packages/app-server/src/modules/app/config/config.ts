@@ -19,7 +19,7 @@ export const configDefinition = {
     routeTimeoutMs: {
       doc: 'The maximum time in milliseconds for a route to complete before timing out',
       schema: z.coerce.number().int().positive(),
-      default: 5_000,
+      default: 30_000, // Increased from 5s to 30s to accommodate larger file uploads
       env: 'SERVER_API_ROUTES_TIMEOUT_MS',
     },
     corsOrigins: {
