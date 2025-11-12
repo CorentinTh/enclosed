@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@enclosed/lib": "workspace:*",
-    "@inquirer/prompts": "^6.0.0",
+    "@inquirer/prompts": "^7.0.0",
     "citty": "^0.1.6",
     "conf": "^13.0.1",
     "lodash-es": "^4.17.21",
