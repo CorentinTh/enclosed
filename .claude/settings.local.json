@@ -6,7 +6,7 @@
       "Bash(pnpm script:get-missing-i18n-keys:*)",
       "Bash(git checkout:*)",
       "Bash(git add:*)",
-      "Bash(git commit -m \"$(cat <<''EOF''\nfeat(i18n): add Hindi, Telugu, Kannada, Marathi, and Tamil translations\n\nAdded complete translations for five major Indian languages:\n- Hindi (हिन्दी)\n- Telugu (తెలుగు)\n- Kannada (ಕನ್ನಡ)\n- Marathi (मराठी)\n- Tamil (தமிழ்)\n\nAll translations include all 171+ keys with 0 missing translations.\nLanguages are added to locales.ts in alphabetical order by native name.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfeat(i18n): add Hindi, Telugu, Kannada, Marathi, and Tamil translations\n\nAdded complete translations for five major Indian languages:\n- Hindi (हिन्दी)\n- Telugu (తెలుగు)\n- Kannada (ಕನ್ನಡ)\n- Marathi (मराठी)\n- Tamil (தமிழ்)\n\nAll translations include all 171+ keys with 0 missing translations.\nLanguages are added to locales.ts in alphabetical order by native name.\n\nEOF\n)\")",
       "Bash(git push:*)",
       "Bash(git remote:*)",
       "Bash(gh pr create:*)"
