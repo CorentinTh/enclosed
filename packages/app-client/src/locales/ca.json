@@ -1,0 +1,171 @@
+{
+  "app": {
+    "title": "Enclosed",
+    "description": "Envia notes privades i segures"
+  },
+  "insecureContextWarning": {
+    "description": "La teva connexió no és segura, l'aplicació s'ha de servir a través d'HTTPS per funcionar correctament. No podràs crear ni veure notes.",
+    "learn-more": "Més informació"
+  },
+  "navbar": {
+    "new-note": "Nova nota",
+    "github": "GitHub",
+    "language": "Idioma",
+    "github-repository": "Repositori Github",
+    "documentation": "Documentació",
+    "change-theme": "Canvia tema",
+    "menu-icon": "Icona de menú",
+    "change-language": "Canvia idioma",
+    "theme": {
+      "theme": "Tema",
+      "light-mode": "Mode clar",
+      "dark-mode": "Mode fosc",
+      "system-mode": "Sistema"
+    },
+    "settings": {
+      "documentation": "Documentació",
+      "cli": "CLI (Línia de comandes) d'Enclosed",
+      "support": "Dóna suport a Enclosed",
+      "report-bug": "Informa d'un error",
+      "logout": "Tanca Sessió",
+      "contribute-to-i18n": "Contribueix a i18n"
+    }
+  },
+  "footer": {
+    "crafted-by": "Elaborat per",
+    "source-code": "Codi font disponible a",
+    "github": "GitHub",
+    "version": "Versió"
+  },
+  "login": {
+    "title": "Inicia la sessió a Enclosed",
+    "description": "Aquesta és una instància privada d'Enclosed. Introduïu les vostres credencials per poder crear notes.",
+    "email": "Correu electrònic",
+    "password": "Contrasenya",
+    "submit": "Inicia la sessió",
+    "errors": {
+      "invalid-credentials": "Correu electrònic o contrasenya no vàlids.",
+      "unknown": "S'ha produït un error desconegut. Torneu-ho a provar més tard."
+    },
+    "footer": [
+      "No teniu un compte?",
+      "Poseu-vos en contacte amb el propietari de la instància."
+    ]
+  },
+  "create": {
+    "errors": {
+      "empty-note": "Si us plau, introduïu el contingut d'una nota o adjunteu un fitxer.",
+      "rate-limit": "Heu superat el límit de velocitat per crear notes. Torneu-ho a provar més tard.",
+      "too-large": "El contingut de la nota i els fitxers adjunts són massa grans. Si us plau, reduïu-ne la mida i torneu-ho a provar.",
+      "unauthorized": "No esteu autoritzat per crear notes. Si us plau, inicieu la sessió i torneu-ho a intentar.",
+      "api-not-found": "No s'ha trobat el punt final de l'API. Pot ser que el servidor no estigui configurat correctament.",
+      "unknown": "S'ha produït un error en crear la nota. Torneu-ho a intentar."
+    },
+    "share": {
+      "button": "Compartir la nota",
+      "title": "Nota compartida",
+      "description": "Aquí teniu una nota compartida amb vosaltres."
+    },
+    "settings": {
+      "placeholder": "Escriviu la teva nota aquí...",
+      "password": {
+        "label": "Contrasenya de la Nota",
+        "placeholder": "Contrasenya...",
+        "hide-password": "Oculta contrasenya",
+        "show-password": "Mostra contrasenya",
+        "generate-random-password": "Genera una contrasenya aleatòria"
+      },
+      "expiration": "Retard de caducitat",
+      "no-expiration": "La nota no caduca mai",
+      "delays": {
+        "1h": "1 hora",
+        "1d": "1 dia",
+        "1w": "1 setmana",
+        "1m": "1 mes"
+      },
+      "delete-after-reading": {
+        "label": "Suprimeix després de llegir",
+        "description": "Suprimeix la nota després de llegir-la"
+      },
+      "attach-files": "Adjunta fitxers",
+      "drop-files": {
+        "title": "Deixeu anar els fitxers aquí",
+        "description": "Arrossegueu i deixeu anar els fitxers aquí per adjuntar-los a la nota"
+      },
+      "create": "Crear nota",
+      "creating": "Creant nota..."
+    },
+    "success": {
+      "title": "Nota creada correctament",
+      "description": "La vostra nota s'ha creat. La podeu compartir mitjançant l'enllaç següent.",
+      "with-deletion": "La nota s'eliminarà després de llegir-la.",
+      "copy-link": "Copiar enllaç",
+      "copy-success": "Enllaç copiat"
+    },
+    "qr-code": {
+      "title": "Compartir aquesta nota al mòbil",
+      "description": "Podeu escanejar aquest codi QR per veure la nota al dispositiu mòbil. També podeu exportar la imatge del codi QR per compartir-la amb altres persones.",
+      "export": "Exportar codi QR",
+      "download-svg": "Descarregar com a SVG",
+      "download-png": "Descarregar com a PNG",
+      "download-success": "Codi QR descarregat",
+      "copy-svg": "Copia codi SVG",
+      "copy-success": "Codi SVG copiat al porta-retalls"
+    }
+  },
+  "view": {
+    "loading": "Carregant nota...",
+    "note-content": "Contingut de la nota",
+    "assets": {
+      "download": "Descarregar",
+      "download-all": "Descarregar tots els fitxers",
+      "heading-multiple": "{{ count }} fitxers adjunts a aquesta nota",
+      "heading-single": "1 fitxer adjunt a aquesta nota"
+    },
+    "request-password": {
+      "description": "Aquesta nota està protegida amb contrasenya. Introduïu la contrasenya per desbloquejar-la.",
+      "form": {
+        "label": "Contrasenya",
+        "placeholder": "Contrasenya de la nota...",
+        "unlock-button": "Desbloquejar nota",
+        "invalid": "La contrasenya que heu introduït no és vàlida o l'URL de la nota és incorrecta."
+      }
+    },
+    "warn-for-note-deletion": {
+      "title": "Aquesta nota s'eliminarà",
+      "description": "Aquesta nota s'ha configurat per ser suprimida després de llegir-la. Després de mostrar-la, s'eliminarà permanentment i no es podrà recuperar.",
+      "confirm": "Ho entenc, mostreu la nota"
+    },
+    "error": {
+      "invalid-url": {
+        "title": "URL de nota no vàlida",
+        "description": "L'URL d'aquesta nota no és vàlida. Assegureu-vos que esteu utilitzant l'URL correcta."
+      },
+      "rate-limit": {
+        "title": "Límit de velocitat superat",
+        "description": "Has superat el límit de velocitat per obtenir notes. Torneu-ho a provar més tard."
+      },
+      "unauthorized": {
+        "title": "No autoritzat",
+        "description": "Aquesta nota és privada. Cal que inicieu la sessió per veure-la.",
+        "button": "Iniciar la sessió"
+      },
+      "note-not-found": {
+        "title": "Nota no trobada",
+        "description": "Aquesta nota no existeix, ha caducat o s'ha suprimit."
+      },
+      "fetch-error": {
+        "title": "S'ha produït un error",
+        "description": "S'ha produït un error en obtenir la nota. Torneu-ho a provar més tard."
+      },
+      "decryption": {
+        "title": "S'ha produït un error",
+        "description": "S'ha produït un error en desxifrar la nota. Pot ser que l'URL no sigui vàlida."
+      }
+    }
+  },
+  "copy": {
+    "label": "Copiar al porta-retalls",
+    "success": "Copiat!"
+  }
+}
