@@ -26,7 +26,7 @@ RUN pnpm --filter @enclosed/crypto run build && \
     pnpm --filter @enclosed/app-client run build && \
     pnpm --filter @enclosed/app-server run build:node
 
-# Production image 
+# Production image
 FROM node:22-alpine
 
 WORKDIR /app
@@ -35,9 +35,15 @@ WORKDIR /app
 COPY --from=builder /app/packages/app-client/dist ./public
 COPY --from=builder /app/packages/app-server/dist-node/index.cjs ./index.cjs
 
-# Create the .data directory 
-RUN mkdir -p /app/.data 
+# Create the .data directory and hand ownership to the built-in unprivileged
+# `node` user so the container does not run as root.
+RUN mkdir -p /app/.data && chown -R node:node /app
+
+USER node
 
 EXPOSE 8787
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+  CMD wget -qO- http://127.0.0.1:8787/api/ping || exit 1
 
 CMD ["node", "index.cjs"]
