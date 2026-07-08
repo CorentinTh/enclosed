@@ -147,7 +147,9 @@ jobs:
     
       - name: Get release version from input
         if: ${{ github.event_name == 'workflow_dispatch' }}
-        run: echo "RELEASE_VERSION=${{ github.event.inputs.release_version }}" >> $GITHUB_ENV
+        env:
+          RELEASE_VERSION_INPUT: ${{ github.event.inputs.release_version }}
+        run: echo "RELEASE_VERSION=${RELEASE_VERSION_INPUT}" >> $GITHUB_ENV
 
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
