@@ -6,6 +6,19 @@ services:
     volumes:
       - enclosed-data:/app/.data
     restart: unless-stopped
+    # Defense-in-depth hardening for the reference deployment.
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp
+    # Set a strong secret and enable auth if this instance is not meant to be public:
+    # environment:
+    #   AUTHENTICATION_JWT_SECRET: "<openssl rand -base64 48>"
+    #   PUBLIC_IS_AUTHENTICATION_REQUIRED: "true"
+    #   AUTHENTICATION_USERS: "you@example.com:<bcrypt-hash>"
 
 volumes:
   enclosed-data:
