@@ -48,7 +48,7 @@ jobs:
         working-directory: packages/crypto
 
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -82,7 +82,7 @@ jobs:
         working-directory: packages/lib
 
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -115,7 +115,7 @@ jobs:
         working-directory: packages/cli
 
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -150,7 +150,7 @@ jobs:
         run: echo "RELEASE_VERSION=${{ github.event.inputs.release_version }}" >> $GITHUB_ENV
 
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
