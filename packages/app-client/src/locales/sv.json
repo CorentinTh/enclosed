@@ -1,0 +1,171 @@
+{
+  "app": {
+    "title": "Enclosed",
+    "description": "Skicka privata och säkra anteckningar"
+  },
+  "insecureContextWarning": {
+    "description": "Din anslutning är inte säker, appen måste levereras via HTTPS för att fungera korrekt. Du kommer inte att kunna skapa eller visa anteckningar.",
+    "learn-more": "Läs mer"
+  },
+  "navbar": {
+    "new-note": "Ny anteckning",
+    "github": "GitHub",
+    "language": "Språk",
+    "github-repository": "GitHub-repository",
+    "documentation": "Dokumentation",
+    "change-theme": "Byt tema",
+    "menu-icon": "Menyikon",
+    "change-language": "Byt språk",
+    "theme": {
+      "theme": "Tema",
+      "light-mode": "Ljust läge",
+      "dark-mode": "Mörkt läge",
+      "system-mode": "Systemstandard"
+    },
+    "settings": {
+      "documentation": "Dokumentation",
+      "cli": "Enclosed CLI",
+      "support": "Stöd Enclosed",
+      "report-bug": "Rapportera ett fel",
+      "logout": "Logga ut",
+      "contribute-to-i18n": "Bidra till översättningar"
+    }
+  },
+  "footer": {
+    "crafted-by": "Skapad av",
+    "source-code": "Källkod tillgänglig på",
+    "github": "GitHub",
+    "version": "Version"
+  },
+  "login": {
+    "title": "Logga in på Enclosed",
+    "description": "Detta är en privat instans av Enclosed. Ange dina uppgifter för att kunna skapa anteckningar.",
+    "email": "E-post",
+    "password": "Lösenord",
+    "submit": "Logga in",
+    "errors": {
+      "invalid-credentials": "Ogiltig e-postadress eller lösenord.",
+      "unknown": "Ett okänt fel inträffade. Försök igen senare."
+    },
+    "footer": [
+      "Har du inget konto?",
+      "Kontakta ägaren av instansen."
+    ]
+  },
+  "create": {
+    "errors": {
+      "empty-note": "Ange ett anteckningsinnehåll eller bifoga en fil.",
+      "rate-limit": "Du har överskridit gränsen för att skapa anteckningar. Försök igen senare.",
+      "too-large": "Anteckningsinnehållet och bilagorna är för stora. Minska storleken och försök igen.",
+      "unauthorized": "Du har inte behörighet att skapa anteckningar. Logga in och försök igen.",
+      "api-not-found": "API-slutpunkten hittades inte. Servern kanske inte är korrekt konfigurerad.",
+      "unknown": "Ett fel inträffade när anteckningen skulle skapas, försök igen."
+    },
+    "share": {
+      "button": "Dela anteckning",
+      "title": "Delad anteckning",
+      "description": "Här är en anteckning som delats med dig."
+    },
+    "settings": {
+      "placeholder": "Skriv din anteckning här...",
+      "password": {
+        "label": "Lösenord för anteckning",
+        "placeholder": "Lösenord...",
+        "hide-password": "Dölj lösenord",
+        "show-password": "Visa lösenord",
+        "generate-random-password": "Generera slumpmässigt lösenord"
+      },
+      "expiration": "Utgångstid",
+      "no-expiration": "Anteckningen upphör aldrig att gälla",
+      "delays": {
+        "1h": "1 timme",
+        "1d": "1 dag",
+        "1w": "1 vecka",
+        "1m": "1 månad"
+      },
+      "delete-after-reading": {
+        "label": "Radera efter läsning",
+        "description": "Radera anteckningen efter läsning"
+      },
+      "attach-files": "Bifoga filer",
+      "drop-files": {
+        "title": "Släpp filer här",
+        "description": "Dra och släpp filer här för att bifoga dem till anteckningen"
+      },
+      "create": "Skapa anteckning",
+      "creating": "Skapar anteckning..."
+    },
+    "success": {
+      "title": "Anteckningen har skapats",
+      "description": "Din anteckning har skapats. Du kan nu dela den med följande länk.",
+      "with-deletion": "Anteckningen kommer att raderas efter läsning.",
+      "copy-link": "Kopiera länk",
+      "copy-success": "Länk kopierad"
+    },
+    "qr-code": {
+      "title": "Dela denna anteckning på mobilen",
+      "description": "Du kan skanna denna QR-kod för att visa anteckningen på din mobila enhet. Du kan även exportera QR-kodbilden för att dela den med andra.",
+      "export": "Exportera QR-kod",
+      "download-svg": "Ladda ner som SVG",
+      "download-png": "Ladda ner som PNG",
+      "download-success": "QR-koden har laddats ner",
+      "copy-svg": "Kopiera SVG-kod",
+      "copy-success": "SVG kopierad till urklipp"
+    }
+  },
+  "view": {
+    "loading": "Läser in anteckning...",
+    "note-content": "Anteckningens innehåll",
+    "assets": {
+      "download": "Ladda ner",
+      "download-all": "Ladda ner alla filer",
+      "heading-multiple": "{{ count }} filer bifogade till denna anteckning",
+      "heading-single": "1 fil bifogad till denna anteckning"
+    },
+    "request-password": {
+      "description": "Denna anteckning är lösenordsskyddad. Ange lösenordet för att låsa upp den.",
+      "form": {
+        "label": "Lösenord",
+        "placeholder": "Lösenord för anteckning...",
+        "unlock-button": "Lås upp anteckning",
+        "invalid": "Lösenordet du angav är ogiltigt eller anteckningens URL är felaktig."
+      }
+    },
+    "warn-for-note-deletion": {
+      "title": "Denna anteckning kommer att raderas",
+      "description": "Denna anteckning har konfigurerats att raderas efter läsning. Efter att anteckningen har visats kommer den att raderas permanent och kan inte återställas.",
+      "confirm": "Jag förstår, visa mig anteckningen"
+    },
+    "error": {
+      "invalid-url": {
+        "title": "Ogiltig URL för anteckning",
+        "description": "Denna anteckningsadress är ogiltig. Kontrollera att du använder rätt URL."
+      },
+      "rate-limit": {
+        "title": "Gränsen har överskridits",
+        "description": "Du har överskridit gränsen för att hämta anteckningar. Försök igen senare."
+      },
+      "unauthorized": {
+        "title": "Ej behörig",
+        "description": "Denna anteckning är privat. Du måste vara inloggad för att kunna visa den.",
+        "button": "Logga in"
+      },
+      "note-not-found": {
+        "title": "Anteckningen hittades inte",
+        "description": "Denna anteckning finns inte, har upphört att gälla eller har raderats."
+      },
+      "fetch-error": {
+        "title": "Ett fel inträffade",
+        "description": "Ett fel inträffade vid hämtning av anteckningen. Försök igen senare."
+      },
+      "decryption": {
+        "title": "Ett fel inträffade",
+        "description": "Ett fel inträffade vid dekryptering av anteckningen. URL:en kan vara ogiltig."
+      }
+    }
+  },
+  "copy": {
+    "label": "Kopiera till urklipp",
+    "success": "Kopierat!"
+  }
+}
