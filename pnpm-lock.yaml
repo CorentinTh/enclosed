@@ -24,6 +24,9 @@ catalogs:
     tsx:
       specifier: ^4.17.0
       version: 4.19.3
+    typescript:
+      specifier: ^5.6.2
+      version: 5.8.2
     vitest:
       specifier: ^3.0.9
       version: 3.0.9
@@ -54,8 +57,8 @@ importers:
         specifier: ^4.2.1
         version: 4.3.1(solid-js@1.9.5)
       '@solidjs/router':
-        specifier: ^0.14.3
-        version: 0.14.10(solid-js@1.9.5)
+        specifier: ^0.16.0
+        version: 0.16.3(solid-js@1.9.5)
       '@unocss/reset':
         specifier: ^0.64.0
         version: 0.64.1
@@ -2241,8 +2244,8 @@ packages:
     peerDependencies:
       solid-js: ^1.6.12
 
-  '@solidjs/router@0.14.10':
-    resolution: {integrity: sha512-5B8LVgvvXijfXyXWPVLUm7RQ05BhjIpAyRkYVDZtrR3OaSvftXobWc6qSEwk4ICLoGi/IE9CUp2LUdCBIs9AXg==}
+  '@solidjs/router@0.16.3':
+    resolution: {integrity: sha512-WWQkmSmSpl+15HgUktGPbeXkgWmonj4XwPOcZVHJz1EQV3dz5qWHIyQ/BKXFevor6u/0dKvC9FlUmKmDwE1QHw==}
     peerDependencies:
       solid-js: ^1.8.6
 
@@ -2393,6 +2396,7 @@ packages:
 
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
+    deprecated: Potential CWE-502 - Update to 1.3.1 or higher
 
   '@unocss/astro@0.64.1':
     resolution: {integrity: sha512-UBB2nDc3aqBmdcgJHOsnAQaQnbdch4f3CKfV+LTv77D4tPizagUCODwPVTK3CA3leQzVbbUV06uHfo5hsv2PUw==}
@@ -3464,6 +3468,7 @@ packages:
   eslint@9.11.0:
     resolution: {integrity: sha512-yVS6XODx+tMFMDFcG4+Hlh+qG7RM6cCJXtQhCKLSsr3XkLvWggHjCqjfh0XsPPnt1c56oaT6PMgW9XWQQjdHXA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -3673,12 +3678,13 @@ packages:
 
   glob@10.4.5:
     resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   glob@8.1.0:
     resolution: {integrity: sha512-r8hpEjiQEYlF2QU0df3dS+nxxSIreXQS1qRhMJM0Q5NDdR386C7jb7Hwwod8Fgiuex+k0GFjgft18yvxm5XoCQ==}
     engines: {node: '>=12'}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   globals@11.12.0:
     resolution: {integrity: sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==}
@@ -5274,6 +5280,7 @@ packages:
   tar@6.2.1:
     resolution: {integrity: sha512-DZ4yORTwrbTj/7MZYq2w+/ZFdI6OZ/f9SFHR+71gIVUZhOQPHzVCLpvRnPgyaMpfWxxk/4ONva3GQSyNIKRv6A==}
     engines: {node: '>=10'}
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   terser@5.32.0:
     resolution: {integrity: sha512-v3Gtw3IzpBJ0ugkxEX8U0W6+TnPKRRCWGh1jC/iM/e3Ki5+qvO1L1EAZ56bZasc64aXHwRHNIQEzm6//i5cemQ==}
@@ -5549,6 +5556,7 @@ packages:
 
   uuid@8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
     hasBin: true
 
   validate-html-nesting@1.2.2:
@@ -5687,6 +5695,7 @@ packages:
   whatwg-encoding@3.1.1:
     resolution: {integrity: sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==}
     engines: {node: '>=18'}
+    deprecated: Use @exodus/bytes instead for a more spec-conformant and faster implementation
 
   whatwg-mimetype@4.0.0:
     resolution: {integrity: sha512-QaKxh0eNIi2mE9p2vEdzfagOKHCcj1pJ56EEHGQOVxp8r9/iszLUUV7v89x9O1p/T+NlTM5W7jW6+cz4Fq1YVg==}
@@ -7380,7 +7389,7 @@ snapshots:
     dependencies:
       solid-js: 1.9.5
 
-  '@solidjs/router@0.14.10(solid-js@1.9.5)':
+  '@solidjs/router@0.16.3(solid-js@1.9.5)':
     dependencies:
       solid-js: 1.9.5
 
