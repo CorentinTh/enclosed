@@ -59,6 +59,15 @@ You can quickly run the application using Docker.
 docker run -d --name enclosed --restart unless-stopped -p 8787:8787 corentinth/enclosed
 ```
 
+### Easypanel
+
+If you'd rather not run and configure the container yourself, [Easypanel](https://easypanel.io) is a self-hosted deployment platform with a one-click Enclosed template:
+
+[![Deploy on Easypanel][easypanel-btn]][easypanel-deploy]
+
+[easypanel-btn]: https://easypanel.io/img/deploy-on-easypanel-40.svg
+[easypanel-deploy]: https://easypanel.io/templates/enclosed
+
 ### To go further
 
 Please refer to the [self-hosting documentation](https://docs.enclosed.cc/self-hosting/docker) for more information on how to configure and run the application.
