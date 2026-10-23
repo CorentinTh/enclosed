@@ -16,8 +16,9 @@ COPY packages/lib/package.json packages/lib/package.json
 COPY packages/app-client/package.json packages/app-client/package.json
 COPY packages/app-server/package.json packages/app-server/package.json
 
-# Install pnpm
-RUN npm install -g pnpm --ignore-scripts && pnpm install --frozen-lockfile --ignore-scripts
+# Install the pnpm version package.json declares (packageManager); an unpinned
+# install gets the latest major, which rejects this lockfile.
+RUN npm install -g pnpm@9.15.0 --ignore-scripts && pnpm install --frozen-lockfile --ignore-scripts
 
 # Copy the entire app
 COPY . .
