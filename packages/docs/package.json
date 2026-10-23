@@ -24,11 +24,11 @@
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",
     "@types/bcryptjs": "^2.4.6",
-    "@types/lodash-es": "^4.17.12",
+    "@types/lodash-es": "catalog:",
     "eslint": "catalog:",
     "figue": "^2.1.0",
     "less": "^4.2.0",
-    "lodash-es": "^4.17.21",
+    "lodash-es": "catalog:",
     "typescript": "catalog:",
     "vitepress": "^1.3.4"
   }
