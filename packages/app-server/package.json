@@ -40,7 +40,7 @@
     "pino": "^9.3.2",
     "ulid-workers": "^2.1.0",
     "unstorage": "^1.10.2",
-    "zod": "^3.23.8"
+    "zod": "^4.0.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",

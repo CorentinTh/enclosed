@@ -149,7 +149,7 @@ importers:
         version: 4.1.0
       figue:
         specifier: ^2.1.0
-        version: 2.2.0(zod@3.24.2)
+        version: 2.2.0(zod@4.6.7)
       hono:
         specifier: ^4.5.8
         version: 4.7.5
@@ -169,8 +169,8 @@ importers:
         specifier: ^1.10.2
         version: 1.15.0
       zod:
-        specifier: ^3.23.8
-        version: 3.24.2
+        specifier: ^4.0.0
+        version: 4.6.7
     devDependencies:
       '@antfu/eslint-config':
         specifier: 'catalog:'
@@ -245,8 +245,8 @@ importers:
         specifier: ^1.0.1
         version: 1.1.1
       zod:
-        specifier: ^3.23.8
-        version: 3.24.2
+        specifier: ^4.0.0
+        version: 4.6.7
     devDependencies:
       '@antfu/eslint-config':
         specifier: 'catalog:'
@@ -332,7 +332,7 @@ importers:
         version: 9.11.0(jiti@2.4.2)
       figue:
         specifier: ^2.1.0
-        version: 2.2.0(zod@3.24.2)
+        version: 2.2.0(zod@4.6.7)
       less:
         specifier: ^4.2.0
         version: 4.2.2
@@ -5885,8 +5885,8 @@ packages:
   zod@3.22.3:
     resolution: {integrity: sha512-EjIevzuJRiRPbVH4mGc8nApb/lVLKVpmUhAaR5R5doKGfAnGJ6Gr3CViAVjP+4FWSxCsybeWQdcgCtbX+7oZug==}
 
-  zod@3.24.2:
-    resolution: {integrity: sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==}
+  zod@4.6.7:
+    resolution: {integrity: sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -9169,9 +9169,9 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.7
 
-  figue@2.2.0(zod@3.24.2):
+  figue@2.2.0(zod@4.6.7):
     dependencies:
-      zod: 3.24.2
+      zod: 4.6.7
 
   file-entry-cache@8.0.0:
     dependencies:
@@ -11850,7 +11850,7 @@ snapshots:
 
   zod@3.22.3: {}
 
-  zod@3.24.2: {}
+  zod@4.6.7: {}
 
   zwitch@2.0.4: {}
 
