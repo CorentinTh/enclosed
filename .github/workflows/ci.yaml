@@ -44,7 +44,7 @@ jobs:
   run-e2es:
     name: CI - App Client E2E
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 20
     defaults:
       run:
         working-directory: packages/app-client
@@ -82,8 +82,20 @@ jobs:
             ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.PLAYWRIGHT_VERSION }}-
             ${{ runner.os }}-playwright-
 
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install --with-deps
+      - name: Install Playwright system dependencies
+        timeout-minutes: 5
+        run: |
+          # Retry stalled APT mirror downloads instead of waiting indefinitely.
+          sudo tee /etc/apt/apt.conf.d/99-playwright > /dev/null <<'EOF'
+          Acquire::Retries "3";
+          Acquire::http::Timeout "30";
+          Acquire::https::Timeout "30";
+          EOF
+          pnpm exec playwright install-deps
+
+      - name: Install Playwright browsers
+        timeout-minutes: 5
+        run: pnpm exec playwright install
 
       - name: Run e2e tests
         run: pnpm test:e2e
