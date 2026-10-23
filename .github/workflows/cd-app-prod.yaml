@@ -15,22 +15,17 @@ jobs:
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-      
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js, pnpm, and dependencies
+        uses: pnpm/setup@fbda4c85fc2e1e08721cd8763afea8f48d60f024 # v3.0.0
         with:
-          node-version-file: .nvmrc
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm i
+          cache: true
+          require-lockfile: true
 
       - name: Build the app
         run: pnpm -F @enclosed/deploy-cloudflare build
 
       - name: Publish to Cloudflare Pages
-        uses: AdrianGonz97/refined-cf-pages-action@v1
+        uses: AdrianGonz97/refined-cf-pages-action@45ea15c1c69a7bce8ffbb79ba114daa2b52f0cff # v1.3.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -51,16 +46,11 @@ jobs:
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js, pnpm, and dependencies
+        uses: pnpm/setup@fbda4c85fc2e1e08721cd8763afea8f48d60f024 # v3.0.0
         with:
-          node-version-file: .nvmrc
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm i
+          cache: true
+          require-lockfile: true
 
       - name: Build the docs
         run: pnpm -F @enclosed/docs build
@@ -70,7 +60,7 @@ jobs:
           VITE_PLAUSIBLE_SCRIPT_SRC: ${{ secrets.DOCS_PLAUSIBLE_SCRIPT_SRC }}
 
       - name: Publish to Cloudflare Pages
-        uses: AdrianGonz97/refined-cf-pages-action@v1
+        uses: AdrianGonz97/refined-cf-pages-action@45ea15c1c69a7bce8ffbb79ba114daa2b52f0cff # v1.3.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

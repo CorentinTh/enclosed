@@ -74,7 +74,7 @@ jobs:
           cp -r ../app-server/dist-node/index.cjs dist-app/index.cjs
 
       - name: Restore Playwright browsers from cache
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: ~/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.PLAYWRIGHT_VERSION }}-${{ hashFiles('**/playwright.config.ts') }}
@@ -103,7 +103,7 @@ jobs:
           USE_PREVIEW_SERVER: true
 
       - name: Upload Playwright report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         if: always()
         with:
           name: playwright-report
