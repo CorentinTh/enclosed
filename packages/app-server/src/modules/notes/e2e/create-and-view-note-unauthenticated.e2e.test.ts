@@ -78,7 +78,7 @@ describe('e2e', () => {
           message: 'Invalid request body',
           details: [
             {
-              message: 'Invalid enum value. Expected \'cbor-array\', received \'foo\'',
+              message: 'Invalid input: expected "cbor-array"',
               path: 'serializationFormat',
             },
           ],
@@ -115,7 +115,7 @@ describe('e2e', () => {
           message: 'Invalid request body',
           details: [
             {
-              message: 'Invalid enum value. Expected \'aes-256-gcm\', received \'foo\'',
+              message: 'Invalid input: expected "aes-256-gcm"',
               path: 'encryptionAlgorithm',
             },
           ],
