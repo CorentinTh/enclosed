@@ -10,6 +10,19 @@ Enclosed can be easily installed and run using Docker. This method is recommende
 
 Before you begin, ensure that you have Docker installed on your system. You can download and install Docker from the [official Docker website](https://www.docker.com/get-started).
 
+## Supported Architectures
+
+Enclosed Docker images support the following architectures for both rootless and non-rootless images on Docker Hub and GHCR:
+
+- AMD64 (`linux/amd64`)
+- ARM64 (`linux/arm64`)
+
+::: warning ARMv7 support discontinued
+**v1.16.1 is the last release supporting ARMv7 (`linux/arm/v7`).** Newer releases do not include ARMv7 images.
+
+On ARMv7, pin your image to `corentinth/enclosed:1.16.1` or `ghcr.io/corentinth/enclosed:1.16.1`. For rootless deployments, use the `1.16.1-rootless` tag instead. Do not use `latest` or `latest-rootless` on ARMv7. To use newer releases, migrate to a supported architecture.
+:::
+
 ## Rootless and Non-rootless Docker Images
 
 Starting from version `1.5.1`, Enclosed provides both rootless and non-rootless Docker images. The rootless image, tagged as `latest-rootless` or `<version>-rootless` (e.g., `1.5.1-rootless`), allows you to run the container without requiring root privileges. This is useful in environments where running containers as root is discouraged for security reasons.

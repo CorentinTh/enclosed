@@ -1,6 +1,3 @@
-# Use the slim builder instead of Alpine because of
-# a known issue for arm/v7 architecture (hangs on dependency installation)
-# see https://github.com/nodejs/docker-node/issues/2077
 FROM node:22.23.4-slim AS builder
 
 # Set the working directory for the app
