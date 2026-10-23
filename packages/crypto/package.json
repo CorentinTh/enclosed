@@ -76,11 +76,11 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "lodash-es": "^4.17.21"
+    "lodash-es": "catalog:"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",
-    "@types/lodash-es": "^4.17.12",
+    "@types/lodash-es": "catalog:",
     "@types/node": "catalog:",
     "@vitest/coverage-v8": "catalog:",
     "eslint": "catalog:",

@@ -36,14 +36,14 @@
     "@inquirer/prompts": "^6.0.0",
     "citty": "^0.1.6",
     "conf": "^13.0.1",
-    "lodash-es": "^4.17.21",
+    "lodash-es": "catalog:",
     "ora": "^8.1.0",
     "picocolors": "^1.0.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",
-    "@types/lodash-es": "^4.17.12",
+    "@types/lodash-es": "catalog:",
     "@vitest/coverage-v8": "catalog:",
     "dotenv": "^16.4.5",
     "eslint": "catalog:",
