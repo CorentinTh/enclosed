@@ -29,6 +29,7 @@
   "dependencies": {
     "@corentinth/chisels": "catalog:",
     "@enclosed/lib": "workspace:*",
+    "@fontsource/inter": "^5.3.0",
     "@kobalte/core": "^0.13.4",
     "@solid-primitives/i18n": "^2.1.1",
     "@solid-primitives/storage": "^4.2.1",

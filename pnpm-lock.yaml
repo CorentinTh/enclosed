@@ -205,6 +205,9 @@ importers:
       '@enclosed/lib':
         specifier: workspace:*
         version: link:../lib
+      '@fontsource/inter':
+        specifier: ^5.3.0
+        version: 5.3.0
       '@kobalte/core':
         specifier: ^0.13.4
         version: 0.13.9(solid-js@1.9.5)
@@ -1858,6 +1861,9 @@ packages:
 
   '@floating-ui/utils@0.2.8':
     resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
+
+  '@fontsource/inter@5.3.0':
+    resolution: {integrity: sha512-RofMylZmjlJEfELXeNHFWBRcSs75rGU/6bV2S2jfnvv/3rPXPGe0LgUJTklcHZ9lM4OZmAVFhcJPnACfb91A3g==}
 
   '@hono/node-server@1.13.8':
     resolution: {integrity: sha512-fsn8ucecsAXUoVxrUil0m13kOEq4mkX4/4QozCqmY+HpGfKl74OYSn8JcMA8GnG0ClfdRI4/ZSeG7zhFaVg+wg==}
@@ -7067,6 +7073,8 @@ snapshots:
       '@floating-ui/utils': 0.2.8
 
   '@floating-ui/utils@0.2.8': {}
+
+  '@fontsource/inter@5.3.0': {}
 
   '@hono/node-server@1.13.8(hono@4.7.5)':
     dependencies:
