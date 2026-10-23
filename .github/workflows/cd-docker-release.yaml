@@ -33,7 +33,6 @@ on:
 
 permissions:
   contents: read
-  packages: write
 
 jobs:
   publish-crypto:
@@ -118,6 +117,9 @@ jobs:
     name: Release Docker images
     if: ${{ github.event_name == 'push' || inputs.release_docker }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Get release version from tag
         if: ${{ github.event_name == 'push' }}
