@@ -38,7 +38,7 @@
     "node-cron": "^3.0.3",
     "pino": "^9.3.2",
     "ulid-workers": "^2.1.0",
-    "unstorage": "^1.10.2",
+    "unstorage": "^1.17.6",
     "zod": "^4.6.7"
   },
   "devDependencies": {
