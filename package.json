@@ -28,6 +28,6 @@
     "expiration"
   ],
   "devDependencies": {
-    "bumpp": "^9.5.2"
+    "bumpp": "^12.3.0"
   }
 }
