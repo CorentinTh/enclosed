@@ -19,7 +19,7 @@ function joinUrlParts(...parts: string[]): string {
 function buildUrl({
   path,
   baseUrl,
-  origin = window.location.origin,
+  origin = globalThis?.window?.location?.origin ?? 'http://localhost',
 }: {
   path: string;
   baseUrl: string;
