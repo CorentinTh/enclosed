@@ -26,7 +26,7 @@
     "@types/bcryptjs": "^2.4.6",
     "@types/lodash-es": "catalog:",
     "eslint": "catalog:",
-    "figue": "^2.1.0",
+    "figue": "^3.3.0",
     "less": "^4.2.0",
     "lodash-es": "catalog:",
     "typescript": "catalog:",

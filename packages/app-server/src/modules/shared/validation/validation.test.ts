@@ -14,7 +14,7 @@ describe('validation', () => {
   describe('validateJsonBody', () => {
     describe('validateJsonBody creates a validation middleware that check the request json body against a schema', async () => {
       test('an invalid payload should trigger a 400 error', async () => {
-        const app = new Hono().post('/', validateJsonBody(z.object({ name: z.string({ required_error: 'The name is required' }) })), (context) => {
+        const app = new Hono().post('/', validateJsonBody(z.object({ name: z.string({ error: issue => issue.input === undefined ? 'The name is required' : undefined }) })), (context) => {
           return context.json({ ok: true });
         });
 
@@ -60,7 +60,7 @@ describe('validation', () => {
             message: 'Invalid request body',
             code: 'server.invalid_request.body',
             details: [{
-              message: 'Unrecognized key(s) in object: \'foo\'',
+              message: 'Unrecognized key: "foo"',
             }],
           },
         });
@@ -71,7 +71,7 @@ describe('validation', () => {
   describe('validateQuery', () => {
     describe('validateQuery creates a validation middleware that check the request query parameters against a schema', async () => {
       test('an invalid query should trigger a 400 error', async () => {
-        const app = new Hono().get('/', validateQuery(z.object({ name: z.string({ required_error: 'The name is required' }) })), (context) => {
+        const app = new Hono().get('/', validateQuery(z.object({ name: z.string({ error: issue => issue.input === undefined ? 'The name is required' : undefined }) })), (context) => {
           return context.json({ ok: true });
         });
 
@@ -123,7 +123,7 @@ describe('validation', () => {
             details: [
               {
                 path: 'name',
-                message: 'Invalid input: must start with "foo-"',
+                message: 'Invalid string: must start with "foo-"',
               },
             ],
           },
