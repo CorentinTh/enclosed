@@ -300,8 +300,8 @@ importers:
         specifier: workspace:*
         version: link:../lib
       '@hono/node-server':
-        specifier: ^1.12.1
-        version: 1.13.8(hono@4.7.5)
+        specifier: ^2.1.5
+        version: 2.1.5(hono@4.13.13)
       bcryptjs:
         specifier: ^2.4.3
         version: 2.4.3
@@ -312,8 +312,8 @@ importers:
         specifier: ^2.1.0
         version: 2.2.0(zod@3.24.2)
       hono:
-        specifier: ^4.5.8
-        version: 4.7.5
+        specifier: ^4.13.13
+        version: 4.13.13
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -1882,11 +1882,11 @@ packages:
   '@fontsource/inter@5.3.0':
     resolution: {integrity: sha512-RofMylZmjlJEfELXeNHFWBRcSs75rGU/6bV2S2jfnvv/3rPXPGe0LgUJTklcHZ9lM4OZmAVFhcJPnACfb91A3g==}
 
-  '@hono/node-server@1.13.8':
-    resolution: {integrity: sha512-fsn8ucecsAXUoVxrUil0m13kOEq4mkX4/4QozCqmY+HpGfKl74OYSn8JcMA8GnG0ClfdRI4/ZSeG7zhFaVg+wg==}
-    engines: {node: '>=18.14.1'}
+  '@hono/node-server@2.1.5':
+    resolution: {integrity: sha512-MgP/I06GdvsilDspMk/qmRzpk8LOUStP6jFAbSRi40W09DhoyUn+Mj7eyKICPqeYKybOjVFLVIAQzvu1bfIa7Q==}
+    engines: {node: '>=20'}
     peerDependencies:
-      hono: ^4
+      hono: ^4 || ^5.0.0-0
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -3913,8 +3913,8 @@ packages:
   help-me@5.0.0:
     resolution: {integrity: sha512-7xgomUX6ADmcYzFik0HzAxh/73YlKR9bmFzf51CZwR+b6YtzU2m0u49hQCqV6SvlqIqsaxovfwdvbnsw3b/zpg==}
 
-  hono@4.7.5:
-    resolution: {integrity: sha512-fDOK5W2C1vZACsgLONigdZTRZxuBqFtcKh7bUQ5cVSbwI2RWjloJDcgFOVzbQrlI6pCmhlTsVYZ7zpLj4m4qMQ==}
+  hono@4.13.13:
+    resolution: {integrity: sha512-CQ46U0ZkAGmbT/4UxdzzGJpacP2IeKgY4a5/tOI9AABbpOMfK739wfDXmv1usCk+3RkKj1hQy4/fjhiwa2xlrA==}
     engines: {node: '>=16.9.0'}
 
   hookable@5.5.3:
@@ -6932,9 +6932,9 @@ snapshots:
 
   '@fontsource/inter@5.3.0': {}
 
-  '@hono/node-server@1.13.8(hono@4.7.5)':
+  '@hono/node-server@2.1.5(hono@4.13.13)':
     dependencies:
-      hono: 4.7.5
+      hono: 4.13.13
 
   '@humanwhocodes/module-importer@1.0.1': {}
 
@@ -9286,7 +9286,7 @@ snapshots:
 
   help-me@5.0.0: {}
 
-  hono@4.7.5: {}
+  hono@4.13.13: {}
 
   hookable@5.5.3: {}
 
