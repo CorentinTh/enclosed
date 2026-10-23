@@ -9,9 +9,9 @@ on:
     inputs:
 
       release_version:
-        description: 'Release version (no v prefix)'
+        description: 'Existing release tag to publish (version only, no v prefix)'
         required: true
-        default: '0.0.0'
+        type: string
 
       publish_lib:
         description: 'Publish lib to npm'
@@ -35,10 +35,14 @@ permissions:
   contents: read
   packages: write
 
+env:
+  # pnpm 9 delegates publishing to npm; trusted publishing requires npm >=11.5.1.
+  NPM_VERSION: '11.21.1'
+
 jobs:
   publish-crypto:
     name: Publish @enclosed/crypto to npm
-    if: ${{ github.event.inputs.publish_lib || github.event_name == 'push' }}
+    if: ${{ github.event_name == 'push' || inputs.publish_lib }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -49,6 +53,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && format('refs/tags/v{0}', inputs.release_version) || github.sha }}
+          persist-credentials: false
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -57,22 +64,22 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: 'pnpm'
-          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install npm with trusted publishing support
+        run: npm install --global "npm@$NPM_VERSION" --ignore-scripts
 
       - name: Install dependencies
-        run: pnpm i
+        run: pnpm install --frozen-lockfile
         working-directory: ./
 
       - name: Publish @enclosed/crypto to npm
         run: pnpm publish --access public --no-git-checks
         env:
           NPM_CONFIG_PROVENANCE: true
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
 
   publish-lib:
     name: Publish @enclosed/lib to npm
-    if: ${{ github.event.inputs.publish_lib || github.event_name == 'push' }}
+    if: ${{ github.event_name == 'push' || inputs.publish_lib }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -83,6 +90,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && format('refs/tags/v{0}', inputs.release_version) || github.sha }}
+          persist-credentials: false
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -91,21 +101,22 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: 'pnpm'
-          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install npm with trusted publishing support
+        run: npm install --global "npm@$NPM_VERSION" --ignore-scripts
 
       - name: Install dependencies
-        run: pnpm i
+        run: pnpm install --frozen-lockfile
         working-directory: ./
 
-      - name: Publish  @enclosed/lib to npm
+      - name: Publish @enclosed/lib to npm
         run: pnpm publish --access public --no-git-checks
         env:
           NPM_CONFIG_PROVENANCE: true
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   publish-cli:
     name: Publish @enclosed/cli to npm
-    if: ${{ github.event.inputs.publish_cli || github.event_name == 'push' }}
+    if: ${{ github.event_name == 'push' || inputs.publish_cli }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -116,6 +127,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && format('refs/tags/v{0}', inputs.release_version) || github.sha }}
+          persist-credentials: false
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -124,33 +138,39 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: 'pnpm'
-          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install npm with trusted publishing support
+        run: npm install --global "npm@$NPM_VERSION" --ignore-scripts
 
       - name: Install dependencies
-        run: pnpm i
+        run: pnpm install --frozen-lockfile
         working-directory: ./
 
-      - name: Publish @enclosed/lib to npm
+      - name: Publish @enclosed/cli to npm
         run: pnpm publish --access public --no-git-checks
         env:
           NPM_CONFIG_PROVENANCE: true
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   docker-release:
     name: Release Docker images
-    if: ${{ github.event.inputs.release_docker || github.event_name == 'push'}}
+    if: ${{ github.event_name == 'push' || inputs.release_docker }}
     runs-on: ubuntu-latest
     steps:
       - name: Get release version from tag
         if: ${{ github.event_name == 'push' }}
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
-    
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/tags/v}" >> "$GITHUB_ENV"
+
       - name: Get release version from input
         if: ${{ github.event_name == 'workflow_dispatch' }}
-        run: echo "RELEASE_VERSION=${{ github.event.inputs.release_version }}" >> $GITHUB_ENV
+        env:
+          RELEASE_VERSION: ${{ inputs.release_version }}
+        run: echo "RELEASE_VERSION=$RELEASE_VERSION" >> "$GITHUB_ENV"
 
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && format('refs/tags/v{0}', inputs.release_version) || github.sha }}
+          persist-credentials: false
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
