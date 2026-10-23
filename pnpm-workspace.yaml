@@ -1,6 +1,13 @@
 packages:
   - 'packages/*'
 
+allowBuilds:
+  cbor-extract: true
+  esbuild: true
+  msgpackr-extract: true
+  sharp: true
+  workerd: true
+
 catalog:
   "@antfu/eslint-config": ^3.6.2
   "@types/node": ^22.5.4
