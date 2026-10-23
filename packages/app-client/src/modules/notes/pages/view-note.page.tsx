@@ -63,7 +63,7 @@ const RequestPasswordForm: Component<{ onPasswordEntered: (args: { password: str
 };
 
 export const ViewNotePage: Component = () => {
-  const params = useParams();
+  const params = useParams<{ noteId: string }>();
   const location = useLocation();
   const [isPasswordEntered, setIsPasswordEntered] = createSignal(false);
   const [getError, setError] = createSignal<{ title: string; description: string; action?: JSX.Element } | null>(null);
