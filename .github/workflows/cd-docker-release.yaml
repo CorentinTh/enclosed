@@ -35,10 +35,6 @@ permissions:
   contents: read
   packages: write
 
-env:
-  # pnpm 9 delegates publishing to npm; trusted publishing requires npm >=11.5.1.
-  NPM_VERSION: '11.21.1'
-
 jobs:
   publish-crypto:
     name: Publish @enclosed/crypto to npm
@@ -65,17 +61,12 @@ jobs:
           node-version-file: .nvmrc
           cache: 'pnpm'
 
-      - name: Install npm with trusted publishing support
-        run: npm install --global "npm@$NPM_VERSION" --ignore-scripts
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
         working-directory: ./
 
       - name: Publish @enclosed/crypto to npm
-        run: pnpm publish --access public --no-git-checks
-        env:
-          NPM_CONFIG_PROVENANCE: true
+        run: pnpm publish --access public --no-git-checks --provenance
 
   publish-lib:
     name: Publish @enclosed/lib to npm
@@ -102,17 +93,12 @@ jobs:
           node-version-file: .nvmrc
           cache: 'pnpm'
 
-      - name: Install npm with trusted publishing support
-        run: npm install --global "npm@$NPM_VERSION" --ignore-scripts
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
         working-directory: ./
 
       - name: Publish @enclosed/lib to npm
-        run: pnpm publish --access public --no-git-checks
-        env:
-          NPM_CONFIG_PROVENANCE: true
+        run: pnpm publish --access public --no-git-checks --provenance
 
   publish-cli:
     name: Publish @enclosed/cli to npm
@@ -139,17 +125,12 @@ jobs:
           node-version-file: .nvmrc
           cache: 'pnpm'
 
-      - name: Install npm with trusted publishing support
-        run: npm install --global "npm@$NPM_VERSION" --ignore-scripts
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
         working-directory: ./
 
       - name: Publish @enclosed/cli to npm
-        run: pnpm publish --access public --no-git-checks
-        env:
-          NPM_CONFIG_PROVENANCE: true
+        run: pnpm publish --access public --no-git-checks --provenance
 
   docker-release:
     name: Release Docker images

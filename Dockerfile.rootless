@@ -3,7 +3,8 @@ FROM node:26.12.1-slim@sha256:36793bcbb160a6a16cede1e62b93f84e26b78a972a8a4c0b87
 # Set the working directory for the app
 WORKDIR /app
 
-# Copy package.json and pnpm-lock.yaml to install dependencies
+# Copy manifests and lockfile to install dependencies
+COPY package.json ./
 COPY pnpm-lock.yaml ./
 COPY pnpm-workspace.yaml ./
 COPY packages/crypto/package.json packages/crypto/package.json
@@ -12,10 +13,13 @@ COPY packages/app-client/package.json packages/app-client/package.json
 COPY packages/app-server/package.json packages/app-server/package.json
 
 # Install the pnpm version pinned in package.json
-RUN npm install -g pnpm@9.15.0 --ignore-scripts && pnpm install --frozen-lockfile --ignore-scripts
+RUN npm install -g pnpm@12.15.0 --ignore-scripts && pnpm install --frozen-lockfile --ignore-scripts
 
 # Copy the entire app
 COPY . .
+
+# Dependencies are already installed; avoid pnpm auto-installing before build scripts
+ENV PNPM_CONFIG_VERIFY_DEPS_BEFORE_RUN=false
 
 # Build the apps
 RUN pnpm --filter @enclosed/crypto run build && \
