@@ -52,7 +52,6 @@
     "@types/lodash-es": "catalog:",
     "@types/node": "catalog:",
     "eslint": "catalog:",
-    "jsdom": "^25.0.0",
     "tsx": "^4.19.3",
     "typescript": "catalog:",
     "unocss": "^0.64.0",
