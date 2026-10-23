@@ -1,4 +1,4 @@
-FROM node:22.23.4-slim AS builder
+FROM node:26.12.1-slim@sha256:36793bcbb160a6a16cede1e62b93f84e26b78a972a8a4c0b879c1c12f22761ec AS builder
 
 # Set the working directory for the app
 WORKDIR /app
@@ -24,7 +24,7 @@ RUN pnpm --filter @enclosed/crypto run build && \
     pnpm --filter @enclosed/app-server run build:node
 
 # Production image 
-FROM node:22.23.4-alpine
+FROM node:26.12.1-alpine@sha256:40cd011b55415bc894e45b02fdd5a5dfde056921b7d23a64c74f80497af48797
 
 WORKDIR /app
 
