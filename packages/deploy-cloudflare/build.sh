@@ -1,7 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Exit script on any error, use unset variables as error, and catch failures in pipelines
 set -euo pipefail
+
+# Resolve relative paths from this script's directory, regardless of where it is invoked.
+cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
 
 log() {
     local TIMESTAMP

@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    name: CI
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js, pnpm, and dependencies
+        uses: pnpm/setup@fbda4c85fc2e1e08721cd8763afea8f48d60f024 # v3.0.0
+        with:
+          cache: true
+          require-lockfile: true
+
+      - name: Build packages and apps
+        run: |
+          pnpm -r --filter '!@enclosed/deploy-cloudflare' build
+          pnpm --filter @enclosed/app-server build:node
+          pnpm --filter @enclosed/deploy-cloudflare build
+
+      - name: Run linters
+        run: pnpm -r --parallel lint
+
+      - name: Type check
+        run: pnpm -r --parallel typecheck
+
+      - name: Run tests
+        run: pnpm -r --parallel test
