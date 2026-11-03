@@ -1,6 +1,5 @@
 {
   "app": {
-    "title": "Enclosed",
     "description": "Envoyez des notes privées et sécurisées"
   },
   "insecureContextWarning": {

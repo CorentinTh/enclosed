@@ -142,6 +142,12 @@ export const configDefinition = {
       default: '/',
       env: 'PUBLIC_BASE_API_URL',
     },
+    appName: {
+      doc: 'The app name',
+      schema: z.string(),
+      default: 'Enclosed',
+      env: 'PUBLIC_APP_NAME',
+    },
     isAuthenticationRequired: {
       doc: 'Whether to require authentication to access the public api',
       schema: z

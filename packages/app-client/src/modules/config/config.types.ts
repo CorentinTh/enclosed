@@ -8,4 +8,5 @@ export type Config = {
   isSettingNoExpirationAllowed: boolean;
   defaultNoteNoExpiration: boolean;
   viewNotePathPrefix: string;
+  appName: string;
 };

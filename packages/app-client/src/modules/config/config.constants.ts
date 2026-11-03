@@ -10,4 +10,5 @@ export const buildTimeConfig: Config = {
   defaultNoteNoExpiration: import.meta.env.VITE_DEFAULT_NOTE_NO_EXPIRATION === 'true',
   isSettingNoExpirationAllowed: import.meta.env.VITE_IS_SETTING_NO_EXPIRATION_ALLOWED === 'true',
   viewNotePathPrefix: import.meta.env.VITE_VIEW_NOTE_PATH_PREFIX,
+  appName: import.meta.env.VITE_APP_NAME ?? 'Enclosed',
 };
