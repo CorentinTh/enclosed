@@ -3,6 +3,7 @@
 import { ColorModeProvider, ColorModeScript, createLocalStorageManager } from '@kobalte/core/color-mode';
 import { Router } from '@solidjs/router';
 import { render, Suspense } from 'solid-js/web';
+import { getConfig } from './modules/config/config.provider';
 import { I18nProvider } from './modules/i18n/i18n.provider';
 import { NoteContextProvider } from './modules/notes/notes.context';
 import { Toaster } from './modules/ui/components/sonner';
@@ -15,6 +16,13 @@ import '@fontsource/inter/700.css';
 import '@unocss/reset/tailwind.css';
 import 'virtual:uno.css';
 import './app.css';
+
+const { themeAccent } = getConfig();
+
+if (themeAccent) {
+  document.documentElement.style.setProperty('--primary', themeAccent);
+  document.documentElement.style.setProperty('--ring', themeAccent);
+}
 
 render(
   () => {

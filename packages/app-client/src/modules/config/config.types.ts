@@ -9,4 +9,5 @@ export type Config = {
   defaultNoteNoExpiration: boolean;
   viewNotePathPrefix: string;
   appName: string;
+  themeAccent?: string;
 };
