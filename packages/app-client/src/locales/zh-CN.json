@@ -1,6 +1,5 @@
 {
   "app": {
-    "title": "Enclosed",
     "description": "发送私密、安全的笔记"
   },
   "insecureContextWarning": {

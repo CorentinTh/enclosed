@@ -142,6 +142,18 @@ export const configDefinition = {
       default: '/',
       env: 'PUBLIC_BASE_API_URL',
     },
+    appName: {
+      doc: 'The app name',
+      schema: z.string(),
+      default: 'Enclosed',
+      env: 'PUBLIC_APP_NAME',
+    },
+    themeAccent: {
+      doc: 'Overrides the accent color. Must be bare HSL values, like `220 90% 56%`',
+      schema: z.string(),
+      default: undefined,
+      env: 'PUBLIC_THEME_ACCENT',
+    },
     isAuthenticationRequired: {
       doc: 'Whether to require authentication to access the public api',
       schema: z

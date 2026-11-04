@@ -82,7 +82,7 @@ export const LoginPage: Component = () => {
       <div class="h-full hidden xl:flex flex-1 max-w-36% text-white p-6 flex-col justify-between  bg-zinc-900">
         <div>
           <Button variant="link" class="text-white text-lg border-b border-transparent hover:(no-underline !border-border) h-auto py-0 px-0 rounded-none !transition-border-color-250">
-            {t('app.title')}
+            {config.appName}
           </Button>
 
           <span class="text-muted-foreground hidden sm:block">
