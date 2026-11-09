@@ -5,30 +5,30 @@ on:
     pull_request:
       types: [opened, synchronize]
 
+permissions:
+  contents: read
+
 jobs:
   build-app-preview:
     runs-on: ubuntu-latest
     name: Build app and upload build artifact
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-
-      - uses: actions/setup-node@v4
         with:
-          node-version: 22
-          cache: 'pnpm'
+          persist-credentials: false
 
-      - name: Install dependencies
-        run: pnpm i
+      - name: Setup Node.js, pnpm, and dependencies
+        uses: pnpm/setup@fbda4c85fc2e1e08721cd8763afea8f48d60f024 # v3.0.0
+        with:
+          cache: true
+          require-lockfile: true
 
       - name: Build the app
         run: pnpm -F @enclosed/deploy-cloudflare build
 
       # Uploads the build directory as a workflow artifact
       - name: Upload build artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: preview-app-build
           if-no-files-found: error
@@ -39,24 +39,21 @@ jobs:
     name: Build docs and upload build artifact
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-
-      - uses: actions/setup-node@v4
         with:
-          node-version: 22
-          cache: 'pnpm'
+          persist-credentials: false
 
-      - name: Install dependencies
-        run: pnpm i
+      - name: Setup Node.js, pnpm, and dependencies
+        uses: pnpm/setup@fbda4c85fc2e1e08721cd8763afea8f48d60f024 # v3.0.0
+        with:
+          cache: true
+          require-lockfile: true
 
       - name: Build the docs
         run: pnpm -F @enclosed/docs build
 
       # Uploads the build directory as a workflow artifact
       - name: Upload build artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: preview-docs-build
           if-no-files-found: error

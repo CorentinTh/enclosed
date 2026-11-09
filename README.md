@@ -59,6 +59,8 @@ You can quickly run the application using Docker.
 docker run -d --name enclosed --restart unless-stopped -p 8787:8787 corentinth/enclosed
 ```
 
+Docker images support AMD64 (`linux/amd64`) and ARM64 (`linux/arm64`). **v1.16.1 is the last release supporting ARMv7 (`linux/arm/v7`)**. See [supported architectures](https://docs.enclosed.cc/self-hosting/docker#supported-architectures) for details.
+
 ### To go further
 
 Please refer to the [self-hosting documentation](https://docs.enclosed.cc/self-hosting/docker) for more information on how to configure and run the application.

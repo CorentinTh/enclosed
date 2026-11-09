@@ -1,0 +1,111 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    name: CI
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js, pnpm, and dependencies
+        uses: pnpm/setup@fbda4c85fc2e1e08721cd8763afea8f48d60f024 # v3.0.0
+        with:
+          cache: true
+          require-lockfile: true
+
+      - name: Build packages and apps
+        run: |
+          pnpm -r --filter '!@enclosed/deploy-cloudflare' build
+          pnpm --filter @enclosed/app-server build:node
+          pnpm --filter @enclosed/deploy-cloudflare build
+
+      - name: Run linters
+        run: pnpm -r --parallel lint
+
+      - name: Type check
+        run: pnpm -r --parallel typecheck
+
+      - name: Run tests
+        run: pnpm -r --parallel test
+
+  run-e2es:
+    name: CI - App Client E2E
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: packages/app-client
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js, pnpm, and dependencies
+        uses: pnpm/setup@fbda4c85fc2e1e08721cd8763afea8f48d60f024 # v3.0.0
+        with:
+          cache: true
+          require-lockfile: true
+
+      - name: Get Playwright version
+        id: playwright-version
+        run: echo "PLAYWRIGHT_VERSION=$(pnpm list --json | jq -r '.[0].devDependencies["@playwright/test"].version')" >> "$GITHUB_OUTPUT"
+
+      - name: Build iso-prod app
+        run: |
+          pnpm -F @enclosed/app-client build
+          pnpm -F @enclosed/app-server build:node
+          mkdir dist-app
+          cp -r dist dist-app/public
+          cp -r ../app-server/dist-node/index.cjs dist-app/index.cjs
+
+      - name: Restore Playwright browsers from cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.PLAYWRIGHT_VERSION }}-${{ hashFiles('**/playwright.config.ts') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.PLAYWRIGHT_VERSION }}-
+            ${{ runner.os }}-playwright-
+
+      - name: Install Playwright system dependencies
+        timeout-minutes: 5
+        run: |
+          # Retry stalled APT mirror downloads instead of waiting indefinitely.
+          sudo tee /etc/apt/apt.conf.d/99-playwright > /dev/null <<'EOF'
+          Acquire::Retries "3";
+          Acquire::http::Timeout "30";
+          Acquire::https::Timeout "30";
+          EOF
+          pnpm exec playwright install-deps
+
+      - name: Install Playwright browsers
+        timeout-minutes: 5
+        run: pnpm exec playwright install
+
+      - name: Run e2e tests
+        run: pnpm test:e2e
+        env:
+          USE_PREVIEW_SERVER: true
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: always()
+        with:
+          name: playwright-report
+          path: packages/app-client/playwright-report/
+          retention-days: 15

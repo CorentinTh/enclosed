@@ -20,7 +20,7 @@ function setConfig({ key, value }: { key: ConfigKey ; value: string }) {
   const parsedValue = schema.safeParse(value);
 
   if (!parsedValue.success) {
-    const errorMessage = parsedValue.error.errors.map(({ message }) => message).join('\n');
+    const errorMessage = parsedValue.error.issues.map(({ message }) => message).join('\n');
     console.error(picocolors.red(`Invalid value for ${key}: ${errorMessage}`));
     return;
   }
@@ -46,7 +46,7 @@ function getConfig({ key }: { key: ConfigKey }) {
   const parsedValue = schema.safeParse(value);
 
   if (!parsedValue.success) {
-    const errorMessage = parsedValue.error.errors.map(({ message }) => message).join('\n');
+    const errorMessage = parsedValue.error.issues.map(({ message }) => message).join('\n');
     console.error(picocolors.red(`Invalid value for ${key}: ${errorMessage}`));
     return;
   }

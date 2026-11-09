@@ -12,6 +12,10 @@ Below is a sample `docker-compose.yml` file that you can use to deploy Enclosed.
 
 <<< @/../../../docker-compose.yml
 
+::: warning ARMv7 support discontinued
+**v1.16.1 is the last release supporting ARMv7.** On ARMv7, set `image: corentinth/enclosed:1.16.1` in your Compose file (or use the `1.16.1-rootless` tag for rootless deployments) instead of using the latest tags. Newer releases only support AMD64 and ARM64. See [supported architectures](./docker#supported-architectures) for details.
+:::
+
 ### Explanation of the Configuration
 
 - **version**: Specifies the version of Docker Compose file format.

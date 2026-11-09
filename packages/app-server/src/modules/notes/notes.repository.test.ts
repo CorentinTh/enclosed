@@ -42,7 +42,7 @@ describe('notes repository', () => {
 
       const { getNoteById } = createNoteRepository({ storage });
 
-      expect(getNoteById({ noteId: 'note-2' })).rejects.toThrow(createNoteNotFoundError());
+      await expect(getNoteById({ noteId: 'note-2' })).rejects.toThrow(createNoteNotFoundError());
     });
   });
 

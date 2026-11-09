@@ -37,7 +37,7 @@ describe('notes usecases', () => {
         deleteAfterReading: false,
       });
 
-      expect(
+      await expect(
         getRefreshedNote({
           noteId: 'note-1',
           notesRepository: createNoteRepository({ storage }),
@@ -55,7 +55,7 @@ describe('notes usecases', () => {
         deleteAfterReading: false,
       });
 
-      expect(
+      await expect(
         getRefreshedNote({
           noteId: 'note-1',
           notesRepository: createNoteRepository({ storage }),
@@ -79,7 +79,7 @@ describe('notes usecases', () => {
         now: new Date('2024-01-01T00:00:30Z'),
       });
 
-      expect(
+      await expect(
         getRefreshedNote({
           noteId: 'note-1',
           notesRepository: createNoteRepository({ storage }),

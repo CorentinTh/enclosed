@@ -19,7 +19,7 @@ jobs:
     name: Deploy app preview
     steps:
       - name: Download app build artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         id: preview-app-build-artifact
         with:
           name: preview-app-build
@@ -28,7 +28,7 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
 
       - name: Deploy preview app to Cloudflare Pages
-        uses: AdrianGonz97/refined-cf-pages-action@v1
+        uses: AdrianGonz97/refined-cf-pages-action@45ea15c1c69a7bce8ffbb79ba114daa2b52f0cff # v1.3.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -44,7 +44,7 @@ jobs:
     name: Deploy docs preview
     steps:
       - name: Download docs build artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         id: preview-docs-build-artifact
         with:
           name: preview-docs-build
@@ -53,7 +53,7 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
 
       - name: Deploy preview docs to Cloudflare Pages
-        uses: AdrianGonz97/refined-cf-pages-action@v1
+        uses: AdrianGonz97/refined-cf-pages-action@45ea15c1c69a7bce8ffbb79ba114daa2b52f0cff # v1.3.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

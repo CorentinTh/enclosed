@@ -3,7 +3,7 @@ import type z from 'zod';
 import { validator } from 'hono/validator';
 
 function formatValidationError({ error }: { error: z.ZodError }) {
-  const details = (error.errors ?? []).map((e) => {
+  const details = error.issues.map((e) => {
     return {
       ...(e.path.length === 0 ? {} : { path: e.path.join('.') }),
       message: e.message,
@@ -14,7 +14,7 @@ function formatValidationError({ error }: { error: z.ZodError }) {
 }
 
 function buildValidator<Target extends keyof ValidationTargets>({ target, error }: { target: Target; error: { message: string; code: string } }) {
-  return <Schema extends z.ZodTypeAny>(schema: Schema) => {
+  return <Schema extends z.ZodType>(schema: Schema) => {
     return validator(target, (value, context) => {
       // @ts-expect-error try to enforce strict mode
       const refinedSchema = schema.strict?.() ?? schema;

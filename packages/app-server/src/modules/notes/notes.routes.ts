@@ -96,9 +96,7 @@ function setupCreateNoteRoute({ app }: { app: ServerInstance }) {
           .max(ONE_MONTH_IN_SECONDS)
           .optional(),
 
-        // @ts-expect-error zod wants strict non empty array
         encryptionAlgorithm: z.enum(encryptionAlgorithms),
-        // @ts-expect-error zod wants strict non empty array
         serializationFormat: z.enum(serializationFormats),
 
         isPublic: z.boolean().optional().default(true),

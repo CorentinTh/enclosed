@@ -1,12 +1,10 @@
-# Base image is node:22-slim, we cannot use node:22-alpine because of
-# a known issue for arm/v7 architecture (hangs on dependency installation)
-# see https://github.com/nodejs/docker-node/issues/2077
-FROM node:22-slim AS builder
+FROM node:26.12.1-slim@sha256:36793bcbb160a6a16cede1e62b93f84e26b78a972a8a4c0b879c1c12f22761ec AS builder
 
 # Set the working directory for the app
 WORKDIR /app
 
-# Copy package.json and pnpm-lock.yaml to install dependencies
+# Copy manifests and lockfile to install dependencies
+COPY package.json ./
 COPY pnpm-lock.yaml ./
 COPY pnpm-workspace.yaml ./
 COPY packages/crypto/package.json packages/crypto/package.json
@@ -14,11 +12,14 @@ COPY packages/lib/package.json packages/lib/package.json
 COPY packages/app-client/package.json packages/app-client/package.json
 COPY packages/app-server/package.json packages/app-server/package.json
 
-# Install pnpm
-RUN npm install -g pnpm --ignore-scripts && pnpm install --frozen-lockfile --ignore-scripts
+# Install the pnpm version pinned in package.json
+RUN npm install -g pnpm@12.15.0 --ignore-scripts && pnpm install --frozen-lockfile --ignore-scripts
 
 # Copy the entire app
 COPY . .
+
+# Dependencies are already installed; avoid pnpm auto-installing before build scripts
+ENV PNPM_CONFIG_VERIFY_DEPS_BEFORE_RUN=false
 
 # Build the apps
 RUN pnpm --filter @enclosed/crypto run build && \
@@ -27,7 +28,7 @@ RUN pnpm --filter @enclosed/crypto run build && \
     pnpm --filter @enclosed/app-server run build:node
 
 # Production image 
-FROM node:22-alpine
+FROM node:26.12.1-alpine@sha256:40cd011b55415bc894e45b02fdd5a5dfde056921b7d23a64c74f80497af48797
 
 WORKDIR /app
 
