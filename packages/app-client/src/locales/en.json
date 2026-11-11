@@ -119,6 +119,8 @@
     "assets": {
       "download": "Download",
       "download-all": "Download all files",
+      "preview": "Preview",
+      "hide-preview": "Hide preview",
       "heading-multiple": "{{ count }} files attached to this note",
       "heading-single": "1 file attached to this note"
     },

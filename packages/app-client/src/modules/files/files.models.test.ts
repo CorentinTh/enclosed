@@ -1,7 +1,7 @@
 import { icons as tablerIconSet } from '@iconify-json/tabler';
 import { values } from 'lodash-es';
 import { describe, expect, test } from 'vitest';
-import { getFileIcon, iconByFileType } from './files.models';
+import { getFileIcon, getFilePreviewType, iconByFileType } from './files.models';
 
 describe('files models', () => {
   describe('iconByFileType', () => {
@@ -77,6 +77,28 @@ describe('files models', () => {
       const icon = getFileIcon({ file, iconsMap });
 
       expect(icon).to.eql('i-tabler-file-type-html');
+    });
+  });
+
+  describe('getFilePreviewType', () => {
+    test('browser-renderable images can be previewed as images', () => {
+      for (const type of ['image/png', 'image/jpeg', 'image/gif', 'image/webp', 'image/avif', 'image/bmp', 'image/svg+xml']) {
+        expect(getFilePreviewType({ file: new File([''], 'file', { type }) })).to.eql('image');
+      }
+    });
+
+    test('pdf files can be previewed as pdf', () => {
+      expect(getFilePreviewType({ file: new File([''], 'doc.pdf', { type: 'application/pdf' }) })).to.eql('pdf');
+    });
+
+    test('the file type matching is case insensitive', () => {
+      expect(getFilePreviewType({ file: new File([''], 'photo.png', { type: 'IMAGE/PNG' }) })).to.eql('image');
+    });
+
+    test('other files cannot be previewed', () => {
+      for (const type of ['text/html', 'text/plain', 'application/zip', 'application/octet-stream', 'image/tiff', 'video/mp4', '']) {
+        expect(getFilePreviewType({ file: new File([''], 'file', { type }) })).to.eql(undefined);
+      }
     });
   });
 });
