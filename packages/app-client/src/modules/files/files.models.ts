@@ -1,4 +1,4 @@
-export { getFileIcon };
+export { getFileIcon, getFilePreviewType };
 
 // Available icons :
 // i-tabler-file-3d i-tabler-file-ai i-tabler-file-alert i-tabler-file-analytics i-tabler-file-arrow-left i-tabler-file-arrow-right i-tabler-file-barcode i-tabler-file-bitcoin i-tabler-file-broken i-tabler-file-certificate i-tabler-file-chart i-tabler-file-check i-tabler-file-code i-tabler-file-code-2 i-tabler-file-cv i-tabler-file-database i-tabler-file-delta i-tabler-file-description i-tabler-file-diff i-tabler-file-digit i-tabler-file-dislike i-tabler-file-dollar i-tabler-file-dots i-tabler-file-download i-tabler-file-euro i-tabler-file-excel i-tabler-file-export i-tabler-file-filled i-tabler-file-function i-tabler-file-horizontal i-tabler-file-import i-tabler-file-infinity i-tabler-file-info i-tabler-file-invoice i-tabler-file-isr i-tabler-file-lambda i-tabler-file-like i-tabler-file-minus i-tabler-file-music i-tabler-file-neutral i-tabler-file-off i-tabler-file-orientation i-tabler-file-pencil i-tabler-file-percent i-tabler-file-phone i-tabler-file-plus i-tabler-file-power i-tabler-file-report i-tabler-file-rss i-tabler-file-sad i-tabler-file-scissors i-tabler-file-search i-tabler-file-settings i-tabler-file-shredder i-tabler-file-signal i-tabler-file-smile i-tabler-file-spreadsheet i-tabler-file-stack i-tabler-file-star i-tabler-file-symlink i-tabler-file-text i-tabler-file-text-ai i-tabler-file-time i-tabler-file-type-bmp i-tabler-file-type-css i-tabler-file-type-csv i-tabler-file-type-doc i-tabler-file-type-docx i-tabler-file-type-html i-tabler-file-type-jpg i-tabler-file-type-js i-tabler-file-type-jsx i-tabler-file-type-pdf i-tabler-file-type-php i-tabler-file-type-png i-tabler-file-type-ppt i-tabler-file-type-rs i-tabler-file-type-sql i-tabler-file-type-svg i-tabler-file-type-ts i-tabler-file-type-tsx i-tabler-file-type-txt i-tabler-file-type-vue i-tabler-file-type-xls i-tabler-file-type-xml i-tabler-file-type-zip i-tabler-file-typography i-tabler-file-unknown i-tabler-file-upload i-tabler-file-vector i-tabler-file-word i-tabler-file-x i-tabler-file-x-filled i-tabler-file-zip
@@ -39,4 +39,33 @@ function getFileIcon({ file, iconsMap = iconByFileType }: { file: File; iconsMap
   const icon = iconsMap[fileType as FileTypes] ?? iconsMap[fileTypeGroup as FileTypes] ?? iconsMap['*'];
 
   return icon;
+}
+
+// Only formats that browsers render natively and safely (images are displayed through an <img> tag, so even SVGs cannot run scripts)
+export const previewableImageTypes = [
+  'image/png',
+  'image/jpeg',
+  'image/gif',
+  'image/webp',
+  'image/avif',
+  'image/bmp',
+  'image/svg+xml',
+];
+
+export const previewablePdfType = 'application/pdf';
+
+export type FilePreviewType = 'image' | 'pdf';
+
+function getFilePreviewType({ file }: { file: File }): FilePreviewType | undefined {
+  const fileType = file.type.toLowerCase();
+
+  if (previewableImageTypes.includes(fileType)) {
+    return 'image';
+  }
+
+  if (fileType === previewablePdfType) {
+    return 'pdf';
+  }
+
+  return undefined;
 }

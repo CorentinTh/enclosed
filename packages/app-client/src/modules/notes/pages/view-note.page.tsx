@@ -1,5 +1,6 @@
 import { authStore } from '@/modules/auth/auth.store';
-import { getFileIcon } from '@/modules/files/files.models';
+import { FilePreview } from '@/modules/files/components/file-preview';
+import { getFileIcon, getFilePreviewType } from '@/modules/files/files.models';
 import { useI18n } from '@/modules/i18n/i18n.provider';
 import { isHttpErrorWithCode, isRateLimitError } from '@/modules/shared/http/http-errors';
 import { cn } from '@/modules/shared/style/cn';
@@ -59,6 +60,45 @@ const RequestPasswordForm: Component<{ onPasswordEntered: (args: { password: str
         </CardContent>
       </Card>
     </div>
+  );
+};
+
+const FileAssetCard: Component<{ file: File; onDownload: () => void }> = (props) => {
+  const [getIsPreviewVisible, setIsPreviewVisible] = createSignal(false);
+  const { t } = useI18n();
+
+  return (
+    <Card class="w-full rounded-md shadow-sm ">
+      <CardContent class="p-4 flex flex-col gap-4">
+        <div class="flex items-center gap-3">
+          <div class={cn('text-4xl text-muted-foreground op-50 flex-shrink-0', getFileIcon({ file: props.file }))} />
+          <div class="flex flex-col min-w-0">
+            <button class="p-0 h-auto cursor-pointer hover:underline truncate block" onClick={props.onDownload} title={props.file.name}>
+              {props.file.name}
+            </button>
+            <div class="text-muted-foreground text-xs">
+              {formatBytes({ bytes: props.file.size })}
+            </div>
+          </div>
+          <div class="ml-auto flex items-center gap-2 flex-shrink-0">
+            <Show when={getFilePreviewType({ file: props.file })}>
+              <Button variant="secondary" onClick={() => setIsPreviewVisible(!getIsPreviewVisible())} data-test-id="file-preview-toggle">
+                <div class={cn('mr-2 text-lg', getIsPreviewVisible() ? 'i-tabler-eye-off' : 'i-tabler-eye')}></div>
+                {getIsPreviewVisible() ? t('view.assets.hide-preview') : t('view.assets.preview')}
+              </Button>
+            </Show>
+            <Button variant="secondary" onClick={props.onDownload}>
+              <div class="i-tabler-download mr-2 text-lg"></div>
+              {t('view.assets.download')}
+            </Button>
+          </div>
+        </div>
+
+        <Show when={getIsPreviewVisible()}>
+          <FilePreview file={props.file} />
+        </Show>
+      </CardContent>
+    </Card>
   );
 };
 
@@ -365,25 +405,7 @@ export const ViewNotePage: Component = () => {
                 <div class="flex flex-col gap-2 md:min-w-500px">
                   {
                     fileAssets().map(file => (
-                      <Card class="w-full rounded-md shadow-sm ">
-                        <CardContent class="p-4 flex items-center gap-3">
-                          <div class={cn('text-4xl text-muted-foreground op-50 flex-shrink-0', getFileIcon({ file }))} />
-                          <div class="flex flex-col min-w-0">
-                            <button class="p-0 h-auto cursor-pointer hover:underline truncate block" onClick={() => downloadFile({ file })} title={file.name}>
-                              {file.name}
-                            </button>
-                            <div class="text-muted-foreground text-xs">
-                              {formatBytes({ bytes: file.size })}
-                            </div>
-                          </div>
-                          <div class="ml-auto">
-                            <Button variant="secondary" onClick={() => downloadFile({ file })}>
-                              <div class="i-tabler-download mr-2 text-lg"></div>
-                              {t('view.assets.download')}
-                            </Button>
-                          </div>
-                        </CardContent>
-                      </Card>
+                      <FileAssetCard file={file} onDownload={() => downloadFile({ file })} />
                     ))
                   }
                 </div>
